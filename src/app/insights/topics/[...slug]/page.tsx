@@ -142,14 +142,14 @@ export default async function TopicsPosts(props: { params: { slug: string } }) {
   );
 }
 
-export async function fetchData() {
+async function fetchData() {
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/stories`, {
     'starts_with': 'insights/', 
     'is_startpage': false,
   }, {cache: "no-store"});
 }
-export async function fetchEventsData() {
+async function fetchEventsData() {
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/stories`, {'starts_with': 'events/', 'is_startpage': false}, {cache: "no-store"});
 }

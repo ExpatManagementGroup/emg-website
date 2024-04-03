@@ -29,25 +29,25 @@ export default async function Home() {
   );
 }
 
-export async function fetchData() {
+async function fetchData() {
   return storyblokApi.get(`cdn/stories/home`, {
     "version": "draft",
     "resolve_relations": "blogPosts.posts"
   }, {cache: "no-store"});
 }
-export async function fetchBlogPostsData() {
+async function fetchBlogPostsData() {
   return storyblokApi.get(`cdn/stories`, {
     "starts_with": "insights/",
     "is_startpage": false
   },  {cache: "no-store"})   
 }
-export async function fetchTalentTestimonialData() {
+async function fetchTalentTestimonialData() {
   return getStoryblokApi().get(`cdn/stories/`, {
     "starts_with": "testimonials/",
     "per_page": 5
   }, {cache: "no-store"});
 }
-export async function fetchClientsData() {
+async function fetchClientsData() {
   return getStoryblokApi().get(`cdn/stories/`, {
     "starts_with": "client-cases/",
   }, {cache: "no-store"});

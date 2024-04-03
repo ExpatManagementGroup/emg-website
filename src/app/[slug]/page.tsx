@@ -15,7 +15,7 @@ export default async function Slug({ params }: { params: { slug: string } }) {
   );
 }
 
-export async function fetchData(slug: string) {
+async function fetchData(slug: string) {
   let sbParams: ISbStoriesParams = { version: "draft" };
   return getStoryblokApi().get(`cdn/stories/${slug}`, sbParams, {cache: "no-store"});
 }

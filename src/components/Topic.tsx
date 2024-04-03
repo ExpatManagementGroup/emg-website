@@ -11,7 +11,7 @@ export default async function Topic(props: {name: string}) {
   )
 }
 
-export async function fetchTopicData() {
+async function fetchTopicData() {
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/datasource_entries`, {
     "datasource": "topics",

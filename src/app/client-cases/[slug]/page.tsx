@@ -19,14 +19,14 @@ export default async function Slug({ params }: { params: { slug: string } }) {
   );
 }
 
-export async function fetchData(slug: string) {
+async function fetchData(slug: string) {
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/stories/client-cases/${slug}`, {
     "version": "draft"
   }, {cache: "no-store"});
 }
 
-export async function fetchOtherCCDataExcluding(slug:string) {
+async function fetchOtherCCDataExcluding(slug:string) {
   return getStoryblokApi().get(`cdn/stories`, {
     "starts_with": "client-cases/",
     "excluding_slugs": `client-cases/${slug}`
