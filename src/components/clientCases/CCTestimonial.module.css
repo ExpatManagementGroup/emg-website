@@ -1,0 +1,116 @@
+
+@media screen and (max-width:839.9px) {
+  .testimonial {
+    padding: 0 var(--m-outer-margin-s);
+    display: grid;
+    grid-template-columns: auto;
+    gap: 1rem;
+  }
+  .title {
+    text-align: center;
+    font-size: var(--fontsize-20);
+    margin-top: 2em;
+  }
+  .image {
+    grid-row: 3;
+    border-radius: 2em;
+    overflow: hidden;
+    border: 1px solid var(--EMG-Deep-Teal);
+  }
+  .image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .quote:before {
+    content: '“';
+    font-family: var(--font-reckless);
+    font-size: 50vw;
+    color: var(--EMG-White);
+    position: relative;
+    top: 0;
+    left: 0;
+    line-height: 1;
+    margin-bottom: -.525em;
+    display: block;
+  }
+  .quote {
+    position: relative;
+    grid-row: 2;
+    border-radius: 2rem;
+    overflow: hidden;
+    border: 1px solid var(--EMG-Deep-Teal);
+    background-color: var(--EMG-Ocean);
+    padding: 2rem 2rem 2rem calc(var(--d-colWidth-1) + var(--d-gutter));
+  }
+  .quote_text {
+    font-size: var(--fontsize-20);
+    line-height: 1;
+    margin-bottom: .75em;
+  }
+  .quote_name {
+    font-size: var(--fontsize-25);
+    font-family: var(--font-reckless);
+  }
+  .quote_jobtitle {
+    font-size: var(--fontsize-15);
+  }
+}
+@media screen and (min-width:840px) {
+  .testimonial {
+    width: var(--d-colWidth-10);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: var(--d-colWidth-4) var(--d-colWidth-6);
+    gap: var(--d-gutter);
+  }
+  .title {
+    text-align: center;
+    font-size: var(--fontsize-20);
+    margin-bottom: 1em;
+    grid-column: 1 / span 2;
+  }
+  .image {
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 2;
+    border-radius: 2em;
+    overflow: hidden;
+    border: 1px solid var(--EMG-Deep-Teal);
+  }
+  .image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .quote:before {
+    content: '“';
+    font-family: var(--font-reckless);
+    font-size: 12.5vw;
+    color: var(--EMG-White);
+    position: absolute;
+    top: 1rem;
+    left: 2rem;
+  }
+  .quote {
+    position: relative;
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    border-radius: 2rem;
+    overflow: hidden;
+    border: 1px solid var(--EMG-Deep-Teal);
+    background-color: var(--EMG-Ocean);
+    padding: 2rem 2rem 2rem calc(var(--d-colWidth-1) + var(--d-gutter));
+  }
+  .quote_text {
+    font-size: var(--fontsize-35);
+    line-height: 1;
+    margin-bottom: .75em;
+  }
+  .quote_name {
+    font-size: var(--fontsize-40);
+    font-family: var(--font-reckless);
+  }
+  .quote_jobtitle {
+    font-size: var(--fontsize-15);
+  }
+}

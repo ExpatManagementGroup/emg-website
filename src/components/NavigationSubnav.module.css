@@ -1,0 +1,51 @@
+@media screen and (max-width: 839.9px){
+  .subnav {
+    position: relative;
+  }
+  .subnav[data-show-subnav="false"] .subnav_nav{
+    display: none;
+    justify-content: center;
+  }
+  .subnav[data-show-subnav="true"] .subnav_nav{
+    display: block;
+    animation: subnavIn 0.25s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+  }
+  @keyframes subnavIn {
+    from {
+      opacity: 0;
+      transform: translateX(-15%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  .subnav_nav {
+    position: absolute;
+    top: 0; 
+    left: 50vw;
+    max-width: 50vw;
+  }
+}
+
+@media screen and (min-width: 840px){
+  .subnav {
+    position: relative;
+  }
+  .subnav[data-show-subnav="false"] .subnav_nav{
+    display: none;
+    justify-content: center;
+  }
+  .subnav[data-show-subnav="true"] .subnav_nav{
+    display: block;
+  }
+  .subnav_nav {
+    position: absolute;
+    top: calc(100% + 1px); 
+    left: calc( -2 * var(--nav-padding));
+    min-width: calc(100% + 4 * var(--nav-padding));
+    background: linear-gradient(0deg, rgba(234, 242, 242, 0.50) 0%, rgba(234, 242, 242, 0.50) 100%), rgba(234, 242, 242, 0.50);
+    backdrop-filter: blur(15px);
+    padding: var(--nav-padding) calc( 2 * var(--nav-padding));
+  }
+}

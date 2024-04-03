@@ -1,0 +1,101 @@
+@media screen and (max-width:839.9px) {
+  
+  .postcard_regular {
+    padding: 0 .25rem;
+
+    & .featured_image {
+      position: relative;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1;
+      border: 1px solid var(--EMG-Deep-Teal);
+      border-radius: 1em;
+      overflow: hidden;
+      transition: height 0.4s var(--bounce);
+    }
+    & .featured_image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    & .header_meta {
+      display: flex;
+      font-size: var(--fontsize-pill);
+      align-items: center;
+      gap: calc( 0.5 * var(--fontsize-pill) );
+      margin: 1em 0;
+    }
+    & .postcard_title {
+      font-size: var(--fontsize-25);
+      line-height: 1;
+      letter-spacing: -0.015em;
+      margin: 0;
+      padding: .25em 0 .75em 0;
+      max-width: 75%;
+    }
+  }
+}
+@media screen and (min-width:840px) {
+  .blogslider {
+    width: 100%;
+    height: 400px;
+  }
+  .blogslider :global(.swiper-slide) {
+    width: 20vw !important;
+    transition: all 0.3s ease-in-out;
+  }
+  .blogslider :global(.swiper-slide-prev) {
+    width: 40vw !important;
+    transition: all 0.3s ease-in-out;
+  }
+
+  @keyframes grow {
+    0% {
+      width: 20vw;
+    }
+    100% {
+      width: 40vwl
+    }
+  }
+
+  .postcard_regular {
+    padding: 0 1rem;
+    transition: padding-bottom 0.4s cubic-bezier(.38,.24,.15,1.22);
+  
+    & .featured_image {
+      position: relative;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--EMG-Deep-Teal);
+      border-radius: 1em;
+      overflow: hidden;
+      transition: height 0.4s cubic-bezier(.38,.24,.15,1.22);
+    }
+    & .featured_image a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    & .featured_image img,
+    & .featured_image picture {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      display: block
+    }
+    & .header_meta {
+      display: flex;
+      font-size: var(--fontsize-pill);
+      align-items: center;
+      gap: calc( 0.5 * var(--fontsize-pill) );
+      margin: 1em 0;
+    }
+    & .postcard_title {
+      font-size: var(--fontsize-20);
+      line-height: 1;
+      letter-spacing: -0.015em;
+      margin: 0;
+      padding: 0 0 1em 0;
+    }
+  }
+}

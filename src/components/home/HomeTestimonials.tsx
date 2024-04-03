@@ -1,0 +1,85 @@
+import styles from './HomeTestimonials.module.css';
+import Button from '../Button';
+import Slider from '../Slider';
+import CCTalentSlide from '../clientCases/CCTalentSlide';
+import CCClientSlide from '../clientCases/CCClientSlide';
+import { storyblokEditable } from "@storyblok/react/rsc";
+
+export default function HomeTestimonials( { blok }: { blok: any }) {
+
+  const talentData = blok.talentTestimonials;
+  const talentTestimonials = talentData;
+  const clientCases = blok.clientCaseStories;
+  const clientCaseTestimonials = clientCases?.map((story: any) => {
+    const blocks = story.content.body;
+    const testimonial = blocks.find((block: any) => block.component === "case_testimonial");
+    const clientHeaders = blocks.find((block: any) => block.component === "case_header");
+    testimonial.logo = clientHeaders.case_company_logo;
+    testimonial.url = `/client-cases/${story.slug}`;
+    return testimonial;
+  })
+  
+  const lengthofAllTestimonials = talentTestimonials?.length + clientCaseTestimonials?.length;
+  
+  let allTestimonialsAlternating = [];
+  
+  for(let i = 0; i < lengthofAllTestimonials; i++) {
+    if (i % 2 === 0) {
+        allTestimonialsAlternating.push( talentTestimonials[Math.floor(i/2)].content )
+    } else {
+      allTestimonialsAlternating.push(
+        clientCaseTestimonials[Math.floor(i/2)]
+      )
+    }
+  }
+  // get rid of any null values
+  allTestimonialsAlternating = allTestimonialsAlternating.filter((testimonial: any) => testimonial);
+
+  
+  return (
+    <section className={styles.testimonials} {...storyblokEditable(blok)}>
+      {/* <pre>{JSON.stringify(allTestimonialsAlternating, null, 2)}</pre> */}
+      <h2 className={styles.title}>
+        <span className={styles.eyebrow}>{blok.subhead}</span>
+        {blok.title}
+      </h2>
+      <Slider slidesPerViewDesktop={2.75} slidesPerViewMobile={1.1} className={styles.testimonialslider}>
+        {allTestimonialsAlternating?.map((testimonial: any, index: number) => {
+          if ( index % 2 === 0) {
+            return (
+              <CCTalentSlide key={`testimonial-${index}`} slideContent={testimonial} />
+            )
+          }
+          else {
+            return (
+              <CCClientSlide key={`testimonial-${index}`} slideContent={testimonial} />
+            )
+          }
+        })}
+      </Slider>
+      {blok.cta_url && blok.cta_text &&
+      <div className={styles.cta}>
+        <Button 
+          type="Link"
+          href={blok.cta_url}
+          text={blok.cta_text}
+          bgcolor='transparent'
+        />
+      </div>
+      }
+    </section>
+  )
+}
+
+// async function fetchTalentTestimonialData() {
+//   return getStoryblokApi().get(`cdn/stories/`, {
+//     "starts_with": "testimonials/",
+//     "per_page": 5
+//   }, {cache: "no-store"});
+// }
+// async function fetchClientTestimonialData() {
+//   return getStoryblokApi().get(`cdn/stories/`, {
+//     "starts_with": "client-cases/",
+//     "per_page": 5
+//   }, {cache: "no-store"});
+// }

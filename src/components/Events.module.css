@@ -1,0 +1,184 @@
+@media screen and (max-width:839.9px) {
+  .events {
+    /* width: calc(100% + var(--m-outer-margin-s)); */
+    margin: 1em 0;
+    gap: 1em;
+    position: relative;
+  }
+  .events_rail {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: calc( 0.5 * var(--fontsize-15) );
+    overflow-x: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    scroll-snap-type: x mandatory;
+  }
+  .events_rail::-webkit-scrollbar {
+    display: none;
+  }
+  .events_rail:after {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: var(--d-colWidth-2);
+    background: linear-gradient(to right, #EAF2F200, #EAF2F2FF 90%);
+  }
+  .events_title {
+    font-family: var(--font-reckless);
+    margin: 1em 0 .5em 0;
+  }
+  .event {
+    border: 1px solid var(--EMG-Deep-Teal);
+    border-radius: var(--fontsize-15);
+    padding: calc( 0.5 * var(--fontsize-15) ) calc( 0.75 * var(--fontsize-15) );
+    flex: 0 0 16vw;
+    scroll-snap-align: start;
+  }
+  .event:first-child {
+    background-color: var(--EMG-Citrus);
+  }
+  .event:nth-child(2) {
+    background-color: var(--EMG-Ocean);
+  }
+  .event:nth-child(3) {
+    background-color: var(--EMG-Sorbet);
+  }
+  .event:last-child {
+    margin-right: var(--d-colWidth-1);
+  }
+  .event_meta {
+    display: flex;
+    gap: calc( 0.5 * var(--fontsize-pill) );
+    /* justify-content: space-between; */
+    margin-bottom: calc( 0.5 * var(--fontsize-15) );
+    white-space: nowrap;
+  }
+  .event h2 {
+    font-size: var(--fontsize-15);
+    margin: 0;
+  }
+  .event_main {
+    display: flex;
+    justify-content: space-between;
+  }
+  .event_link {
+    flex: 0 0 calc(2.86 * var(--fontsize-15));
+    width: calc(2.86 * var(--fontsize-15));
+    height: calc(2.86 * var(--fontsize-15));
+    overflow: hidden;
+    text-indent: -9999px;
+    border: 1px solid var(--EMG-Deep-Teal);
+    border-radius: 50%;
+    position: relative;
+    display: inline-block;
+  }
+  .event_link:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: var(--EMG-Deep-Teal);
+    mask-image: var(--nav-arrow-right);
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: calc(0.75 * var(--fontsize-15));
+  }
+}
+@media screen and (min-width:840px) {
+  .events {
+    display: flex;
+    flex-wrap: nowrap;
+    width: calc(100% + var(--d-colWidth-1));
+    margin: 1em 0;
+    gap: 1em;
+    position: relative;
+  }
+  .events_rail {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: calc( 0.5 * var(--fontsize-15) );
+    overflow-x: scroll;
+    border-left: 1px solid var(--EMG-Deep-Teal);
+    padding-left: 1em;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .events_rail::-webkit-scrollbar {
+    display: none;
+  }
+  .events_rail:after {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: var(--d-colWidth-2);
+    background: linear-gradient(to right, #EAF2F200, #EAF2F2FF 90%);
+  }
+  .events_title {
+    font-family: var(--font-reckless);
+    flex: 1 1 0%;
+  }
+  .event {
+    border: 1px solid var(--EMG-Deep-Teal);
+    border-radius: var(--fontsize-15);
+    padding: calc( 0.5 * var(--fontsize-15) ) calc( 0.75 * var(--fontsize-15) );
+    flex: 0 0 16vw;
+  }
+  .event:first-child {
+    background-color: var(--EMG-Citrus);
+  }
+  .event:nth-child(2) {
+    background-color: var(--EMG-Ocean);
+  }
+  .event:nth-child(3) {
+    background-color: var(--EMG-Sorbet);
+  }
+  .event:last-child {
+    margin-right: var(--d-colWidth-1);
+  }
+  .event_meta {
+    display: flex;
+    gap: calc( 0.5 * var(--fontsize-pill) );
+    /* justify-content: space-between; */
+    margin-bottom: calc( 0.5 * var(--fontsize-15) );
+    white-space: nowrap;
+  }
+  .event h2 {
+    font-size: var(--fontsize-15);
+    margin: 0;
+  }
+  .event_main {
+    display: flex;
+    justify-content: space-between;
+  }
+  .event_link {
+    flex: 0 0 calc(2.86 * var(--fontsize-15));
+    width: calc(2.86 * var(--fontsize-15));
+    height: calc(2.86 * var(--fontsize-15));
+    overflow: hidden;
+    text-indent: -9999px;
+    border: 1px solid var(--EMG-Deep-Teal);
+    border-radius: 50%;
+    position: relative;
+    display: inline-block;
+  }
+  .event_link:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: var(--EMG-Deep-Teal);
+    mask-image: var(--nav-arrow-right);
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: calc(0.75 * var(--fontsize-15));
+  }  
+}

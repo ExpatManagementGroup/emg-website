@@ -1,0 +1,50 @@
+@media screen and (max-width:839.9px) {
+  .testimonials {
+    margin: 2em 0;
+  }
+  .title {
+    font-size: var(--fontsize-30);
+    font-family: var(--font-reckless);
+    text-align: center;
+    margin: 2em var(--m-outer-margin-s) 1em;
+    line-height: 0.88;
+  }
+  .title .eyebrow {
+    font-size: var(--fontsize-20);
+    font-family: var(--font-agrandir);
+    display: block;
+    color: var(--EMG-Hazy-White-Tone-3);
+    line-height: 1;
+    margin-bottom: 0.5em;
+  }
+  .cta {
+    text-align: center;
+  }
+}
+@media screen and (min-width:840px) {
+  .testimonials {
+    margin: 2em 0;
+  }
+  .testimonials :global(.swiper-slide) {
+    width: 36.363vw;
+  }
+  .title {
+    font-size: var(--fontsize-50);
+    font-family: var(--font-reckless);
+    text-align: center;
+    max-width: var(--d-colWidth-4);
+    margin: 2em auto 1em auto;
+    line-height: 0.88;
+  }
+  .title .eyebrow {
+    font-size: var(--fontsize-20);
+    font-family: var(--font-agrandir);
+    display: block;
+    color: var(--EMG-Hazy-White-Tone-3);
+    line-height: 1;
+    margin-bottom: 0.5em;
+  }
+  .cta {
+    text-align: center;
+  }
+}

@@ -1,0 +1,22 @@
+@media screen and (max-width: 839.9px) {
+  .logo_svg {
+    width: auto;
+    height: var(--nav-logo-height);
+  }
+  .logo_svg path{
+    fill: currentColor;
+  }
+  .logo_letters path {
+    display: none;
+  }
+}
+@media screen and (min-width: 840px) {
+  .logo_svg {
+    width: auto;
+    height: var(--nav-logo-height);
+    margin: var(--nav-padding) 0;
+  }
+  .logo_svg path{
+    fill: currentColor;
+  }
+}
