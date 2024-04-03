@@ -1,5 +1,13 @@
 @media screen and (max-width:839.9px) {
   
+  .blogslider :global(.swiper-wrapper) {
+    left: calc(var(--m-outer-margin-l) - .25rem);
+  }
+  .blogslider :global(.swiper-slide) {
+    width: 66.6667vw;
+    transition: var(--slidertransition);
+  }
+
   .postcard_regular {
     padding: 0 .25rem;
 
@@ -37,24 +45,36 @@
 }
 @media screen and (min-width:840px) {
   .blogslider {
+    --slidertransition: all 0.3s ease-in-out;
+
     width: 100%;
-    height: 400px;
+    height: auto;
+    margin-bottom: 4rem;
+  }
+  .blogslider :global(.swiper-wrapper) {
+    left: calc(-1 * var(--d-outer-margin) - var(--d-colWidth-1) + 1rem);
   }
   .blogslider :global(.swiper-slide) {
-    width: 20vw !important;
-    transition: all 0.3s ease-in-out;
+    width: 20vw;
+    transition: var(--slidertransition);
   }
-  .blogslider :global(.swiper-slide-prev) {
-    width: 40vw !important;
-    transition: all 0.3s ease-in-out;
+  .blogslider :global(.swiper-slide):nth-child(2) {
+    /* Needs to NOT be important to NOT override block style */
+    width: 40vw;
   }
+  .blogslider :global(.swiper-slide-next) {
+    /* Needs to be important to override block style */
+    width: 40vw !important; 
+  }
+  .blogslider :global(.swiper-slide-next),
+  .blogslider :global(.swiper-slide):nth-child(2) {
+    transition: var(--slidertransition);
 
-  @keyframes grow {
-    0% {
-      width: 20vw;
+    & .header_meta, & .header_meta :global(.pill) {
+      font-size: calc( 2.2 * var(--fontsize-pill)); 
     }
-    100% {
-      width: 40vwl
+    & .postcard_title {
+      font-size: calc( 2.2 * var(--fontsize-20)); 
     }
   }
 
@@ -87,8 +107,13 @@
       display: flex;
       font-size: var(--fontsize-pill);
       align-items: center;
-      gap: calc( 0.5 * var(--fontsize-pill) );
+      gap: .5em;
       margin: 1em 0;
+      transform-origin: left top;
+      transition: var(--slidertransition);
+    }
+    & .header_meta :global(.pill) {
+      transition: var(--slidertransition);
     }
     & .postcard_title {
       font-size: var(--fontsize-20);
@@ -96,6 +121,8 @@
       letter-spacing: -0.015em;
       margin: 0;
       padding: 0 0 1em 0;
+      transform-origin: left top;
+      transition: var(--slidertransition);
     }
   }
 }

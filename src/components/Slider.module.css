@@ -1,10 +1,10 @@
-/* .swiper :global(.swiper-slide) {
+.swiper {
   opacity: 0.5;
   transition: transform 0.5s, opacity 0.5s;
 }
-.swiper:global(.swiper-initialized) :global(.swiper-slide) {
+.swiper:global(.swiper-initialized) {
   opacity: 1;
-} */
+}
 .slidernavbuttons {
   display: flex;
   justify-content: center;

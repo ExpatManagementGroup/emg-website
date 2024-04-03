@@ -13,11 +13,11 @@ export default function BlogSlider( { blok }: { blok: any } ) {
     <div {...storyblokEditable(blok)}>
       <Slider 
         className={styles.blogslider} 
-        slidesPerViewDesktop={4.8} 
+        slidesPerViewDesktop={5} 
         slidesPerViewMobile={1.5} 
         sliderRef="blog"
-        centeredSlides={true}
-        // autoWidth={false}
+        centeredSlides={false}
+        autoWidth={true}
       >
         {blok.blogPosts?.map((story: any, index: number) => {
           const props = story.content

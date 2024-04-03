@@ -43,7 +43,13 @@ export default function HomeTestimonials( { blok }: { blok: any }) {
         <span className={styles.eyebrow}>{blok.subhead}</span>
         {blok.title}
       </h2>
-      <Slider slidesPerViewDesktop={2.75} slidesPerViewMobile={1.1} className={styles.testimonialslider}>
+      <Slider 
+        slidesPerViewDesktop={2.75} 
+        slidesPerViewMobile={1.1} 
+        className={styles.testimonialslider}
+        centeredSlides={true}
+        autoWidth={true}
+      >
         {allTestimonialsAlternating?.map((testimonial: any, index: number) => {
           if ( index % 2 === 0) {
             return (
