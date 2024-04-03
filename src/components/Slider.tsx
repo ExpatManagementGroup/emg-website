@@ -102,7 +102,7 @@ export default function Slider( props: {
         //     swiper.style.height = swiper.offsetHeight + 'px'
         //     isResizing.current = false
         //   }, 500)
-        }
+        // }
       }
     });
 
