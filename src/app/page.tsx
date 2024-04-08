@@ -1,6 +1,11 @@
-import { ISbStoriesParams, storyblokEditable, getStoryblokApi} from "@storyblok/react/rsc";
+import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin} from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
 import styles from "./page.module.css";
+
+storyblokInit({
+  accessToken: process.env.STORYBLOK_API_TOKEN,
+  use: [apiPlugin],
+});
 
 const storyblokApi = getStoryblokApi();
 
@@ -33,22 +38,22 @@ async function fetchData() {
   return storyblokApi.get(`cdn/stories/home`, {
     "version": "draft",
     "resolve_relations": "blogPosts.posts"
-  }, {cache: "no-store"});
+  });
 }
 async function fetchBlogPostsData() {
   return storyblokApi.get(`cdn/stories`, {
     "starts_with": "insights/",
     "is_startpage": false
-  },  {cache: "no-store"})   
+  },)   
 }
 async function fetchTalentTestimonialData() {
   return getStoryblokApi().get(`cdn/stories/`, {
     "starts_with": "testimonials/",
     "per_page": 5
-  }, {cache: "no-store"});
+  });
 }
 async function fetchClientsData() {
   return getStoryblokApi().get(`cdn/stories/`, {
     "starts_with": "client-cases/",
-  }, {cache: "no-store"});
+  });
 }

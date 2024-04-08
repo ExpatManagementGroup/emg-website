@@ -81,11 +81,11 @@ export default function HomeTestimonials( { blok }: { blok: any }) {
 //   return getStoryblokApi().get(`cdn/stories/`, {
 //     "starts_with": "testimonials/",
 //     "per_page": 5
-//   }, {cache: "no-store"});
+//   } );
 // }
 // async function fetchClientTestimonialData() {
 //   return getStoryblokApi().get(`cdn/stories/`, {
 //     "starts_with": "client-cases/",
 //     "per_page": 5
-//   }, {cache: "no-store"});
+//   } );
 // }

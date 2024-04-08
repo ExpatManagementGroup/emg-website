@@ -1,7 +1,12 @@
-import { ISbStoriesParams, storyblokEditable, getStoryblokApi} from "@storyblok/react/rsc";
+import { ISbStoriesParams, storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin} from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
 import styles from "../../page.module.css";
 import CCOtherCases from "@/components/clientCases/CCOtherCases";
+
+storyblokInit({
+  accessToken: process.env.STORYBLOK_API_TOKEN,
+  use: [apiPlugin],
+});
 
 export default async function Slug({ params }: { params: { slug: string } }) {
 
@@ -23,12 +28,12 @@ async function fetchData(slug: string) {
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/stories/client-cases/${slug}`, {
     "version": "draft"
-  }, {cache: "no-store"});
+  });
 }
 
 async function fetchOtherCCDataExcluding(slug:string) {
   return getStoryblokApi().get(`cdn/stories`, {
     "starts_with": "client-cases/",
     "excluding_slugs": `client-cases/${slug}`
-  }, {cache: "no-store"});
+  });
 }

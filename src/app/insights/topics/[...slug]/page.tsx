@@ -1,8 +1,13 @@
-import { storyblokEditable, getStoryblokApi} from "@storyblok/react/rsc";
+import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin} from "@storyblok/react/rsc";
 import styles from "./page.module.css";
 import Topic from "@/components/Topic";
 import PostCard from "@/components/PostCard";
 import Events from "@/components/Events";
+
+storyblokInit({
+  accessToken: process.env.STORYBLOK_API_TOKEN,
+  use: [apiPlugin],
+});
 
 export async function generateStaticParams() {
   const storyblokApi = getStoryblokApi();
@@ -147,10 +152,10 @@ async function fetchData() {
   return storyblokApi.get(`cdn/stories`, {
     'starts_with': 'insights/', 
     'is_startpage': false,
-  }, {cache: "no-store"});
+  } );
 }
 async function fetchEventsData() {
   const storyblokApi = getStoryblokApi();
-  return storyblokApi.get(`cdn/stories`, {'starts_with': 'events/', 'is_startpage': false}, {cache: "no-store"});
+  return storyblokApi.get(`cdn/stories`, {'starts_with': 'events/', 'is_startpage': false} );
 }
 

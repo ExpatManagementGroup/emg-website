@@ -14,5 +14,5 @@ export default async function CCTalent( { blok }: { blok: any }) {
 async function fetchData(uuids: string) {
   return getStoryblokApi().get(`cdn/stories/`, {
     'by_uuids': uuids,
-  }, {cache: "no-store"});
+  } );
 }
