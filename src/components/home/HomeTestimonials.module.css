@@ -1,6 +1,8 @@
 @media screen and (max-width:839.9px) {
   .testimonials {
-    margin: 2em 0;
+    padding: 2em 0;
+    background-color: var(--EMG-White);
+    overflow: hidden;
   }
   .title {
     font-size: var(--fontsize-30);
@@ -23,7 +25,9 @@
 }
 @media screen and (min-width:840px) {
   .testimonials {
-    margin: 2em 0;
+    padding: 2em 0;
+    background-color: var(--EMG-White);
+    overflow: hidden;
   }
   .testimonials :global(.swiper-slide) {
     width: 36.363vw;

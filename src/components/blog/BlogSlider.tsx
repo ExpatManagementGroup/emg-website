@@ -10,7 +10,13 @@ import Button from '../Button';
 export default function BlogSlider( { blok }: { blok: any } ) {
 
   return (
-    <div className={styles.blogslider_wrapper} {...storyblokEditable(blok)}>
+    <div 
+      className={styles.blogslider_wrapper} 
+      {...storyblokEditable(blok)}
+      style={{
+        "backgroundColor": `${blok.bg_color}`,
+      }}
+    >
       <div className={styles.title}>{render(blok.title)}</div>
       {/* {JSON.stringify(blok.title, null, 2)} */}
       <Slider 
