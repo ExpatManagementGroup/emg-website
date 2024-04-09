@@ -5,7 +5,6 @@ import { storyblokEditable } from '@storyblok/react';
 export default function CCOtherCases( props: {
   stories: any,
   title?: string
-
 }) {
 
   const stories = props.stories;

@@ -9,22 +9,33 @@ storyblokInit({
 
 export default async function Slug({ params }: { params: { slug: string } }) {
 
-  const { data } = await fetchData(params.slug);
-  
+  const postData = await fetchData(params.slug);
+  const allTopicsData = await fetchTopicData();
+  postData.data.story = {
+    ...postData.data.story,
+    content: {
+      ...postData.data.story.content,
+      topics: allTopicsData.data.datasource_entries
+    }
+  }
   return (
     <>
     <main className={styles.main} {...storyblokEditable}>
-       <StoryblokStory story={data.story} />
+       <StoryblokStory story={postData.data.story} />
     </main>
     </>
   );
 }
 
 async function fetchData(slug: string) {
-  let sbParams: ISbStoriesParams = { version: "draft" };
- 
   const storyblokApi = getStoryblokApi();
-  return storyblokApi.get(`cdn/stories/insights/${slug}`, sbParams );
+  return storyblokApi.get(`cdn/stories/insights/${slug}`, { 
+    version: "draft" 
+  } );
 }
-
-
+async function fetchTopicData() {
+  const storyblokApi = getStoryblokApi();
+  return storyblokApi.get(`cdn/datasource_entries`, {
+    "datasource": "topics",
+  });
+}

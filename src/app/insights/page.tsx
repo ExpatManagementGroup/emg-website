@@ -1,6 +1,5 @@
 import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin} from "@storyblok/react/rsc";
 import styles from "./page.module.css";
-import Topic from "@/components/Topic";
 import PostCard from "@/components/PostCard";
 import Events from "@/components/Events";
 import Link from "next/link";
@@ -21,6 +20,8 @@ export default async function Home() {
   const eventsData = await fetchEventsData();
   const events = eventsData.data.stories;
   
+  const allTopicsData = await fetchTopicData();
+
   return (
     <>
     <main className={styles.blogroll} {...storyblokEditable}>
@@ -34,10 +35,11 @@ export default async function Home() {
                       index === 4 ? 'Hazy-white' :
                       index === 5 ? 'White' :
                       index === 6 ? 'Ocean-Tone-3' : 'orange';
+          const thisTopic = allTopicsData.data.datasource_entries.find((entry: any) => entry.value === topic);
           return (
             <Link href={`/insights/topics/${topic}`} key={topic}>
               <Pill bgcolor={`var(--EMG-${bgcolor}`}>
-                <Topic name={topic}/>
+                {thisTopic.name}
               </Pill> 
             </Link>
           )
@@ -49,7 +51,8 @@ export default async function Home() {
           featured_image_alt={featuredStory.content.featured_image?.alt}
           title={featuredStory.content.title}
           country={featuredStory.content.country}
-          topic={featuredStory.content.topic}
+          topicSlug={featuredStory.content.topic}
+          topicName={allTopicsData.data.datasource_entries.find((entry: any) => entry.value === featuredStory.content.topic).name}
           date={featuredStory.content.date}
           slug={featuredStory.slug}
           isFeature={true}
@@ -69,7 +72,8 @@ export default async function Home() {
                 featured_image_alt={story.content.featured_image.alt}
                 title={story.content.title}
                 country={story.content.country}
-                topic={story.content.topic}
+                topicSlug={story.content.topic}
+                topicName={allTopicsData.data.datasource_entries.find((entry: any) => entry.value === story.content.topic).name}
                 date={story.content.date}
                 slug={story.slug}
               />
@@ -91,5 +95,9 @@ async function fetchEventsData() {
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/stories`, {'starts_with': 'events/', 'is_startpage': false} );
 }
-
-
+async function fetchTopicData() {
+  const storyblokApi = getStoryblokApi();
+  return storyblokApi.get(`cdn/datasource_entries`, {
+    "datasource": "topics",
+  });
+}

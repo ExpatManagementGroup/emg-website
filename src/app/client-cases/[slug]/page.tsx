@@ -10,15 +10,23 @@ storyblokInit({
 
 export default async function Slug({ params }: { params: { slug: string } }) {
 
-  const { data } = await fetchData(params.slug);
+  const page = await fetchData(params.slug);
   const othercases = await fetchOtherCCDataExcluding(params.slug);
+  const fetchedTestimonials = await fetchTestimonialData();
+  page.data.story = {
+    ...page.data.story,
+    content: {
+      ...page.data.story.content,
+      allTestimonials: fetchedTestimonials.data.stories || ['dbd']
+    }
+  }
   
   return (
     <>
     <main className={styles.main} {...storyblokEditable}>
-       <StoryblokStory story={data.story} />
-       {/* {JSON.stringify(data.story)} */}
-        <CCOtherCases stories={othercases} />
+      {/* {JSON.stringify(page.data.story)} */}
+      <StoryblokStory story={page.data.story} />
+      <CCOtherCases stories={othercases.data.stories} />
     </main>
     </>
   );
@@ -30,10 +38,15 @@ async function fetchData(slug: string) {
     "version": "draft"
   });
 }
-
 async function fetchOtherCCDataExcluding(slug:string) {
   return getStoryblokApi().get(`cdn/stories`, {
     "starts_with": "client-cases/",
     "excluding_slugs": `client-cases/${slug}`
+  });
+}
+async function fetchTestimonialData() {
+  return getStoryblokApi().get(`cdn/stories`, {
+    "starts_with": "testimonials/",
+    "per_page": 5
   });
 }

@@ -1,18 +1,16 @@
 import CCTalentDisplay from './CCTalentDisplay'
-import { getStoryblokApi, storyblokEditable } from '@storyblok/react/rsc';
+import { storyblokEditable } from '@storyblok/react/rsc';
 
-export default async function CCTalent( { blok }: { blok: any }) {
+export default function CCTalent( { blok }: { blok: any }) {
+
+  const allTestimonials = blok.allTestimonials;
   const testimonialUuids = blok.testimonials.join(',')
-  const { data } = await fetchData(testimonialUuids);
+  const chosenTestimonials = allTestimonials.filter((testimonial: any) => testimonialUuids.includes(testimonial.uuid))
+
   return (
     <div {...storyblokEditable(blok)}>
-      <CCTalentDisplay blok={blok} data={data} />
+      {/* {JSON.stringify(chosenTestimonials, null, 2)} */}
+      <CCTalentDisplay blok={blok} data={chosenTestimonials} />
     </div>
   )
-}
-
-async function fetchData(uuids: string) {
-  return getStoryblokApi().get(`cdn/stories/`, {
-    'by_uuids': uuids,
-  } );
 }

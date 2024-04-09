@@ -12,31 +12,23 @@ export default function Slider( props: {
   duplicate?: boolean,
   sliderRef?: any,
   autoWidth?: boolean
-  centeredSlides?: boolean
+  centeredSlides?: boolean,
+  forceLoop?: boolean
 }) {
    
   let newchildren = props.children;
   const slidesPerViewDesktop = props.slidesPerViewDesktop || 2.75;
-  const missingDesktop =  props.children?.length - Math.floor(slidesPerViewDesktop);
-  const isMissingSlidesDesktop = missingDesktop < 1;
+  const missingDesktop =  props.children?.length - Math.ceil(slidesPerViewDesktop);
+  const isMissingSlidesDesktop = missingDesktop <= 1 && !props.forceLoop;
   const slidesPerViewMobile = props.slidesPerViewMobile || 1.5;
-  const missingMobile =  props.children?.length - Math.floor(slidesPerViewMobile);
-  const isMissingSlidesMobile = missingMobile < 1;
-
-  if (props.duplicate) {
-    const iterations = Math.ceil(missingDesktop / props.children.length)
-    if (missingDesktop > 0) {
-      for (let i = 0; i < iterations; i++) {
-        newchildren = newchildren.concat(props.children)
-      }
-    }
-  }
+  const missingMobile =  props.children?.length - Math.ceil(slidesPerViewMobile);
+  const isMissingSlidesMobile = missingMobile <= 1 && !props.forceLoop;
   const swiperId = props.sliderRef ? `swiper_${props.sliderRef}` : `swiper_1`
   const widthOfSlideDesktop = 100 / slidesPerViewDesktop
-  const widthOfSlidesDesktop = widthOfSlideDesktop * newchildren?.length
+  const widthOfSlidesDesktop = widthOfSlideDesktop * Math.ceil(slidesPerViewDesktop)
   const leftOffsetDesktop = -(100 - ( widthOfSlidesDesktop) ) / 2;
   const widthOfSlideMobile = 100 / slidesPerViewMobile
-  const widthOfSlidesMobile = widthOfSlideMobile * newchildren?.length
+  const widthOfSlidesMobile = widthOfSlideMobile * Math.ceil(slidesPerViewMobile)
   const leftOffsetMobile = -(100 - ( widthOfSlidesMobile) ) / 2;
 
   const slideWidthAndCenteredCSS = `
@@ -45,7 +37,7 @@ export default function Slider( props: {
         width: calc(100% / ${slidesPerViewDesktop});
       }
       #${swiperId} .swiper-wrapper {
-        transform: translateX(-${leftOffsetDesktop}%);
+        transform: translate3d(-${leftOffsetDesktop}vw, 0px, 0px);
       }
     }
     @media screen and (max-width: 839.9px) {
@@ -53,7 +45,7 @@ export default function Slider( props: {
         width: calc(100% / ${slidesPerViewMobile});
       }
       #${swiperId} .swiper-wrapper {
-        transform: translateX(-${leftOffsetMobile}%);
+        transform: translate3d(-${leftOffsetMobile}vw, 0px, 0px);
       }
     }
   `;
@@ -123,7 +115,7 @@ export default function Slider( props: {
 
   return(
     <>
-    <div className={styles.slidernavbuttons} id={`${swiperId}_nav`}>
+    <div className={`slider-navbuttons ${styles.slidernavbuttons}`} id={`${swiperId}_nav`}>
       <div className={`swiper-button-prev button button-bg-transparent button-round button-arrow-notext button-arrow-left ${styles.prev}`}></div>
       <div className={`swiper-button-next button button-bg-transparent button-round button-arrow-notext ${styles.next}`}></div>
     </div>

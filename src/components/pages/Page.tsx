@@ -6,6 +6,7 @@ const Page = ({ blok }: { blok: any }, props:any) => (
     { blok.body.map((nestedBlok: any) => {
       if (nestedBlok.component === "blog_slider") {
         nestedBlok.blogPosts = blok.blogPosts;
+        nestedBlok.topics = blok.topics;
         return <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
       }
       else if (nestedBlok.component === "home_testimonials") {

@@ -1,4 +1,4 @@
-import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin} from "@storyblok/react/rsc";
+import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
 import styles from "./page.module.css";
 
@@ -16,13 +16,15 @@ export default async function Home() {
   const talentTestimonials = talentData.data.stories;
   const clientCases = await fetchClientsData();
   const clientCaseStories = clientCases.data.stories;
+  const topics = await fetchTopicData();
   homeData.data.story = {
     ...homeData.data.story,
     content: {
       ...homeData.data.story.content,
       blogPosts: blogPosts.data.stories,
       talentTestimonials: talentTestimonials,
-      clientCaseStories: clientCaseStories
+      clientCaseStories: clientCaseStories,
+      topics: topics.data.datasource_entries
     }
   }
   return (
@@ -55,5 +57,11 @@ async function fetchTalentTestimonialData() {
 async function fetchClientsData() {
   return getStoryblokApi().get(`cdn/stories/`, {
     "starts_with": "client-cases/",
+  });
+}
+async function fetchTopicData() {
+  const storyblokApi = getStoryblokApi();
+  return storyblokApi.get(`cdn/datasource_entries`, {
+    "datasource": "topics",
   });
 }

@@ -2,7 +2,7 @@
 import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import { ReactNode } from "react"; // Import ReactNode type
  
-import Page from "./Page";
+import Page from "./pages/Page";
 import Post_1 from "./Post_1"; 
 import Navigation from "./Navigation";
 import HomeHero from "./home/HomeHero";

@@ -1,16 +1,18 @@
 import styles from './BlogSlider.module.css';
 import { storyblokEditable } from "@storyblok/react/rsc";
+import { render } from 'storyblok-rich-text-react-renderer';
 import Slider from '../Slider';
 import Picture from '../Picture';
 import Link from 'next/link';
-import Topic from '../Topic';
 import FormattedDate from '../FormattedDate';
 import Button from '../Button';
 
 export default function BlogSlider( { blok }: { blok: any } ) {
 
   return (
-    <div {...storyblokEditable(blok)}>
+    <div className={styles.blogslider_wrapper} {...storyblokEditable(blok)}>
+      <div className={styles.title}>{render(blok.title)}</div>
+      {/* {JSON.stringify(blok.title, null, 2)} */}
       <Slider 
         className={styles.blogslider} 
         slidesPerViewDesktop={5} 
@@ -18,9 +20,12 @@ export default function BlogSlider( { blok }: { blok: any } ) {
         sliderRef="blog"
         centeredSlides={false}
         autoWidth={true}
+        forceLoop={true}
       >
         {blok.blogPosts?.map((story: any, index: number) => {
           const props = story.content
+          const thisTopic = blok.topics.find((topic: any) => topic.value === props.topic)
+          const thisTopicName = thisTopic ? thisTopic.name : props.topic
           return (
           <div key={`story-${index}`} className={`${styles.postcard} ${props.isFeature ? styles.postcard_featured : styles.postcard_regular}`}>
             <figure className={styles.featured_image}>
@@ -38,7 +43,7 @@ export default function BlogSlider( { blok }: { blok: any } ) {
               <div className={styles.header_meta}>
                 <div className="pill">{props.country}</div>
                 <Link href={`/insights/topics/${props.topic}`} >
-                <div className="pill"><Topic name={props.topic}/></div>
+                <div className="pill">{thisTopicName}</div>
                 </Link>
                 <div className={styles.date}>
                   <FormattedDate date={props.date} />

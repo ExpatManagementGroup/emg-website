@@ -1,11 +1,13 @@
 import { storyblokEditable } from "@storyblok/react/rsc";
 import { render } from 'storyblok-rich-text-react-renderer';
 import styles from "./Post_1.module.css";
-import Topic from "./Topic";
 import FormattedDate from "./FormattedDate";
 import Picture from "./Picture";
 
 const Post = ({ blok }: { blok: any }) => {
+
+  const thisTopicName = blok.topics.find((topic: any) => topic.value === blok.topic)?.name || blok.topic
+
   return (
     <div {...storyblokEditable(blok)} className={styles.post}>
       <div className={styles.header}>
@@ -23,7 +25,7 @@ const Post = ({ blok }: { blok: any }) => {
           <h1 className={styles.title}>{blok.title}</h1>
           <div className={styles.header_meta}>
             <div className="pill">{blok.country}</div>
-            <div className="pill"><Topic name={blok.topic} /></div>
+            <div className="pill">{thisTopicName}</div>
             <div className={styles.date}><FormattedDate date={blok.date} /></div>
           </div>
         </div>

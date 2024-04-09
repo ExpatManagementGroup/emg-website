@@ -44,6 +44,25 @@
   }
 }
 @media screen and (min-width:840px) {
+  .blogslider_wrapper {
+    position: relative;
+  }
+  .title {
+    position: relative;
+    left: calc(var(--d-outer-margin) + var(--d-colWidth-1) + var(--d-gutter));
+    display: inline-block;
+  }
+  .title p {
+    font-size: var(--fontsize-20);
+    margin-bottom: .75em;
+  }
+  .title h1, .title h2, .title h3, .title h4 {
+    font-size: var(--fontsize-50);
+    font-family: var(--font-reckless);
+    letter-spacing: -0.015em;
+    line-height: 0.885;
+    margin-bottom: .75em;
+  }
   .blogslider {
     --slidertransition: all 0.3s ease-in-out;
 
@@ -51,8 +70,13 @@
     height: auto;
     margin-bottom: 4rem;
   }
+  .blogslider_wrapper :global(.slider-navbuttons) {
+    position: absolute;
+    top: calc(var(--fontsize-50) * 1.5);
+    right: calc( var(--d-outer-margin) + var(--d-colWidth-1) + var(--d-gutter) ); 
+  }
   .blogslider :global(.swiper-wrapper) {
-    left: calc(-1 * var(--d-outer-margin) - var(--d-colWidth-1) + 1rem);
+    left: calc(var(--d-outer-margin) + var(--d-colWidth-1) + var(--d-gutter) - 1rem - 20vw);
   }
   .blogslider :global(.swiper-slide) {
     width: 20vw;

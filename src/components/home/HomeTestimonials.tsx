@@ -49,6 +49,7 @@ export default function HomeTestimonials( { blok }: { blok: any }) {
         className={styles.testimonialslider}
         centeredSlides={true}
         autoWidth={true}
+        sliderRef='hometestimonials'
       >
         {allTestimonialsAlternating?.map((testimonial: any, index: number) => {
           if ( index % 2 === 0) {
@@ -76,16 +77,3 @@ export default function HomeTestimonials( { blok }: { blok: any }) {
     </section>
   )
 }
-
-// async function fetchTalentTestimonialData() {
-//   return getStoryblokApi().get(`cdn/stories/`, {
-//     "starts_with": "testimonials/",
-//     "per_page": 5
-//   } );
-// }
-// async function fetchClientTestimonialData() {
-//   return getStoryblokApi().get(`cdn/stories/`, {
-//     "starts_with": "client-cases/",
-//     "per_page": 5
-//   } );
-// }

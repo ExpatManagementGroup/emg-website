@@ -1,6 +1,4 @@
 import styles from './PostCard.module.css'
-import Image from 'next/image'
-import Topic from './Topic'
 import FormattedDate from './FormattedDate'
 import Button from './Button'
 import Link from 'next/link'
@@ -11,7 +9,8 @@ export default function PostCard(props: {
     description?: string,
     title: string,
     country: string,
-    topic: string,
+    topicSlug: string,
+    topicName: string,
     date: string,
     slug: string,
     isFeature?: boolean
@@ -58,8 +57,8 @@ export default function PostCard(props: {
          <h2 className={styles.postcard_title}>{props.title}</h2>
          <div className={styles.header_meta}>
            <div className="pill">{props.country}</div>
-           <Link href={`/insights/topics/${props.topic}`} >
-              <div className="pill"><Topic name={props.topic}/></div>
+           <Link href={`/insights/topics/${props.topicSlug}`} >
+              <div className="pill">{props.topicName}</div>
            </Link>
            <div className={styles.date}>
              <FormattedDate date={props.date} />
@@ -114,8 +113,8 @@ export default function PostCard(props: {
        <div className={styles.postcard_info}>
          <div className={styles.header_meta}>
            <div className="pill">{props.country}</div>
-           <Link href={`/insights/topics/${props.topic}`} >
-            <div className="pill"><Topic name={props.topic}/></div>
+           <Link href={`/insights/topics/${props.topicSlug}`} >
+            <div className="pill">{props.topicName}</div>
            </Link>
            <div className={styles.date}>
              <FormattedDate date={props.date} />
