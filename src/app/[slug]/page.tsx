@@ -9,20 +9,36 @@ storyblokInit({
 
 export default async function Slug({ params }: { params: { slug: string } }) {
 
-  const { data } = await fetchData(params.slug);
-  
+  const slugData  = await fetchSlugData(params.slug);
+  const blogPosts = await fetchBlogPostsData();
+
+  slugData.data.story = {
+    ...slugData.data.story,
+    content: {
+      ...slugData.data.story.content,
+      blogPosts: blogPosts.data.stories,
+    }
+  }
+
   return (
     <>
     <main className={styles.main} {...storyblokEditable}>
-       <StoryblokStory story={data.story} />
+       <StoryblokStory story={slugData.data.story} />
     </main>
     </>
   );
 }
 
-async function fetchData(slug: string) {
-  let sbParams: ISbStoriesParams = { version: "draft" };
-  return getStoryblokApi().get(`cdn/stories/${slug}`, sbParams );
+async function fetchSlugData(slug: string) {
+  return getStoryblokApi().get(`cdn/stories/${slug}`, { 
+    version: "draft" 
+  }, {
+    cache: 'no-store'
+  } );
 }
-
-
+async function fetchBlogPostsData() {
+  return getStoryblokApi().get(`cdn/stories`, {
+    "starts_with": "insights/",
+    "is_startpage": false
+  },)   
+}

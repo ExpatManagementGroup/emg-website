@@ -112,8 +112,7 @@
     /* Needs to be important to override block style */
     width: 40vw !important; 
   }
-  .blogslider :global(.swiper-slide-next),
-  .blogslider :global(.swiper-slide):nth-child(2) {
+  .blogslider :global(.swiper-slide-next) {
     transition: var(--slidertransition);
 
     & .header_meta, & .header_meta :global(.pill) {

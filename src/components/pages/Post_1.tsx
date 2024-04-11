@@ -1,8 +1,8 @@
 import { storyblokEditable } from "@storyblok/react/rsc";
 import { render } from 'storyblok-rich-text-react-renderer';
 import styles from "./Post_1.module.css";
-import FormattedDate from "./FormattedDate";
-import Picture from "./Picture";
+import FormattedDate from "../FormattedDate";
+import Picture from "../Picture";
 
 const Post = ({ blok }: { blok: any }) => {
 

@@ -1,6 +1,6 @@
 import { storyblokEditable, StoryblokComponent } from "@storyblok/react/rsc";
  
-const Page = ({ blok }: { blok: any }, props:any) => (
+const Page = ({ blok }: { blok: any }) => (
   <>
   <div {...storyblokEditable(blok)}>
     { blok.body.map((nestedBlok: any) => {

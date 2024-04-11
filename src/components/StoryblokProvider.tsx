@@ -3,7 +3,7 @@ import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import { ReactNode } from "react"; // Import ReactNode type
  
 import Page from "./pages/Page";
-import Post_1 from "./Post_1"; 
+import Post_1 from "./pages/Post_1"; 
 import Navigation from "./Navigation";
 import HomeHero from "./home/HomeHero";
 import HomeWhatWeDo from "./home/HomeWhatWeDo";
@@ -12,6 +12,8 @@ import HomeProcess from "./home/HomeProcess";
 import HomeStats from "./home/HomeStats";
 import HomeTestimonials from "./home/HomeTestimonials";
 import HomeClientLogos from "./home/HomeClientLogos";
+import HomeFAQs from "./home/HomeFAQs";
+import HomeMembers from "./home/HomeMembers";
 import CCPage from "./clientCases/CCPage";
 import CCHeader from "./clientCases/CCHeader";
 import CCAbout from "./clientCases/CCAbout";
@@ -31,6 +33,8 @@ const components = {
   home_stats: HomeStats,
   home_testimonials: HomeTestimonials,
   home_client_logos: HomeClientLogos,
+  home_faqs: HomeFAQs,
+  home_members: HomeMembers,
   blog_slider: BlogSlider,
   client_case: CCPage,
   case_header: CCHeader,
