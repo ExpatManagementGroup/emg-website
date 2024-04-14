@@ -14,8 +14,8 @@ const Post = ({ blok }: { blok: any }) => {
         <figure className={styles.header_bg}>
           <Picture
             src={blok.featured_image?.filename}
-            aspectRatioDesktop="1.666"
-            aspectRatioMobile="0.935"
+            aspectRatioDesktop="0.6"
+            aspectRatioMobile="1.069"
             alt={blok.featured_image?.alt}
             sizes="(min-width:840px) 50vw, 100vw"
             className={styles.backgroundImage}

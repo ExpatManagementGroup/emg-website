@@ -55,8 +55,8 @@ export default function CCTalent( props:{
                   <Picture
                     src={t.client_bgimage.filename}
                     alt={t.client_bgimage.alt}
-                    aspectRatioDesktop='0.578'
-                    aspectRatioMobile='0.578'
+                    aspectRatioDesktop='1.730'
+                    aspectRatioMobile='1.730'
                     sizes='(min-width: 840px) 30vw, 95vw'
                     className={styles.bgimage}
                   />

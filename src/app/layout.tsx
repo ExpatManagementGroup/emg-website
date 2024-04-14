@@ -38,7 +38,7 @@ export default async function RootLayout({
 }
 
 async function fetchNavData() {
-  let sbParams: ISbStoriesParams = { version: "draft" };
-  const storyblokApi = getStoryblokApi();
-  return storyblokApi.get(`cdn/stories/global-settings/navigation`, sbParams );
+  return getStoryblokApi().get(`cdn/stories/global-settings/navigation`, { 
+    version: "draft" 
+  } );
 }

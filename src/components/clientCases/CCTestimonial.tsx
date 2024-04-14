@@ -9,8 +9,8 @@ export default function CCTestimonial( { blok }: { blok: any }) {
       <div className={styles.image}>
         <Picture 
           src={blok.image.filename} 
-          aspectRatioDesktop='0.83'
-          aspectRatioMobile='0.58'
+          aspectRatioDesktop='1.204'
+          aspectRatioMobile='1.724'
           alt={blok.image.alt}
           sizes='(min-width: 840px) 30vw, 95vw'
         />

@@ -1,0 +1,74 @@
+@media screen and (max-width:839.9px) {
+  .step {
+    --space-left: 19.534vw;
+    --size: 22.790vw;
+    /* padding-left: var(--space-left); */
+    padding-left: var(--m-outer-margin-l);
+    padding-right: var(--m-outer-margin-l);
+    padding-bottom: 6rem;
+    position: relative;
+  }
+  .illustration {
+    position: absolute;
+    left: calc( var(--m-outer-margin-l) - ( 0.5 * var(--size) ) );
+    top: calc( -0.125 * var(--size) );
+    width: var(--size);
+    height: var(--size);
+  }
+  .text h1, .text h2, .text h3, .text h4, .text h5, .text h6 {
+    font-family: var(--font-reckless);
+    font-size: var(--fontsize-80);
+    line-height: 0.85;
+    letter-spacing: -0.015em;
+    margin-bottom: .5em;
+    margin-top: calc( 1.5 * var(--size) );
+  }
+  .text p {
+    font-size: var(--fontsize-18);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin-bottom: 1.5em;
+    max-width: 75%;
+  }
+  .buttons {
+    display: flex;
+    gap: .5rem;
+  }
+  .buttons :global(.button) {
+    font-size: var(--fontsize-12);
+  }
+}
+@media screen and (min-width:840px) {
+  .step {
+    width: var(--d-colWidth-5);
+    padding-left: calc( var(--d-colWidth-1) + var(--d-gutter));
+    padding-bottom: 0;
+    position: relative;
+  }
+  .illustration {
+    --size: 9.702vw;
+    position: absolute;
+    left: calc( -0.5 * var(--size) - 0.5 * var(--d-gutter) - 0.5px );
+    top: calc( -0.125 * var(--size) );
+    width: var(--size);
+    height: var(--size);
+  }
+  .text h1, .text h2, .text h3, .text h4, .text h5, .text h6 {
+    font-family: var(--font-reckless);
+    font-size: var(--fontsize-60);
+    line-height: 0.91;
+    letter-spacing: -0.015em;
+    margin-bottom: .5em;
+  }
+  .text p {
+    font-size: var(--fontsize-20);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin-bottom: 1.5em;
+    max-width: var(--d-colWidth-3);
+  }
+  .buttons {
+    display: flex;
+    gap: .5rem;
+  }
+}

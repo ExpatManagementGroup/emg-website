@@ -33,8 +33,8 @@ export default function CCClientSlide( props: {
         <Picture
           className={styles.image}
           src={content?.image?.filename}
-          aspectRatioDesktop='1.36'
-          aspectRatioMobile='1.36'
+          aspectRatioDesktop='0.74'
+          aspectRatioMobile='0.74'
           alt={content?.image?.alt}
           sizes='(min-width: 840px) 3vw, 12vw'
         />

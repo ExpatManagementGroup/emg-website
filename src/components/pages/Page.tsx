@@ -3,7 +3,7 @@ import { storyblokEditable, StoryblokComponent } from "@storyblok/react/rsc";
 const Page = ({ blok }: { blok: any }) => (
   <>
   <div {...storyblokEditable(blok)}>
-    { blok.body.map((nestedBlok: any) => {
+    { blok.body?.map((nestedBlok: any) => {
       if (nestedBlok.component === "blog_slider") {
         nestedBlok.blogPosts = blok.blogPosts;
         nestedBlok.topics = blok.topics;
