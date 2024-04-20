@@ -17,8 +17,10 @@
   /* Fontsizes */
   --fontsize-nav: clamp(12px, 0.78vw, 100px);
   --fontsize-hero: 8.622vw;
+  --fontsize-120: 7.142vw;
   --fontsize-80: 4.878vw;
   --fontsize-75: 4.464vw;
+  --fontsize-70: 4.05vw;
   --fontsize-60: 3.751vw;
   --fontsize-50: 2.976vw;
   --fontsize-45: 2.678vw;
@@ -71,6 +73,7 @@
     --fontsize-hero: 19vw;
     --fontsize-80: 18.604vw;
     --fontsize-75: 17.441vw;
+    --fontsize-70: 16.279vw;
     --fontsize-60: 13.953vw;
     --fontsize-50: 11.627vw;
     --fontsize-45: 10.465vw;
@@ -132,6 +135,10 @@ label {
   cursor: pointer;
   transition: padding .3s var(--bounce);
   
+  &.button-bg-orange {
+    background-color: var(--EMG-Aero-Orange);
+    color: var(--EMG-Deep-Teal);
+  }
   &.button-bg-white {
     background-color: var(--EMG-White);
     color: var(--EMG-Deep-Teal);
@@ -139,6 +146,10 @@ label {
   &.button-bg-transparent {
     background-color: transparent;
     color: var(--EMG-Deep-Teal);
+  }
+  &.button-bg-deep-teal {
+    background-color: var(--EMG-Deep-Teal);
+    color: var(--EMG-White);
   }
 }
 .button:hover {

@@ -29,9 +29,8 @@ export default async function Home() {
   }
   return (
     <>
-    <main className={styles.main} {...storyblokEditable}>
+    <main className={`${styles.main} home`} {...storyblokEditable}>
        <StoryblokStory story={homeData.data.story} />
-       {/* The last piece */}
     </main>
     </>
   );
@@ -59,7 +58,8 @@ async function fetchTalentTestimonialData() {
 }
 async function fetchClientsData() {
   return getStoryblokApi().get(`cdn/stories/`, {
-    "starts_with": "client-cases/",
+    "starts_with": "our-clients/",
+    "is_startpage": false
   });
 }
 async function fetchTopicData() {

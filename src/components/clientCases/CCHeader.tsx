@@ -4,6 +4,7 @@ import Logo from '../Logo'
 import ReactCountryFlag from "react-country-flag"
 import Button from '../Button'
 import Pill from '../Pill'
+import Picture from '../Picture'
 import { storyblokEditable } from "@storyblok/react/rsc";
 
 export default function CCHeader( { blok }: { blok: any }) {
@@ -12,30 +13,20 @@ export default function CCHeader( { blok }: { blok: any }) {
 
   return (
     <div className={styles.ccHeader} {...storyblokEditable(blok)}>
-      <picture className={styles.ccHeader_image}>
-        <source 
-          media="(min-width: 840px)" 
-          srcSet={`
-            ${blok.hero_image.filename}/m/640x188/filters:format(webp),
-            ${blok.hero_image.filename}/m/750x220/filters:format(webp) 750w,
-            ${blok.hero_image.filename}/m/828x242/filters:format(webp) 828w,
-            ${blok.hero_image.filename}/m/1080x316/filters:format(webp) 1080w,
-            ${blok.hero_image.filename}/m/1200x351/filters:format(webp) 1200w,
-            ${blok.hero_image.filename}/m/1920x562/filters:format(webp) 1920w
-          `}
-          sizes='100vw'
-        />
-        <img 
-          src={blok.hero_image.filename} 
-          alt={blok.hero_image.alt}
-          width={1920}
-          height={562}
-        />
-      </picture>
+      <Picture
+        className={styles.ccHeader_image}
+        src={blok.hero_image.filename}
+        alt={blok.hero_image.alt}
+        sizes="(min-width: 840px) 100vw, 0vw"
+        width={1920}
+        height={562}
+        aspectRatioDesktop='3.4103019538'
+        aspectRatioMobile='1'
+      />
       <div className={styles.ccHeader_info}>
         <h1 className={styles.title}><span className={styles.title_company}>{blok.case_company}</span> <span className={styles.title_arrow}>→</span> {blok.case_title}
         </h1>
-        <Button className={styles.backbutton} type="Link" href='/client-cases' text="←" arrow='none' />
+        <Button className={styles.backbutton} type="Link" href='/our-clients' text="←" arrow='none' />
         <div className={styles.logos}>
           <figure className={styles.company_logo}>
             <Image 

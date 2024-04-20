@@ -9,20 +9,21 @@ export default function Slider( props: {
   children: any,
   slidesPerViewDesktop?: number,
   slidesPerViewMobile?: number,
-  duplicate?: boolean,
   sliderRef?: any,
   autoWidth?: boolean
   centeredSlides?: boolean,
-  forceLoop?: boolean
+  loop?: boolean,
+  gridRows?: number,
+  rewind?: boolean
 }) {
    
   let newchildren = props.children;
   const slidesPerViewDesktop = props.slidesPerViewDesktop || 2.75;
   const missingDesktop =  props.children?.length - Math.ceil(slidesPerViewDesktop);
-  const isMissingSlidesDesktop = missingDesktop <= 1 && !props.forceLoop;
+  const isMissingSlidesDesktop = missingDesktop <= 1;
   const slidesPerViewMobile = props.slidesPerViewMobile || 1.5;
   const missingMobile =  props.children?.length - Math.ceil(slidesPerViewMobile);
-  const isMissingSlidesMobile = missingMobile <= 1 && !props.forceLoop;
+  const isMissingSlidesMobile = missingMobile <= 1;
   const swiperId = props.sliderRef ? `swiper_${props.sliderRef}` : `swiper_1`
   const widthOfSlideDesktop = 100 / slidesPerViewDesktop
   const widthOfSlidesDesktop = widthOfSlideDesktop * Math.ceil(slidesPerViewDesktop)
@@ -51,7 +52,6 @@ export default function Slider( props: {
   `;
 
   let counter = 0
-  let isResizing = useRef(false)
   useEffect(() => {
 
     if (counter > 0) { return }
@@ -63,13 +63,14 @@ export default function Slider( props: {
       centerInsufficientSlides: isMissingSlidesMobile,
       breakpoints: {
         840: {
-          slidesPerView: !props.autoWidth ? 'auto' : props.slidesPerViewDesktop || 2.75,
-          loop: !isMissingSlidesDesktop,
+          slidesPerView: props.autoWidth ? 'auto' : props.slidesPerViewDesktop || 2.75,
+          loop: props.loop,
           centerInsufficientSlides: isMissingSlidesDesktop,
         }
       },
-      slidesPerView: !props.autoWidth ? 'auto' : props.slidesPerViewMobile || 1.5,
-      loop: !isMissingSlidesMobile,
+      slidesPerView: props.autoWidth ? 'auto' : props.slidesPerViewMobile || 1.5,
+      loop: props.loop,
+      rewind: props.rewind,
       mousewheel: {
         enabled: true,
         forceToAxis: true,
@@ -84,17 +85,8 @@ export default function Slider( props: {
       on: {
         init: () => {
           const swiper = document.getElementById(swiperId) as HTMLElement
-          swiper.style.height = swiper.offsetHeight + 'px'
+          swiper.style.minHeight = swiper.offsetHeight + 'px'
         },
-        // resize: () => {
-        //   if (isResizing.current) { return }
-        //   isResizing.current = true
-        //   setTimeout(() => {
-        //     const swiper = document.getElementById(swiperId)?.querySelector('.swiper-slide') as HTMLElement
-        //     swiper.style.height = swiper.offsetHeight + 'px'
-        //     isResizing.current = false
-        //   }, 500)
-        // }
       }
     });
 
@@ -110,7 +102,9 @@ export default function Slider( props: {
     props.autoWidth, 
     props.centeredSlides, 
     newchildren,
-    isResizing
+    props.gridRows,
+    props.loop,
+    props.rewind
   ])
 
   return(

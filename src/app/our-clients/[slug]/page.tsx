@@ -24,7 +24,6 @@ export default async function Slug({ params }: { params: { slug: string } }) {
   return (
     <>
     <main className={styles.main} {...storyblokEditable}>
-      {/* {JSON.stringify(page.data.story)} */}
       <StoryblokStory story={page.data.story} />
       <CCOtherCases stories={othercases.data.stories} />
     </main>
@@ -34,14 +33,15 @@ export default async function Slug({ params }: { params: { slug: string } }) {
 
 async function fetchData(slug: string) {
   const storyblokApi = getStoryblokApi();
-  return storyblokApi.get(`cdn/stories/client-cases/${slug}`, {
+  return storyblokApi.get(`cdn/stories/our-clients/${slug}`, {
     "version": "draft"
   });
 }
 async function fetchOtherCCDataExcluding(slug:string) {
   return getStoryblokApi().get(`cdn/stories`, {
-    "starts_with": "client-cases/",
-    "excluding_slugs": `client-cases/${slug}`
+    "starts_with": "our-clients/",
+    "is_startpage": false,
+    "excluding_slugs": `our-clients/${slug}`
   });
 }
 async function fetchTestimonialData() {

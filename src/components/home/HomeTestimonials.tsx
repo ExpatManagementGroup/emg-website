@@ -5,7 +5,14 @@ import CCTalentSlide from '../clientCases/CCTalentSlide';
 import CCClientSlide from '../clientCases/CCClientSlide';
 import { storyblokEditable } from "@storyblok/react/rsc";
 
-export default function HomeTestimonials( { blok }: { blok: any }) {
+export default function HomeTestimonials( { blok }: { blok: {
+  subhead: string,
+  title: string,
+  talentTestimonials: any,
+  clientCaseStories: any,
+  cta_url: string,
+  cta_text: string
+} }) {
 
   const talentData = blok.talentTestimonials;
   const talentTestimonials = talentData;
@@ -14,8 +21,8 @@ export default function HomeTestimonials( { blok }: { blok: any }) {
     const blocks = story.content.body;
     const testimonial = blocks.find((block: any) => block.component === "case_testimonial");
     const clientHeaders = blocks.find((block: any) => block.component === "case_header");
-    testimonial.logo = clientHeaders.case_company_logo;
-    testimonial.url = `/client-cases/${story.slug}`;
+    testimonial.logo = clientHeaders?.case_company_logo;
+    testimonial.url = `/our-clients/${story.slug}`;
     return testimonial;
   })
   
@@ -25,24 +32,27 @@ export default function HomeTestimonials( { blok }: { blok: any }) {
   
   for(let i = 0; i < lengthofAllTestimonials; i++) {
     if (i % 2 === 0) {
-        allTestimonialsAlternating.push( talentTestimonials[Math.floor(i/2)].content )
-    } else {
-      allTestimonialsAlternating.push(
-        clientCaseTestimonials[Math.floor(i/2)]
-      )
+        if (talentTestimonials[Math.floor(i/2)]) {  
+          allTestimonialsAlternating.push( talentTestimonials[Math.floor(i/2)].content )
+        }
+    } 
+    else {
+      if (clientCaseTestimonials[Math.floor(i/2)]) {  
+        allTestimonialsAlternating.push( clientCaseTestimonials[Math.floor(i/2)] )
+      }
     }
   }
   // get rid of any null values
   allTestimonialsAlternating = allTestimonialsAlternating.filter((testimonial: any) => testimonial);
-
   
   return (
     <section className={styles.testimonials} {...storyblokEditable(blok)}>
-      {/* <pre>{JSON.stringify(allTestimonialsAlternating, null, 2)}</pre> */}
-      <h2 className={styles.title}>
-        <span className={styles.eyebrow}>{blok.subhead}</span>
-        {blok.title}
-      </h2>
+      { blok.title && blok.subhead &&
+        <h2 className={styles.title}>
+          <span className={styles.eyebrow}>{blok.subhead}</span>
+          {blok.title}
+        </h2>
+      }
       <Slider 
         slidesPerViewDesktop={2.75} 
         slidesPerViewMobile={1.1} 
@@ -50,6 +60,7 @@ export default function HomeTestimonials( { blok }: { blok: any }) {
         centeredSlides={true}
         autoWidth={true}
         sliderRef='hometestimonials'
+        loop={allTestimonialsAlternating.length > 4 ? true : false}
       >
         {allTestimonialsAlternating?.map((testimonial: any, index: number) => {
           if ( index % 2 === 0) {

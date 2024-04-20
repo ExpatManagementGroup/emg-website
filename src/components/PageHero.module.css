@@ -1,0 +1,114 @@
+@media screen and (max-width:839.9px) {
+  .hero {
+    position: relative;
+    width: 100vw;
+    height: auto;
+    aspect-ratio: 0.843;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 0 0 4.651vw 4.651vw;
+    outline: 1px solid var(--EMG-Deep-Teal);
+  }
+  .bgimg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  .bgimg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bgimg:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.20) 100%)
+  }
+  .headline {
+    padding: 0 0 0 var(--m-outer-margin-l);
+  }
+  .eyebrow {
+    font-size: var(--fontsize-20);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    color: var(--EMG-Hazy-White);
+    margin-bottom: .5em;
+  }
+  .title {
+    font-size: calc(var(--fontsize-70) * 0.95 );
+    color: var(--EMG-Hazy-White);
+    line-height: 0.8;
+    letter-spacing: -0.015em;
+  }
+  .italic {
+    font-family: var(--font-reckless);
+    font-style: italic;
+    font-weight: 500;
+    display: block;
+  }
+}
+@media screen and (min-width:840px) {
+  .hero {
+    position: relative;
+    width: 100vw;
+    height: auto;
+    aspect-ratio: 2.0119760479;
+    display: flex;
+    align-items: center;
+  }
+  .bgimg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  .bgimg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bgimg:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.20) 100%)
+  }
+  .headline {
+    width: var(--d-colWidth-7);
+    margin-left: calc(var(--d-outer-margin) + var(--d-colWidth-1) + var(--d-gutter));
+  }
+  .eyebrow {
+    font-size: var(--fontsize-30);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    color: var(--EMG-Hazy-White);
+    margin-bottom: .5em;
+  }
+  .title {
+    font-size: var(--fontsize-hero);
+    color: var(--EMG-Hazy-White);
+    line-height: 0.915;
+  }
+  .italic {
+    font-family: var(--font-reckless);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.111em; 
+    display: block;
+  }
+}

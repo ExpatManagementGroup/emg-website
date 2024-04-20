@@ -1,6 +1,7 @@
-import { ISbStoriesParams, storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin} from "@storyblok/react/rsc";
+import { ISbStoriesParams, storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin, setComponents} from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
 import styles from "./page.module.css";
+import Post_1 from "../../../components/pages/Post_1"; 
 
 storyblokInit({
   accessToken: process.env.STORYBLOK_API_TOKEN,
@@ -8,6 +9,10 @@ storyblokInit({
 });
 
 export default async function Slug({ params }: { params: { slug: string } }) {
+
+  setComponents({
+    post_one: Post_1,
+  })  
 
   const postData = await fetchData(params.slug);
   const allTopicsData = await fetchTopicData();

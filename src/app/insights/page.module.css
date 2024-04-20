@@ -1,7 +1,14 @@
 @media screen and (max-width:839.9px) {
   .blogroll {
     font-family: var(--font-agrandir);
-    padding: calc(1.5 * var(--nav-height)) var(--m-outer-margin-s) 0 var(--m-outer-margin-s);
+    padding: calc(1.5 * var(--nav-height)) var(--m-outer-margin-s) calc( 2 * var(--m-outer-margin-s) );
+    border-radius: 0 0 1em 1em;
+    overflow: hidden;
+    outline: 1px solid #000;
+    position: relative;
+    z-index: 10;
+    margin-bottom: -1em;
+    background-color: var(--EMG-Hazy-White);
   }
   .topics {
     display: flex;
@@ -15,6 +22,9 @@
   }
   .post_list {
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
   }
 }
 @media screen and (min-width:840px) {

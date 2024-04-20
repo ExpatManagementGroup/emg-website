@@ -11,7 +11,7 @@
   .hero:before {
     content: '';
     position: absolute;
-    top: 23%;
+    top: 30%;
     left: -30%;
     width: var(--arrowsize);
     height: var(--arrowsize);
@@ -25,7 +25,7 @@
   .hero:after {
     content: '';
     position: absolute;
-    top: 12%;
+    top: 15%;
     left: 30%;
     width: var(--arrowsize);
     height: var(--arrowsize); 

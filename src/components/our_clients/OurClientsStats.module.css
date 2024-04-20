@@ -1,0 +1,102 @@
+@media screen and (max-width:839.9px) {
+  .stats {
+    border-top: 1px solid var(--EMG-Deep-Teal);
+    width: 100%;
+    overflow: hidden;
+  }
+  .row {
+    /* display: flex;
+    flex-wrap: nowrap;     */
+  }
+  .row > div {
+    flex: 0 0 auto;
+    outline: 1px solid var(--EMG-Deep-Teal);
+    display: flex;
+    justify-content: center;
+    padding: 9vw;
+    background-color: var(--EMG-White);
+  }
+  .centerwrap {
+    width: 100%;
+    text-align: left;
+  }
+  .number {
+    font-size: 35vw;
+    font-family: var(--font-reckless);
+    letter-spacing: -0.005em;
+    display: inline-block;
+    color: var(--EMG-Deep-Teal);
+    position: relative;
+    line-height: 1;
+  }
+  .number:after {
+    content: '+';
+    font-size: 0.5em;
+    vertical-align: top;
+  }
+  .label {
+    display: block;
+    font-size: var(--fontsize-30);
+    line-height: 1;
+    letter-spacing: -0.015em;
+  }
+}
+@media screen and (min-width:840px) {
+  .stats {
+    padding-bottom: 1px;
+  }
+  .row {
+    display: flex;
+    flex-wrap: nowrap;    
+  }
+  .row > div {
+    flex-grow: 1;
+    outline: 1px solid var(--EMG-Deep-Teal);
+    display: flex;
+    justify-content: center;
+    padding-top: 4em;
+    padding-bottom: 4em;
+    background-color: var(--EMG-Hazy-White);
+  }
+  .row > :global(.clone) {
+    display: none;
+  }
+  .row > div:hover {
+    background-color: var(--EMG-Aero-Orange);
+  }
+  .row > div:first-child {
+    justify-content: flex-start;
+    flex-grow: 0;
+    padding-left: var(--d-outer-margin);
+    padding-right: var(--d-outer-margin);
+  }
+  .row > div:last-child {
+    border-right: none;
+    flex-grow: 0;
+    padding-left: var(--d-outer-margin);
+    padding-right: var(--d-outer-margin);
+  }
+  .centerwrap {
+    display: flex;
+    flex-direction: column;
+  }
+  .number {
+    font-size: 10.714vw;
+    font-family: var(--font-reckless);
+    display: inline-block;
+    color: var(--EMG-White);
+    position: relative;
+    line-height: 1;
+  }
+  .number:after {
+    content: '+';
+    font-size: 0.5em;
+    vertical-align: top;
+  }
+  .label {
+    display: inline-block;
+    font-size: 1.785vw;
+    line-height: 1;
+    letter-spacing: -0.015em;
+  }
+}

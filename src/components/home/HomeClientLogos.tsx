@@ -7,7 +7,7 @@ export default function HomeClientLogos( { blok }: { blok: any }) {
 
   return (
     <section className={styles.clientLogos} {...storyblokEditable(blok)} key={blok._uid}>
-      <CCOtherCases stories={clientData} title={blok.title} />
+      <CCOtherCases stories={clientData} title={blok.title || ''} />
     </section>
   )
 }

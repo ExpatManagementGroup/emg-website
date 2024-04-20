@@ -37,7 +37,7 @@ export default function CCTalent( props:{
                   />
                 </div>
                 {
-                  t.client_logo.filename && (
+                  t.client_logo?.filename && (
                     <picture className={styles.logo} >
                       <img
                         src={t.client_logo.filename}
@@ -51,7 +51,7 @@ export default function CCTalent( props:{
                 </div>
               </div>
               {
-                t.client_bgimage.filename && (
+                t.client_bgimage?.filename && (
                   <Picture
                     src={t.client_bgimage.filename}
                     alt={t.client_bgimage.alt}

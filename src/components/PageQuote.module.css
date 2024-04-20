@@ -1,0 +1,85 @@
+@media screen and (max-width:839.9px) {
+  .quote {
+    padding: 2rem 0;
+  }
+  .quote_text {
+    font-size: var(--fontsize-50);
+    font-family: var(--font-reckless);
+    font-style: italic;
+    letter-spacing: -0.015em;
+    line-height: 0.915;
+    text-align: center;
+    margin: 0 calc(0.9 * var(--m-outer-margin-s)) 0.5rem;
+  }
+  .quote_text:before {
+    content: '“';
+    color: var(--EMG-Aero-Orange);
+  }
+  .quote_author {
+    text-align: center;
+    font-size: var(--fontsize-18);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .quote_author cite {
+    font-size: var(--fontsize-18);
+    font-style: normal;
+  }
+  .quote_logo {
+    height: calc( .75 * var(--fontsize-18) );
+    width: auto;
+    position: relative;
+    display: inline-block;
+  }
+  .quote_logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+}
+@media screen and (min-width:840px) {
+  .quote {
+    padding: 4rem 0;
+  }
+  .quote_text {
+    font-size: var(--fontsize-120);
+    font-family: var(--font-reckless);
+    font-style: italic;
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+    text-align: center;
+    margin: 2rem var(--d-outer-margin) 0.75rem;
+  }
+  .quote_text:before {
+    content: '“';
+    color: var(--EMG-Aero-Orange);
+  }
+  .quote_author {
+    text-align: center;
+    font-size: var(--fontsize-40);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 var(--d-outer-margin);
+  }
+  .quote_author cite {
+    font-size: var(--fontsize-40);
+    font-style: normal;
+  }
+  .quote_logo {
+    height: calc( .75 * var(--fontsize-40));
+    width: auto;
+    position: relative;
+    display: inline-block;
+  }
+  .quote_logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+}

@@ -25,8 +25,8 @@ export default function BlogSlider( { blok }: { blok: any } ) {
         slidesPerViewMobile={1.5} 
         sliderRef="blog"
         centeredSlides={false}
-        autoWidth={true}
-        forceLoop={true}
+        autoWidth={false}
+        loop={ blok.blogPosts.length > 5 ? true : false }
       >
         {blok.blogPosts?.map((story: any, index: number) => {
           const props = story.content

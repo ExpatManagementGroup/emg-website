@@ -1,6 +1,8 @@
+'use client';
 import styles from './CCOtherCases.module.css';
 import Link from 'next/link';
 import { storyblokEditable } from '@storyblok/react';
+import LogoMarquee from '../LogoMarquee';
 
 export default function CCOtherCases( props: {
   stories: any,
@@ -10,12 +12,28 @@ export default function CCOtherCases( props: {
   const stories = props.stories;
 
   return (
-    <div className={styles.othercases}>
-      <h2 className={styles.title} {...storyblokEditable(props)}>{props.title ? props.title : 'Other client case studies'}</h2>
-      <div className={styles.cases}>
+    <div className={styles.othercases} {...storyblokEditable(props)}>
+      { props.title &&
+        <h2 className={styles.title}>{props.title}</h2>
+      }
+      <LogoMarquee>
+        {stories?.map((story: any, index: number) => {
+            const caseCompanyLogo = story.content.body[0].case_company_logo
+            if (!caseCompanyLogo.filename ) { return null }
+
+            return (
+              <Link className={styles.case} key={`case-${index}`} href={story.slug}>
+                <picture>
+                  <img src={caseCompanyLogo.filename} alt={caseCompanyLogo.alt} />
+                </picture>
+              </Link>
+            )
+          })}
+      </LogoMarquee>
+      {/* <div className={styles.cases}>
         {stories?.map((story: any, index: number) => {
           const caseCompanyLogo = story.content.body[0].case_company_logo
-          if (!caseCompanyLogo) { return null }
+          if (!caseCompanyLogo.filename ) { return null }
 
           return (
             <Link className={styles.case} key={`case-${index}`} href={story.slug}>
@@ -25,7 +43,7 @@ export default function CCOtherCases( props: {
             </Link>
           )
         })}
-      </div>
+      </div> */}
     </div>  
   )
 }

@@ -1,8 +1,7 @@
 import { storyblokEditable, StoryblokComponent } from "@storyblok/react/rsc";
  
 const Page = ({ blok }: { blok: any }) => (
-  <>
-  <div {...storyblokEditable(blok)}>
+  <div className="blocks" {...storyblokEditable(blok)}>
     { blok.body?.map((nestedBlok: any) => {
       if (nestedBlok.component === "blog_slider") {
         nestedBlok.blogPosts = blok.blogPosts;
@@ -18,13 +17,16 @@ const Page = ({ blok }: { blok: any }) => (
         nestedBlok.clientCaseStories = blok.clientCaseStories;
         return <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
       }
+      else if (nestedBlok.component === "our_clients_feed") {
+        nestedBlok.clientCaseStories = blok.clientCaseStories;
+        return <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
+      }
       else { 
         return <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} /> 
       }
     })} 
     {/* <pre>{JSON.stringify(blok.blogPosts, null, 1)}</pre> */}
   </div>
-  </>
 );
  
 export default Page;

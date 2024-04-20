@@ -1,5 +1,9 @@
 .clientLogos {
   background-color: var(--EMG-White);
-  padding: 2rem 0;
+  padding: 0;
   overflow: hidden;
+}
+
+:global(.our_clients) .clientLogos {
+  background-color: transparent;
 }

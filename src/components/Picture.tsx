@@ -9,7 +9,7 @@ export default function Picture( props: {
   height?: number
 } ) {
 
-  if (props.src.includes('.svg')) {
+  if (props.src?.includes('.svg')) {
     return (
       <picture className={props.className}>
         <img src={props.src} alt={props.alt} />

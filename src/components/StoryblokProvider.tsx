@@ -1,8 +1,10 @@
 "use client";
 import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import { ReactNode } from "react"; // Import ReactNode type
- 
 import Page from "./pages/Page";
+import PageHero from "./PageHero";
+import PageTextblock from "./PageTextblock";
+import PageQuote from "./PageQuote";
 import Post_1 from "./pages/Post_1"; 
 import Navigation from "./Navigation";
 import HomeHero from "./home/HomeHero";
@@ -19,6 +21,9 @@ import OurStoryIntro from "./our_story/OurStoryIntro";
 import OurStoryJourney from "./our_story/OurStoryJourney";
 import OurStoryJourneyStep from "./our_story/OurStoryJourneyStep";
 import OurStoryJourneyStepLast from "./our_story/OurStoryJourneyStepLast";
+import OurClientsFeed from "./our_clients/OurClientsFeed";
+import OurClientsValues from "./our_clients/OurClientsValues";
+import OurClientsStats from "./our_clients/OurClientsStats";
 import CCPage from "./clientCases/CCPage";
 import CCHeader from "./clientCases/CCHeader";
 import CCAbout from "./clientCases/CCAbout";
@@ -29,6 +34,9 @@ import BlogSlider from "./blog/BlogSlider";
 
 const components = {
   page: Page,
+  page_hero: PageHero,
+  page_textblock: PageTextblock,
+  page_quote: PageQuote,
   post_one: Post_1,
   navigation: Navigation,
   hero_home: HomeHero,
@@ -40,6 +48,9 @@ const components = {
   home_client_logos: HomeClientLogos,
   home_faqs: HomeFAQs,
   home_members: HomeMembers,
+  our_clients_feed: OurClientsFeed,
+  our_clients_values: OurClientsValues,
+  our_clients_stats: OurClientsStats,
   our_story_hero: OurStoryHero,
   our_story_intro: OurStoryIntro,
   our_story_journey: OurStoryJourney,
@@ -52,9 +63,7 @@ const components = {
   case_testimonial: CCTestimonial,
   case_talent: CCTalent,
   case_othercases: CCOtherCases
-
 };
-
 
 storyblokInit({
   accessToken: process.env.STORYBLOK_API_TOKEN,

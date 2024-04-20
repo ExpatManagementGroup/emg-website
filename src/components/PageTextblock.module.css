@@ -1,0 +1,36 @@
+@media screen and (max-width:839.9px) {
+  .pagetextblock {
+    margin: 0 var(--m-outer-margin-l);
+    padding: 4rem 0;
+  }
+  .richtext p {
+    font-size: var(--fontsize-20);
+  }
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    align-items: flex-start;
+    padding: 2rem 0 0;
+  }
+  .buttons :global(.button) {
+    font-size: var(--fontsize-20);
+  }
+}
+@media screen and (min-width:840px) {
+  .pagetextblock {
+    width: calc( 1.1 * var(--d-colWidth-6));
+    margin: 0 auto;
+    padding: 4rem 0;
+    text-align: center;
+  }
+  .richtext p {
+    font-size: var(--fontsize-30);
+  }
+  .buttons {
+    display: flex;
+    gap: .5rem;
+    justify-content: center;
+    padding: 2rem 0 0;
+  }
+}

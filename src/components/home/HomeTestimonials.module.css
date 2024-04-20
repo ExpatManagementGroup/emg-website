@@ -4,6 +4,9 @@
     background-color: var(--EMG-White);
     overflow: hidden;
   }
+  :global(.our_clients) .testimonials {
+    background-color: transparent;
+  }
   .title {
     font-size: var(--fontsize-30);
     font-family: var(--font-reckless);
@@ -28,6 +31,9 @@
     padding: 2em 0;
     background-color: var(--EMG-White);
     overflow: hidden;
+  }
+  :global(.our_clients) .testimonials {
+    background-color: transparent;
   }
   .testimonials :global(.swiper-slide) {
     width: 36.363vw;
