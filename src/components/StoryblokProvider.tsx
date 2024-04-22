@@ -5,7 +5,10 @@ import Page from "./pages/Page";
 import PageHero from "./PageHero";
 import PageTextblock from "./PageTextblock";
 import PageQuote from "./PageQuote";
+import PageHeadline from "./PageHeadline";
 import Post_1 from "./pages/Post_1"; 
+import Job from "./pages/Job";
+import Employee from "./pages/Employee";
 import Navigation from "./Navigation";
 import HomeHero from "./home/HomeHero";
 import HomeWhatWeDo from "./home/HomeWhatWeDo";
@@ -24,6 +27,8 @@ import OurStoryJourneyStepLast from "./our_story/OurStoryJourneyStepLast";
 import OurClientsFeed from "./our_clients/OurClientsFeed";
 import OurClientsValues from "./our_clients/OurClientsValues";
 import OurClientsStats from "./our_clients/OurClientsStats";
+import OurPeopleList from "./our_people/OurPeopleList";
+import OurPeopleFooter from "./our_people/OurPeopleFooter";
 import CCPage from "./clientCases/CCPage";
 import CCHeader from "./clientCases/CCHeader";
 import CCAbout from "./clientCases/CCAbout";
@@ -37,7 +42,10 @@ const components = {
   page_hero: PageHero,
   page_textblock: PageTextblock,
   page_quote: PageQuote,
+  page_headline: PageHeadline,
   post_one: Post_1,
+  job: Job,
+  employee: Employee,
   navigation: Navigation,
   hero_home: HomeHero,
   home_what_we_do: HomeWhatWeDo,
@@ -56,6 +64,8 @@ const components = {
   our_story_journey: OurStoryJourney,
   our_story_journey_step: OurStoryJourneyStep,
   our_story_journey_step_last: OurStoryJourneyStepLast,
+  our_people_list: OurPeopleList,
+  our_people_footer: OurPeopleFooter,
   blog_slider: BlogSlider,
   client_case: CCPage,
   case_header: CCHeader,

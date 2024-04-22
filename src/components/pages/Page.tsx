@@ -21,6 +21,16 @@ const Page = ({ blok }: { blok: any }) => (
         nestedBlok.clientCaseStories = blok.clientCaseStories;
         return <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
       }
+      else if (nestedBlok.component === "our_people_list") {
+        nestedBlok.employees = blok.employees;
+        nestedBlok.countries = blok.countries;
+        return <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
+      }
+      else if (nestedBlok.component === "jobs_list") {
+        nestedBlok.jobs = blok.jobs;
+        nestedBlok.countries = blok.countries;
+        return <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
+      }
       else { 
         return <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} /> 
       }

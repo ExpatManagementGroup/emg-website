@@ -12,6 +12,10 @@
     margin-bottom: -1em;
     background-color: var(--EMG-Hazy-White);
   }
+  .main:has(:global(.blocks .peoplefooter:last-child)) {
+   border-radius: 0;
+   outline: none;
+  }
 }
 @media screen and (min-width:840px) {
   

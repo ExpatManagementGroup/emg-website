@@ -7,7 +7,7 @@ import { render } from 'storyblok-rich-text-react-renderer';
 const HomeHero = ({ blok }: { blok: any }) => (
   <>
   <div {...storyblokEditable(blok)} className={`${styles.wrapper} home_hero`}>
-    <video autoPlay muted loop className={styles.video}>
+    <video autoPlay muted loop playsInline className={styles.video}>
       <source src='/assets/video/emg_homevideo.mp4' type="video/mp4" />
     </video>
     <div>

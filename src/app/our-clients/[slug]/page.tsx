@@ -1,4 +1,4 @@
-import { ISbStoriesParams, storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin} from "@storyblok/react/rsc";
+import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin} from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
 import styles from "../../page.module.css";
 import CCOtherCases from "@/components/clientCases/CCOtherCases";

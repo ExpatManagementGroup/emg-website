@@ -129,7 +129,7 @@ export default function LogoMarquee( props: { children: any }) {
   return (
     <section className={styles.marqueeMembers} ref={marqueeMembers}>
       <div className={styles.logos}>
-        {props.children.map((child: any, index: number) => {
+        {props.children?.map((child: any, index: number) => {
           return (
             <div key={`logo-${index}`} className={styles.logo}>
               {child}

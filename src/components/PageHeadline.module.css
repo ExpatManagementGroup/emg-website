@@ -1,0 +1,48 @@
+@media screen and (max-width:839.9px) {
+  .pageheadline {
+    width: calc( 100% - 2 * var(--m-outer-margin-l));
+    margin: 0 auto;
+    padding-top: calc(var(--nav-height) + var(--fontsize-hero));
+  }
+  .eyebrow {
+    font-size: var(--fontsize-20);
+    line-height: 1.1;
+    letter-spacing: 0.022em;
+    margin-bottom: 1em;
+  }
+  .headline {
+    font-size: var(--fontsize-70);
+    line-height: .8;
+    letter-spacing: -0.015em;
+    margin-bottom: 1em;
+  }
+  .italic {
+    font-family: var(--font-reckless);
+    font-style: italic;
+    display: block;
+    margin-top: .75em;
+  }
+}
+@media screen and (min-width:840px) {
+  .pageheadline {
+    width: var(--d-colWidth-8);
+    margin: 0 auto;
+    padding-top: calc(var(--nav-height) + var(--fontsize-hero));
+  }
+  .eyebrow {
+    font-size: var(--fontsize-30);
+    line-height: 1.1;
+    letter-spacing: 0.022em;
+  }
+  .headline {
+    font-size: var(--fontsize-125);
+    line-height: 1.01;
+    letter-spacing: -0.015em;
+    margin-bottom: 1em;
+  }
+  .italic {
+    font-family: var(--font-reckless);
+    font-style: italic;
+    display: block;
+  }
+}

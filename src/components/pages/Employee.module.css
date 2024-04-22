@@ -1,0 +1,113 @@
+@media screen and (max-width:839.9px) {
+  .employee {
+    padding-top: calc( 1.66 * var(--nav-height));
+  }
+  .image {
+    width: calc(100% - 2 * var(--m-outer-margin-s) ); 
+    margin: 0 auto;
+    border: 1px solid var(--EMG-Deep-Teal);
+    border-radius: 1rem;
+    overflow: hidden;
+    aspect-ratio: 0.753968254;
+    height: auto;
+    position: relative;
+    display: block;
+  }
+  .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .name {
+    font-size: var(--fontsize-80);
+    font-family: var(--font-reckless);
+    letter-spacing: -0.015em;
+    width: calc(100% - 2 * var(--m-outer-margin-l) ); 
+    margin: .6em auto 0 auto;
+  }
+  .title {
+    font-size: var(--fontsize-20);
+    display: flex;
+    gap: 1em;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 2 * var(--m-outer-margin-l) ); 
+    margin: 0 auto;
+    margin-bottom: 2em;
+  }
+  .bio {
+    width: calc(100% - 2 * var(--m-outer-margin-l) ); 
+    margin: 0 auto 3em auto;
+  }
+  .bio p {
+    font-size: var(--fontsize-18);
+    line-height: 1.1;
+    margin-bottom: 1em;
+  }
+  .nonbutton {
+    font-size: 3.023vw;
+    width: calc(100% - 2 * var(--m-outer-margin-l) ); 
+    margin: 0 var(--m-outer-margin-l);
+    margin-top: 1.5em;
+  }
+  .contact {
+    display: flex;
+    gap: .75em;
+    margin: 1em var(--m-outer-margin-l) 6em var(--m-outer-margin-l);
+  }
+}
+@media screen and (min-width:840px) {
+  .employee {
+    display: flex;
+    margin: 0 var(--d-outer-margin);
+    padding-top: calc( 2 * var(--nav-height));
+    gap: calc( 2 * var(--d-gutter) + var(--d-colWidth-1));
+  }
+  .image {
+    flex: 0 0 var(--d-colWidth-4);
+    border: 1px solid var(--EMG-Deep-Teal);
+    border-radius: 1rem;
+    overflow: hidden;
+    aspect-ratio: 0.753968254;
+    height: calc(var(--d-colWidth-4) / 0.753968254 );
+  }
+  .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .text {
+    flex: 0 0 var(--d-colWidth-4);
+  }
+  .name {
+    font-size: var(--fontsize-80);
+    font-family: var(--font-reckless);
+    letter-spacing: -0.015em;
+    margin-top: 1em;
+  }
+  .title {
+    font-size: var(--fontsize-20);
+    display: flex;
+    gap: 1em;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2em;
+  }
+  .bio p {
+    font-size: var(--fontsize-18);
+    line-height: 1.1;
+    margin-bottom: 1em;
+  }
+  .nonbutton {
+    font-size: var(--fontsize-15);
+    font-size: 0.773vw;
+    margin-top: 1.5em;
+  }
+  .contact {
+    display: flex;
+    gap: .75em;
+    margin: 3em 0 ;
+  }
+}
