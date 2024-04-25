@@ -1,0 +1,22 @@
+@media screen and (max-width:839.9px) {
+  .title {
+    font-size: var(--fontsize-50);
+    font-family: var(--font-reckless);
+    line-height: 0.925;
+    letter-spacing: -0.02em;
+    margin: 0 var(--m-outer-margin-l);
+    margin-bottom: 1.5em;
+    text-align: center;
+  }
+}
+@media screen and (min-width:840px) {
+  .title {
+    font-size: var(--fontsize-100);
+    font-family: var(--font-reckless);
+    line-height: 0.925;
+    letter-spacing: -0.02em;
+    margin-left: var(--d-outer-margin);
+    max-width: var(--d-colWidth-4);
+    margin-bottom: 1.5em;
+  }
+}

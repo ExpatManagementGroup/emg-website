@@ -47,13 +47,15 @@ export default function FAQ( { props }: {
       </div>
       <div className={`toggleContent ${styles.toggleContent}`}>
         <div className={styles.answer}>{render(props.answer)}</div>
-        <Button 
-          type="Link" 
-          href={props.button_url} 
-          text={props.button_text} 
-          bgcolor='transparent' 
-          className={styles.cta}
-        />
+        {props.button_text && props.button_url &&
+          <Button 
+            type="Link" 
+            href={props.button_url} 
+            text={props.button_text} 
+            bgcolor='transparent' 
+            className={styles.cta}
+          />
+        }
       </div>
     </div>
   )

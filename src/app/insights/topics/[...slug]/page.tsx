@@ -2,6 +2,7 @@ import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin} from "@st
 import styles from "./page.module.css";
 import PostCard from "@/components/PostCard";
 import Events from "@/components/Events";
+import { notFound } from "next/navigation";
 
 storyblokInit({
   accessToken: process.env.STORYBLOK_API_TOKEN,
@@ -33,6 +34,10 @@ export default async function TopicsPosts(props: { params: { slug: string } }) {
   const allTopicsOnce = [...new Set(allTopics)];
   const featuredStory = filteredStories[0];
 
+  if (!featuredStory) {
+    notFound();
+  }
+
   const eventsData = await fetchEventsData();
   const events = eventsData.data.stories;
 
@@ -43,25 +48,27 @@ export default async function TopicsPosts(props: { params: { slug: string } }) {
     <main className={styles.blogroll} {...storyblokEditable}>
 
       <div className={styles.topics}>
-        <h1>{allTopicsData.data.datasource_entries.find((entry: any) => entry.value === slug).name}</h1>
+        <h1>{allTopicsData.data.datasource_entries.find((entry: any) => entry.value === slug)?.name}</h1>
       </div>
-      <div key={featuredStory.id} className={styles.blogroll_hero}>
-        <PostCard
-          featured_image_url={featuredStory.content.featured_image?.filename}
-          featured_image_alt={featuredStory.content.featured_image?.alt}
-          title={featuredStory.content.title}
-          country={featuredStory.content.country}
-          topicSlug={featuredStory.content.topic}
-          topicName={allTopicsData.data.datasource_entries.find((entry: any) => entry.value === featuredStory.content.topic).name}
-          date={featuredStory.content.date}
-          slug={featuredStory.slug}
-          isFeature={true}
-          description={featuredStory.content.description}
-        />
-        <div className={styles.blogroll_hero_events}>
-          <Events data={events} />
+      { featuredStory && 
+        <div key={featuredStory.id} className={styles.blogroll_hero}>
+          <PostCard
+            featured_image_url={featuredStory.content.featured_image?.filename}
+            featured_image_alt={featuredStory.content.featured_image?.alt}
+            title={featuredStory.content.title}
+            country={featuredStory.content.country}
+            topicSlug={featuredStory.content.topic}
+            topicName={allTopicsData.data.datasource_entries.find((entry: any) => entry.value === featuredStory.content.topic).name}
+            date={featuredStory.content.date}
+            slug={featuredStory.slug}
+            isFeature={true}
+            description={featuredStory.content.description}
+          />
+          <div className={styles.blogroll_hero_events}>
+            <Events data={events} />
+          </div>
         </div>
-      </div>
+      }
       <div className={styles.post_list}>
         { filteredStories.map((story: any, index: number) => {
           if (index !== 0) {

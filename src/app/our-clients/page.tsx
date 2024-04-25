@@ -48,7 +48,7 @@ async function fetchClientsData() {
 }
 async function fetchTalentTestimonialData() {
   return getStoryblokApi().get(`cdn/stories/`, {
-    "starts_with": "testimonials/",
+    "starts_with": "testimonials-clients/",
     "per_page": 5
   });
 }

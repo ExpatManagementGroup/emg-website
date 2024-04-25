@@ -5,7 +5,7 @@ const Page = ({ blok }: { blok: any }) => (
     { blok.body?.map((nestedBlok: any) => {
       if (nestedBlok.component === "blog_slider") {
         nestedBlok.blogPosts = blok.blogPosts;
-        nestedBlok.topics = blok.topics;
+        nestedBlok.alltopics = blok.topics;
         return <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
       }
       else if (nestedBlok.component === "home_testimonials") {
@@ -26,9 +26,14 @@ const Page = ({ blok }: { blok: any }) => (
         nestedBlok.countries = blok.countries;
         return <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
       }
-      else if (nestedBlok.component === "jobs_list") {
+      else if (nestedBlok.component === "work_with_us_jobfeed") {
         nestedBlok.jobs = blok.jobs;
         nestedBlok.countries = blok.countries;
+        return <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
+      }
+      else if (nestedBlok.component === "work_with_us_testimonials") {
+        nestedBlok.testimonials = blok.testimonials;
+        // nestedBlok.countries = blok.countries;
         return <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
       }
       else { 

@@ -2,7 +2,8 @@
   opacity: 0.5;
   transition: transform 0.5s, opacity 0.5s;
 }
-.swiper:global(.swiper-initialized) {
+.swiper:global(.swiper-initialized), 
+:global(.noswiper).swiper {
   opacity: 1;
 }
 .slidernavbuttons {

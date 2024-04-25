@@ -7,7 +7,7 @@
   .eyebrow {
     font-size: var(--fontsize-20);
     line-height: 1.1;
-    letter-spacing: 0.022em;
+    letter-spacing: -0.022em;
     margin-bottom: 1em;
   }
   .headline {
@@ -32,7 +32,7 @@
   .eyebrow {
     font-size: var(--fontsize-30);
     line-height: 1.1;
-    letter-spacing: 0.022em;
+    letter-spacing: -0.022em;
   }
   .headline {
     font-size: var(--fontsize-125);

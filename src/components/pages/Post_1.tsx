@@ -6,7 +6,7 @@ import Picture from "../Picture";
 
 const Post = ({ blok }: { blok: any }) => {
 
-  const thisTopicName = blok.topics.find((topic: any) => topic.value === blok.topic)?.name || blok.topic
+  const thisTopicName = blok.topics?.find((topic: any) => topic.value === blok.topic)?.name || blok.topic
 
   return (
     <div {...storyblokEditable(blok)} className={styles.post}>

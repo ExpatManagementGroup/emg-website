@@ -46,7 +46,7 @@ async function fetchOtherCCDataExcluding(slug:string) {
 }
 async function fetchTestimonialData() {
   return getStoryblokApi().get(`cdn/stories`, {
-    "starts_with": "testimonials/",
+    "starts_with": "testimonials-clients/",
     "per_page": 5
   });
 }

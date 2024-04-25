@@ -36,6 +36,12 @@ import CCTestimonial from "./clientCases/CCTestimonial";
 import CCTalent from "./clientCases/CCTalent";
 import CCOtherCases from "./clientCases/CCOtherCases";
 import BlogSlider from "./blog/BlogSlider";
+import WorkWithUsJobFeed from "./work_with_us/WorkWithUsJobfeed";
+import WorkWithUsTestimonials from "./work_with_us/WorkWithUsTestimonials";
+import WorkWithUsBenefits from "./work_with_us/WorkWithUsBenefits";
+import OurCultureIntro from "./our_culture/OurCultureIntro";
+import OurCultureDiversity from "./our_culture/OurCultureDiversity";
+import OurCultureCommunity from "./our_culture/OurCultureCommunity";
 
 const components = {
   page: Page,
@@ -66,6 +72,12 @@ const components = {
   our_story_journey_step_last: OurStoryJourneyStepLast,
   our_people_list: OurPeopleList,
   our_people_footer: OurPeopleFooter,
+  our_culture_intro: OurCultureIntro,
+  our_culture_diversity: OurCultureDiversity,
+  our_culture_community: OurCultureCommunity,
+  work_with_us_jobfeed: WorkWithUsJobFeed,
+  work_with_us_testimonials: WorkWithUsTestimonials,
+  work_with_us_benefits: WorkWithUsBenefits,
   blog_slider: BlogSlider,
   client_case: CCPage,
   case_header: CCHeader,

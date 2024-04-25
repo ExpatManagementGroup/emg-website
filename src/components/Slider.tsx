@@ -10,7 +10,8 @@ export default function Slider( props: {
   slidesPerViewDesktop?: number,
   slidesPerViewMobile?: number,
   sliderRef?: any,
-  autoWidth?: boolean
+  autoWidth?: boolean,
+  differentWidth?: boolean,
   centeredSlides?: boolean,
   loop?: boolean,
   gridRows?: number,
@@ -50,11 +51,27 @@ export default function Slider( props: {
       }
     }
   `;
+  const slideDiffWidthAndCenteredCSS = `
+    @media screen and (min-width: 840px) {
+      #${swiperId} .swiper-wrapper {
+        transform: translate3d(-${leftOffsetDesktop}vw, 0px, 0px);
+      }
+    }
+    @media screen and (max-width: 839.9px) {
+      #${swiperId} .swiper-wrapper {
+        transform: translate3d(-${leftOffsetMobile}vw, 0px, 0px);
+      }
+    }
+  `;
 
   let counter = 0
   useEffect(() => {
 
     if (counter > 0) { return }
+
+    if ( isMissingSlidesDesktop && isMissingSlidesMobile ) {
+      return 
+    }
 
     const swiper = new Swiper(`#${swiperId}`,{
       modules: [Navigation, Pagination, Mousewheel],
@@ -87,6 +104,12 @@ export default function Slider( props: {
           const swiper = document.getElementById(swiperId) as HTMLElement
           swiper.style.minHeight = swiper.offsetHeight + 'px'
         },
+        resize: () => {
+          const swiper = document.getElementById(swiperId) as HTMLElement
+          if (!swiper) { return }
+          swiper.style.minHeight = '0px'
+          swiper.style.minHeight = swiper.offsetHeight + 'px'
+        }
       }
     });
 
@@ -107,25 +130,46 @@ export default function Slider( props: {
     props.rewind
   ])
 
-  return(
-    <>
-    <div className={`slider-navbuttons ${styles.slidernavbuttons}`} id={`${swiperId}_nav`}>
-      <div className={`swiper-button-prev button button-bg-transparent button-round button-arrow-notext button-arrow-left ${styles.prev}`}></div>
-      <div className={`swiper-button-next button button-bg-transparent button-round button-arrow-notext ${styles.next}`}></div>
-    </div>
-    <div className={`swiper ${styles.swiper} ${props.className} missingSlides-${isMissingSlidesDesktop}`} id={swiperId}>
-      { props.autoWidth && props.centeredSlides ? <style>{slideWidthAndCenteredCSS}</style> : null }
-      <div className='swiper-wrapper'>
-        {newchildren?.map((child: any, index: number) => {
-          return (
-            <div key={index} className='swiper-slide'>
-              {child}
-            </div>
-          )})
-        }
+  if ( isMissingSlidesDesktop && isMissingSlidesMobile ) {
+    return(
+      <>
+      <div className={`swiper ${styles.swiper} ${props.className} noswiper`} id={swiperId}>
+        <div className='swiper-wrapper'>
+          {newchildren?.map((child: any, index: number) => {
+            return (
+              <div key={index} className='swiper-slide'>
+                {child}
+              </div>
+            )})
+          }
+        </div>
       </div>
-    </div>
-    <div className={`swiper-pagination ${styles.pagination}`} id={`${swiperId}_pagination`}></div>
-    </>
-  )
+      <div className={`swiper-pagination ${styles.pagination}`} id={`${swiperId}_pagination`}></div>
+      </>
+    )
+  } 
+  else {
+    return(
+      <>
+      <div className={`slider-navbuttons ${styles.slidernavbuttons}`} id={`${swiperId}_nav`}>
+        <div className={`swiper-button-prev button button-bg-transparent button-round button-arrow-notext button-arrow-left ${styles.prev}`}></div>
+        <div className={`swiper-button-next button button-bg-transparent button-round button-arrow-notext ${styles.next}`}></div>
+      </div>
+      <div className={`swiper ${styles.swiper} ${props.className} missingSlides-${isMissingSlidesDesktop}`} id={swiperId}>
+        { props.autoWidth && !props.differentWidth && props.centeredSlides ? <style>{slideWidthAndCenteredCSS}</style> : null }
+        { props.autoWidth && props.differentWidth && props.centeredSlides ? <style>{slideDiffWidthAndCenteredCSS}</style> : null }
+        <div className='swiper-wrapper'>
+          {newchildren?.map((child: any, index: number) => {
+            return (
+              <div key={index} className='swiper-slide'>
+                {child}
+              </div>
+            )})
+          }
+        </div>
+      </div>
+      <div className={`swiper-pagination ${styles.pagination}`} id={`${swiperId}_pagination`}></div>
+      </>
+    )
+  }
 }

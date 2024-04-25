@@ -11,7 +11,7 @@ export default function OurPeopleList( { blok }: { blok: any }) {
   const peoplelist = useRef(null);
 
   useEffect(() => {
-    peoplelist.current && autoAnimate(peoplelist.current, {duration: 500})
+    peoplelist.current && autoAnimate(peoplelist.current, {duration: 500, easing: 'cubic-bezier(.69,.05,.37,1.25)'})
   })
 
   function getCountryNameByValue(value: string) {

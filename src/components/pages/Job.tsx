@@ -7,6 +7,7 @@ import Pill from '../Pill';
 export default function Job( { blok }: { blok: any }) {
   return (
     <div className={styles.job} {...storyblokEditable(blok)}>
+      <Button className={styles.backbutton} type="Link" href='/work-with-us' text="←" arrow='none' />
       <h1 className={styles.jobtitle}>{blok.jobtitle}</h1>
       <div className={styles.jobinfo}>
         <div className={styles.classification}>{blok.classification}</div>
@@ -16,6 +17,8 @@ export default function Job( { blok }: { blok: any }) {
       <div className={styles.details}>
         <div className={styles.description}>
           {render(blok.description)}
+        </div>
+        <div className={styles.button}>
           <Button
             type="Link"
             href={blok.button_url}

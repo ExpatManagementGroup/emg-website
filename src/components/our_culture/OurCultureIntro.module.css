@@ -1,0 +1,33 @@
+@media screen and (max-width:839.9px) {
+  .intro {
+    background-color: var(--EMG-Aero-Orange);
+    padding:  4rem var(--m-outer-margin-l);
+  }
+  .content > * {
+    margin-bottom: 1.5rem;
+  }
+  .content h1, .content h2, .content h3, .content h4 {
+    font-size: var(--fontsize-40);
+    font-family: var(--font-reckless);
+    letter-spacing: -0.015em;
+    line-height: 1.1;
+  }
+}
+@media screen and (min-width:840px) {
+  .intro {
+    background-color: var(--EMG-Aero-Orange);
+    padding:  var(--d-colWidth-1) 
+              calc( var(--d-outer-margin) + 2 * var(--d-gutter) + var(--d-colWidth-3) )
+              var(--d-colWidth-1) 
+              calc( var(--d-outer-margin) + var(--d-gutter) + var(--d-colWidth-1) );
+  }
+  .content > * {
+    margin-bottom: 1.5rem;
+  }
+  .content h1, .content h2, .content h3, .content h4 {
+    font-size: var(--fontsize-40);
+    font-family: var(--font-reckless);
+    letter-spacing: -0.015em;
+    line-height: 1.1;
+  }
+}

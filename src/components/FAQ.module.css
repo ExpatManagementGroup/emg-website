@@ -1,3 +1,11 @@
+.answer p {
+  margin-bottom: 1em;
+}
+.answer h1, .answer h2, .answer h3, .answer h4, .answer h5, .answer h6 {
+  font-size: var(--fontsize-18);
+  line-height: 1.1;
+  margin: 0 0 1em 0;
+}
 @media screen and (max-width:839.9px) {
   .faq {
     --faq-height: 100%;

@@ -9,6 +9,10 @@ import Button from '../Button';
 
 export default function BlogSlider( { blok }: { blok: any } ) {
 
+  const allBlogPosts = blok.blogPosts
+  const selectedTopics = blok.topics
+  const selectedBlogPosts = selectedTopics[0] ? allBlogPosts?.filter((post: any) => selectedTopics.includes(post.content.topic)) : allBlogPosts
+
   return (
     <div 
       className={styles.blogslider_wrapper} 
@@ -17,8 +21,10 @@ export default function BlogSlider( { blok }: { blok: any } ) {
         "backgroundColor": `${blok.bg_color}`,
       }}
     >
-      <div className={styles.title}>{render(blok.title)}</div>
-      {/* {JSON.stringify(blok.title, null, 2)} */}
+      <div className={styles.title}>
+        {render(blok.title)}
+      </div>
+      {/* <pre>{JSON.stringify(selectedBlogPosts, null, 2)}</pre> */}
       <Slider 
         className={styles.blogslider} 
         slidesPerViewDesktop={5} 
@@ -28,12 +34,15 @@ export default function BlogSlider( { blok }: { blok: any } ) {
         autoWidth={false}
         loop={ blok.blogPosts?.length > 5 ? true : false }
       >
-        {blok.blogPosts?.map((story: any, index: number) => {
+        {selectedBlogPosts?.map((story: any, index: number) => {
           const props = story.content
-          const thisTopic = blok.topics?.find((topic: any) => topic.value === props.topic)
+          const thisTopic = blok.alltopics?.find((topic: any) => topic.value === props.topic)
           const thisTopicName = thisTopic ? thisTopic.name : props.topic
+          // const isInBlokTopics = blok.topics?.find((topic: any) => topic === props.topic)
+          // if (!isInBlokTopics) return null
           return (
             <div key={`story-${index}`} className={`${styles.postcard} ${props.isFeature ? styles.postcard_featured : styles.postcard_regular}`}>
+              {/* <div>{JSON.stringify(blok.topics)} - {story.content.topic} - {isInBlokTopics ? 'yes' : 'no'}</div> */}
               <figure className={styles.featured_image}>
               <Link href={`/insights/${story.slug}`} >
                 <Picture

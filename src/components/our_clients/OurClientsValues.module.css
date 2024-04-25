@@ -1,7 +1,68 @@
 @media screen and (max-width:839.9px) {
   .values_wrapper {
+    padding: 2rem 0;
+    margin: 0 auto;
+  }
+  .header {
+    padding: 0 var(--m-outer-margin-l);
+    text-align: center;
+  }
+  .header h1, .header h2, .header h3, .header h4 {
+    font-size: var(--fontsize-50);
+    font-family: var(--font-reckless);
+    line-height: 0.95;
+    position: relative;
+    margin-bottom: 1em;
+  }
+  .header p {
+    font-size: var(--fontsize-18);
+  }
+  .header_icon {
     display: none;
-  } 
+  }
+  .values {
+    display: grid;
+    --columnwidth: 75vw;
+    grid-auto-columns: var(--columnwidth);
+    width: 100%;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    padding-bottom: 2rem;
+  }
+  .values::-webkit-scrollbar {
+    display: none;
+  }
+  .values h1, .values h2, .values h3, .values h4 {
+    counter-increment: counter;
+    scroll-snap-align: start;
+    padding-left: var(--m-outer-margin-l);
+    font-size: var(--fontsize-45);
+    font-family: var(--font-reckless);
+    line-height: 0.95;
+    position: relative;
+    margin-top: 1em;
+    margin-bottom: .25em;
+    max-width: var(--columnwidth);
+    grid-column: span 1;
+    grid-row: 1;
+    font-variant-ligatures: discretionary-ligatures;
+    font-feature-settings: 'ss07' on, 'ss04' on, 'ss06' on, 'ss01' on;
+  }
+  .values h1:before, .values h2:before, .values h3:before, .values h4:before {
+    content: "0" counter(counter);
+    display: block;
+    font-size: 36.7441vw;
+  }
+  .values p {
+    scroll-snap-align: start;
+    font-size: var(--fontsize-18);
+    padding-left: var(--m-outer-margin-l);
+    max-width: var(--columnwidth);
+    grid-column: span 1;
+    grid-row: 2;
+  }
 } 
   
 

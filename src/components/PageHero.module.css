@@ -34,7 +34,7 @@
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.20) 100%)
   }
   .headline {
-    padding: 0 0 0 var(--m-outer-margin-l);
+    padding: 0 var(--m-outer-margin-l);
   }
   .eyebrow {
     font-size: var(--fontsize-20);
@@ -53,7 +53,8 @@
     font-family: var(--font-reckless);
     font-style: italic;
     font-weight: 500;
-    display: block;
+    /* display: block; */
+    margin-left: 0.25em;
   }
 }
 @media screen and (min-width:840px) {
@@ -89,26 +90,27 @@
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.20) 100%)
   }
   .headline {
-    width: var(--d-colWidth-7);
+    width: var(--d-colWidth-8);
     margin-left: calc(var(--d-outer-margin) + var(--d-colWidth-1) + var(--d-gutter));
   }
   .eyebrow {
     font-size: var(--fontsize-30);
     line-height: 1.1;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.022em;
     color: var(--EMG-Hazy-White);
     margin-bottom: .5em;
   }
   .title {
-    font-size: var(--fontsize-hero);
+    font-size: var(--fontsize-125);
     color: var(--EMG-Hazy-White);
     line-height: 0.915;
+    letter-spacing: -0.015em;
   }
   .italic {
     font-family: var(--font-reckless);
     font-style: italic;
     font-weight: 500;
-    font-size: 1.111em; 
+    font-size: 1.08em; 
     display: block;
   }
 }
