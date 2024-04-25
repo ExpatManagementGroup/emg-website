@@ -1,0 +1,74 @@
+@media screen and (max-width:839.9px) {
+  .switcher {
+    border: 1px solid var(--EMG-Deep-Teal);
+    border-radius: 5rem;
+    padding: .5rem;
+    margin: 2rem auto;
+    display: inline-flex;
+    justify-content: space-around;
+    background-color: var(--EMG-White);
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .switcher_button {
+    background-color: transparent;
+    font-family: var(--font-agrandir);
+    font-size: var(--fontsize-16);
+    padding: 1rem;
+    border: 1px solid transparent;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all .3s;
+  }
+  .switcher_button[data-active="true"] {
+    background-color: var(--EMG-Aero-Orange);
+    border: 1px solid var(--EMG-Deep-Teal);
+    padding: 1rem 1.5rem;
+  }
+  .faqlists {
+    margin: 0 var(--m-outer-margin-l);
+  }
+  .faqlists_lists {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+  }
+  [data-open="companies"] .faqlists_lists > * {
+    transform: translateX(-100%);
+  }
+  .individuals, 
+  .companies {
+    flex: 0 0 100%;
+    transition: all .3s cubic-bezier(.69,.05,.37,1.25);
+  }
+  .title {
+    display: none;
+  }
+}
+@media screen and (min-width:840px) {
+  .switcher {
+    display: none;
+  }
+  .faqlists_lists {
+    width: var(--d-colWidth-8);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--d-gutter);
+    margin-bottom: 3rem;
+  }
+  .title {
+    font-size: var(--fontsize-30);
+    margin-bottom: 1em;
+  }
+  .faq_individuals, .faq_companies {
+    margin-bottom: var(--d-gutter);
+  }
+  .faq_individuals {
+    background-color: var(--EMG-Aero-Orange);
+  }
+  .faq_individuals :global(.circle_plus) {
+    background-color: var(--EMG-White);
+  }
+}

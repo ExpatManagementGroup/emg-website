@@ -9,6 +9,7 @@ storyblokInit({
 
 export default async function Slug({ params }: { params: { slug: string } }) {
 
+  const thisSlug = params.slug;
   const slugData  = await fetchSlugData(params.slug);
   const blogPosts = await fetchBlogPostsData();
 
@@ -22,7 +23,7 @@ export default async function Slug({ params }: { params: { slug: string } }) {
 
   return (
     <>
-    <main className={styles.main} {...storyblokEditable}>
+    <main className={`${styles.main} ${thisSlug}`} {...storyblokEditable}>
        <StoryblokStory story={slugData.data.story} />
     </main>
     </>

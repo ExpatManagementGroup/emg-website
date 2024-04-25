@@ -42,6 +42,9 @@ import WorkWithUsBenefits from "./work_with_us/WorkWithUsBenefits";
 import OurCultureIntro from "./our_culture/OurCultureIntro";
 import OurCultureDiversity from "./our_culture/OurCultureDiversity";
 import OurCultureCommunity from "./our_culture/OurCultureCommunity";
+import FAQHero from "./faq/FAQHero";
+import FAQLists from "./faq/FAQLists";
+import ContactUs from "./pages/ContactUs";
 
 const components = {
   page: Page,
@@ -84,7 +87,10 @@ const components = {
   case_about: CCAbout,
   case_testimonial: CCTestimonial,
   case_talent: CCTalent,
-  case_othercases: CCOtherCases
+  case_othercases: CCOtherCases,
+  faq_hero: FAQHero,
+  faq_lists: FAQLists,
+  contact_us: ContactUs,
 };
 
 storyblokInit({

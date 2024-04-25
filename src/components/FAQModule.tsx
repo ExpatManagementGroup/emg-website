@@ -9,7 +9,8 @@ export default function FAQ( { props }: {
     question: string,
     answer: any,
     button_text: string,
-    button_url: string
+    button_url: string,
+    className?: string
   }
  }) {
 
@@ -36,17 +37,17 @@ export default function FAQ( { props }: {
   });
 
   return (
-    <div className={`${styles.faq} ${ faqOpen ? styles.open : styles.closed}`} ref={faq}>
+    <div className={`${styles.faq} ${props.className} ${ faqOpen ? styles.open : styles.closed}`} ref={faq}>
       <div 
         className={styles.question} 
         aria-label='toggle answer'
         onClick={() => setFaqOpen(!faqOpen)}
       >
-          {props.question}
+          {props?.question}
           <Plus state={faqOpen} className={styles.plus} />
       </div>
       <div className={`toggleContent ${styles.toggleContent}`}>
-        <div className={styles.answer}>{render(props.answer)}</div>
+        <div className={styles.answer}>{render(props?.answer)}</div>
         {props.button_text && props.button_url &&
           <Button 
             type="Link" 

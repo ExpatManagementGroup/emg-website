@@ -1,6 +1,7 @@
 :root {
   /* Colors */
   --EMG-Deep-Teal: #04171D;
+  --EMG-Deep-Teal-Tone-2: #2A454E;
   --EMG-White: #FFF;
   --EMG-Hazy-White: #EAF2F2;
   --EMG-Hazy-White-Tone-2: #C9D9D9;
@@ -33,6 +34,7 @@
   --fontsize-22: 1.309vw;
   --fontsize-20: 1.19vw;
   --fontsize-18: 1.071vw;
+  --fontsize-16: 0.952vw;
   --fontsize-15: clamp(12px, 0.892vw, 150px);
   --fontsize-12: clamp(11px, 0.714vw, 125px);
   --fontsize-10: clamp(10px, 0.595vw, 100px);
@@ -87,6 +89,7 @@
     --fontsize-22: 5.131vw;
     --fontsize-20: 4.651vw;
     --fontsize-18: 4.069vw;
+    --fontsize-16: 3.721vw;
     --fontsize-15: 3.488vw;
     --fontsize-10: 2.32vw;
 
