@@ -10,11 +10,20 @@ export default function HomeFAQs({ blok }: { blok: any }) {
     <div className={styles.homefaqs} {...storyblokEditable(blok)}>
       <div className={styles.title}>{render(blok.title)}</div>
       <div className={styles.faqs}>
-        {blok.faqs.map((faq: any, index: number) => {
-          return (
-            <FAQ key={`faq-${index}`} props={faq} />
-          )
-        })}
+        <div className={styles.faqs_evens}>
+          {blok.faqs.map((faq: any, index: number) => {
+            if (index % 2 === 0) return (
+              <FAQ key={`faq-${index}`} props={faq} />
+            )
+          })}
+        </div>
+        <div className={styles.faqs_odds}>
+          {blok.faqs.map((faq: any, index: number) => {
+            if (index % 2 !== 0) return (
+              <FAQ key={`faq-${index}`} props={faq} />
+            )
+          })}
+        </div>
       </div>
       { blok.button_url && blok.button_text && 
         <div className={styles.cta}>

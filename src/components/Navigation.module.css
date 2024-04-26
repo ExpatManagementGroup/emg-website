@@ -294,6 +294,12 @@
     object-fit: cover;
     position: relative;
   }
+  .countries_toggle_flag :global(.icon) {
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    object-fit: cover;
+    position: relative;
+  }
   .navigation {
     flex-grow: 1;
     display: flex;

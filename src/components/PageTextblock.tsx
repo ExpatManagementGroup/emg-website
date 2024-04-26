@@ -10,19 +10,23 @@ export default function PageTextblock( { blok }: { blok: any }) {
         {render(blok.content)}
       </div>
       <div className={styles.buttons}>
-        <Button
-          type="Link"
-          href={blok.button_primary_url}
-          text={blok.button_primary_text}
-          className={styles.button_primary}
-        />
-        <Button
-          type="Link"
-          href={blok.button_secondary_url}
-          text={blok.button_secondary_text}
-          className={styles.button_secondary}
-          bgcolor='deep-teal'
-        />
+        { blok.button_primary_text &&
+          <Button
+            type="Link"
+            href={blok.button_primary_url || '/'}
+            text={blok.button_primary_text}
+            className={styles.button_primary}
+          />
+        }
+        { blok.button_secondary_text &&
+          <Button
+            type="Link"
+            href={blok.button_secondary_url || '/'}
+            text={blok.button_secondary_text}
+            className={styles.button_secondary}
+            bgcolor='deep-teal'
+          />
+        }
       </div>
     </div>
   )

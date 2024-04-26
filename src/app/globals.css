@@ -111,6 +111,7 @@ body {
   /* overflow-x: hidden; */
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
+  font-size: var(--fontsize-16);
 }
 body {
   color: var(--foreground-hex);

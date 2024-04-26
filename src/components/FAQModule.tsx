@@ -36,12 +36,25 @@ export default function FAQ( { props }: {
     } 
   });
 
+  function clickHandler() {
+    if (faq.current) {
+      const thisfaq = faq.current as HTMLElement;
+      if ( thisfaq.hasAttribute('data-interacted') ) {
+        setFaqOpen(!faqOpen);
+      }
+      else {
+        thisfaq.setAttribute('data-interacted', 'true');
+        setFaqOpen(!faqOpen);
+      }
+    }
+  }
+
   return (
     <div className={`${styles.faq} ${props.className} ${ faqOpen ? styles.open : styles.closed}`} ref={faq}>
       <div 
         className={styles.question} 
         aria-label='toggle answer'
-        onClick={() => setFaqOpen(!faqOpen)}
+        onClick={() => clickHandler()}
       >
           {props?.question}
           <Plus state={faqOpen} className={styles.plus} />

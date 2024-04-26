@@ -1,0 +1,105 @@
+@media screen and (max-width:839.9px) {
+  .learn_more {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    width: 100%;
+    overflow: hidden;
+    display: none;
+  }
+  .intro {
+    text-align: center;
+    margin: 0 var(--m-outer-margin-l) 3rem var(--m-outer-margin-l);
+  }
+  .intro h2 {
+    font-size: var(--fontsize-60);
+    font-family: var(--font-reckless);
+    line-height: 0.915;
+    letter-spacing: -0.015em;
+    margin-bottom: .5em;
+  }
+  .intro p {
+    font-size: var(--fontsize-18);
+    line-height: 1.1;
+    letter-spacing: -0.022em;
+    margin-bottom: 1em;
+  }
+  .countries {
+  }
+  .country {
+    border: 1px solid var(--EMG-Deep-Teal);
+    border-radius: 1rem;
+    padding: 1rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .country_flag {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+  .country_name {
+    font-size: var(--fontsize-50);
+    font-family: var(--font-reckless);
+    line-height: 0.915;
+    letter-spacing: -0.015em;
+    padding-top: 1rem;
+    padding-bottom: .75em;
+  }
+}
+@media screen and (min-width:840px) {
+  .learn_more {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  .intro {
+    text-align: center;
+    max-width: var(--d-colWidth-6);
+    margin: 0 auto 3rem auto;
+  }
+  .intro h2 {
+    font-size: var(--fontsize-60);
+    font-family: var(--font-reckless);
+    line-height: 0.915;
+    letter-spacing: -0.015em;
+    margin-bottom: .5em;
+  }
+  .intro p {
+    font-size: var(--fontsize-18);
+    line-height: 1.1;
+    letter-spacing: -0.022em;
+    margin-bottom: 1em;
+  }
+  .countries {
+    display: flex;
+    gap: var(--d-gutter);    
+    width: var(--d-colWidth-10);
+    margin: 0 auto;
+  }
+  .country {
+    flex: 0 0 25%;
+    border: 1px solid var(--EMG-Deep-Teal);
+    border-radius: 1rem;
+    padding: 1rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .country_flag {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+  .country_name {
+    font-size: var(--fontsize-50);
+    font-family: var(--font-reckless);
+    line-height: 0.915;
+    letter-spacing: -0.015em;
+    padding-top: 1rem;
+    padding-bottom: .75em;
+  }
+}

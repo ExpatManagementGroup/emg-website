@@ -6,6 +6,10 @@ import PageHero from "./PageHero";
 import PageTextblock from "./PageTextblock";
 import PageQuote from "./PageQuote";
 import PageHeadline from "./PageHeadline";
+import PageRelocationServices from "./PageRelocationServices";
+import PageRelocationMoreCountries from "./PageRelocationMoreCountries";
+import PageImmigrationServices from "./PageImmigrationServices";
+import PageBreak from "./PageBreak";
 import Post_1 from "./pages/Post_1"; 
 import Job from "./pages/Job";
 import Employee from "./pages/Employee";
@@ -52,6 +56,10 @@ const components = {
   page_textblock: PageTextblock,
   page_quote: PageQuote,
   page_headline: PageHeadline,
+  page_relocation_services: PageRelocationServices,
+  page_immigration_services: PageImmigrationServices,
+  page_break: PageBreak,
+  relocation_more_countries: PageRelocationMoreCountries,
   post_one: Post_1,
   job: Job,
   employee: Employee,

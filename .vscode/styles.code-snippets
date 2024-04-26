@@ -33,6 +33,18 @@
     ],
     "description": "new component"
   },
+  "new_icon": {
+    "prefix": "ni",
+    "scope": "javascript,typescript,typescriptreact",
+    "body": [
+      "export default function Icon( props: any){",
+      "  return (",
+      "    $1",
+      "  )",
+      "}"
+    ],
+    "description": "new icon component"
+  },
   "cssvar": {
     "prefix": "var",
     "scope": "css,postcss",

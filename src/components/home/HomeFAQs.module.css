@@ -29,8 +29,11 @@
 }
 @media screen and (min-width:840px) {
   .homefaqs {
-    padding: 2rem 0;
+    padding: 2rem 0 4rem 0;
     overflow: hidden;
+  }
+  .homefaqs:last-child {
+    padding-bottom: 8rem;
   }
   .title {
     text-align: center;
@@ -49,12 +52,17 @@
     margin-bottom: 0.75em;
   }
   .faqs {
-    --gap: 1rem;
+    --gap: var(--d-gutter);
     margin: 0 calc( var(--d-outer-margin) + var(--d-colWidth-1) + var(--d-gutter));
     display: flex;
     flex-wrap: wrap;
     gap: var(--gap);
     align-items: flex-start;
+  }
+  .faqs_odds, .faqs_evens {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
   }
   .faqs > * {
     flex: 0 0 calc(50% - var(--gap));

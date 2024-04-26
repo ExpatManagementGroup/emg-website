@@ -6,6 +6,7 @@ import Subnav from "./NavigationSubnav"
 import Image from "next/image"
 import { useState } from "react"
 import ReactCountryFlag from "react-country-flag"
+import Icon from "./Icon"
 
 export default function Navigation(props: any) {
   const navdata = props.navData;
@@ -114,18 +115,7 @@ export default function Navigation(props: any) {
           <li className={`${styles.navigation_item} navigation_item`}>
             <Link href='/' onClick={linkClickHandler}>
               <span className={styles.countries_toggle_flag}>
-                <Image 
-                  src="/assets/img/flag-global.svg" 
-                  width={50} 
-                  height={50} 
-                  alt="Global"
-                  style={{
-                    width: 'calc(100% + 4px)',
-                    height: 'calc(100% + 4px)',
-                    marginLeft: '-2px',
-                    marginTop: '-2px'
-                  }}
-                />
+                <Icon name='global' />
               </span>
               Global
             </Link>

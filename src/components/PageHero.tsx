@@ -3,6 +3,11 @@ import Picture from './Picture';
 import { storyblokEditable } from '@storyblok/react';
 
 export default function PageHero( { blok }: { blok: any }) {
+  let layout = styles.left_aligned;
+  if (blok.layout === 'center') {
+    layout = styles.center_aligned;
+  }
+
   return (
     <section className={styles.hero} {...storyblokEditable(blok)}>
       { blok.bgimg.filename && 
@@ -15,7 +20,7 @@ export default function PageHero( { blok }: { blok: any }) {
           className={styles.bgimg}
         />
       }
-      <header className={styles.headline}>
+      <header className={`${styles.headline} ${layout}`}>
         <div className={styles.eyebrow}>{blok.eyebrow}</div>
         <h1 className={styles.title}>
           <span className={styles.normal}>{blok.headline_1}</span>
