@@ -1,7 +1,7 @@
 export default function Icon( props: any){
   return (
     <svg className="icon icon_global" xmlns="http://www.w3.org/2000/svg" width="47" height="47" fill="none" viewBox="0 0 47 47">
-    <g clip-path="url(#a)">
+    <g clipPath="url(#a)">
       <rect width="47" height="47" fill="#EAF2F2" rx="23.5"/>
       <mask id="b" width="51" height="51" x="-3" y="-4" fill="#000" maskUnits="userSpaceOnUse">
         <path fill="#fff" d="M-3-4h51v51H-3z"/>

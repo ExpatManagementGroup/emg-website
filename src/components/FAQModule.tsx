@@ -3,6 +3,7 @@ import Button from './Button';
 import { render } from 'storyblok-rich-text-react-renderer';
 import { useEffect, useRef, useState } from 'react';
 import Plus from './Plus';
+import { storyblokEditable } from '@storyblok/react';
 
 export default function FAQ( { props }: { 
   props: {
@@ -50,7 +51,7 @@ export default function FAQ( { props }: {
   }
 
   return (
-    <div className={`${styles.faq} ${props.className} ${ faqOpen ? styles.open : styles.closed}`} ref={faq}>
+    <div className={`${styles.faq} ${props.className} ${ faqOpen ? styles.open : styles.closed}`} ref={faq} {...storyblokEditable(props)}>
       <div 
         className={styles.question} 
         aria-label='toggle answer'

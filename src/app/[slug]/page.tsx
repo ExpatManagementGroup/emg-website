@@ -31,11 +31,20 @@ export default async function Slug({ params }: { params: { slug: string } }) {
 }
 
 async function fetchSlugData(slug: string) {
-  return getStoryblokApi().get(`cdn/stories/${slug}`, { 
-    version: "draft" 
-  }, {
-    cache: 'no-store'
-  } );
+  if ( slug === 'netherlands' || slug === 'belgium' || slug === 'germany' || slug === 'luxembourg' || slug === 'global') {
+    return getStoryblokApi().get(`cdn/stories/locations/${slug}`, { 
+      version: "draft" 
+    }, {
+      cache: 'no-store'
+    } );
+  }
+  else {
+    return getStoryblokApi().get(`cdn/stories/${slug}`, { 
+      version: "draft" 
+    }, {
+      cache: 'no-store'
+    } );
+  }
 }
 async function fetchBlogPostsData() {
   return getStoryblokApi().get(`cdn/stories`, {

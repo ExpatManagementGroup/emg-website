@@ -8,7 +8,9 @@ export default function HomeWhatWeDo({ blok }: { blok: any }) {
   return (
     <div className={styles.home_what_we_do} {...storyblokEditable(blok)}>
       <Link 
-        href="./#me" className={styles.anchorlink} id='me'
+        href="./#me" 
+        className={styles.anchorlink} 
+        id='me'
         onClick={(e) => {
           e.preventDefault();
           document.getElementById('me')?.scrollIntoView({ behavior: 'smooth' });

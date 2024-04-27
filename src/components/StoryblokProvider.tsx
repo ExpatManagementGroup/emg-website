@@ -49,6 +49,9 @@ import OurCultureCommunity from "./our_culture/OurCultureCommunity";
 import FAQHero from "./faq/FAQHero";
 import FAQLists from "./faq/FAQLists";
 import ContactUs from "./pages/ContactUs";
+import LocationHero from "./locations/LocationHero";
+import LocationOffice from "./locations/LocationOffice";
+import LocationServices from "./locations/LocationServices";
 
 const components = {
   page: Page,
@@ -99,6 +102,9 @@ const components = {
   faq_hero: FAQHero,
   faq_lists: FAQLists,
   contact_us: ContactUs,
+  location_hero: LocationHero,
+  location_office: LocationOffice,
+  location_services: LocationServices
 };
 
 storyblokInit({

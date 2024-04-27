@@ -17,7 +17,9 @@
   }
   .services_intro_title {
     font-family: var(--font-reckless);
-    font-size: 11.627vw;
+    font-size: var(--fontsize-50);
+    letter-spacing: -0.015em;
+    line-height: 0.915;
     text-align: center;
   }
   .services_intro_text {
