@@ -18,8 +18,8 @@ export default function CCOtherCases( props: {
       }
       <LogoMarquee>
         {stories?.map((story: any, index: number) => {
-            const caseCompanyLogo = story.content.body[0].case_company_logo
-            if (!caseCompanyLogo.filename ) { return null }
+            const caseCompanyLogo = story.content.body[0]?.case_company_logo
+            if (!caseCompanyLogo || !caseCompanyLogo.filename ) { return null }
 
             return (
               <Link className={styles.case} key={`case-${index}`} href={story.slug}>

@@ -1,7 +1,7 @@
 'use client';
 import Link from "next/link";
 import { ButtonHTMLAttributes } from "react";
-import { storyblokEditable } from "@storyblok/react";
+import { storyblokEditable } from "@storyblok/react/rsc";
 
 export default function Button(
   props: {

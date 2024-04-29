@@ -5,6 +5,7 @@ import { agrandir, reckless } from "../../styles/fonts";
 import "./globals.css";
 import Navigation from "../components/Navigation";
 import Footer from "@/components/Footer";
+import { draftMode } from "next/headers";
 
 storyblokInit({
   accessToken: process.env.STORYBLOK_API_TOKEN,
@@ -24,12 +25,21 @@ export default async function RootLayout({
 }>) {
   const navData = await fetchNavData();
 
+  const { isEnabled } = draftMode();
+
   return (
     <StoryblokProvider>
       <html lang="en">
         <body className={`${agrandir.variable} ${reckless.variable}`}>
           <Navigation navData={navData} />
           {children}
+          { isEnabled && <div style={{
+            'position': 'fixed',
+            'bottom': '0',
+            'right': '0',
+            'background': 'red',
+            'color': 'white',
+          }}>Draft Mode</div>}
           <Footer navData={navData} />
         </body>
       </html>

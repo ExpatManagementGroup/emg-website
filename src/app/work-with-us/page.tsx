@@ -1,7 +1,7 @@
 import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
 import styles from "../page.module.css";
-import { count } from "console";
+import { draftMode } from "next/headers";
 
 storyblokInit({
   accessToken: process.env.STORYBLOK_API_TOKEN,
@@ -38,18 +38,20 @@ export default async function OurPeople() {
 }
 
 async function fetchData() {
+  const { isEnabled } = draftMode()
   return storyblokApi.get(`cdn/stories/work-with-us`, {
-    "version": "draft",
+    "version": isEnabled ? "draft" : "published",
   }, {
-    cache: 'no-store'
+    cache: isEnabled ? 'no-store' : 'default'
   });
 }
 async function fetchJobsData() {
+  const { isEnabled } = draftMode()
   return storyblokApi.get(`cdn/stories`, {
-    "version": "draft",
+    "version": isEnabled ? "draft" : "published",
     "starts_with": "work-with-us/",
     "content_type": "job",
-  },)   
+  })   
 }
 async function fetchEmployeeTestimonialsData() {
   return storyblokApi.get(`cdn/stories`, {

@@ -33,7 +33,7 @@ export default async function Slug({ params }: { params: { slug: string } }) {
 }
 
 async function fetchData(slug: string) {
-  const { isEnabled } = draftMode()
+  const { isEnabled } = draftMode();
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/stories/our-clients/${slug}`, {
     "version": isEnabled ? "draft" : "published"
@@ -42,7 +42,7 @@ async function fetchData(slug: string) {
   });
 }
 async function fetchOtherCCDataExcluding(slug:string) {
-  const { isEnabled } = draftMode()
+  const { isEnabled } = draftMode();
   return getStoryblokApi().get(`cdn/stories`, {
     "starts_with": "our-clients/",
     "is_startpage": false,
@@ -53,7 +53,7 @@ async function fetchOtherCCDataExcluding(slug:string) {
   });
 }
 async function fetchTestimonialData() {
-  const { isEnabled } = draftMode()
+  const { isEnabled } = draftMode();
   return getStoryblokApi().get(`cdn/stories`, {
     "starts_with": "testimonials-clients/",
     "per_page": 5,

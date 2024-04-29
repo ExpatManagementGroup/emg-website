@@ -25,17 +25,23 @@ export async function GET(request: Request) {
        || slug === '/luxembourg' 
        || slug === '/global'
   ) {
-    searchslug = `/locations/${slug}`
+    searchslug = `locations${slug}`
   }
   if (!slug) {
     searchslug = 'home'
   }
 
+
   // Fetch the headless CMS to check if the provided `slug` exists
   // getPostBySlug would implement the required fetching logic to the headless CMS
-  const post = await getStoryblokApi().get(`cdn/stories/${searchslug}`, {
+  const posts = await getStoryblokApi().get(`cdn/stories`, {
+    'starts_with': searchslug || 'immigration',
     version: 'draft'
   })
+
+  
+  const post = posts.data.stories[0]
+  // return new Response(JSON.stringify(post, null, 2))
 
   // If the slug doesn't exist prevent draft mode from being enabled
   if (!post) {
@@ -59,6 +65,6 @@ export async function GET(request: Request) {
   if (!slug) {
     redirect(`/`)
   } else {
-    redirect(`/${post.data.story.slug}`)
+    redirect(`/${post.full_slug}`)
   }
 }

@@ -20,6 +20,7 @@ export default function HomeTestimonials( { blok }: { blok: {
   const clientCaseTestimonials = clientCases?.map((story: any) => {
     const blocks = story.content.body;
     const testimonial = blocks.find((block: any) => block.component === "case_testimonial");
+    if (!testimonial) return null;
     const clientHeaders = blocks.find((block: any) => block.component === "case_header");
     testimonial.logo = clientHeaders?.case_company_logo;
     testimonial.url = `/our-clients/${story.slug}`;

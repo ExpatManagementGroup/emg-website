@@ -71,6 +71,7 @@
     overflow: hidden;
     aspect-ratio: 0.753968254;
     height: calc(var(--d-colWidth-4) / 0.753968254 );
+    margin-bottom: 3rem;
   }
   .image img {
     width: 100%;
@@ -109,5 +110,8 @@
     display: flex;
     gap: .75em;
     margin: 3em 0 ;
+  }
+  .flag:has( + .flag) {
+    margin-right: -.5rem;
   }
 }

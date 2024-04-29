@@ -17,26 +17,26 @@ export default function OurClientsFeed( { blok }: { blok: any }) {
       return obj.component === 'case_about'
     })
     return {
-      client: client.case_company_logo?.alt,
-      case: client.case_title,
-      logo: client.case_company_logo,
+      client: client?.case_company_logo?.alt,
+      case: client?.case_title,
+      logo: client?.case_company_logo,
       quote: {
-        content: quote.quote,
-        name: quote.name,
-        jobtitle: quote.jobtitle
+        content: quote?.quote,
+        name: quote?.name,
+        jobtitle: quote?.jobtitle
       },
       stats: {
         stats_1: {
-          number: about.stats_1_number,
-          title: about.stats_1_title
+          number: about?.stats_1_number,
+          title: about?.stats_1_title
         },
         stats_2: {
-          number: about.stats_2_number,
-          title: about.stats_2_title
+          number: about?.stats_2_number,
+          title: about?.stats_2_title
         },
         stats_3: {
-          number: about.stats_3_number,
-          title: about.stats_3_title
+          number: about?.stats_3_number,
+          title: about?.stats_3_title
         }
       },
       full_slug: clientCaseStory.full_slug
