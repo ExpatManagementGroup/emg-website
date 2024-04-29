@@ -12,8 +12,8 @@ export default function Plus( props: { state: boolean, className?: string} ) {
   return (
     <div className={`circle_plus ${styles.circle_plus} ${open ? styles.opened : styles.closed} ${props.className}`}>
       <div className={styles.circle}>
-        <div className={styles.horizontal}></div>
-        <div className={styles.vertical}></div>
+        <div className={`${styles.horizontal} horizontal`}></div>
+        <div className={`${styles.vertical} vertical`}></div>
       </div>
     </div>
   )

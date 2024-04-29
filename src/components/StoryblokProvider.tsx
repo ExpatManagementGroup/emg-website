@@ -52,6 +52,7 @@ import ContactUs from "./pages/ContactUs";
 import LocationHero from "./locations/LocationHero";
 import LocationOffice from "./locations/LocationOffice";
 import LocationServices from "./locations/LocationServices";
+import LocationTextAndImage from "./locations/LocationTextAndImage";
 
 const components = {
   page: Page,
@@ -104,7 +105,8 @@ const components = {
   contact_us: ContactUs,
   location_hero: LocationHero,
   location_office: LocationOffice,
-  location_services: LocationServices
+  location_services: LocationServices,
+  location_text_and_image: LocationTextAndImage
 };
 
 storyblokInit({

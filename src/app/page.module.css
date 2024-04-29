@@ -18,6 +18,17 @@
   }
 }
 @media screen and (min-width:840px) {
- 
+  .main > * > * > * {
+    transform-origin: top;
+    animation: fadeIn .5s ease-out;
+  }
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 }
 

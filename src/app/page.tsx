@@ -1,6 +1,7 @@
 import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
 import styles from "./page.module.css";
+import { draftMode } from 'next/headers'
 
 storyblokInit({
   accessToken: process.env.STORYBLOK_API_TOKEN,
@@ -10,6 +11,7 @@ storyblokInit({
 const storyblokApi = getStoryblokApi();
 
 export default async function Home() {
+  const { isEnabled } = draftMode()
   const homeData = await fetchData();
   const blogPosts = await fetchBlogPostsData();
   const talentData = await fetchTalentTestimonialData();
@@ -30,6 +32,16 @@ export default async function Home() {
   return (
     <>
     <main className={`${styles.main} home`} {...storyblokEditable}>
+      <div 
+        style={{
+          "position": "absolute",
+          "top": "0",
+          "left": "0",
+          "backgroundColor": "black",
+          "color": "white",
+        }}>
+        {isEnabled ? "Draft" : "Published"} or what
+        </div>
        <StoryblokStory story={homeData.data.story} />
     </main>
     </>
@@ -37,11 +49,12 @@ export default async function Home() {
 }
 
 async function fetchData() {
+  const { isEnabled } = draftMode()
   return storyblokApi.get(`cdn/stories/home`, {
-    "version": "draft",
+    "version": isEnabled ? "draft" : "published",
     "resolve_relations": "blogPosts.posts"
   }, {
-    cache: 'no-store'
+    cache: isEnabled ? 'no-store' : 'default'
   });
 }
 async function fetchBlogPostsData() {

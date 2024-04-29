@@ -1,6 +1,7 @@
 'use client';
 import Link from "next/link";
 import { ButtonHTMLAttributes } from "react";
+import { storyblokEditable } from "@storyblok/react";
 
 export default function Button(
   props: {
@@ -12,7 +13,8 @@ export default function Button(
     bgcolor?: string,
     arrow?: string,
     scrollLink?: boolean,
-    children?: any
+    children?: any,
+    style?: any
   } 
 ) {
   const classNames = [
@@ -25,6 +27,7 @@ export default function Button(
     <button 
       type={props.buttontype ? props.buttontype : 'button'}
       className={classNames.join(' ')}
+      {...storyblokEditable(props)}
     >
         {props.text}
     </button>
@@ -33,6 +36,7 @@ export default function Button(
     <a 
       href={props.href}
       className={classNames.join(' ')}
+      {...storyblokEditable(props)}
     >
       {props.text}
     </a>
@@ -41,6 +45,7 @@ export default function Button(
     <Link 
       href={props.href}
       className={classNames.join(' ')}
+      {...storyblokEditable(props)}
       onClick={(e) => {
         if ( !props.scrollLink ) return;
         e.preventDefault();
@@ -52,6 +57,7 @@ export default function Button(
         //change the URL to add the hash
         window.history.pushState(null, '', '#'+hash);
       }}
+      style={props.style}
     >
       {props.text}
     </Link>

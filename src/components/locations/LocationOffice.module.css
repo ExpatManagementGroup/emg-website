@@ -36,6 +36,10 @@
     font-family: var(--font-reckless);
     letter-spacing: -0.015em;
   }
+  .fact :global(.icon) {
+    flex: 0 0 var(--fontsize-20);
+    height: var(--fontsize-20);
+  }
   .office_images {
     order: 0;
     position: relative;

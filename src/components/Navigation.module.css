@@ -327,7 +327,7 @@
     cursor: pointer;
     line-height: var(--nav-height);
   }
-  .navigation :global(.navigation_item:after) {
+  .navigation :global(.navigation_item:after), .subnav:after {
     position: absolute;
     top: calc( var(--nav-height) / 2 + 0.66 * var(--fontsize-nav) );
     left: 0;
@@ -340,6 +340,11 @@
     transition: transform 0.2s .2s linear; 
   }
   .navigation :global(.navigation_item:hover:after) {
+    transform: scaleX(1);
+    transition: transform 0.2s linear; 
+  }
+  .subnav:has( li .active):after,
+  .navigation_item.active:after {
     transform: scaleX(1);
     transition: transform 0.2s linear; 
   }

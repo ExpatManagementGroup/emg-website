@@ -3,14 +3,33 @@ import { storyblokEditable } from '@storyblok/react';
 import Picture from '../Picture';
 import Plus from '../Plus';
 import { render } from 'storyblok-rich-text-react-renderer';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export default function LocationServicesService( { props }: { props: any }) {
 
   const [open, setOpen] = useState(false);
+  const service = useRef(null);
+
+  useEffect(() => {
+    if (service.current) {
+      const thisservice = service.current as HTMLElement,
+            toggler = thisservice.querySelector(`.${styles.content}`);
+      
+      const getTogglerHeight = () => {
+        if (!toggler) return 0;
+        return toggler?.scrollHeight + 1;
+      }
+
+      thisservice.style.setProperty('--service-height', `${getTogglerHeight()}px`);
+      
+      window.addEventListener('resize', () => {
+        thisservice.style.setProperty('--service-height', `${getTogglerHeight()}px`);
+      })
+    } 
+  });
 
   return (
-    <div className={styles.service} {...storyblokEditable(props)} onClick={() => setOpen(!open)}>
+    <div className={styles.service} {...storyblokEditable(props)} onClick={() => setOpen(!open)} ref={service}>
       <Picture
         src={props.icon.filename}
         alt={props.icon.alt}
@@ -18,12 +37,15 @@ export default function LocationServicesService( { props }: { props: any }) {
         aspectRatioDesktop='1'
         aspectRatioMobile='1'
         sizes='(min-width: 840px) 7vw, 21vw'
+        noCrop={true}
       />
-      {props.name}
-      <Plus className={styles.plus} state={open} />
-      <div className={styles.content} data-hidden={open}>
-        {render(props.content)}
+      <h2 className={styles.name}>{props.name}</h2>
+      <div className={styles.content} data-hidden={!open}>
+        <div className={styles.content_inner}>
+          {render(props.content)}
+        </div>
       </div>
+      <Plus className={`${styles.plus} ${open ? styles.open : styles.closed}`} state={open} />
     </div>
   )
 }

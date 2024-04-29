@@ -1,0 +1,17 @@
+@media screen and (max-width:839.9px) {
+  .services {
+    display: flex;
+    gap: var(--d-gutter);
+    margin: 0 var(--m-outer-margin-l);
+    flex-wrap: wrap;
+  }
+}
+@media screen and (min-width:840px) {
+  .services {
+    display: flex;
+    gap: var(--d-gutter);
+    width: var(--d-colWidth-10);
+    margin: 0 auto;
+    padding: 4rem 0;
+  }
+}

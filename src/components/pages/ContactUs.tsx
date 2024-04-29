@@ -1,5 +1,5 @@
 import styles from './ContactUs.module.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Picture from '../Picture';
 import Flag from '../Flag';
 import Icon from '../Icon';
@@ -10,12 +10,16 @@ export default function ContactUs( { blok }: { blok: any }) {
   const [activeForm, setActiveForm] = useState('general');
 
   useEffect(() => {
-
-  setIsClient(true);
-
+    setIsClient(true);
+    setActiveForm(window.location.hash.replace('#', '').toLowerCase() || 'general');
   }, []);
 
   if (!isClient) return null;
+
+  function switchLocation(location: string) {
+    setActiveForm(location);
+    window.location.hash = location;
+  }
 
   return (
     <div className={styles.contact}>
@@ -24,28 +28,28 @@ export default function ContactUs( { blok }: { blok: any }) {
         <div className={styles.switcher_row}>
           <button 
             className={`button button-bg-transparent ${styles.switcher}`} 
-            onClick={()=>setActiveForm('general')}
+            onClick={()=>switchLocation('general')}
             data-active={activeForm === 'general'}
           >
               General Inquiries
           </button>
           <button 
             className={`button button-bg-transparent ${styles.switcher}`} 
-            onClick={()=>setActiveForm('nl')}
+            onClick={()=>switchLocation('nl')}
             data-active={activeForm === 'nl'}
           >
               NL Team
           </button>
           <button 
             className={`button button-bg-transparent ${styles.switcher}`} 
-            onClick={()=>setActiveForm('belux')}
+            onClick={()=>switchLocation('belux')}
             data-active={activeForm === 'belux'}
           >
               BE/LUX Team
           </button>
           <button 
             className={`button button-bg-transparent ${styles.switcher}`} 
-            onClick={()=>setActiveForm('de')}
+            onClick={()=>switchLocation('de')}
             data-active={activeForm === 'de'}
           >
               DE Team
@@ -159,7 +163,7 @@ export default function ContactUs( { blok }: { blok: any }) {
         </div>
       </div>
       <div className={styles.switchermap_col}>
-        <div className={styles.switchermap} onClick={()=>setActiveForm('nl')} data-active={activeForm === 'nl'}>
+        <div className={styles.switchermap} onClick={()=>switchLocation('nl')} data-active={activeForm === 'nl'}>
           <Picture
             src={blok.mapimage_nl.filename}
             alt={blok.mapimage_nl.alt}
@@ -172,7 +176,7 @@ export default function ContactUs( { blok }: { blok: any }) {
             <span className={styles.country}>Netherlands</span> Office
           </div>
         </div>
-        <div className={styles.switchermap} onClick={()=>setActiveForm('belux')} data-active={activeForm === 'belux'}>
+        <div className={styles.switchermap} onClick={()=>switchLocation('belux')} data-active={activeForm === 'belux'}>
           <Picture
             src={blok.mapimage_be_lux.filename}
             alt={blok.mapimage_be_lux.alt}
@@ -185,7 +189,7 @@ export default function ContactUs( { blok }: { blok: any }) {
             <span className={styles.country}>Belgium</span> Office
           </div>
         </div>
-        <div className={styles.switchermap} onClick={()=>setActiveForm('de')} data-active={activeForm === 'de'}>
+        <div className={styles.switchermap} onClick={()=>switchLocation('de')} data-active={activeForm === 'de'}>
           <Picture
             src={blok.mapimage_de.filename}
             alt={blok.mapimage_de.alt}

@@ -3,10 +3,10 @@ import Link from "next/link"
 import styles from "./Navigation.module.css"
 import Logo from "./Logo"
 import Subnav from "./NavigationSubnav"
-import Image from "next/image"
 import { useState } from "react"
 import ReactCountryFlag from "react-country-flag"
 import Icon from "./Icon"
+import { usePathname } from "next/navigation"
 
 export default function Navigation(props: any) {
   const navdata = props.navData;
@@ -20,6 +20,11 @@ export default function Navigation(props: any) {
     if (navOpen) {
       setNavOpen(false);
     }
+  }
+
+  const router = usePathname();
+  const isActive = (href: string) => {
+    return router === href ? styles.active : '';
   }
 
   return (
@@ -49,7 +54,7 @@ export default function Navigation(props: any) {
       <Subnav label="Locations" className={styles.countries_toggle}>
         <ul className={styles.subnav_nav_list}>
           <li className={`${styles.navigation_item} navigation_item`}>
-            <Link href='/' onClick={linkClickHandler}>
+            <Link href='/netherlands' onClick={linkClickHandler} className={isActive('/netherlands') ? styles.active : styles.inactive}>
               <span className={styles.countries_toggle_flag}>
                 <ReactCountryFlag 
                   countryCode="NL" 
@@ -65,7 +70,7 @@ export default function Navigation(props: any) {
             </Link>
           </li>
           <li className={`${styles.navigation_item} navigation_item`}>
-            <Link href='/' onClick={linkClickHandler}>
+            <Link href='/belgium' onClick={linkClickHandler} className={isActive('/belgium') ? styles.active : styles.inactive}>
             <span className={styles.countries_toggle_flag}>
                   <ReactCountryFlag 
                   countryCode="BE" 
@@ -81,7 +86,7 @@ export default function Navigation(props: any) {
             </Link>
           </li>
           <li className={`${styles.navigation_item} navigation_item`}>
-            <Link href='/' onClick={linkClickHandler}>
+            <Link href='/luxembourg' onClick={linkClickHandler} className={isActive('/luxembourg') ? styles.active : styles.inactive}>
             <span className={styles.countries_toggle_flag}>
                   <ReactCountryFlag 
                   countryCode="LU" 
@@ -97,7 +102,7 @@ export default function Navigation(props: any) {
             </Link>
           </li>
           <li className={`${styles.navigation_item} navigation_item`}>
-            <Link href='/' onClick={linkClickHandler}>
+            <Link href='/germany' onClick={linkClickHandler} className={isActive('/germany') ? styles.active : styles.inactive}>
               <span className={styles.countries_toggle_flag}>
                 <ReactCountryFlag 
                   countryCode="DE" 
@@ -113,7 +118,7 @@ export default function Navigation(props: any) {
             </Link>
           </li>
           <li className={`${styles.navigation_item} navigation_item`}>
-            <Link href='/' onClick={linkClickHandler}>
+            <Link href='/global' onClick={linkClickHandler} className={isActive('/global') ? styles.active : styles.inactive}>
               <span className={styles.countries_toggle_flag}>
                 <Icon name='global' />
               </span>
@@ -130,7 +135,7 @@ export default function Navigation(props: any) {
             // If it's a regular nav item
             if (item.component == 'navigation_item') {
               return <Link 
-                        className={`${styles.navigation_item} navigation_item`} 
+                        className={`${styles.navigation_item} ${isActive(item.href) ? styles.active : styles.inactive} navigation_item`} 
                         key={index} 
                         href={item.href}
                         onClick={linkClickHandler}
@@ -147,7 +152,11 @@ export default function Navigation(props: any) {
                     {item.navigation_subnavigation_items.map((subnavItem: any, index: number) => {
                       return (
                         <li key={index}>
-                          <Link href={subnavItem.href} onClick={linkClickHandler}>
+                          <Link 
+                            href={subnavItem.href} 
+                            onClick={linkClickHandler}
+                            className={isActive(subnavItem.href) ? styles.active : styles.inactive}
+                          >
                             <span>{subnavItem.label}</span>
                           </Link>
                         </li>
