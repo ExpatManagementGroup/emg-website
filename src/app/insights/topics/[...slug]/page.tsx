@@ -3,6 +3,7 @@ import styles from "./page.module.css";
 import PostCard from "@/components/PostCard";
 import Events from "@/components/Events";
 import { notFound } from "next/navigation";
+import { draftMode } from "next/headers";
 
 storyblokInit({
   accessToken: process.env.STORYBLOK_API_TOKEN,
@@ -99,17 +100,25 @@ export default async function TopicsPosts(props: { params: { slug: string } }) {
 }
 
 async function fetchData() {
+  const isEnabled = draftMode().isEnabled;
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/stories`, {
     'starts_with': 'insights/', 
     'is_startpage': false,
+    'version': isEnabled ? "draft" : "published",
+  }, {
+    cache: isEnabled ? 'no-store' : 'default'
   } );
 }
 async function fetchEventsData() {
+  const isEnabled = draftMode().isEnabled;
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/stories`, {
     'starts_with': 'events/', 
-    'is_startpage': false
+    'is_startpage': false,
+    'version': isEnabled ? "draft" : "published",
+  }, {
+    cache: isEnabled ? 'no-store' : 'default'
   } );
 }
 async function fetchTopicData() {

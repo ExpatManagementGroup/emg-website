@@ -2,6 +2,7 @@ import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin} from "@st
 import StoryblokStory from "@storyblok/react/story";
 import styles from "../../page.module.css";
 import WorkWithUsMoreJobs from "@/components/work_with_us/WorkWithUsMoreJobs";
+import { draftMode } from "next/headers";
 
 storyblokInit({
   accessToken: process.env.STORYBLOK_API_TOKEN,
@@ -24,21 +25,23 @@ export default async function Slug({ params }: { params: { slug: string } }) {
 }
 
 async function fetchData(slug: string) {
+  const { isEnabled } = draftMode()
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/stories/work-with-us/${slug}`, {
-    "version": "draft"
+    "version": isEnabled ? "draft" : "published"
   }, {
-    "cache": "no-cache"
+    cache: isEnabled ? 'no-store' : 'default'
   });
 }
 async function fetchMoreJobs() {
+  const { isEnabled } = draftMode()
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/stories`, {
     "starts_with": "work-with-us",
-    "version": "published",
+    "version": isEnabled ? "draft" : "published",
     "content_type": "job",
     "per_page": 4,
   }, {
-    "cache": "no-cache"
+    cache: isEnabled ? 'no-store' : 'default'
   });
 }

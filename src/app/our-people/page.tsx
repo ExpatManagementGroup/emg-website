@@ -2,6 +2,7 @@ import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin } from "@s
 import StoryblokStory from "@storyblok/react/story";
 import styles from "../page.module.css";
 import { count } from "console";
+import { draftMode } from "next/headers";
 
 storyblokInit({
   accessToken: process.env.STORYBLOK_API_TOKEN,
@@ -32,18 +33,20 @@ export default async function OurPeople() {
 }
 
 async function fetchData() {
+  const { isEnabled } = draftMode()
   return storyblokApi.get(`cdn/stories/our-people`, {
-    "version": "draft",
+    "version": isEnabled ? "draft" : "published",
   }, {
-    cache: 'no-store'
+    cache: isEnabled ? 'no-store' : 'default'
   });
 }
 async function fetchEmployeesData() {
+  const { isEnabled } = draftMode()
   return storyblokApi.get(`cdn/stories`, {
-    "version": "draft",
+    "version": isEnabled ? "draft" : "published",
     "starts_with": "our-people/",
     "content_type": "employee",
-  },)   
+  })   
 }
 async function fetchCountryData() {
   const storyblokApi = getStoryblokApi();

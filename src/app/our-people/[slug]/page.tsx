@@ -1,6 +1,7 @@
 import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin} from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
 import styles from "../../page.module.css";
+import { draftMode } from "next/headers";
 
 storyblokInit({
   accessToken: process.env.STORYBLOK_API_TOKEN,
@@ -21,10 +22,11 @@ export default async function Slug({ params }: { params: { slug: string } }) {
 }
 
 async function fetchData(slug: string) {
+  const { isEnabled } = draftMode()
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/stories/our-people/${slug}`, {
-    "version": "draft"
+    "version": isEnabled ? "draft" : "published"
   }, {
-    "cache": "no-cache"
+    cache: isEnabled ? 'no-store' : 'default'
   });
 }

@@ -2,6 +2,7 @@ import { ISbStoriesParams, storyblokEditable, getStoryblokApi, storyblokInit, ap
 import StoryblokStory from "@storyblok/react/story";
 import styles from "./page.module.css";
 import Post_1 from "../../../components/pages/Post_1"; 
+import { draftMode } from "next/headers";
 
 storyblokInit({
   accessToken: process.env.STORYBLOK_API_TOKEN,
@@ -33,10 +34,13 @@ export default async function Slug({ params }: { params: { slug: string } }) {
 }
 
 async function fetchData(slug: string) {
+  const isEnabled = draftMode().isEnabled;
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/stories/insights/${slug}`, { 
-    version: "draft" 
-  } );
+    version: isEnabled ? "draft" : "published"
+  }, {
+    cache: isEnabled ? 'no-store' : 'default'
+  });
 }
 async function fetchTopicData() {
   const storyblokApi = getStoryblokApi();

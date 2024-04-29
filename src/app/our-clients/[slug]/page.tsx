@@ -2,6 +2,7 @@ import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin} from "@st
 import StoryblokStory from "@storyblok/react/story";
 import styles from "../../page.module.css";
 import CCOtherCases from "@/components/clientCases/CCOtherCases";
+import { draftMode } from "next/headers";
 
 storyblokInit({
   accessToken: process.env.STORYBLOK_API_TOKEN,
@@ -32,21 +33,32 @@ export default async function Slug({ params }: { params: { slug: string } }) {
 }
 
 async function fetchData(slug: string) {
+  const { isEnabled } = draftMode()
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/stories/our-clients/${slug}`, {
-    "version": "draft"
+    "version": isEnabled ? "draft" : "published"
+  }, {
+    cache: isEnabled ? 'no-store' : 'default'
   });
 }
 async function fetchOtherCCDataExcluding(slug:string) {
+  const { isEnabled } = draftMode()
   return getStoryblokApi().get(`cdn/stories`, {
     "starts_with": "our-clients/",
     "is_startpage": false,
-    "excluding_slugs": `our-clients/${slug}`
+    "excluding_slugs": `our-clients/${slug}`,
+    "version": isEnabled ? "draft" : "published"
+  }, {
+    cache: isEnabled ? 'no-store' : 'default'
   });
 }
 async function fetchTestimonialData() {
+  const { isEnabled } = draftMode()
   return getStoryblokApi().get(`cdn/stories`, {
     "starts_with": "testimonials-clients/",
-    "per_page": 5
+    "per_page": 5,
+    "version": isEnabled ? "draft" : "published"
+  }, {
+    cache: isEnabled ? 'no-store' : 'default'
   });
 }

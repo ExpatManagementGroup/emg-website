@@ -11,7 +11,6 @@ storyblokInit({
 const storyblokApi = getStoryblokApi();
 
 export default async function Home() {
-  const { isEnabled } = draftMode()
   const homeData = await fetchData();
   const blogPosts = await fetchBlogPostsData();
   const talentData = await fetchTalentTestimonialData();
@@ -32,16 +31,6 @@ export default async function Home() {
   return (
     <>
     <main className={`${styles.main} home`} {...storyblokEditable}>
-      <div 
-        style={{
-          "position": "absolute",
-          "top": "0",
-          "left": "0",
-          "backgroundColor": "black",
-          "color": "white",
-        }}>
-        {isEnabled ? "Draft" : "Published"} or what
-        </div>
        <StoryblokStory story={homeData.data.story} />
     </main>
     </>

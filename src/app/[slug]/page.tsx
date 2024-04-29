@@ -9,7 +9,6 @@ storyblokInit({
 });
 
 export default async function Slug({ params }: { params: { slug: string } }) {
-  const { isEnabled } = draftMode()
   const thisSlug = params.slug;
   const slugData  = await fetchSlugData(params.slug);
   const blogPosts = await fetchBlogPostsData();
@@ -25,16 +24,6 @@ export default async function Slug({ params }: { params: { slug: string } }) {
   return (
     <>
     <main className={`${styles.main} ${thisSlug}`} {...storyblokEditable}>
-    <div 
-      style={{
-        "position": "absolute",
-        "top": "0",
-        "left": "0",
-        "backgroundColor": "black",
-        "color": "white",
-      }}>
-      {isEnabled ? "Draft" : "Published"} or why {draftMode().isEnabled ? "Enabled" : "Disabled"}
-      </div>
        <StoryblokStory story={slugData.data.story} />
     </main>
     </>
@@ -42,19 +31,20 @@ export default async function Slug({ params }: { params: { slug: string } }) {
 }
 
 async function fetchSlugData(slug: string) {
-  
+  const { isEnabled } = draftMode()
+
   if ( slug === 'netherlands' || slug === 'belgium' || slug === 'germany' || slug === 'luxembourg' || slug === 'global') {
     return getStoryblokApi().get(`cdn/stories/locations/${slug}`, { 
-      version: "draft" 
+      version: isEnabled ? "draft" : "published"
     }, {
-      cache: 'no-store'
+      cache: isEnabled ? 'no-store' : 'default'
     } );
   }
   else {
     return getStoryblokApi().get(`cdn/stories/${slug}`, { 
-      version: "draft" 
+      version: isEnabled ? "draft" : "published"
     }, {
-      cache: 'no-store'
+      cache: isEnabled ? 'no-store' : 'default'
     } );
   }
 }

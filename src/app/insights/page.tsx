@@ -4,6 +4,7 @@ import PostCard from "@/components/PostCard";
 import Events from "@/components/Events";
 import Link from "next/link";
 import Pill from "@/components/Pill";
+import { draftMode } from "next/headers";
 
 storyblokInit({
   accessToken: process.env.STORYBLOK_API_TOKEN,
@@ -88,12 +89,26 @@ export default async function Home() {
 }
 
 async function fetchData() {
+  const { isEnabled } = draftMode()
   const storyblokApi = getStoryblokApi();
-  return storyblokApi.get(`cdn/stories`, {'starts_with': 'insights/', 'is_startpage': false} );
+  return storyblokApi.get(`cdn/stories`, {
+    'starts_with': 'insights/', 
+    'is_startpage': false,
+    'version': isEnabled ? "draft" : "published",
+  }, {
+    cache: isEnabled ? 'no-store' : 'default'
+  });
 }
 async function fetchEventsData() {
+  const { isEnabled } = draftMode()
   const storyblokApi = getStoryblokApi();
-  return storyblokApi.get(`cdn/stories`, {'starts_with': 'events/', 'is_startpage': false} );
+  return storyblokApi.get(`cdn/stories`, {
+    'starts_with': 'events/', 
+    'is_startpage': false,
+    'version': isEnabled ? "draft" : "published",
+  }, {
+    cache: isEnabled ? 'no-store' : 'default'
+  });
 }
 async function fetchTopicData() {
   const storyblokApi = getStoryblokApi();
