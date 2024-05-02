@@ -11,7 +11,13 @@ storyblokInit({
 
 const storyblokApi = getStoryblokApi();
 
+type Props = {
+  params: { slug: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
 export async function generateMetadata(
+  { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
  

@@ -17,12 +17,18 @@ storyblokInit({
   use: [apiPlugin],
 });
 
+type Props = {
+  params: { slug: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
 export async function generateMetadata(
+  { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
  
   // fetch data
-  const pagedata = await fetchSlugData('insights')
+  const pagedata = await fetchSlugData()
   const metadata = {
     title: pagedata.data.story.content.meta_title,
     description: pagedata.data.story.content.meta_description,
@@ -174,9 +180,9 @@ async function fetchTopicData() {
   });
 }
 
-async function fetchSlugData(slug: string) {
+async function fetchSlugData() {
   const { isEnabled } = draftMode()
-  return getStoryblokApi().get(`cdn/stories/${slug}`, { 
+  return getStoryblokApi().get(`cdn/stories/insights`, { 
     version: isEnabled ? "draft" : "published"
   }, {
     cache: isEnabled ? 'no-store' : 'default'
