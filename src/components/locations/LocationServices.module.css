@@ -13,5 +13,14 @@
     width: var(--d-colWidth-10);
     margin: 0 auto;
     padding: 4rem 0;
+    flex-wrap: wrap;
+  }
+  .services.service_columns_3 > * {
+    flex: 1 1 calc( 33.333% - var(--d-gutter) );
+    margin-bottom: 2rem;
+  }
+  .services.service_columns_4 > * {
+    flex: 1 1 calc( 25% - var(--d-gutter) );
+    margin-bottom: 2rem;
   }
 }

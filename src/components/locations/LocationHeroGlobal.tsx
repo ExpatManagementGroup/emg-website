@@ -6,10 +6,10 @@ import Flag from '../ui/Flag';
 import {render} from 'storyblok-rich-text-react-renderer';
 import { storyblokEditable } from '@storyblok/react';
 
-export default function LocationHero( { blok }: { blok: any }) {
+export default function LocationHeroGlobal( { blok }: { blok: any }) {
   const variantclass = blok.variant === 'global' ? styles.global : styles.country;
   return (
-    <section className={styles.hero} {...storyblokEditable(blok)}>
+    <section className={`${styles.hero} ${styles.hero_global}`} {...storyblokEditable(blok)}>
       <Picture
         src={blok.image.filename}
         alt={blok.image.alt}
@@ -24,31 +24,9 @@ export default function LocationHero( { blok }: { blok: any }) {
           <span className={styles.country}>{blok.title_country}</span>
         </h1>
         <div className={styles.cta}>
-          {blok.flag &&
-            <Flag country={blok.flag} className={styles.flag} />
-          }
-          <Button
-            type="Link"
-            href={`/contact-us#${blok.flag}`}
-            text='Reach Out'
-            className={styles.button}
-          />
+          <Icon name='global' />
         </div>
         <div className={styles.intro}>{render(blok.intro)}</div>
-        <div className={styles.facts}>
-          <div className={styles.fact}>
-            <Icon name='checkmark-orange' className={styles.icon} />
-            {blok.fact_1}
-          </div>
-          <div className={styles.fact}>
-            <Icon name='checkmark-orange' className={styles.icon} />
-            {blok.fact_2}
-          </div>
-          <div className={styles.fact}>
-            <Icon name='checkmark-orange' className={styles.icon} />
-            {blok.fact_3}
-          </div>
-        </div>
       </div>
     </section>
   )

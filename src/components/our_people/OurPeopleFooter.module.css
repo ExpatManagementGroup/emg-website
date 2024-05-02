@@ -2,7 +2,7 @@
   .peoplefooter {
     position: relative;
     width: 100vw;
-    overflow: hidden;
+    /* overflow: hidden; */
   }
   .peoplefooter:before {
     content: "";

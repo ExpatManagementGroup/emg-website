@@ -1,7 +1,41 @@
+.clear {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  right: 0;
+  height: 100%;
+  padding: 0 1.66em;
+  cursor: pointer;
+}
+.clear:before {
+  content: '×';
+  font-size: 2em;
+  width: 1em;
+  height: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  border-radius: 50%;
+  background-color: var(--EMG-Deep-Teal);
+  color: var(--EMG-White);
+}
+.input:placeholder-shown + .placeholder + .clear{
+  display: none;
+}
+
 @media screen and (max-width:839.9px) {
   .searchbar {
     position: relative;
-    font-size: var(--fontsize-16);
+    font-size: clamp(16px, 3.721vw, 30px);
+    margin-bottom: 1rem;
+  }
+  input[type="text"].input {
+    background-color: var(--EMG-White);
+    margin-bottom: 0;
+    font-size: clamp(16px, 3.721vw, 30px);
   }
   .input::placeholder {
     color: transparent;
@@ -83,7 +117,12 @@
 @media screen and (min-width:840px) {
   .searchbar {
     position: relative;
+    margin-bottom: 1rem;
     font-size: var(--fontsize-15);
+  }
+  input[type="text"].input {
+    background-color: var(--EMG-White);
+    margin-bottom: 0;
   }
   .input::placeholder {
     color: transparent;

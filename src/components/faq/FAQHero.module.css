@@ -1,6 +1,6 @@
 @media screen and (max-width:839.9px) {
   .hero {
-    padding: calc(3 * var(--nav-height)) var(--m-outer-margin-l);
+    padding: calc(3 * var(--nav-height)) var(--m-outer-margin-l) var(--m-outer-margin-l) var(--m-outer-margin-l);
   }
   .headline {
     font-size: var(--fontsize-50);

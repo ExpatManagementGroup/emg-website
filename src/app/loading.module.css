@@ -1,0 +1,25 @@
+.loading {
+  background-color: var(--EMG-Hazy-White);
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo {
+  animation: loading 1s linear infinite alternate;
+}
+@keyframes loading {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

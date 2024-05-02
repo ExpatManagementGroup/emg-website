@@ -51,6 +51,7 @@ import FAQHero from "./faq/FAQHero";
 import FAQLists from "./faq/FAQLists";
 import ContactUs from "./pages/ContactUs";
 import LocationHero from "./locations/LocationHero";
+import LocationHeroGlobal from "./locations/LocationHeroGlobal";
 import LocationOffice from "./locations/LocationOffice";
 import LocationServices from "./locations/LocationServices";
 import LocationTextAndImage from "./locations/LocationTextAndImage";
@@ -106,6 +107,7 @@ const components = {
   faq_lists: FAQLists,
   contact_us: ContactUs,
   location_hero: LocationHero,
+  location_hero_global: LocationHeroGlobal,
   location_office: LocationOffice,
   location_services: LocationServices,
   location_text_and_image: LocationTextAndImage

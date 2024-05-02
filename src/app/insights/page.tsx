@@ -118,7 +118,7 @@ async function fetchData() {
     'starts_with': 'insights/', 
     'is_startpage': false,
     'version': isEnabled ? "draft" : "published",
-    'per_page': 4,
+    'per_page': 17,
     'sort_by': 'content.date:desc'
   }, {
     cache: isEnabled ? 'no-store' : 'default',

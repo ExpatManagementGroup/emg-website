@@ -31,7 +31,7 @@ export default function Navigation(props: any) {
     <>
     <div className={styles.header} data-mobile-nav-open={navOpen} data-subnav-open="false">
       <Link href="/" className={styles.logo_link} onClick={linkClickHandler}>
-        <Logo />
+        <Logo hideLetters />
       </Link>
       <svg className={styles.mobile_nav_toggle} width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={toggleNav}>
         <g className={styles.toggle_on}>

@@ -3,10 +3,11 @@ import styles from './LocationOffice.module.css';
 import Icon from '../ui/Icon';
 import Picture from '../Picture';
 import Link from 'next/link';
+import { storyblokEditable } from '@storyblok/react';
 
 export default function LocationOffice( { blok }: { blok: any }) {
   return (
-    <section className={styles.office}>
+    <section className={styles.office} {...storyblokEditable(blok)}>
       <div className={styles.content}>
         <h1 className={styles.title}>{blok.title}</h1>
         <div className={styles.description}>{render(blok.description)}</div>

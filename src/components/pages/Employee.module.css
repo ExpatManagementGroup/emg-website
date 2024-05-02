@@ -14,17 +14,19 @@
     display: block;
   }
   .image img {
+    transform: translateZ(0);
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
   .name {
-    font-size: var(--fontsize-80);
+    font-size: var(--fontsize-60);
     font-family: var(--font-reckless);
+    line-height: 0.915;
     letter-spacing: -0.015em;
     width: calc(100% - 2 * var(--m-outer-margin-l) ); 
-    margin: .6em auto 0 auto;
+    margin: .6em auto 0.25em auto;
   }
   .title {
     font-size: var(--fontsize-20);

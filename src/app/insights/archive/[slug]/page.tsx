@@ -26,7 +26,7 @@ export default async function Archive({ params }: { params: { slug: string } }) 
   const allTopics = data.stories.map((story: any) => story.content.topic);
   //remove duplicated from allTopics
   const allTopicsOnce = [...new Set(allTopics)];
-  // const featuredStory = data.stories[0];
+  const featuredStory = data.stories[0];
   const eventsData = await fetchEventsData();
   const events = eventsData.data.stories;
   const allTopicsData = await fetchTopicData();
@@ -60,7 +60,7 @@ export default async function Archive({ params }: { params: { slug: string } }) 
           )
         })}
       </div> */}
-      {/* <div key={featuredStory.id} className={styles.blogroll_hero}>
+      <div key={featuredStory.id} className={styles.blogroll_hero}>
         <PostCard
           featured_image_url={featuredStory.content.featured_image?.filename}
           featured_image_alt={featuredStory.content.featured_image?.alt}
@@ -77,23 +77,25 @@ export default async function Archive({ params }: { params: { slug: string } }) 
         <div className={styles.blogroll_hero_events}>
           <Events data={events} />
         </div>
-      </div> */}
+      </div>
       <div className={styles.post_list}>
         { data.stories.map((story: any, index: number) => {
-          return (
-            <PostCard
-              key={story.id}
-              featured_image_url={story.content.featured_image.filename}
-              featured_image_alt={story.content.featured_image.alt}
-              title={story.content.title}
-              country={story.content.country}
-              topicSlug={story.content.topic}
-              topicName={allTopicsData.data.datasource_entries.find((entry: any) => entry.value === story.content.topic).name}
-              date={story.content.date}
-              slug={story.slug}
-              reading_time={story.content.reading_time}
-            />
-          )
+          if (index !== 0) {
+            return (
+              <PostCard
+                key={story.id}
+                featured_image_url={story.content.featured_image.filename}
+                featured_image_alt={story.content.featured_image.alt}
+                title={story.content.title}
+                country={story.content.country}
+                topicSlug={story.content.topic}
+                topicName={allTopicsData.data.datasource_entries.find((entry: any) => entry.value === story.content.topic).name}
+                date={story.content.date}
+                slug={story.slug}
+                reading_time={story.content.reading_time}
+              />
+            )
+          }
         })}
       </div>
       <Pagination pages={totalPages} prevPage={prevPage} nextPage={nextPage} />
@@ -108,7 +110,7 @@ async function fetchData(archivepage: number) {
     'is_startpage': false,
     'version': "published",
     'sort_by': 'content.date:desc',
-    'per_page': 4,
+    'per_page': 17,
     'page': archivepage
   }, {
     cache: 'default',

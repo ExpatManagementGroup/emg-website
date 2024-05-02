@@ -38,7 +38,8 @@
   --fontsize-15: clamp(12px, 0.892vw, 150px);
   --fontsize-12: clamp(11px, 0.714vw, 125px);
   --fontsize-10: clamp(10px, 0.595vw, 100px);
-  --fontsize-pill : clamp(8px, 0.476vw, 12px);
+  --fontsize-pill: clamp(8px, 0.476vw, 12px);
+  --fontsize-input: clamp(16px, 0.892vw, 150px);
   
   /* Spaces */
   --nav-height: calc(5.34 * var(--fontsize-nav));
@@ -132,11 +133,13 @@ label {
 }
 .button {
   border: 1px solid var(--EMG-Deep-Teal);
+  color: var(--EMG-Deep-Teal);
   background-color: var(--EMG-Aero-Orange);
   padding: .8333em 2.66em .8333em 1.66em;
   border-radius: 2em;
   font-family: var(--font-agrandir);
   font-size: var(--fontsize-15);
+  font-weight: 500;
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -249,10 +252,13 @@ input[type="text"], input[type="email"] {
   border-radius: 2em;
   padding: .8333em 1.66em;
   font-family: var(--font-agrandir);
-  font-size: var(--fontsize-15);
+  font-size: var(--fontsize-input);
   width: 100%;
   background-color: var(--EMG-Hazy-White);
   margin-bottom: .5em;
+}
+textarea {
+  font-size: var(--fontsize-input);
 }
 input[type="checkbox"] {
   margin-right: .5em;

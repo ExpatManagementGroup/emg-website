@@ -81,6 +81,7 @@
     }
     & .featured_image img {
       object-fit: cover;
+      transform: translateZ(0);
     }
     & .header_meta {
       display: flex;

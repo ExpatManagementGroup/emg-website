@@ -15,6 +15,7 @@
     background-color: transparent;
     font-family: var(--font-agrandir);
     font-size: var(--fontsize-16);
+    color: var(--EMG-Deep-Teal);
     padding: 1rem;
     border: 1px solid transparent;
     border-radius: 2rem;
@@ -33,14 +34,15 @@
     width: 100%;
     overflow: hidden;
     display: flex;
+    gap: var(--d-gutter);
   }
   [data-open="companies"] .faqlists_lists > * {
-    transform: translateX(-100%);
+    transform: translateX(calc(-100% - var(--d-gutter)));
   }
   .individuals, 
   .companies {
     flex: 0 0 100%;
-    transition: all .3s cubic-bezier(.69,.05,.37,1.25);
+    transition: all .6s cubic-bezier(.5,.26,.13,1.02);
   }
   .title {
     display: none;

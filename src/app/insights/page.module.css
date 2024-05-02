@@ -10,6 +10,12 @@
     margin-bottom: -1em;
     background-color: var(--EMG-Hazy-White);
   }
+  .blogroll_hero {
+    margin-bottom: 2rem;
+  }
+  .blogroll_hero:has( > .blogroll_hero_events ) {
+    margin-bottom: 0;
+  }
   .topics {
     display: flex;
     flex-wrap: nowrap;
@@ -41,6 +47,16 @@
     margin: 0 auto;
     padding: calc(1.5 * var(--nav-height)) 0 0 0;
   }
+  .blogroll_hero {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+  .blogroll_hero:has( > .blogroll_hero_events ) {
+    margin-bottom: 0;
+  }
+  .blogroll_hero_events {
+    margin: 3rem 0;
+  }
   .topics {
     display: flex;
     flex-wrap: nowrap;
@@ -60,5 +76,17 @@
     line-height: 0.915;
     letter-spacing: -0.015em;
     margin: 1em 0 0.5em 0;
+  }
+}
+.blogroll > * > * > * {
+  transform-origin: top;
+  animation: fadeIn .5s ease-out;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

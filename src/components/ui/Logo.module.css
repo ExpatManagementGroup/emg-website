@@ -6,9 +6,9 @@
   .logo_svg path{
     fill: currentColor;
   }
-  .logo_letters path {
+  /* .logo_letters path {
     display: none;
-  }
+  } */
 }
 @media screen and (min-width: 840px) {
   .logo_svg {
