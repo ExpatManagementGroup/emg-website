@@ -1,4 +1,4 @@
-import { ISbStoriesParams, storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin, setComponents} from "@storyblok/react/rsc";
+import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin, setComponents} from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
 import styles from "./page.module.css";
 import Post_1 from "../../../components/pages/Post_1"; 

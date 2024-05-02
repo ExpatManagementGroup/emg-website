@@ -20,6 +20,7 @@ const Post = ({ blok }: { blok: any }) => {
             alt={blok.featured_image?.alt}
             sizes="(min-width:840px) 50vw, 100vw"
             className={styles.backgroundImage}
+            priority={true}
           />
         </figure>
         <div className={styles.header_text}>

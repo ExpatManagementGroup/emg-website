@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function Picture( props: {
   src: string,
   aspectRatioDesktop: string,
@@ -7,7 +9,8 @@ export default function Picture( props: {
   className?: string,
   width?: number,
   height?: number,
-  noCrop?: boolean
+  noCrop?: boolean,
+  priority?: boolean
 } ) {
 
   if (props.noCrop) {
@@ -40,12 +43,13 @@ export default function Picture( props: {
           `}
           sizes={props.sizes ? props.sizes : '100vw'}
         />
-        <img 
+        <Image 
           src={props.src} 
           alt={props.alt}
           width={props.width || 1080}
           height={props.height || 1080*Math.ceil(Number(props.aspectRatioDesktop))}
           sizes={props.sizes ? props.sizes : '100vw'}
+          priority={props.priority}
         />
       </picture>
     )
@@ -88,12 +92,13 @@ export default function Picture( props: {
           `}
           sizes={props.sizes ? props.sizes : '100vw'}
         />
-        <img 
+        <Image 
           src={props.src} 
           alt={props.alt}
           width={props.width || 1080}
           height={props.height || 1080*Math.ceil(Number(props.aspectRatioDesktop))}
           sizes={props.sizes ? props.sizes : '100vw'}
+          priority={props.priority}
         />
       </picture>
     )

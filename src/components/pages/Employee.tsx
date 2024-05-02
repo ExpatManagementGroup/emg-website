@@ -19,6 +19,7 @@ export default function Employee( { blok }: { blok: any }) {
           aspectRatioMobile="0.753968254"
           className={styles.image}
           sizes="(min-width: 840px) 34vw, 90vw"
+          priority={true}
         />
       }
       <div className={styles.text}>

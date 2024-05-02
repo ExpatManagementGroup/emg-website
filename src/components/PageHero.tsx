@@ -18,6 +18,7 @@ export default function PageHero( { blok }: { blok: any }) {
           alt={blok.bgimg.alt ? blok.bgimg.alt : 'an atmospheric background image'}
           sizes="100vw"
           className={styles.bgimg}
+          priority={true}
         />
       }
       <header className={`${styles.headline} ${layout}`}>

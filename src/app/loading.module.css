@@ -10,9 +10,12 @@
   justify-content: center;
 }
 .logo {
-  animation: loading 1s linear infinite alternate;
+  animation-name: slideIn, pulse;
+  animation-duration: 1s, 1s;
+  animation-timing-function: cubic-bezier(.41,.29,0,.99), ease-in-out;
+  animation-iteration-count: 1, infinite;
 }
-@keyframes loading {
+@keyframes pulse {
   0% {
     opacity: 0;
   }
@@ -21,5 +24,13 @@
   }
   100% {
     opacity: 0;
+  }
+}
+@keyframes slideIn {
+  0% {
+    clip-path: circle(0% at 50% 50%);
+  }
+  100% {
+    clip-path: circle(100% at 50% 50%);
   }
 }

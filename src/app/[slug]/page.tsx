@@ -27,7 +27,7 @@ export async function generateMetadata(
   const metadata = {
     title: pagedata.data.story.content.meta_title,
     description: pagedata.data.story.content.meta_description,
-    ogimage: pagedata.data.story.content.og_image.filename ? `${pagedata.data.story.content.og_image.filename}/m/1200x630/smart/filters:format(jpg)` : '',
+    ogimage: pagedata.data.story.content.og_image?.filename ? `${pagedata.data.story.content.og_image.filename}/m/1200x630/smart/filters:format(jpg)` : '',
   }
  
   // optionally access and extend (rather than replace) parent metadata

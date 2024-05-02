@@ -22,6 +22,7 @@ export default function CCHeader( { blok }: { blok: any }) {
         height={562}
         aspectRatioDesktop='3.4103019538'
         aspectRatioMobile='1'
+        priority={true}
       />
       <div className={styles.ccHeader_info}>
         <h1 className={styles.title}><span className={styles.title_company}>{blok.case_company}</span> <span className={styles.title_arrow}>→</span> {blok.case_title}
