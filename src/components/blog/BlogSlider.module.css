@@ -28,6 +28,10 @@
     width: 66.6667vw;
     transition: var(--slidertransition);
   }
+  :global(.noswiper).blogslider :global(.swiper-wrapper){
+    flex-direction: column;
+    gap: 2rem;
+  }
   :global(.noswiper).blogslider :global(.swiper-slide) {
     width: calc(100% - 2 * var(--m-outer-margin-l) + .5rem);
   }
