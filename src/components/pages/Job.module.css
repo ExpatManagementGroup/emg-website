@@ -74,7 +74,12 @@
     padding-bottom: calc( 2 * var(--nav-height) );
   }
   .backbutton {
-    display: none;
+    /* display: none; */
+    position: absolute;
+    transform: translate(-150%, -150%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .jobtitle {
     font-size: var(--fontsize-80);

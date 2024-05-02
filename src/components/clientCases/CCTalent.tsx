@@ -5,7 +5,7 @@ export default function CCTalent( { blok }: { blok: any }) {
 
   const allTestimonials = blok.allTestimonials;
   const testimonialUuids = blok.testimonials.join(',')
-  const chosenTestimonials = allTestimonials.filter((testimonial: any) => testimonialUuids.includes(testimonial.uuid))
+  const chosenTestimonials = allTestimonials?.filter((testimonial: any) => testimonialUuids.includes(testimonial.uuid))
 
   return (
     <div {...storyblokEditable(blok)}>

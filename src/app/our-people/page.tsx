@@ -1,13 +1,37 @@
 import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
 import styles from "../page.module.css";
-import { count } from "console";
 import { draftMode } from "next/headers";
+import { Metadata, ResolvingMetadata } from 'next'
 
 storyblokInit({
   accessToken: process.env.STORYBLOK_API_TOKEN,
   use: [apiPlugin],
 });
+export async function generateMetadata(
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+ 
+  // fetch data
+  const pagedata = await fetchData()
+  const metadata = {
+    title: pagedata.data.story.content.meta_title,
+    description: pagedata.data.story.content.meta_description,
+    ogimage: pagedata.data.story.content.og_image?.filename ? `${pagedata.data.story.content.og_image.filename}/m/1200x630/smart/filters:format(jpg)` : '',
+  }
+ 
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || []
+  const ogimg = { url: metadata.ogimage, width: 1200, height: 630 }
+ 
+  return {
+    title: metadata.title || (await parent).title,
+    description: metadata.description || (await parent).description,
+    openGraph: {
+      images: [ogimg, ...previousImages],
+    },
+  }
+}
 
 const storyblokApi = getStoryblokApi();
 

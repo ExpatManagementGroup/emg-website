@@ -2,8 +2,6 @@ import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin} from "@st
 import styles from "../../page.module.css";
 import PostCard from "@/components/PostCard";
 import Events from "@/components/Events";
-import Link from "next/link";
-import Pill from "@/components/ui/Pill";
 import Pagination from "@/components/blog/Pagination";
 import { notFound } from "next/navigation";
 

@@ -16,7 +16,7 @@ export default function CCTalent( props:any ) {
           autoWidth={true}
           sliderRef='talenttestimonials'
         >
-        {props.data.map((story: any, index: number) => {
+        {props.data?.map((story: any, index: number) => {
           return (
             <CCTalentSlide key={`testimonial-${index}`} slideContent={story.content} />
           )

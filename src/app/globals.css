@@ -173,6 +173,15 @@ label {
 .button:hover {
   padding-right: 3em;
 }
+.button.button-arrow-inline {
+  padding: .8333em 1.66em .8333em 1.66em;
+}
+@media (pointer: fine) {
+  .button.button-arrow-inline:hover {
+    padding-right: 2em;
+    padding-left: 2em;
+  }
+}
 .button:after {
   content: '→';
   position: absolute;
@@ -191,6 +200,7 @@ label {
   padding-left: 2em;
   padding-right: 2em;
 }
+.button.button-arrow-inline:after ,
 .button.button-arrow-none:after {
   content: none;
 }

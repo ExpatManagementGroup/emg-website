@@ -2,6 +2,12 @@
   .employee {
     padding-top: calc( 1.66 * var(--nav-height));
   }
+  .backbutton {
+    position: absolute;
+    z-index: 1;
+    margin: 1rem 2rem;
+    padding: .5em 1em;
+  }
   .image {
     width: calc(100% - 2 * var(--m-outer-margin-s) ); 
     margin: 0 auto;
@@ -65,6 +71,10 @@
     margin: 0 var(--d-outer-margin);
     padding-top: calc( 2 * var(--nav-height));
     gap: calc( 2 * var(--d-gutter) + var(--d-colWidth-1));
+  }
+  .backbutton {
+    position: absolute;
+    margin: 1rem;
   }
   .image {
     flex: 0 0 var(--d-colWidth-4);

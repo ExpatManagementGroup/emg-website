@@ -2,6 +2,7 @@ import styles from './Employee.module.css';
 import { render } from 'storyblok-rich-text-react-renderer';
 import Picture from '../Picture';
 import Flag from '../ui/Flag';
+import Button from '../ui/Button';
 
 export default function Employee( { blok }: { blok: any }) {
   return (
@@ -9,6 +10,7 @@ export default function Employee( { blok }: { blok: any }) {
       {/* <pre style={{ "paddingTop": "20rem" }}>
         {JSON.stringify(blok, null, 2)}
       </pre> */}
+      <Button className={styles.backbutton} type="Link" href='/our-people' text="←" arrow='inline' />
       { blok.image?.filename && 
         <Picture
           src={blok.image.filename}

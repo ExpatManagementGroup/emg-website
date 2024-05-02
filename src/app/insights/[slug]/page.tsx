@@ -3,12 +3,45 @@ import StoryblokStory from "@storyblok/react/story";
 import styles from "./page.module.css";
 import Post_1 from "../../../components/pages/Post_1"; 
 import { draftMode } from "next/headers";
-import PostCard from "@/components/PostCard";
+import { Metadata, ResolvingMetadata } from 'next'
 
 storyblokInit({
   accessToken: process.env.STORYBLOK_API_TOKEN,
   use: [apiPlugin],
 });
+
+type Props = {
+  params: { slug: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // read route params
+  const id = params.slug
+ 
+  // fetch data
+  const pagedata = await fetchData(id)
+  const metadata = {
+    title: pagedata.data.story.content.title,
+    description: pagedata.data.story.content.description,
+    ogimage: pagedata.data.story.content.featured_image.filename ? `${pagedata.data.story.content.featured_image.filename}/m/1200x630/smart/filters:format(jpg)` : '',
+  }
+ 
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || []
+  const ogimg = { url: metadata.ogimage, width: 1200, height: 630 }
+ 
+  return {
+    title: metadata.title || (await parent).title,
+    description: metadata.description || (await parent).description,
+    openGraph: {
+      images: [ogimg, ...previousImages],
+    },
+  }
+}
 
 export default async function Slug({ params }: { params: { slug: string } }) {
 
