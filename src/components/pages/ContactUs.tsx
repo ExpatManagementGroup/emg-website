@@ -1,5 +1,5 @@
 import styles from './ContactUs.module.css';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import Picture from '../Picture';
 import Flag from '../ui/Flag';
 import Icon from '../ui/Icon';
@@ -8,6 +8,10 @@ export default function ContactUs( { blok }: { blok: any }) {
 
   const [isClient, setIsClient] = useState(false);
   const [activeForm, setActiveForm] = useState('general');
+
+  const [status, setStatus] = useState('');
+  const [error, setError] = useState('');
+
 
   useEffect(() => {
     setIsClient(true);
@@ -20,6 +24,31 @@ export default function ContactUs( { blok }: { blok: any }) {
     setActiveForm(location);
     window.location.hash = location;
   }
+
+  const handleFormSubmit = async (event: any) => {
+    event.preventDefault();
+    try {
+        setStatus('pending');
+        setError('');
+        const myForm = event.target as any;
+        const formData = new FormData(myForm) as any;
+        const urlSearchParams = new URLSearchParams(formData) as any ;
+        const res = await fetch('/__forms.html', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: urlSearchParams.toString()
+        });
+        if (res.status === 200) {
+          setStatus('ok');
+        } else {
+          setStatus('error');
+          setError(`${res.status} ${res.statusText}`);
+        }
+    } catch (e) {
+        setStatus('error');
+        setError(`${e}`);
+    }
+  };
 
   return (
     <div className={styles.contact}>
@@ -62,7 +91,8 @@ export default function ContactUs( { blok }: { blok: any }) {
               <div><Icon name='phone' /> {blok.phone_general}</div>
               <div><Icon name='email' /> {blok.email_general}</div>
             </div>
-            <form name="contact-general" method="POST" data-netlify="true">
+            <form onSubmit={handleFormSubmit} name="contact-general" method="POST" data-netlify="true">
+              <input type="hidden" name="form-name" value="contact-general" />
               <div className={styles.info}>
                 <div className={styles.input}>
                   <input type="text" name="firstname" placeholder='First Name' />
@@ -71,14 +101,26 @@ export default function ContactUs( { blok }: { blok: any }) {
                   <input type="text" name="lastname" id='lastname' placeholder='Last Name' />
                 </div>
                 <div className={styles.input}>
-                  <input type="email" name="email" placeholder='Email' />
+                  <input type="email" name="email" required placeholder='Email' />
                 </div>
               </div>
               <div className={styles.message}>
-                <textarea name="message" rows={6} placeholder='Message'></textarea>
+                <textarea name="message" required rows={6} placeholder='Message'></textarea>
               </div>
               <div>
-                <button className={`button ${styles.submitbutton}`} type="submit">Send</button>
+                <button className={`button ${styles.submitbutton}`} type="submit" disabled={status === 'pending'}>Send</button>
+                {status === 'ok' && (
+                    <div className="alert alert-success">
+                        <SuccessIcon />
+                        Submitted!
+                    </div>
+                )}
+                {status === 'error' && (
+                    <div className="alert alert-error">
+                        <ErrorIcon />
+                        {error}
+                    </div>
+                )}
               </div>
             </form>
           </div>
@@ -88,7 +130,8 @@ export default function ContactUs( { blok }: { blok: any }) {
               <div><Icon name='phone' /> {blok.phone_nl}</div>
               <div><Icon name='email' /> {blok.email_nl}</div>
             </div>
-            <form name="contact-nl" method="POST" data-netlify="true">
+            <form onSubmit={handleFormSubmit} name="contact-nl" method="POST" data-netlify="true">
+              <input type="hidden" name="form-name" value="contact-nl" />
               <div className={styles.info}>
                 <div className={styles.input}>
                   <input type="text" name="firstname" placeholder='First Name' />
@@ -97,14 +140,26 @@ export default function ContactUs( { blok }: { blok: any }) {
                   <input type="text" name="lastname" id='lastname' placeholder='Last Name' />
                 </div>
                 <div className={styles.input}>
-                  <input type="email" name="email" placeholder='Email' />
+                  <input type="email" name="email" required placeholder='Email' />
                 </div>
               </div>
               <div className={styles.message}>
-                <textarea name="message" rows={6} placeholder='Message'></textarea>
+                <textarea name="message" required rows={6} placeholder='Message'></textarea>
               </div>
               <div>
-                <button className={`button ${styles.submitbutton}`} type="submit">Send</button>
+              <button className={`button ${styles.submitbutton}`} type="submit" disabled={status === 'pending'}>Send</button>
+                {status === 'ok' && (
+                    <div className="alert alert-success">
+                        <SuccessIcon />
+                        Submitted!
+                    </div>
+                )}
+                {status === 'error' && (
+                    <div className="alert alert-error">
+                        <ErrorIcon />
+                        {error}
+                    </div>
+                )}
               </div>
             </form>
           </div>
@@ -114,7 +169,8 @@ export default function ContactUs( { blok }: { blok: any }) {
               <div><Icon name='phone' /> {blok.phone_be_lux}</div>
               <div><Icon name='email' /> {blok.email_be_lux}</div>
             </div>
-            <form name="contact-belux" method="POST" data-netlify="true">
+            <form onSubmit={handleFormSubmit} name="contact-belux" method="POST" data-netlify="true">
+              <input type="hidden" name="form-name" value="contact-belux" />
               <div className={styles.info}>
                 <div className={styles.input}>
                   <input type="text" name="firstname" placeholder='First Name' />
@@ -123,14 +179,26 @@ export default function ContactUs( { blok }: { blok: any }) {
                   <input type="text" name="lastname" id='lastname' placeholder='Last Name' />
                 </div>
                 <div className={styles.input}>
-                  <input type="email" name="email" placeholder='Email' />
+                  <input type="email" name="email" required placeholder='Email' />
                 </div>
               </div>
               <div className={styles.message}>
-                <textarea name="message" rows={6} placeholder='Message'></textarea>
+                <textarea name="message" required rows={6} placeholder='Message'></textarea>
               </div>
               <div>
-                <button className={`button ${styles.submitbutton}`} type="submit">Send</button>
+              <button className={`button ${styles.submitbutton}`} type="submit" disabled={status === 'pending'}>Send</button>
+                {status === 'ok' && (
+                    <div className="alert alert-success">
+                        <SuccessIcon />
+                        Submitted!
+                    </div>
+                )}
+                {status === 'error' && (
+                    <div className="alert alert-error">
+                        <ErrorIcon />
+                        {error}
+                    </div>
+                )}
               </div>
             </form>
           </div>
@@ -140,7 +208,8 @@ export default function ContactUs( { blok }: { blok: any }) {
               <div><Icon name='phone' /> {blok.phone_de}</div>
               <div><Icon name='email' /> {blok.email_de}</div>
             </div>
-            <form name="contact-de" method="POST" data-netlify="true">
+            <form onSubmit={handleFormSubmit} name="contact-de" method="POST" data-netlify="true">
+              <input type="hidden" name="form-name" value="contact-de" />
               <div className={styles.info}>
                 <div className={styles.input}>
                   <input type="text" name="firstname" placeholder='First Name' />
@@ -149,14 +218,26 @@ export default function ContactUs( { blok }: { blok: any }) {
                   <input type="text" name="lastname" id='lastname' placeholder='Last Name' />
                 </div>
                 <div className={styles.input}>
-                  <input type="email" name="email" placeholder='Email' />
+                  <input type="email" name="email" required placeholder='Email' />
                 </div>
               </div>
               <div className={styles.message}>
-                <textarea name="message" rows={6} placeholder='Message'></textarea>
+                <textarea name="message" required rows={6} placeholder='Message'></textarea>
               </div>
               <div>
-                <button className={`button ${styles.submitbutton}`} type="submit">Send</button>
+              <button className={`button ${styles.submitbutton}`} type="submit" disabled={status === 'pending'}>Send</button>
+                {status === 'ok' && (
+                    <div className="alert alert-success">
+                        <SuccessIcon />
+                        Submitted!
+                    </div>
+                )}
+                {status === 'error' && (
+                    <div className="alert alert-error">
+                        <ErrorIcon />
+                        {error}
+                    </div>
+                )}
               </div>
             </form>
           </div>
@@ -205,4 +286,39 @@ export default function ContactUs( { blok }: { blok: any }) {
       </div>
     </div>
   )
+}
+
+function SuccessIcon() {
+  return (
+      <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="stroke-current shrink-0 h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+      >
+          <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+      </svg>
+  );
+}
+function ErrorIcon(success: any) {
+  return (
+      <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="stroke-current shrink-0 h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+      >
+          <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+      </svg>
+  );
 }
