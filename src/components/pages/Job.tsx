@@ -1,8 +1,8 @@
 import styles from './Job.module.css';
 import { render } from 'storyblok-rich-text-react-renderer';
 import { storyblokEditable } from '@storyblok/react';
-import Button from '../Button';
-import Pill from '../Pill';
+import Button from '../ui/Button';
+import Pill from '../ui/Pill';
 
 export default function Job( { blok }: { blok: any }) {
   return (

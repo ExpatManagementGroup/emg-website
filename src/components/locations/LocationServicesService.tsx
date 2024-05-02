@@ -1,7 +1,7 @@
 import styles from './LocationServicesService.module.css';
 import { storyblokEditable } from '@storyblok/react';
 import Picture from '../Picture';
-import Plus from '../Plus';
+import Plus from '../ui/Plus';
 import { render } from 'storyblok-rich-text-react-renderer';
 import { useState, useEffect, useRef } from 'react';
 

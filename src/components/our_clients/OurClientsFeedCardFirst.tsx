@@ -1,7 +1,7 @@
 import styles from './OurClientsFeed.module.css';
 import Picture from '../Picture';
-import Icon from '../Icon';
-import Button from '../Button';
+import Icon from '../ui/Icon';
+import Button from '../ui/Button';
 
 export default function OurClientsFeedCard( { props }: { props: any }) {
   return (

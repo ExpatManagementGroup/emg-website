@@ -1,7 +1,7 @@
 import styles from './CCClientSlide.module.css';
 import Picture from '../Picture';
 import Image from 'next/image';
-import Button from '../Button';
+import Button from '../ui/Button';
 
 export default function CCClientSlide( props: {
   slideContent: {

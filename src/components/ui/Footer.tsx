@@ -1,7 +1,7 @@
 import LogoWithSubline from "./LogoWithSubline"
 import styles from "./Footer.module.css"
 import Link from "next/link";
-import CMForm from "./CMForm";
+import CMForm from "../CMForm";
 
 export default function Footer(props: any) {
   const navdata = props.navData;

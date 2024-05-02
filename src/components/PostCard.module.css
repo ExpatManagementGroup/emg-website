@@ -52,6 +52,11 @@
       gap: calc( 0.5 * var(--fontsize-pill) );
       margin: 2em 0;
     }
+    & .readingtime {
+      background-color: var(--EMG-Deep-Teal);
+      color: var(--EMG-White);
+      border-color: var(--EMG-Deep-Teal);
+    }
     & .postcard_description {
       margin: 1em -0;
       font-size: var(--fontsize-15);
@@ -83,6 +88,11 @@
       align-items: center;
       gap: calc( 0.5 * var(--fontsize-pill) );
       margin: 1em 0;
+    }
+    & .readingtime {
+      background-color: var(--EMG-Deep-Teal);
+      color: var(--EMG-White);
+      border-color: var(--EMG-Deep-Teal);
     }
     & .postcard_title {
       font-size: var(--fontsize-25);
@@ -142,6 +152,11 @@
       gap: calc( 0.5 * var(--fontsize-pill) );
       margin: 2em 0;
     }
+    & .readingtime {
+      background-color: var(--EMG-Deep-Teal);
+      color: var(--EMG-White);
+      border-color: var(--EMG-Deep-Teal);
+    }
     & .postcard_description {
       margin: 1em -0;
     }
@@ -181,6 +196,11 @@
       gap: calc( 0.5 * var(--fontsize-pill) );
       margin: 1em 0;
     }
+    & .readingtime {
+      background-color: var(--EMG-Deep-Teal);
+      color: var(--EMG-White);
+      border-color: var(--EMG-Deep-Teal);
+    }
     & .postcard_title {
       font-size: var(--fontsize-20);
       line-height: 1;
@@ -188,6 +208,9 @@
       margin: 0;
       padding: 0 0 1em 0;
     }
+  }
+  .postcard_regular :global(.button) {
+    font-size: var(--fontsize-12);
   }
   .postcard_regular:hover {
     padding-bottom: 1em;

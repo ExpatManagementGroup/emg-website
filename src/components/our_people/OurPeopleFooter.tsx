@@ -1,5 +1,5 @@
 import styles from './OurPeopleFooter.module.css';
-import Button from '../Button';
+import Button from '../ui/Button';
 import { storyblokEditable } from '@storyblok/react';
 
 export default function OurPeopleFooter( { blok }: { blok: any }) {

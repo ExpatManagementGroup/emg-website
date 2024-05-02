@@ -1,5 +1,5 @@
 import styles from './FAQLists.module.css';
-import FAQ from '../FAQModule';
+import FAQ from '../ui/FAQModule';
 import { storyblokEditable } from '@storyblok/react';
 import { useState } from 'react';
 

@@ -1,8 +1,8 @@
 import styles from './LocationHero.module.css';
 import Picture from '../Picture';
-import Icon from '../Icon';
-import Button from '../Button';
-import Flag from '../Flag';
+import Icon from '../ui/Icon';
+import Button from '../ui/Button';
+import Flag from '../ui/Flag';
 import {render} from 'storyblok-rich-text-react-renderer';
 
 export default function LocationHero( { blok }: { blok: any }) {

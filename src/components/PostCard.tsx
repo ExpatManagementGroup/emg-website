@@ -1,6 +1,6 @@
 import styles from './PostCard.module.css'
-import FormattedDate from './FormattedDate'
-import Button from './Button'
+import FormattedDate from './ui/FormattedDate'
+import Button from './ui/Button'
 import Link from 'next/link'
 
 export default function PostCard(props: { 
@@ -13,7 +13,8 @@ export default function PostCard(props: {
     topicName: string,
     date: string,
     slug: string,
-    isFeature?: boolean
+    isFeature?: boolean,
+    reading_time?: string
 }) {
 
   if (props.isFeature) {
@@ -56,6 +57,9 @@ export default function PostCard(props: {
        <div className={styles.postcard_info}>
          <h2 className={styles.postcard_title}>{props.title}</h2>
          <div className={styles.header_meta}>
+            { props.reading_time &&
+              <div className={`pill ${styles.readingtime}`}>{props.reading_time} min</div>
+            }
            <div className="pill">{props.country}</div>
            <Link href={`/insights/topics/${props.topicSlug}`} >
               <div className="pill">{props.topicName}</div>
@@ -103,7 +107,7 @@ export default function PostCard(props: {
               sizes='95vw'
             />
             <img
-              src={`${props.featured_image_url}/m/320x446/filters:format(jpg)`}
+              src={`${props.featured_image_url}/m/320x446/filters:format(webp)`}
               alt={props.featured_image_alt}
               className={styles.featured_image_img}
             />

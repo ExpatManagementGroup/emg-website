@@ -1,6 +1,6 @@
 import styles from "./HomeWhatWeDo.module.css";
-import Icon from "../Icon";
-import Button from "../Button";
+import Icon from "../ui/Icon";
+import Button from "../ui/Button";
 import Link from "next/link";
 import { storyblokEditable } from "@storyblok/react/rsc";
 

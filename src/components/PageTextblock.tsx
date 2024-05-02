@@ -1,5 +1,5 @@
 import styles from './PageTextblock.module.css';
-import Button from './Button';
+import Button from './ui/Button';
 import { render } from 'storyblok-rich-text-react-renderer';
 import { storyblokEditable } from '@storyblok/react';
 

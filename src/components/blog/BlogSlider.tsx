@@ -1,11 +1,11 @@
 import styles from './BlogSlider.module.css';
 import { storyblokEditable } from "@storyblok/react/rsc";
 import { render } from 'storyblok-rich-text-react-renderer';
-import Slider from '../Slider';
+import Slider from '../ui/Slider';
 import Picture from '../Picture';
 import Link from 'next/link';
-import FormattedDate from '../FormattedDate';
-import Button from '../Button';
+import FormattedDate from '../ui/FormattedDate';
+import Button from '../ui/Button';
 
 export default function BlogSlider( { blok }: { blok: any } ) {
 

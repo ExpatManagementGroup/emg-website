@@ -1,6 +1,6 @@
 import styles from './HomeTestimonials.module.css';
-import Button from '../Button';
-import Slider from '../Slider';
+import Button from '../ui/Button';
+import Slider from '../ui/Slider';
 import CCTalentSlide from '../clientCases/CCTalentSlide';
 import CCClientSlide from '../clientCases/CCClientSlide';
 import { storyblokEditable } from "@storyblok/react/rsc";

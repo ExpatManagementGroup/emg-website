@@ -2,7 +2,7 @@
 import styles from './CCOtherCases.module.css';
 import Link from 'next/link';
 import { storyblokEditable } from '@storyblok/react';
-import LogoMarquee from '../LogoMarquee';
+import LogoMarquee from '../ui/LogoMarquee';
 
 export default function CCOtherCases( props: {
   stories: any,

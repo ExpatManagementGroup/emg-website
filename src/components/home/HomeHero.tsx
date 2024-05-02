@@ -1,6 +1,6 @@
 import { storyblokEditable } from "@storyblok/react/rsc";
 import styles from "./HomeHero.module.css";
-import Button from "../Button";
+import Button from "../ui/Button";
 import { render } from 'storyblok-rich-text-react-renderer';
 
  

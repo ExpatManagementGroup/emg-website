@@ -2,7 +2,7 @@ import styles from './OurStoryIntro.module.css';
 import Picture from '../Picture';
 import { render } from 'storyblok-rich-text-react-renderer';
 import Link from "next/link";
-import Button from '../Button';
+import Button from '../ui/Button';
 import { storyblokEditable } from '@storyblok/react/rsc';
 
 export default function OurStoryIntro( { blok }: { blok: any }) {

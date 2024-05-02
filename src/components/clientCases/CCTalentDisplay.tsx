@@ -1,4 +1,4 @@
-import Slider from '../Slider';
+import Slider from '../ui/Slider';
 import styles from './CCTalent.module.css';
 import { storyblokEditable } from "@storyblok/react/rsc";
 import CCTalentSlide from './CCTalentSlide';

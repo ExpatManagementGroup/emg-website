@@ -1,6 +1,6 @@
 import styles from './LocationTextAndImage.module.css';
 import Picture from '../Picture';
-import Button from '../Button';
+import Button from '../ui/Button';
 import {render} from 'storyblok-rich-text-react-renderer';
 import { storyblokEditable } from '@storyblok/react';
 

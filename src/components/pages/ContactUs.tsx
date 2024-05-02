@@ -1,8 +1,8 @@
 import styles from './ContactUs.module.css';
 import { useEffect, useState, useRef } from 'react';
 import Picture from '../Picture';
-import Flag from '../Flag';
-import Icon from '../Icon';
+import Flag from '../ui/Flag';
+import Icon from '../ui/Icon';
 
 export default function ContactUs( { blok }: { blok: any }) {
 

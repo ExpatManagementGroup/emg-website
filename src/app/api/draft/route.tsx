@@ -62,9 +62,10 @@ export async function GET(request: Request) {
  
   // Redirect to the path from the fetched post
   // We don't redirect to searchParams.slug as that might lead to open redirect vulnerabilities
-  if (!slug) {
-    redirect(`/`)
-  } else {
-    redirect(`/${post.full_slug}`)
-  }
+  // if (!slug) {
+  //   redirect(`/`)
+  // } else {
+  //   redirect(`/${post.full_slug}`)
+  // }
+  return new Response('Draft mode enabled, please switch back to the editing URL, you should see a little red \'draft mode\' in the lower right of the screen', { status: 200 })
 }

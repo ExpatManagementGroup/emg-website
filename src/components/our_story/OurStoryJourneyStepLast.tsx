@@ -1,6 +1,6 @@
 import styles from './OurStoryJourneyStepLast.module.css';
 import { render } from 'storyblok-rich-text-react-renderer';
-import Button from '../Button';
+import Button from '../ui/Button';
 import { storyblokEditable } from "@storyblok/react/rsc";
 
 

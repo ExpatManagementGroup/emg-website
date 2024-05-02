@@ -1,7 +1,7 @@
 import styles from './OurClientsValues.module.css';
 import { render } from 'storyblok-rich-text-react-renderer';
 import { storyblokEditable } from '@storyblok/react';
-import Icon from '../Icon';
+import Icon from '../ui/Icon';
 
 export default function OurClientsValues( { blok }: { blok: any }) {
   return (

@@ -1,5 +1,5 @@
 import styles from './OurClientsFeed.module.css';
-import Slider from '../Slider';
+import Slider from '../ui/Slider';
 import OurClientsFeedCard from './OurClientsFeedCard';
 import OurClientsFeedCardFirst from './OurClientsFeedCardFirst';
 import { storyblokEditable } from '@storyblok/react/rsc';

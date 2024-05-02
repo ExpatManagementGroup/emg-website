@@ -1,6 +1,6 @@
 import styles from "./HomeServices.module.css";
-import Icon from "../Icon";
-import Button from "../Button";
+import Icon from "../ui/Icon";
+import Button from "../ui/Button";
 import { storyblokEditable } from "@storyblok/react/rsc";
 import { render } from 'storyblok-rich-text-react-renderer';
 

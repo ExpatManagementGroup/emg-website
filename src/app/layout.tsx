@@ -3,9 +3,11 @@ import { ISbStoriesParams, getStoryblokApi, storyblokInit, apiPlugin } from "@st
 import StoryblokProvider from "../components/StoryblokProvider";
 import { agrandir, reckless } from "../../styles/fonts";
 import "./globals.css";
-import Navigation from "../components/Navigation";
-import Footer from "@/components/Footer";
+import Navigation from "../components/ui/Navigation";
+import Footer from "@/components/ui/Footer";
 import { draftMode } from "next/headers";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 storyblokInit({
   accessToken: process.env.STORYBLOK_API_TOKEN,
@@ -32,13 +34,16 @@ export default async function RootLayout({
       <html lang="en">
         <body className={`${agrandir.variable} ${reckless.variable}`}>
           <Navigation navData={navData} />
-          {children}
+          <Suspense fallback={<Loading />}>
+            {children}
+          </Suspense>
           { isEnabled && <div style={{
             'position': 'fixed',
             'bottom': '0',
             'right': '0',
             'background': 'red',
             'color': 'white',
+            'zIndex': '1000',
           }}>Draft Mode</div>}
           <Footer navData={navData} />
         </body>

@@ -1,6 +1,6 @@
 import styles from './PageRelocationServices.module.css';
 import {render} from 'storyblok-rich-text-react-renderer';
-import FAQ from './FAQModule';
+import FAQ from './ui/FAQModule';
 import Picture from './Picture';
 
 export default function PageRelocationServices( { blok }: { blok: any }) {

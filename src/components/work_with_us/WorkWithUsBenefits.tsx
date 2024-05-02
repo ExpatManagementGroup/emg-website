@@ -1,6 +1,6 @@
 import styles from './WorkWithUsBenefits.module.css';
 import Picture from '../Picture';
-import FAQ from '../FAQModule';
+import FAQ from '../ui/FAQModule';
 import { storyblokEditable } from '@storyblok/react';
 
 export default function WorkWithUsBenefits( { blok }: { blok: any }) {

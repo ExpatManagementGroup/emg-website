@@ -1,6 +1,6 @@
 import styles from './OurClientsFeed.module.css';
 import Picture from '../Picture';
-import Button from '../Button';
+import Button from '../ui/Button';
 
 export default function OurClientsFeedCard( { props }: { props: any }) {
   return (

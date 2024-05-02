@@ -1,11 +1,11 @@
 import styles from './WorkWithUsJobFeed.module.css';
 import { render } from 'storyblok-rich-text-react-renderer';
 import { storyblokEditable } from '@storyblok/react';
-import Button from '../Button';
+import Button from '../ui/Button';
 import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
 import autoAnimate, { getTransitionSizes } from '@formkit/auto-animate'
-import Pill from '../Pill';
+import Pill from '../ui/Pill';
 
 export default function WorkWithUsJobFeed( { blok }: { blok: any }) {
 

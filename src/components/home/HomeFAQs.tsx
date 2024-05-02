@@ -1,8 +1,8 @@
 import styles from './HomeFAQs.module.css';
 import { storyblokEditable } from "@storyblok/react/rsc";
 import { render } from 'storyblok-rich-text-react-renderer';
-import Button from '../Button';
-import FAQ from '../FAQModule';
+import Button from '../ui/Button';
+import FAQ from '../ui/FAQModule';
 
 export default function HomeFAQs({ blok }: { blok: any }) {
 

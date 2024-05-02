@@ -26,6 +26,13 @@
     flex-direction: column;
     gap: 2rem;
   }
+  .archive_header {
+    font-family: var(--font-reckless);
+    font-size: var(--fontsize-40);
+    line-height: 0.915;
+    letter-spacing: -0.015em;
+    margin: 1em 0 .5em 0;
+  }
 }
 @media screen and (min-width:840px) {
   .blogroll {
@@ -46,5 +53,12 @@
     grid-template-columns: repeat(4, var(--d-colWidth-2));
     gap: var(--d-gutter);
     padding: 0;
+  }
+  .archive_header {
+    font-family: var(--font-reckless);
+    font-size: var(--fontsize-50);
+    line-height: 0.915;
+    letter-spacing: -0.015em;
+    margin: 1em 0 0.5em 0;
   }
 }

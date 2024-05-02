@@ -20,10 +20,11 @@ export async function GET(request: Request) {
 
 
 
-  return new Response('', {
-    status: 307,
-    headers: {
-      Location: `/${slug}`,
-    },
-  })
+  // return new Response('', {
+  //   status: 200,
+  //   headers: {
+  //     Location: `/${slug}`,
+  //   },
+  // })
+  return new Response('Exited Draft mode, please switch back to the editing URL', { status: 200 })
 }

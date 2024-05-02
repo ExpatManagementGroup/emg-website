@@ -1,7 +1,7 @@
 import styles from './WorkWithUsTestimonials.module.css';
-import Slider from '../Slider';
+import Slider from '../ui/Slider';
 import Picture from '../Picture';
-import Flag from '../Flag';
+import Flag from '../ui/Flag';
 
 export default function WorkWithUsTestimonials( { blok }: { blok: any }) {
   return (

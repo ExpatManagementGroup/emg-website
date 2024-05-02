@@ -1,9 +1,9 @@
 import styles from './CCHeader.module.css'
 import Image from 'next/image'
-import Logo from '../Logo'
+import Logo from '../ui/Logo'
 import ReactCountryFlag from "react-country-flag"
-import Button from '../Button'
-import Pill from '../Pill'
+import Button from '../ui/Button'
+import Pill from '../ui/Pill'
 import Picture from '../Picture'
 import { storyblokEditable } from "@storyblok/react/rsc";
 

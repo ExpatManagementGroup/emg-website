@@ -1,7 +1,7 @@
 import styles from './Employee.module.css';
 import { render } from 'storyblok-rich-text-react-renderer';
 import Picture from '../Picture';
-import Flag from '../Flag';
+import Flag from '../ui/Flag';
 
 export default function Employee( { blok }: { blok: any }) {
   return (

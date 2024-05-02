@@ -1,6 +1,6 @@
 import { render } from 'storyblok-rich-text-react-renderer';
 import styles from './LocationOffice.module.css';
-import Icon from '../Icon';
+import Icon from '../ui/Icon';
 import Picture from '../Picture';
 import Link from 'next/link';
 

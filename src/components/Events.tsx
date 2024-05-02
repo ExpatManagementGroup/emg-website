@@ -1,6 +1,6 @@
 import styles from './Events.module.css'
-import Pill from './Pill'
-import FormattedDate from './FormattedDate'
+import Pill from './ui/Pill'
+import FormattedDate from './ui/FormattedDate'
 
 export default async function Events(props: any) {
 

@@ -1,6 +1,6 @@
 import styles from './OurPeopleList.module.css';
 import Picture from '../Picture';
-import Flag from '../Flag';
+import Flag from '../ui/Flag';
 import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
 import autoAnimate from '@formkit/auto-animate'

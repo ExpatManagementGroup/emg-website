@@ -1,6 +1,6 @@
 import styles from './WorkWithUsMoreJobs.module.css';
-import Button from '../Button';
-import Pill from '../Pill';
+import Button from '../ui/Button';
+import Pill from '../ui/Pill';
 import Link from 'next/link';
 
 export default function WorkWithUsMoreJobs( props: { jobs: any, slug: string}) {

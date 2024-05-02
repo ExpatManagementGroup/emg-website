@@ -11,9 +11,10 @@ import PageRelocationMoreCountries from "./PageRelocationMoreCountries";
 import PageImmigrationServices from "./PageImmigrationServices";
 import PageBreak from "./PageBreak";
 import Post_1 from "./pages/Post_1"; 
+import Post_2 from "./pages/Post_2";
 import Job from "./pages/Job";
 import Employee from "./pages/Employee";
-import Navigation from "./Navigation";
+import Navigation from "./ui/Navigation";
 import HomeHero from "./home/HomeHero";
 import HomeWhatWeDo from "./home/HomeWhatWeDo";
 import HomeServices from "./home/HomeServices";
@@ -65,6 +66,7 @@ const components = {
   page_break: PageBreak,
   relocation_more_countries: PageRelocationMoreCountries,
   post_one: Post_1,
+  post_two: Post_2,
   job: Job,
   employee: Employee,
   navigation: Navigation,

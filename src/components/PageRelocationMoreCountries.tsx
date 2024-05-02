@@ -1,7 +1,7 @@
 import styles from './PageRelocationMoreCountries.module.css';
 import {render} from 'storyblok-rich-text-react-renderer';
-import Flag from './Flag';
-import Button from './Button';
+import Flag from './ui/Flag';
+import Button from './ui/Button';
 import { storyblokEditable } from '@storyblok/react';
 
 export default function PageRelocationMoreCountries( { blok }: { blok: any }) {
