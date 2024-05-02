@@ -16,6 +16,7 @@ storyblokInit({
 
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://emg-website-preview.netlify.app'),
   title: "Immigration en Relocation Services - Expat Management Group",
   description: "Delivers professional and corporate immigration solutions to the Netherlands, Belgium, Lucembourg and Germany.",
   openGraph: {
