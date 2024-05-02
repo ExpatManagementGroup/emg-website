@@ -134,6 +134,7 @@
     gap: .5rem;
     top: 0;
     left: 0;
+    height: 100%;
     padding: .8333em 1.66em;
     pointer-events: none;
   }
