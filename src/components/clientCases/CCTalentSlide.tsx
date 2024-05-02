@@ -1,6 +1,7 @@
 import styles from './CCTalent.module.css';
 import Picture from '../Picture';
 import ReactCountryFlag from 'react-country-flag';
+import Flag from '../ui/Flag';
 
 export default function CCTalent( props:{
   slideContent: {
@@ -26,14 +27,12 @@ export default function CCTalent( props:{
                   {t.client_name}
                 </div>
                 <div className={styles.fromTo}>
-                  <ReactCountryFlag 
-                    countryCode={t.from} 
-                    svg
+                  <Flag 
+                    country={t.from} 
                   />
                   <span className={styles.arrow}>→</span>
-                  <ReactCountryFlag 
-                    countryCode={t.to} 
-                    svg
+                  <Flag 
+                    country={t.to} 
                   />
                 </div>
                 {

@@ -75,6 +75,8 @@
     position: relative;
     overflow: hidden;
     padding: 2rem 0;
+    --regularSlideWidth: calc(var(--d-colWidth-2) + var(--d-gutter));
+    --activeSlideWidth: calc(var(--d-colWidth-4) + var(--d-gutter));
   }
   .title {
     position: relative;
@@ -99,44 +101,45 @@
     height: auto;
     margin-bottom: 4rem;
   }
-  :global(.noswiper).blogslider {
-    width: var(--d-colWidth-8);
-  }
   .blogslider_wrapper :global(.slider-navbuttons) {
     position: absolute;
     top: calc(var(--fontsize-50) * 1.5);
     right: calc( var(--d-outer-margin) + var(--d-colWidth-1) + var(--d-gutter) ); 
   }
   .blogslider :global(.swiper-wrapper) {
-    left: calc(var(--d-outer-margin) + var(--d-colWidth-1) + 0.5 * var(--d-gutter) - 20vw);
-  }
-  :global(.noswiper).blogslider :global(.swiper-wrapper) {
-    left: calc(-.5 * var(--d-gutter));
+    left: calc(var(--d-outer-margin) + var(--d-colWidth-1) + 0.5 * var(--d-gutter) - var(--regularSlideWidth));
   }
   .blogslider :global(.swiper-slide) {
-    width: 20vw;
+    width: var(--regularSlideWidth);
     transition: var(--slidertransition);
-  }
-  :global(.noswiper).blogslider :global(.swiper-slide) {
-    width: calc( var(--d-colWidth-2) + 1 * var(--d-gutter) );
-  }
-  .blogslider:not(:global(.noswiper)) :global(.swiper-slide):nth-child(2) {
-    /* Needs to NOT be important to NOT override block style */
-    width: 40vw;
-  }
-  .blogslider:not(:global(.noswiper)) :global(.swiper-slide-next) {
-    /* Needs to be important to override block style */
-    width: 40vw !important; 
   }
   .blogslider :global(.swiper-slide-next) {
     transition: var(--slidertransition);
-
+    
     & .header_meta, & .header_meta :global(.pill) {
       font-size: calc( 2.2 * var(--fontsize-pill)); 
     }
     & .postcard_title {
       font-size: calc( 2.2 * var(--fontsize-20)); 
     }
+  }
+  /* NoSwiper */
+  :global(.noswiper).blogslider {
+    width: var(--d-colWidth-8);
+  }
+  :global(.noswiper).blogslider :global(.swiper-wrapper) {
+    left: calc(-.5 * var(--d-gutter));
+  }
+  :global(.noswiper).blogslider :global(.swiper-slide) {
+    width: calc( var(--d-colWidth-2) + 1 * var(--d-gutter) );
+  }
+  .blogslider:not(:global(.noswiper)) :global(.swiper-slide):nth-child(2) {
+    /* Needs to NOT be important to NOT override block style */
+    width: var(--activeSlideWidth);
+  }
+  .blogslider:not(:global(.noswiper)) :global(.swiper-slide-next) {
+    /* Needs to be important to override block style */
+    width: var(--activeSlideWidth) !important; 
   }
 
   .postcard_regular {

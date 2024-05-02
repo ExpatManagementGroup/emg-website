@@ -27,7 +27,7 @@ export default function BlogSlider( { blok }: { blok: any } ) {
       {/* <pre>{JSON.stringify(selectedBlogPosts, null, 2)}</pre> */}
       <Slider 
         className={styles.blogslider} 
-        slidesPerViewDesktop={5} 
+        slidesPerViewDesktop={5.7931833543} 
         slidesPerViewMobile={1.5} 
         sliderRef="blog"
         centeredSlides={false}
