@@ -252,6 +252,7 @@ export default function ContactUs( { blok }: { blok: any }) {
             aspectRatioDesktop='1.4570446735'
             aspectRatioMobile='1.5118110236'
             sizes='(min-width: 840px) 26vw, 90vw'  
+            nofade={true}
           />
           <div className={styles.switchermap_title}>
             <span className={styles.country}>Netherlands</span> Office
@@ -265,6 +266,7 @@ export default function ContactUs( { blok }: { blok: any }) {
             aspectRatioDesktop='1.4570446735'
             aspectRatioMobile='1.5118110236'
             sizes='(min-width: 840px) 26vw, 90vw'  
+            nofade={true}
           />
           <div className={styles.switchermap_title}>
             <span className={styles.country}>Belgium</span> Office
@@ -278,6 +280,7 @@ export default function ContactUs( { blok }: { blok: any }) {
             aspectRatioDesktop='1.4570446735'
             aspectRatioMobile='1.5118110236'
             sizes='(min-width: 840px) 26vw, 90vw'  
+            nofade={true}
           />
           <div className={styles.switchermap_title}>
             <span className={styles.country}>Germany</span> Office
