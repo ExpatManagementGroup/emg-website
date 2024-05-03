@@ -11,7 +11,6 @@ const HomeHero = ({ blok }: { blok: any }) => (
       loop 
       playsInline 
       preload="auto"
-      // poster="/assets/video/videostill.jpg"
       className={styles.video}>
       <source src='/assets/video/emg_homevideo.mp4' type="video/mp4" />
     </video>

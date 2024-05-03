@@ -10,7 +10,8 @@ export default function Picture( props: {
   width?: number,
   height?: number,
   noCrop?: boolean,
-  priority?: boolean
+  priority?: boolean,
+  nofade?: boolean
 } ) {
 
   if (props.noCrop) {
@@ -52,11 +53,11 @@ export default function Picture( props: {
           height={props.height || 1080*Math.ceil(Number(props.aspectRatioDesktop))}
           sizes={props.sizes ? props.sizes : '100vw'}
           priority={props.priority}
-          style={{
+          style={props.nofade ? {} : {
             opacity: '0',
             transition: 'opacity 0.3s ease-in-out'
-          }}
-          onLoad={(event) => {
+          } }
+          onLoad={props.nofade ? undefined : (event) => {
             const image = event.currentTarget as HTMLImageElement;
             image.style.opacity = '1';
           }}
@@ -111,11 +112,11 @@ export default function Picture( props: {
           height={props.height || 1080*Math.ceil(Number(props.aspectRatioDesktop))}
           sizes={props.sizes ? props.sizes : '100vw'}
           priority={props.priority}
-          style={{
+          style={props.nofade ? {} : {
             opacity: '0',
             transition: 'opacity 0.3s ease-in-out'
-          }}
-          onLoad={(event) => {
+          } }
+          onLoad={props.nofade ? undefined : (event) => {
             const image = event.currentTarget as HTMLImageElement;
             image.style.opacity = '1';
           }}

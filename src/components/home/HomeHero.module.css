@@ -13,7 +13,7 @@
     border-radius: 0 0 2.5vw 2.5vw;
     overflow: hidden;
     z-index: 1;
-    background-color: var(--EMG-Aero-Orange);
+    background-color: var(--EMG-Deep-Teal);
   }
   .video {
     position: absolute;
@@ -68,7 +68,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    background-color: var(--EMG-Aero-Orange);
+    background-color: var(--EMG-Deep-Teal);
   }
   .video {
     position: absolute;

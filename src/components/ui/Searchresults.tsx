@@ -29,6 +29,7 @@ export default async function Seachresults( { searchTerm }: { searchTerm: string
                     aspectRatioDesktop='1'
                     aspectRatioMobile='1'
                     sizes='(min-width: 840px) 10vw, 15vw'
+                    nofade={true}
                   />
                   <div className={styles.info}>
                     <h3 className={styles.title} dangerouslySetInnerHTML={{__html: highlightText(story.content.title, searchTerm)}}></h3>
