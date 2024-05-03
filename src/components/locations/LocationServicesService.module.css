@@ -90,7 +90,7 @@
     font-size: var(--fontsize-35);
     background-color: var(--EMG-Aero-Orange);
     border-radius: 50%;
-    pointer-events: none;
+    cursor: pointer;
     margin: 0 auto .5em auto;
   }
   .plus.open {

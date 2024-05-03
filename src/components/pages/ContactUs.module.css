@@ -67,6 +67,22 @@
     flex: 0 0 8.604vw;
     width: 8.604vw;
     height: 8.604vw;
+    position: relative;
+    z-index: 1;
+  }
+  .contactinfo > div:has( > :global(.icon_global)) {
+    position: relative;
+  }
+  .contactinfo > div:has( > :global(.icon_global)):after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: calc(8.604vw - 2px);
+    height: calc(8.604vw - 2px);
+    background-color: var(--EMG-Hazy-White);
+    border-radius: 50%;
+    z-index: 0;
   }
   .contact form {
     --formheight: 100%;
