@@ -7,18 +7,6 @@
     font-family: var(--font-agrandir);
     font-size: var(--fontsize-nav);
   }
-  /* .footer:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -1px;
-    width: calc(100% + 2px);
-    height: 31px;
-    background-color: var(--EMG-Hazy-White);
-    border: 1px solid var(--EMG-Deep-Teal);
-    border-top: none;
-    border-radius: 0 0 25px 25px;
-  } */
   .footer_logo {
     margin-top: 2em;
     width: 55vw;

@@ -353,9 +353,11 @@
     width: 100%;
     height: auto;
     position: relative;
+  }
+  .switchermap_image img {
     opacity: 0.2;
   }
-  [data-active="true"] .switchermap_image {
+  .switchermap[data-active="true"] .switchermap_image img{
     opacity: 1;
   }
   .switchermap_image img {

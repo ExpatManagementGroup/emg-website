@@ -2,10 +2,11 @@ import styles from './PageRelocationServices.module.css';
 import {render} from 'storyblok-rich-text-react-renderer';
 import FAQ from './ui/FAQModule';
 import Picture from './Picture';
+import { storyblokEditable } from '@storyblok/react';
 
 export default function PageRelocationServices( { blok }: { blok: any }) {
   return (
-    <div className={styles.services}>
+    <div className={styles.services} {...storyblokEditable(blok)}>
       <div className={styles.intro}>
         <Picture
           src={blok.icon.filename}

@@ -19,7 +19,7 @@
 }
 @media screen and (min-width:840px) {
 }
-.main > * > * > * {
+/* .main > * > * > * {
   transform-origin: top;
   animation: fadeIn .5s ease-out;
 }
@@ -30,5 +30,5 @@
   100% {
     opacity: 1;
   }
-}
+} */
 

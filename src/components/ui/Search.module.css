@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   top: 0;
-  right: 0;
+  right: .33em;
   height: 100%;
   padding: 0 1.66em;
   cursor: pointer;
@@ -123,6 +123,9 @@
   input[type="text"].input {
     background-color: var(--EMG-White);
     margin-bottom: 0;
+  }
+  input[type="text"].input:focus {
+    outline: 2px solid var(--EMG-Deep-Teal);
   }
   .input::placeholder {
     color: transparent;

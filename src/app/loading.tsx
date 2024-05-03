@@ -5,7 +5,7 @@ export default function Loading() {
   // You can add any UI inside Loading, including a Skeleton.
   return (
     <div className={styles.loading} >
-      <Logo hideLetters={false} className={styles.logo} />
+      <Logo hideLetters={true} className={styles.logo} />
     </div>
   )
 }

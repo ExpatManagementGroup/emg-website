@@ -17,6 +17,7 @@ export default function LocationHeroGlobal( { blok }: { blok: any }) {
         aspectRatioDesktop='0.841733871'
         aspectRatioMobile='1.2482582443'
         sizes='(min-width: 840px) 50vw, 100vw'
+        priority={true}
       />
       <div className={styles.content}>
         <h1 className={styles.title}>

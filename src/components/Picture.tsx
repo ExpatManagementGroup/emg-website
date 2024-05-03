@@ -15,7 +15,9 @@ export default function Picture( props: {
 
   if (props.noCrop) {
     return(
-      <picture className={props.className}>
+      <picture 
+        className={props.className}
+      >
         <source 
           media="(min-width: 840px)" 
           srcSet={`
@@ -50,6 +52,14 @@ export default function Picture( props: {
           height={props.height || 1080*Math.ceil(Number(props.aspectRatioDesktop))}
           sizes={props.sizes ? props.sizes : '100vw'}
           priority={props.priority}
+          style={{
+            opacity: '0',
+            transition: 'opacity 0.3s ease-in-out'
+          }}
+          onLoad={(event) => {
+            const image = event.currentTarget as HTMLImageElement;
+            image.style.opacity = '1';
+          }}
         />
       </picture>
     )
@@ -64,7 +74,9 @@ export default function Picture( props: {
   }
   else {
     return(
-      <picture className={props.className}>
+      <picture 
+        className={props.className}
+      >
         <source 
           media="(min-width: 840px)" 
           srcSet={`
@@ -99,6 +111,14 @@ export default function Picture( props: {
           height={props.height || 1080*Math.ceil(Number(props.aspectRatioDesktop))}
           sizes={props.sizes ? props.sizes : '100vw'}
           priority={props.priority}
+          style={{
+            opacity: '0',
+            transition: 'opacity 0.3s ease-in-out'
+          }}
+          onLoad={(event) => {
+            const image = event.currentTarget as HTMLImageElement;
+            image.style.opacity = '1';
+          }}
         />
       </picture>
     )
