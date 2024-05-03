@@ -114,6 +114,10 @@
   .morePosts {
     margin: 2rem var(--m-outer-margin-l);
   }
+  .morePosts_title {
+    margin: 0 var(--m-outer-margin-l);
+    font-size: var(--fontsize-25);
+  }
   .morePosts > * {
     margin: 1rem 0;
   }

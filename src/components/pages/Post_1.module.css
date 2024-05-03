@@ -87,7 +87,11 @@
     letter-spacing: -0.022em;
   }
   .morePosts {
-    margin: 2rem var(--m-outer-margin-l);
+    margin: 2rem 0;
+  }
+  .morePosts_title {
+    margin: 4rem 0 0 0 ;
+    font-size: var(--fontsize-25);
   }
   .morePosts > * {
     margin: 1rem 0;
