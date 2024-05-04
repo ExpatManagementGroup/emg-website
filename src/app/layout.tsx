@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
-import { ISbStoriesParams, getStoryblokApi, storyblokInit, apiPlugin } from "@storyblok/react/rsc";
+import { getStoryblokApi, storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import StoryblokProvider from "../components/StoryblokProvider";
 import { agrandir, reckless } from "../../styles/fonts";
 import "./globals.css";
 import Navigation from "../components/ui/Navigation";
 import Footer from "@/components/ui/Footer";
 import { draftMode } from "next/headers";
-import { Suspense } from "react";
-import Loading from "./loading";
 
 storyblokInit({
   accessToken: process.env.STORYBLOK_API_TOKEN,
@@ -45,9 +43,7 @@ export default async function RootLayout({
       <html lang="en">
         <body className={`${agrandir.variable} ${reckless.variable}`}>
           <Navigation navData={navData} />
-          <Suspense fallback={<Loading />}>
             {children}
-          </Suspense>
           { isEnabled && <div style={{
             'position': 'fixed',
             'bottom': '0',
