@@ -2,6 +2,7 @@ import styles from './PostCard.module.css'
 import FormattedDate from './ui/FormattedDate'
 import Button from './ui/Button'
 import Link from 'next/link'
+import Picture from './Picture'
 
 export default function PostCard(props: { 
     featured_image_url: string,
@@ -21,38 +22,14 @@ export default function PostCard(props: {
     return (
      <div className={`${styles.postcard} ${props.isFeature ? styles.postcard_featured : styles.postcard_regular}`}>
        <figure className={styles.featured_image}>
-        <picture>
-          <source 
-            media="(min-width: 840px)" 
-            srcSet={props.featured_image_url && `
-              ${props.featured_image_url}/m/640x320/filters:format(webp) 640w, 
-              ${props.featured_image_url}/m/750x375/filters:format(webp) 750w, 
-              ${props.featured_image_url}/m/828x414/filters:format(webp) 828w, 
-              ${props.featured_image_url}/m/1080x540/filters:format(webp) 1080w, 
-              ${props.featured_image_url}/m/1200x600/filters:format(webp) 1200w, 
-              ${props.featured_image_url}/m/1920x960/filters:format(webp) 1920w, 
-            `} 
-            sizes='70vw'
-          />
-          <source 
-            media="(max-width: 839.9px)" 
-            srcSet={props.featured_image_url && `
-              ${props.featured_image_url}/m/320x446/filters:format(webp) 320w, 
-              ${props.featured_image_url}/m/480x669/filters:format(webp) 480w, 
-              ${props.featured_image_url}/m/640x892/filters:format(webp) 640w, 
-              ${props.featured_image_url}/m/750x1044/filters:format(webp) 750w, 
-              ${props.featured_image_url}/m/828x1153/filters:format(webp) 828w, 
-              ${props.featured_image_url}/m/1080x1505/filters:format(webp) 1080w, 
-              ${props.featured_image_url}/m/1200x1672/filters:format(webp) 1200w, 
-            `} 
-            sizes='95vw'
-          />
-          <img
-            src={`${props.featured_image_url}/m/320x446/filters:format(jpg)`}
-            alt={props.featured_image_alt}
-            className={styles.featured_image_img}
-          />
-        </picture>
+        <Picture
+          src={props.featured_image_url}
+          aspectRatioDesktop="2"
+          aspectRatioMobile="0.7174887892"
+          alt={props.featured_image_alt}
+          sizes="(min-width:840px) 50vw, 100vw"
+          className={styles.featured_image_img}
+        />
        </figure>
        <div className={styles.postcard_info}>
          <h2 className={styles.postcard_title}>{props.title}</h2>
@@ -81,37 +58,14 @@ export default function PostCard(props: {
      <div className={`${styles.postcard} ${props.isFeature ? styles.postcard_featured : styles.postcard_regular}`}>
        <figure className={styles.featured_image}>
         <Link href={`/insights/${props.slug}`} >
-          <picture>
-            <source 
-              media="(min-width: 840px)" 
-              srcSet={props.featured_image_url && `
-                ${props.featured_image_url}/m/640x360/filters:format(webp) 640w, 
-                ${props.featured_image_url}/m/750x422/filters:format(webp) 750w, 
-                ${props.featured_image_url}/m/828x466/filters:format(webp) 828w, 
-                ${props.featured_image_url}/m/1080x608/filters:format(webp) 1080w, 
-                ${props.featured_image_url}/m/1200x675/filters:format(webp) 1200w, 
-                ${props.featured_image_url}/m/1920x1080/filters:format(webp) 1920w, 
-              `} 
-              sizes='20vw'
-            />
-            <source 
-              media="(max-width: 839.9px)" 
-              srcSet={props.featured_image_url && `
-                ${props.featured_image_url}/m/640x360/filters:format(webp) 640w, 
-                ${props.featured_image_url}/m/750x422/filters:format(webp) 750w, 
-                ${props.featured_image_url}/m/828x466/filters:format(webp) 828w, 
-                ${props.featured_image_url}/m/1080x608/filters:format(webp) 1080w, 
-                ${props.featured_image_url}/m/1200x675/filters:format(webp) 1200w, 
-                ${props.featured_image_url}/m/1920x1080/filters:format(webp) 1920w, 
-              `} 
-              sizes='95vw'
-            />
-            <img
-              src={`${props.featured_image_url}/m/320x446/filters:format(webp)`}
-              alt={props.featured_image_alt}
-              className={styles.featured_image_img}
-            />
-          </picture>
+          <Picture
+            src={props.featured_image_url}
+            aspectRatioDesktop="1.7777777778"
+            aspectRatioMobile="1.7777777778"
+            alt={props.featured_image_alt}
+            sizes="(min-width:840px) 50vw, 100vw"
+            className={styles.featured_image_img}
+          />
         </Link>
        </figure>
        <div className={styles.postcard_info}>
