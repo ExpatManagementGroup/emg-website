@@ -11,9 +11,9 @@ import Seachresults from "@/components/ui/Searchresults";
 import SearchresultsLoading from "@/components/ui/SearchresultsLoading";
 import { Suspense } from "react";
 import { Metadata, ResolvingMetadata } from 'next'
-// import InitSB from "@/components/initSB";
+import InitSB from "@/components/initSB";
 
-// InitSB();
+InitSB();
 
 type Props = {
   params: { slug: string }

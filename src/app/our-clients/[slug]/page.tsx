@@ -4,9 +4,9 @@ import styles from "../../page.module.css";
 import CCOtherCases from "@/components/clientCases/CCOtherCases";
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from 'next'
-// import InitSB from "@/components/initSB";
+import InitSB from "@/components/initSB";
 
-// InitSB();
+InitSB();
 
 export async function generateStaticParams() {
   const posts = await getStoryblokApi().get(`cdn/stories/`, {

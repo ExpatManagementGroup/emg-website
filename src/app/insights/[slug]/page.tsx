@@ -5,6 +5,9 @@ import Post_1 from "../../../components/pages/Post_1";
 import Post_2 from "../../../components/pages/Post_2"; 
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from 'next'
+import InitSB from "@/components/initSB";
+
+InitSB();
 
 export async function generateStaticParams() {
   const posts = await getStoryblokApi().get(`cdn/stories/`, {

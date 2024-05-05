@@ -76,7 +76,7 @@ export default async function Home() {
 
 async function fetchData() {
   const { isEnabled } = draftMode()
-  return storyblokApi.get(`cdn/stories/home`, {
+  return storyblokApi?.get(`cdn/stories/home`, {
     "version": isEnabled ? "draft" : "published",
     "resolve_relations": "blogPosts.posts"
   }, {
@@ -84,26 +84,26 @@ async function fetchData() {
   });
 }
 async function fetchBlogPostsData() {
-  return storyblokApi.get(`cdn/stories`, {
+  return storyblokApi?.get(`cdn/stories`, {
     "starts_with": "insights/",
     "is_startpage": false
   },)   
 }
 async function fetchTalentTestimonialData() {
-  return getStoryblokApi().get(`cdn/stories/`, {
+  return storyblokApi?.get(`cdn/stories/`, {
     "starts_with": "testimonials-clients/",
     "per_page": 5
   });
 }
 async function fetchClientsData() {
-  return getStoryblokApi().get(`cdn/stories/`, {
+  return storyblokApi?.get(`cdn/stories/`, {
     "starts_with": "our-clients/",
     "is_startpage": false
   });
 }
 async function fetchTopicData() {
   const storyblokApi = getStoryblokApi();
-  return storyblokApi.get(`cdn/datasource_entries`, {
+  return storyblokApi?.get(`cdn/datasource_entries`, {
     "datasource": "topics",
   });
 }
