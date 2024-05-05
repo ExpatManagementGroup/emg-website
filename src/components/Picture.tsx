@@ -1,4 +1,3 @@
-'use client';
 import Image from 'next/image';
 
 export default function Picture( props: {
@@ -12,7 +11,8 @@ export default function Picture( props: {
   height?: number,
   noCrop?: boolean,
   priority?: boolean,
-  nofade?: boolean
+  nofade?: boolean,
+  placeholder?: string
 } ) {
 
   if (props.noCrop) {
@@ -54,14 +54,8 @@ export default function Picture( props: {
           height={props.height || 1080*Math.ceil(Number(props.aspectRatioDesktop))}
           sizes={props.sizes ? props.sizes : '100vw'}
           priority={props.priority}
-          style={props.nofade ? {} : {
-            opacity: '0',
-            transition: 'opacity 0.3s ease-in-out'
-          } }
-          onLoad={props.nofade ? undefined : (event) => {
-            const image = event.currentTarget as HTMLImageElement;
-            image.style.opacity = '1';
-          }}
+          placeholder='blur'
+          blurDataURL={`${props.src}/m/20x0/filters:format(webp)/filters:blur(20)`}
         />
       </picture>
     )
@@ -113,14 +107,8 @@ export default function Picture( props: {
           height={props.height || 1080*Math.ceil(Number(props.aspectRatioDesktop))}
           sizes={props.sizes ? props.sizes : '100vw'}
           priority={props.priority}
-          style={props.nofade ? {} : {
-            opacity: '0',
-            transition: 'opacity 0.3s ease-in-out'
-          } }
-          onLoad={props.nofade ? undefined : (event) => {
-            const image = event.currentTarget as HTMLImageElement;
-            image.style.opacity = '1';
-          }}
+          placeholder='blur'
+          blurDataURL={`${props.src}/m/20x0/filters:format(webp)/filters:blur(20)`}
         />
       </picture>
     )
