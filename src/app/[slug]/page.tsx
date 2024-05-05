@@ -14,13 +14,6 @@ type Props = {
 }
 
 export async function generateStaticParams() {
-  // const posts = await getStoryblokApi().get(`cdn/stories/`, {
-  //   "content_type": "page"
-  // })
- 
-  // return posts.data.stories.map((post: any) => ({
-  //   slug: post.slug,
-  // }))
   return [
     { slug: 'immigration' },
     { slug: 'relocation' },
