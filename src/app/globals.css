@@ -293,8 +293,10 @@ input[type="checkbox"]:checked {
   justify-content: space-between;
 }
 
-main {
+.transition {
   min-height: 100vh;
+}
+main {
   animation: fadeIn .5s ease;
 }
 

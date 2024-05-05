@@ -59,7 +59,9 @@ export default async function RootLayout({
       <html lang="en">
       <body className={`${agrandir.variable} ${reckless.variable}`}>
         <Navigation navData={navData} />
-          {children}
+          <div className='transition'>
+            {children}
+          </div>
         <Footer navData={navData} />
       </body>
     </html>

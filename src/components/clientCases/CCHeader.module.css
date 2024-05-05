@@ -28,7 +28,7 @@
     grid-column: 3 / span 1;
     align-self: center;
   }
-  .backbutton {
+  .backbutton:global(.button) {
     grid-column: 1 / span 1;
     grid-row: 1 / span 1;
   }
@@ -107,7 +107,7 @@
     font-family: var(--font-agrandir);
     line-height: 0;
   }
-  .backbutton {
+  .backbutton:global(.button) {
     display: none;
   }
   .logos {
@@ -116,6 +116,7 @@
     height: var(--subtitleheight);
     grid-column: 1 / span 1;
     grid-row: 2 / span 1;
+    gap: 1.5rem;
   }
   .company_logo {
     width: 9vw;
