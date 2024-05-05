@@ -1,3 +1,4 @@
+'use client';
 import styles from './WorkWithUsJobFeed.module.css';
 import { render } from 'storyblok-rich-text-react-renderer';
 import { storyblokEditable } from '@storyblok/react';

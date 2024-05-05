@@ -1,17 +1,34 @@
 import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin} from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
+import { StoryblokComponent } from "@storyblok/react/rsc";
 import styles from "../page.module.css";
 import { draftMode } from 'next/headers'
 import { Metadata, ResolvingMetadata } from 'next'
+import InitSB from "@/components/initSB";
 
 
-storyblokInit({
-  accessToken: process.env.STORYBLOK_API_TOKEN,
-  use: [apiPlugin],
-});
+InitSB();
 
 type Props = {
   params: { slug: string }
+}
+
+export async function generateStaticParams() {
+  // const posts = await getStoryblokApi().get(`cdn/stories/`, {
+  //   "content_type": "page"
+  // })
+ 
+  // return posts.data.stories.map((post: any) => ({
+  //   slug: post.slug,
+  // }))
+  return [
+    { slug: 'immigration' },
+    { slug: 'relocation' },
+    { slug: 'our-story' },
+    { slug: 'our-culture' },
+    { slug: 'faq' },
+    { slug: 'contact-us' },
+  ]
 }
 
 export async function generateMetadata(
@@ -54,11 +71,17 @@ export default async function Slug({ params }: { params: { slug: string } }) {
       blogPosts: blogPosts.data.stories,
     }
   }
+  const { isEnabled } = draftMode()
 
   return (
     <>
     <main className={`${styles.main} ${thisSlug}`} {...storyblokEditable}>
+      { isEnabled && 
        <StoryblokStory story={slugData.data.story} />
+      }
+      { !isEnabled && 
+        <StoryblokComponent blok={slugData.data.story.content} />
+      }
     </main>
     </>
   );

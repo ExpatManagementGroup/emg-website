@@ -19,7 +19,7 @@ export default function WorkWithUsTestimonials( { blok }: { blok: any }) {
         {blok.testimonials?.map((testimonial: any, index: number) => {
           return (
           index % 2 === 0 ?
-            <div key={testimonial._uid} className={`${styles.testimonial} ${styles.small_img}`}>
+            <div key={index} className={`${styles.testimonial} ${styles.small_img}`}>
               <Picture
                 className={styles.image}
                 src={testimonial.content.image.filename}
@@ -40,7 +40,7 @@ export default function WorkWithUsTestimonials( { blok }: { blok: any }) {
               </div>
             </div>
           :
-            <div key={testimonial._uid} className={`${styles.testimonial} ${styles.large_img}`}>
+            <div key={index} className={`${styles.testimonial} ${styles.large_img}`}>
               <Picture
                 className={styles.image}
                 src={testimonial.content.image.filename}

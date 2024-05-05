@@ -4,11 +4,9 @@ import PostCard from "@/components/PostCard";
 import Events from "@/components/Events";
 import Pagination from "@/components/blog/Pagination";
 import { notFound } from "next/navigation";
+import InitSB from "@/components/initSB";
 
-storyblokInit({
-  accessToken: process.env.STORYBLOK_API_TOKEN,
-  use: [apiPlugin],
-});
+InitSB();
 
 export default async function Archive({ params }: { params: { slug: string } }) {
   const archivepage = Number(params.slug.slice(5));
@@ -38,26 +36,6 @@ export default async function Archive({ params }: { params: { slug: string } }) 
   return (
     <main className={styles.blogroll} {...storyblokEditable}>
       <h1 className={styles.archive_header}>Older Posts</h1>
-      {/* <Pagination pages={totalPages} prevPage={prevPage} nextPage={nextPage} /> */}
-      {/* <div className={styles.topics}>
-        { allTopicsOnce.map((topic: any, index: number) => {
-          let bgcolor = index === 0 ? 'Aero-Orange' :
-                        index === 1 ? 'Citrus' :
-                        index === 2 ? 'Ocean' :
-                        index === 3 ? 'Sorbet' :
-                        index === 4 ? 'Hazy-white' :
-                        index === 5 ? 'White' :
-                        index === 6 ? 'Ocean-Tone-3' : 'orange';
-          const thisTopic = allTopicsData.data.datasource_entries.find((entry: any) => entry.value === topic);
-          return (
-            <Link href={`/insights/topics/${topic}`} key={topic}>
-              <Pill bgcolor={`var(--EMG-${bgcolor}`}>
-                {thisTopic.name}
-              </Pill> 
-            </Link>
-          )
-        })}
-      </div> */}
       <div key={featuredStory.id} className={styles.blogroll_hero}>
         <PostCard
           featured_image_url={featuredStory.content.featured_image?.filename}

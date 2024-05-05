@@ -1,3 +1,4 @@
+'use client';
 import styles from './LocationServicesService.module.css';
 import { storyblokEditable } from '@storyblok/react';
 import Picture from '../Picture';

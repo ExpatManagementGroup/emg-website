@@ -5,7 +5,7 @@ import styles from "./Post_1.module.css";
 import FormattedDate from "../ui/FormattedDate";
 import Picture from "../Picture";
 
-const Post = ({ blok }: { blok: any }) => {
+const Post_1 = ({ blok }: { blok: any }) => {
 
   const thisTopicName = blok.topics?.find((topic: any) => topic.value === blok.topic)?.name || blok.topic
 
@@ -63,4 +63,4 @@ const Post = ({ blok }: { blok: any }) => {
   )
 };
  
-export default Post;
+export default Post_1;

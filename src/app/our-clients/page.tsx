@@ -1,13 +1,11 @@
-import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin} from "@storyblok/react/rsc";
+import { storyblokEditable, getStoryblokApi, StoryblokComponent } from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
 import styles from "../page.module.css";
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from 'next'
+import InitSB from "@/components/initSB";
 
-storyblokInit({
-  accessToken: process.env.STORYBLOK_API_TOKEN,
-  use: [apiPlugin],
-});
+InitSB();
 
 type Props = {
   params: { slug: string }
@@ -54,11 +52,16 @@ export default async function Slug({ params }: { params: { slug: string } }) {
       talentTestimonials: talentData.data.stories
     }
   }
-
+  const { isEnabled } = draftMode()
   return (
     <>
     <main className={`${styles.main} our_clients`} {...storyblokEditable}>
+       { isEnabled && 
        <StoryblokStory story={slugData.data.story} />
+      }
+      { !isEnabled &&
+        <StoryblokComponent blok={slugData.data.story.content} />
+      }
     </main>
     </>
   );

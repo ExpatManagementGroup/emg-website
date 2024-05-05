@@ -1,3 +1,4 @@
+'use client';
 import styles from './FAQLists.module.css';
 import FAQ from '../ui/FAQModule';
 import { storyblokEditable } from '@storyblok/react';

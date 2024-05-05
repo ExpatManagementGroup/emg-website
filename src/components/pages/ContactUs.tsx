@@ -1,3 +1,4 @@
+'use client';
 import styles from './ContactUs.module.css';
 import { useEffect, useState } from 'react';
 import Picture from '../Picture';

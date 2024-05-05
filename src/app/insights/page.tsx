@@ -1,4 +1,4 @@
-import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin} from "@storyblok/react/rsc";
+import { storyblokEditable, getStoryblokApi } from "@storyblok/react/rsc";
 import styles from "./page.module.css";
 import PostCard from "@/components/PostCard";
 import Events from "@/components/Events";
@@ -11,11 +11,9 @@ import Seachresults from "@/components/ui/Searchresults";
 import SearchresultsLoading from "@/components/ui/SearchresultsLoading";
 import { Suspense } from "react";
 import { Metadata, ResolvingMetadata } from 'next'
+import InitSB from "@/components/initSB";
 
-storyblokInit({
-  accessToken: process.env.STORYBLOK_API_TOKEN,
-  use: [apiPlugin],
-});
+InitSB();
 
 type Props = {
   params: { slug: string }

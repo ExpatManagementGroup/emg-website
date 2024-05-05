@@ -1,3 +1,4 @@
+'use client';
 import styles from './FAQ.module.css';
 import Button from './Button';
 import { render } from 'storyblok-rich-text-react-renderer';

@@ -1,14 +1,23 @@
-import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin} from "@storyblok/react/rsc";
+import { storyblokEditable, getStoryblokApi, StoryblokComponent } from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
 import styles from "../../page.module.css";
 import CCOtherCases from "@/components/clientCases/CCOtherCases";
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from 'next'
+import InitSB from "@/components/initSB";
 
-storyblokInit({
-  accessToken: process.env.STORYBLOK_API_TOKEN,
-  use: [apiPlugin],
-});
+InitSB();
+
+export async function generateStaticParams() {
+  const posts = await getStoryblokApi().get(`cdn/stories/`, {
+    "starts_with": "our-clients/",
+    "is_startpage": false
+  })
+   
+  return posts.data.stories.map((post: any) => ({
+    slug: post.slug,
+  }))
+}
 
 type Props = {
   params: { slug: string }
@@ -55,12 +64,22 @@ export default async function Slug({ params }: { params: { slug: string } }) {
       allTestimonials: fetchedTestimonials.data.stories || ['dbd']
     }
   }
-  
+  const { isEnabled } = draftMode()
   return (
     <>
     <main className={styles.main} {...storyblokEditable}>
-      <StoryblokStory story={page.data.story} />
-      <CCOtherCases stories={othercases.data.stories} />
+      { isEnabled && 
+        <>
+        <StoryblokStory story={page.data.story} />
+        <CCOtherCases stories={othercases.data.stories} />
+        </>
+      }
+      { !isEnabled &&
+        <>
+          <StoryblokComponent blok={page.data.story.content} />
+          <CCOtherCases stories={othercases.data.stories} />
+        </>
+      }
     </main>
     </>
   );

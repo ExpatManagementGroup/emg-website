@@ -1,6 +1,7 @@
+'use client';
 import { storyblokEditable } from "@storyblok/react/rsc";
 import styles from "./HomeStats.module.css";
-import { useEffect, useRef } from "react";
+import { use, useEffect, useRef } from "react";
 
 export default function HomeStats({ blok }: { blok: any }) {
 

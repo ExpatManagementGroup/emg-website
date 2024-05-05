@@ -2,25 +2,20 @@ import { storyblokEditable } from "@storyblok/react/rsc";
 import styles from "./HomeHero.module.css";
 import Button from "../ui/Button";
 import { render } from 'storyblok-rich-text-react-renderer';
-import { useEffect } from "react";
-
 
 const HomeHero = ({ blok }: { blok: any }) => { 
-  
-  useEffect(() => {
-    const video = document.querySelector('video') as HTMLVideoElement;
-    video.play();
-  }, []);
   
   return (
   <div {...storyblokEditable(blok)} className={`${styles.wrapper} home_hero`}>
     <video 
-      autoPlay={false}
+      autoPlay={true}
       muted 
       loop 
       playsInline 
+      poster="/assets/video/videostill.webp"
       preload="auto"
-      className={styles.video}>
+      className={styles.video}
+    >
       <source src='/assets/video/emg_homevideo.mp4' type="video/mp4" />
     </video>
     <div>

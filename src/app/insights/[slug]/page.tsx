@@ -1,14 +1,24 @@
-import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin, setComponents} from "@storyblok/react/rsc";
+import { storyblokEditable, getStoryblokApi, StoryblokComponent, setComponents} from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
 import styles from "./page.module.css";
 import Post_1 from "../../../components/pages/Post_1"; 
+import Post_2 from "../../../components/pages/Post_2"; 
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from 'next'
+import InitSB from "@/components/initSB";
 
-storyblokInit({
-  accessToken: process.env.STORYBLOK_API_TOKEN,
-  use: [apiPlugin],
-});
+InitSB();
+
+export async function generateStaticParams() {
+  const posts = await getStoryblokApi().get(`cdn/stories/`, {
+    "starts_with": "insights/",
+    "is_startpage": false,
+  })
+   
+  return posts.data.stories.map((post: any) => ({
+    slug: post.slug,
+  }))
+}
 
 type Props = {
   params: { slug: string }
@@ -47,6 +57,7 @@ export default async function Slug({ params }: { params: { slug: string } }) {
 
   setComponents({
     post_one: Post_1,
+    post_two: Post_2
   })  
 
   const postData = await fetchData(params.slug);
@@ -60,10 +71,16 @@ export default async function Slug({ params }: { params: { slug: string } }) {
       morePosts: morePostsData.data.stories
     }
   }
+  const { isEnabled } = draftMode()
   return (
     <>
     <main className={`${styles.main} ${postData.data.story.content.component}`} {...storyblokEditable}>
-      <StoryblokStory story={postData.data.story} />
+      { isEnabled && 
+        <StoryblokStory story={postData.data.story} />
+      }
+      { !isEnabled && 
+        <StoryblokComponent blok={postData.data.story.content} />
+      }
     </main>
     </>
   );

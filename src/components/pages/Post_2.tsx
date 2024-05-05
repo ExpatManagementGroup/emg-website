@@ -5,7 +5,7 @@ import styles from "./Post_2.module.css";
 import FormattedDate from "../ui/FormattedDate";
 import Picture from "../Picture";
 
-const Post = ({ blok }: { blok: any }) => {
+const Post_2 = ({ blok }: { blok: any }) => {
 
   const thisTopicName = blok.topics?.find((topic: any) => topic.value === blok.topic)?.name || blok.topic
 
@@ -60,7 +60,6 @@ const Post = ({ blok }: { blok: any }) => {
                 country={post.content?.country}
                 topicSlug={post.content?.topic}
                 topicName={blok.topics.find((entry: any) => entry.value === post.content?.topic).name}
-                // topicName={'hank'}
                 date={post.content?.date}
                 key={index}
                 slug={post.slug || '/'}
@@ -73,4 +72,4 @@ const Post = ({ blok }: { blok: any }) => {
   )
 };
  
-export default Post;
+export default Post_2;

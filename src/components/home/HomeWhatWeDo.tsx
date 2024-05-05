@@ -1,3 +1,4 @@
+'use client';
 import styles from "./HomeWhatWeDo.module.css";
 import Icon from "../ui/Icon";
 import Button from "../ui/Button";

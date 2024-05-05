@@ -1,13 +1,22 @@
-import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin} from "@storyblok/react/rsc";
+import { storyblokEditable, getStoryblokApi, StoryblokComponent } from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
 import styles from "../../page.module.css";
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from 'next'
+import InitSB from "@/components/initSB";
 
-storyblokInit({
-  accessToken: process.env.STORYBLOK_API_TOKEN,
-  use: [apiPlugin],
-});
+InitSB();
+
+export async function generateStaticParams() {
+  const posts = await getStoryblokApi().get(`cdn/stories/`, {
+    "starts_with": "our-people/",
+    "is_startpage": false
+  })
+   
+  return posts.data.stories.map((post: any) => ({
+    slug: post.slug,
+  }))
+}
 
 type Props = {
   params: { slug: string }
@@ -45,11 +54,16 @@ export async function generateMetadata(
 export default async function Slug({ params }: { params: { slug: string } }) {
 
   const employee = await fetchData(params.slug);
-
+  const { isEnabled } = draftMode()
   return (
     <>
     <main className={styles.main} {...storyblokEditable}>
-      <StoryblokStory story={employee.data.story} />
+      { isEnabled && 
+        <StoryblokStory story={employee.data.story} />
+      }
+      { !isEnabled &&
+        <StoryblokComponent blok={employee.data.story.content} />
+      }
     </main>
     </>
   );

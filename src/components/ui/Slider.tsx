@@ -1,4 +1,5 @@
-import { useRef, useEffect } from 'react';
+'use client';
+import { useEffect } from 'react';
 import styles from './Slider.module.css';
 import Swiper from 'swiper';
 import { Navigation, Pagination, Mousewheel } from 'swiper/modules';

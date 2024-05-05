@@ -1,3 +1,4 @@
+'use client';
 import styles from './OurStoryIntro.module.css';
 import Picture from '../Picture';
 import { render } from 'storyblok-rich-text-react-renderer';

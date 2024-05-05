@@ -1,3 +1,4 @@
+'use client';
 import styles from './HomeMembers.module.css';
 import Picture from '../Picture';
 import { storyblokEditable } from '@storyblok/react/rsc';

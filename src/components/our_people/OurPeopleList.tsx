@@ -1,3 +1,4 @@
+'use client';
 import styles from './OurPeopleList.module.css';
 import Picture from '../Picture';
 import Flag from '../ui/Flag';

@@ -1,13 +1,12 @@
 import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
+import { StoryblokComponent } from "@storyblok/react/rsc";
 import styles from "./page.module.css";
 import { draftMode } from 'next/headers'
 import { Metadata, ResolvingMetadata } from 'next'
+import InitSB from "@/components/initSB";
 
-storyblokInit({
-  accessToken: process.env.STORYBLOK_API_TOKEN,
-  use: [apiPlugin],
-});
+InitSB();
 
 const storyblokApi = getStoryblokApi();
 
@@ -60,10 +59,16 @@ export default async function Home() {
       topics: topics.data.datasource_entries
     }
   }
+  const { isEnabled } = draftMode()
   return (
     <>
     <main className={`${styles.main} home`} {...storyblokEditable}>
+      { isEnabled && 
        <StoryblokStory story={homeData.data.story} />
+      }
+      { !isEnabled &&
+        <StoryblokComponent blok={homeData.data.story.content} />
+      }
     </main>
     </>
   );

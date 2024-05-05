@@ -1,14 +1,23 @@
-import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin} from "@storyblok/react/rsc";
+import { storyblokEditable, getStoryblokApi, StoryblokComponent } from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
 import styles from "../../page.module.css";
 import WorkWithUsMoreJobs from "@/components/work_with_us/WorkWithUsMoreJobs";
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from 'next'
+import InitSB from "@/components/initSB";
 
-storyblokInit({
-  accessToken: process.env.STORYBLOK_API_TOKEN,
-  use: [apiPlugin],
-});
+InitSB();
+
+export async function generateStaticParams() {
+  const posts = await getStoryblokApi().get(`cdn/stories/`, {
+    "starts_with": "work-with-us/",
+    "is_startpage": false
+  })
+   
+  return posts.data.stories.map((post: any) => ({
+    slug: post.slug,
+  }))
+}
 
 type Props = {
   params: { slug: string }
@@ -47,12 +56,22 @@ export default async function Slug({ params }: { params: { slug: string } }) {
 
   const job = await fetchData(params.slug);
   const moreJobs = await fetchMoreJobs();
-
+  const { isEnabled } = draftMode()
   return (
     <>
     <main className={styles.main} {...storyblokEditable}>
-      <StoryblokStory story={job.data.story} />
-      <WorkWithUsMoreJobs jobs={moreJobs.data.stories} slug={params.slug} />
+      { isEnabled && 
+        <>
+          <StoryblokStory story={job.data.story} />
+          <WorkWithUsMoreJobs jobs={moreJobs.data.stories} slug={params.slug} />
+        </>
+      }
+      { !isEnabled &&
+        <>
+          <StoryblokComponent blok={job.data.story.content} />
+          <WorkWithUsMoreJobs jobs={moreJobs.data.stories} slug={params.slug} />
+        </>
+      }
     </main>
     </>
   );

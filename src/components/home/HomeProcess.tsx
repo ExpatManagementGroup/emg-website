@@ -1,3 +1,4 @@
+'use client';
 import styles from "./HomeProcess.module.css";
 import { render } from "storyblok-rich-text-react-renderer";
 import Button from "../ui/Button";
