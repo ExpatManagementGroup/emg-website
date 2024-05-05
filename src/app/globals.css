@@ -294,7 +294,8 @@ input[type="checkbox"]:checked {
 }
 
 main {
-  animation: fadeIn .3s ease;
+  min-height: 100vh;
+  animation: fadeIn .5s ease;
 }
 
 @keyframes fadeIn {
