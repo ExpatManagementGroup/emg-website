@@ -1,0 +1,38 @@
+.loading {
+  background-color: var(--EMG-Hazy-White);
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* animation: slideIn .5s ease-in-out; */
+}
+.logo {
+  width: 6vw;
+  height: auto;
+  color: var(--EMG-Aero-Orange);
+  animation: slideIn .5s ease-in-out 0s 1 running forwards, 
+             pulse 1s ease-in-out .5s infinite alternate forwards;
+}
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes slideIn {
+  0% {
+    clip-path: circle(0% at 50% 50%);
+  }
+  100% {
+    clip-path: circle(100% at 50% 50%);
+  }
+}

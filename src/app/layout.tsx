@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import { getStoryblokApi } from "@storyblok/react/rsc";
 import StoryblokProvider from "../components/StoryblokProvider";
-import StoryblokBridgeLoader from "@storyblok/react/rsc";
 import { agrandir, reckless } from "../../styles/fonts";
-import "./globals.css";
 import Navigation from "../components/ui/Navigation";
 import Footer from "@/components/ui/Footer";
 import { draftMode } from "next/headers";
 import InitSB from "@/components/initSB";
+import "./globals.css";
 
 InitSB();
 

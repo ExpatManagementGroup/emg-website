@@ -29,6 +29,7 @@
   }
   .faqlists {
     margin: 0 var(--m-outer-margin-l);
+    padding-bottom: 4rem;
   }
   .faqlists_lists {
     width: 100%;

@@ -1,4 +1,5 @@
 import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
+import { draftMode } from "next/headers";
 import Page from "./pages/Page";
 import PageHero from "./PageHero";
 import PageTextblock from "./PageTextblock";
@@ -111,10 +112,11 @@ const components = {
   location_text_and_image: LocationTextAndImage
 };
 
-export default function InitSB() {
+export default function InitSB(withBridge = true) {
   storyblokInit({
     accessToken: process.env.STORYBLOK_API_TOKEN,
     use: [apiPlugin],
-    components
+    components,
+    bridge: withBridge
   });
 }

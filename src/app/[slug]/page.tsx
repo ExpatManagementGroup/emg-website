@@ -1,13 +1,8 @@
-import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin} from "@storyblok/react/rsc";
-import StoryblokStory from "@storyblok/react/story";
-import { StoryblokComponent } from "@storyblok/react/rsc";
-import styles from "../page.module.css";
+import { storyblokEditable, getStoryblokApi, StoryblokComponent } from "@storyblok/react/rsc"
+import StoryblokStory from "@storyblok/react/story"
+import styles from "../page.module.css"
 import { draftMode } from 'next/headers'
 import { Metadata, ResolvingMetadata } from 'next'
-import InitSB from "@/components/initSB";
-
-
-InitSB();
 
 type Props = {
   params: { slug: string }
@@ -84,14 +79,14 @@ async function fetchSlugData(slug: string) {
   const { isEnabled } = draftMode()
 
   if ( slug === 'netherlands' || slug === 'belgium' || slug === 'germany' || slug === 'luxembourg' || slug === 'global') {
-    return getStoryblokApi().get(`cdn/stories/locations/${slug}`, { 
+    return getStoryblokApi()?.get(`cdn/stories/locations/${slug}`, { 
       version: isEnabled ? "draft" : "published"
     }, {
       cache: isEnabled ? 'no-store' : 'default'
     } );
   }
   else {
-    return getStoryblokApi().get(`cdn/stories/${slug}`, { 
+    return getStoryblokApi()?.get(`cdn/stories/${slug}`, { 
       version: isEnabled ? "draft" : "published"
     }, {
       cache: isEnabled ? 'no-store' : 'default'
@@ -99,7 +94,7 @@ async function fetchSlugData(slug: string) {
   }
 }
 async function fetchBlogPostsData() {
-  return getStoryblokApi().get(`cdn/stories`, {
+  return getStoryblokApi()?.get(`cdn/stories`, {
     "starts_with": "insights/",
     "is_startpage": false
   },)   
