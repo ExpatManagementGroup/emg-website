@@ -112,11 +112,10 @@ const components = {
   location_text_and_image: LocationTextAndImage
 };
 
-export default function InitSB(withBridge = true) {
+export default function InitSB() {
   storyblokInit({
     accessToken: process.env.STORYBLOK_API_TOKEN,
     use: [apiPlugin],
-    components,
-    bridge: withBridge
+    components
   });
 }
