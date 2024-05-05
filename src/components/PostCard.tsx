@@ -2,6 +2,7 @@ import styles from './PostCard.module.css'
 import FormattedDate from './ui/FormattedDate'
 import Button from './ui/Button'
 import Link from 'next/link'
+import Pill from './ui/Pill'
 import Picture from './Picture'
 
 export default function PostCard(props: { 
@@ -35,11 +36,11 @@ export default function PostCard(props: {
          <h2 className={styles.postcard_title}>{props.title}</h2>
          <div className={styles.header_meta}>
             { props.reading_time &&
-              <div className={`pill ${styles.readingtime}`}>{props.reading_time} min</div>
+              <Pill bgcolor="var(--EMG-Deep-Teal)" color="var(--EMG-White)" className={styles.readingtime}>{props.reading_time} min</Pill>
             }
-           <div className="pill">{props.country}</div>
+           <Pill>{props.country}</Pill>
            <Link href={`/insights/topics/${props.topicSlug}`} >
-              <div className="pill">{props.topicName}</div>
+              <Pill>{props.topicName}</Pill>
            </Link>
            <div className={styles.date}>
              <FormattedDate date={props.date} />
@@ -70,9 +71,9 @@ export default function PostCard(props: {
        </figure>
        <div className={styles.postcard_info}>
          <div className={styles.header_meta}>
-           <div className="pill">{props.country}</div>
+           <Pill>{props.country}</Pill>
            <Link href={`/insights/topics/${props.topicSlug}`} >
-            <div className="pill">{props.topicName}</div>
+            <Pill>{props.topicName}</Pill>
            </Link>
            <div className={styles.date}>
              <FormattedDate date={props.date} />

@@ -1,5 +1,4 @@
 import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
-import { draftMode } from "next/headers";
 import Page from "./pages/Page";
 import PageHero from "./PageHero";
 import PageTextblock from "./PageTextblock";

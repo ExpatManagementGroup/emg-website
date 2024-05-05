@@ -1,6 +1,6 @@
 import { storyblokEditable, StoryblokComponent } from "@storyblok/react/rsc";
  
-const Page = ({ blok }: { blok: any }) => (
+const CCPage = ({ blok }: { blok: any }) => (
   <>
   <div {...storyblokEditable(blok)}>
     {blok.body.map((nestedBlok: any) => { 
@@ -15,4 +15,4 @@ const Page = ({ blok }: { blok: any }) => (
   </>
 );
  
-export default Page;
+export default CCPage;

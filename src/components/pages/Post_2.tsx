@@ -4,6 +4,7 @@ import { render } from 'storyblok-rich-text-react-renderer';
 import styles from "./Post_2.module.css";
 import FormattedDate from "../ui/FormattedDate";
 import Picture from "../Picture";
+import Pill from "../ui/Pill";
 
 const Post_2 = ({ blok }: { blok: any }) => {
 
@@ -16,10 +17,10 @@ const Post_2 = ({ blok }: { blok: any }) => {
           <h1 className={styles.title}>{blok.title}</h1>
           <div className={styles.header_meta}>
             { blok.reading_time &&
-              <div className={`pill ${styles.readingtime}`}>{blok.reading_time} min</div>
+              <Pill bgcolor="var(--EMG-Deep-Teal)" color="var(--EMG-White)" className={styles.readingtime}>{blok.reading_time} min</Pill>
             }
-            <div className="pill">{blok.country}</div>
-            <div className="pill">{thisTopicName}</div>
+            <Pill>{blok.country}</Pill>
+            <Pill>{thisTopicName}</Pill>
             <div className={styles.date}><FormattedDate date={blok.date} /></div>
           </div>
         </div>

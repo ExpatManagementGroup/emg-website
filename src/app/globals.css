@@ -155,7 +155,6 @@ label {
   }
   &.button-bg-transparent {
     background-color: transparent;
-    color: var(--EMG-Deep-Teal);
   }
   &.button-bg-deep-teal {
     background-color: var(--EMG-Deep-Teal);
@@ -293,12 +292,18 @@ input[type="checkbox"]:checked {
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.pill {
-  display: inline-block;
-  padding: .5em 1em;
-  font-size: var(--fontsize-pill);
-  border: 1px solid;
-  border-radius: 2em;
+
+main {
+  animation: fadeIn .3s ease;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 body:after {

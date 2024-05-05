@@ -6,6 +6,7 @@ import Picture from '../Picture';
 import Link from 'next/link';
 import FormattedDate from '../ui/FormattedDate';
 import Button from '../ui/Button';
+import Pill from '../ui/Pill';
 
 export default function BlogSlider( { blok }: { blok: any } ) {
 
@@ -56,9 +57,9 @@ export default function BlogSlider( { blok }: { blok: any } ) {
               </figure>
               <div className={styles.postcard_info}>
                 <div className={styles.header_meta}>
-                  <div className="pill">{props.country}</div>
+                  <Pill>{props.country}</Pill>
                   <Link href={`/insights/topics/${props.topic}`} >
-                  <div className="pill">{thisTopicName}</div>
+                  <Pill>{thisTopicName}</Pill>
                   </Link>
                   <div className={styles.date}>
                     <FormattedDate date={props.date} />
