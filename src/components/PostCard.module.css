@@ -79,7 +79,11 @@
       overflow: hidden;
       transition: height 0.4s var(--bounce);
     }
+    & .featured_image picture,
     & .featured_image img {
+      width: 100%;
+      height: 100%;
+      display: block;
       object-fit: cover;
       transform: translateZ(0);
     }

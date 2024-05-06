@@ -1,4 +1,4 @@
-import Image from 'next/image';
+'use client';
 
 export default function Picture( props: {
   src: string,
@@ -47,15 +47,22 @@ export default function Picture( props: {
           `}
           sizes={props.sizes ? props.sizes : '100vw'}
         />
-        <Image 
-          src={props.src} 
+        <img 
+          src={`${props.src}/m/20x0/filters:format(webp):blur(5)`} 
           alt={props.alt}
           width={props.width || 1080}
           height={props.height || 1080*Math.ceil(Number(props.aspectRatioDesktop))}
           sizes={props.sizes ? props.sizes : '100vw'}
-          priority={props.priority}
-          placeholder='blur'
-          blurDataURL={`${props.src}/m/20x0/filters:format(webp)/filters:blur(20)`}
+          loading={props.priority ? 'eager' : 'lazy'}
+          style={{
+            opacity: props.nofade ? '1' : '0',
+          }}
+          onLoad={(e) => {
+            if (!props.nofade) { 
+              e.currentTarget.style.transition = 'opacity 0.5s' 
+              e.currentTarget.style.opacity = '1'
+            }
+          }}
         />
       </picture>
     )
@@ -64,7 +71,19 @@ export default function Picture( props: {
   if (props.src?.includes('.svg')) {
     return (
       <picture className={props.className}>
-        <img src={props.src} alt={props.alt} />
+        <img 
+          src={props.src} 
+          alt={props.alt} 
+          style={{
+            opacity: props.nofade ? '1' : '0',
+          }}
+          onLoad={(e) => {
+            if (!props.nofade) { 
+              e.currentTarget.style.transition = 'opacity 0.5s' 
+              e.currentTarget.style.opacity = '1'
+            }
+          }}
+        />
       </picture>
     )
   }
@@ -100,15 +119,22 @@ export default function Picture( props: {
           `}
           sizes={props.sizes ? props.sizes : '100vw'}
         />
-        <Image 
-          src={props.src} 
+        <img 
+          src={`${props.src}/m/20x0/filters:format(webp):blur(5)`} 
           alt={props.alt}
           width={props.width || 1080}
           height={props.height || 1080*Math.ceil(Number(props.aspectRatioDesktop))}
           sizes={props.sizes ? props.sizes : '100vw'}
-          priority={props.priority}
-          placeholder='blur'
-          blurDataURL={`${props.src}/m/20x0/filters:format(webp)/filters:blur(20)`}
+          loading={props.priority ? 'eager' : 'lazy'}
+          style={{
+            opacity: props.nofade ? '1' : '0',
+          }}
+          onLoad={(e) => {
+            if (!props.nofade) { 
+              e.currentTarget.style.transition = 'opacity 0.5s' 
+              e.currentTarget.style.opacity = '1'
+            }
+          }}
         />
       </picture>
     )

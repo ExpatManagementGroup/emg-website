@@ -293,22 +293,6 @@ input[type="checkbox"]:checked {
   justify-content: space-between;
 }
 
-.transition {
-  min-height: 100vh;
-}
-main {
-  animation: fadeIn .5s ease;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 body:after {
   /* content: ""; */
   pointer-events: none;

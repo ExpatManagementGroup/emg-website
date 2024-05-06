@@ -2,7 +2,7 @@
   .employee {
     padding-top: calc( 1.66 * var(--nav-height));
   }
-  .backbutton {
+  .backbutton:global(.button) {
     position: absolute;
     z-index: 1;
     margin: 1rem 2rem;
@@ -72,7 +72,7 @@
     padding-top: calc( 2 * var(--nav-height));
     gap: calc( 2 * var(--d-gutter) + var(--d-colWidth-1));
   }
-  .backbutton {
+  .backbutton:global(.button) {
     position: absolute;
     margin: 1rem;
   }
