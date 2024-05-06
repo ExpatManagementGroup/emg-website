@@ -20,7 +20,7 @@ export default function VideoHero( props: {
         opacity: 0,
         transition: 'opacity 1s ease-in-out'
       }}
-      onCanPlay={(e) => {
+      onLoadedMetadata={(e) => {
         const video = e.target as HTMLVideoElement;
         video.style.opacity = '1';
         video.play();
