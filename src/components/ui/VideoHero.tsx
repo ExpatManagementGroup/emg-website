@@ -22,8 +22,8 @@ export default function VideoHero( props: {
       }}
       onLoadedMetadata={(e) => {
         const video = e.target as HTMLVideoElement;
-        video.style.opacity = '1';
         video.play();
+        video.style.opacity = '1';
       }}
     >
       <source src={props.src} type="video/mp4" />

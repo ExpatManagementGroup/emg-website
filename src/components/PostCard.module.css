@@ -78,6 +78,7 @@
       border-radius: 1em;
       overflow: hidden;
       transition: height 0.4s var(--bounce);
+      background-color: var(--EMG-Ocean);
     }
     & .featured_image picture,
     & .featured_image img {
@@ -134,6 +135,7 @@
       width: 100%;
       height: 100%; 
       z-index: -1;
+      background-color: var(--EMG-Ocean);
     }
     & .featured_image a {
       display: block;
@@ -181,6 +183,7 @@
       border-radius: 1em;
       overflow: hidden;
       transition: height 0.4s cubic-bezier(.38,.24,.15,1.22);
+      background-color: var(--EMG-Ocean);
     }
     & .featured_image a {
       display: block;
