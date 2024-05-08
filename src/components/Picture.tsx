@@ -1,5 +1,7 @@
 'use client';
 
+import { useRef, useState, useEffect } from "react";
+
 export default function Picture( props: {
   src: string,
   aspectRatioDesktop: string,
@@ -14,6 +16,21 @@ export default function Picture( props: {
   nofade?: boolean,
   placeholder?: string
 } ) {
+
+  const [loaded, setLoaded] = useState(props.nofade ? true : false)
+
+  const image = useRef() as React.MutableRefObject<HTMLImageElement>
+
+  const imgStyles = {
+    transition: 'opacity 0.5s',
+    opacity: loaded ? '1' : '0',   
+  }
+
+  const handleLoad = () => setLoaded(true)
+
+  useEffect(() => {
+      if (image.current && image.current.complete) setLoaded(true)
+  }, [])
 
   if (props.noCrop) {
     return(
@@ -49,20 +66,13 @@ export default function Picture( props: {
         />
         <img 
           src={`${props.src}/m/20x0/filters:format(webp):blur(5)`} 
+          ref={image}
           alt={props.alt}
           width={props.width || 1080}
           height={props.height || 1080*Math.ceil(Number(props.aspectRatioDesktop))}
           sizes={props.sizes ? props.sizes : '100vw'}
           loading={props.priority ? 'eager' : 'lazy'}
-          style={{
-            opacity: props.nofade ? '1' : '0',
-          }}
-          onLoad={(e) => {
-            if (!props.nofade) { 
-              e.currentTarget.style.transition = 'opacity 0.5s' 
-              e.currentTarget.style.opacity = '1'
-            }
-          }}
+          style={imgStyles}
         />
       </picture>
     )
@@ -74,15 +84,8 @@ export default function Picture( props: {
         <img 
           src={props.src} 
           alt={props.alt} 
-          style={{
-            opacity: props.nofade ? '1' : '0',
-          }}
-          onLoad={(e) => {
-            if (!props.nofade) { 
-              e.currentTarget.style.transition = 'opacity 0.5s' 
-              e.currentTarget.style.opacity = '1'
-            }
-          }}
+          ref={image}
+          style={imgStyles}
         />
       </picture>
     )
@@ -121,20 +124,13 @@ export default function Picture( props: {
         />
         <img 
           src={`${props.src}/m/20x0/filters:format(webp):blur(5)`} 
+          ref={image}
           alt={props.alt}
           width={props.width || 1080}
           height={props.height || 1080*Math.ceil(Number(props.aspectRatioDesktop))}
           sizes={props.sizes ? props.sizes : '100vw'}
           loading={props.priority ? 'eager' : 'lazy'}
-          style={{
-            opacity: props.nofade ? '1' : '0',
-          }}
-          onLoad={(e) => {
-            if (!props.nofade) { 
-              e.currentTarget.style.transition = 'opacity 0.5s' 
-              e.currentTarget.style.opacity = '1'
-            }
-          }}
+          style={imgStyles}
         />
       </picture>
     )
