@@ -4,9 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --experimental-https",
-    "dev:production": "PUBLIC_ENV=production next dev --experimental-https",
     "build": "next build",
-    "build:production": "PUBLIC_ENV=production next build",
     "start": "next start",
     "lint": "next lint"
   },
