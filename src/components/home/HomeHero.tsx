@@ -9,17 +9,6 @@ const HomeHero = ({ blok }: { blok: any }) => {
   return (
   <div {...storyblokEditable(blok)} className={`${styles.wrapper} home_hero`}>
     <VideoHero src="/assets/video/emg_homevideo.mp4" className={styles.video} />
-    {/* <video 
-      autoPlay={true}
-      muted 
-      loop 
-      playsInline 
-      poster="/assets/video/videostill.webp"
-      preload="auto"
-      className={styles.video}
-    >
-      <source src='/assets/video/emg_homevideo.mp4' type="video/mp4" />
-    </video> */}
     <div>
       <h1 {...storyblokEditable(blok.hero)} className={styles.title}>{blok.hero_title_1}<span className='h_italics'>{blok.hero_title_2}</span></h1>
       <Button 
