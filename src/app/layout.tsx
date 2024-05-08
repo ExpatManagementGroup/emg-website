@@ -6,6 +6,7 @@ import Navigation from "../components/ui/Navigation";
 import Footer from "@/components/ui/Footer";
 import { draftMode } from "next/headers";
 import InitSB from "@/components/initSB";
+import Popup from "@/components/Popup";
 import "./globals.css";
 
 InitSB();
@@ -31,6 +32,7 @@ export default async function RootLayout({
 }: Readonly<{ children: React.ReactNode; }>) {
 
   const navData = await fetchNavData();
+  const popupData = await fetchPopupData();
   const { isEnabled } = draftMode();
 
   if (isEnabled) {
@@ -38,22 +40,25 @@ export default async function RootLayout({
       <StoryblokProvider>
         <html lang="en">
           <body className={`${agrandir.variable} ${reckless.variable}`}>
+            { popupData.data.story.content.display_popup && 
+              <Popup delay={popupData.data.story.content.delay} headline={popupData.data.story.content.headline} />
+            }
             <Navigation navData={navData} />
               {children}
             { isEnabled && <div style={{
               'position': 'fixed',
               'top': '200px',
               'left': '-100px',
-              'width': '424.264px',
+              'width': '424px',
               'textAlign': 'center',
               'background': 'var(--EMG-Sorbet)',
-              'color': 'var(--EMG-Aero-Orange',
+              'color': 'var(--EMG-Aero-Orange)',
               'borderRadius': '3px',
               'fontSize': '1.5rem',
               'fontWeight': 'bold',
               'fontFamily': 'sans-serif',
-              'zIndex': '1000',
               'padding': '.5em',
+              'zIndex': '1001',
               'transformOrigin': '0% 0%',
               'transform': 'rotate(-45deg)',
               'opacity': '0.95',
@@ -79,6 +84,11 @@ export default async function RootLayout({
 
 async function fetchNavData() {
   return getStoryblokApi().get(`cdn/stories/global-settings/navigation`, { 
+    version: "draft" 
+  } );
+}
+async function fetchPopupData() {
+  return getStoryblokApi().get(`cdn/stories/global-settings/popup-settings`, { 
     version: "draft" 
   } );
 }
