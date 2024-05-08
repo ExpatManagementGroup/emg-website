@@ -1,11 +1,11 @@
-import Workers from '../icons/Workers'
-import Relocation from '../icons/Relocation'
-import Immigration from '../icons/Immigration'
-import Checkmark from '../icons/Checkmark'
-import Certified from '../icons/Certified'
-import Phone from '../icons/Phone'
-import Email from '../icons/Email'
-import Global from '../icons/Global'
+import Workers from './icons/Workers'
+import Relocation from './icons/Relocation'
+import Immigration from './icons/Immigration'
+import Checkmark from './icons/Checkmark'
+import Certified from './icons/Certified'
+import Phone from './icons/Phone'
+import Email from './icons/Email'
+import Global from './icons/Global'
 
 export default function Icon( props: any){
   switch (props.name) {
