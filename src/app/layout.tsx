@@ -42,11 +42,21 @@ export default async function RootLayout({
               {children}
             { isEnabled && <div style={{
               'position': 'fixed',
-              'bottom': '0',
-              'right': '0',
-              'background': 'red',
-              'color': 'white',
+              'top': '200px',
+              'left': '-100px',
+              'width': '424.264px',
+              'textAlign': 'center',
+              'background': 'var(--EMG-Sorbet)',
+              'color': 'var(--EMG-Aero-Orange',
+              'borderRadius': '3px',
+              'fontSize': '1.5rem',
+              'fontWeight': 'bold',
+              'fontFamily': 'sans-serif',
               'zIndex': '1000',
+              'padding': '.5em',
+              'transformOrigin': '0% 0%',
+              'transform': 'rotate(-45deg)',
+              'opacity': '0.95',
             }}>Draft Mode</div>}
             <Footer navData={navData} />
           </body>
