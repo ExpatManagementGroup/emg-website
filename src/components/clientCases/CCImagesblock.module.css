@@ -1,0 +1,64 @@
+@media screen and (max-width:839.9px) {
+  .images {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 4rem 0;
+    padding-left: var(--m-outer-margin-s);
+  }
+  .image_1, .image_2 {
+    position: relative;
+    border-radius: 1rem;
+    border: 1px solid var(--EMG-Deep-Teal);
+    overflow: hidden;
+  }
+  .image_1 {
+    aspect-ratio: 1.2660944206;
+    width: 66vw;
+  }
+  .image_2 {
+    aspect-ratio: 0.3531353135;
+    width: 24.883vw;
+  }
+  .image_1 img, .image_2 img {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+@media screen and (min-width:840px) {
+  .images {
+    display: flex;
+    justify-content: space-between;
+    width: var(--d-colWidth-10);
+    margin: 4rem auto;
+  }
+  .image_1, .image_2 {
+    position: relative;
+    border-radius: 1rem;
+    border: 1px solid var(--EMG-Deep-Teal);
+    overflow: hidden;
+  }
+  .image_1 {
+    aspect-ratio: 1.7811158798;
+    width: 49.404vw;
+  }
+  .image_2 {
+    aspect-ratio: 0.9372937294;
+    width: 35.119vw;
+  }
+  .image_1 img, .image_2 img {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translateZ(0);
+  }
+}
