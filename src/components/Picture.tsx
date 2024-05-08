@@ -64,7 +64,8 @@ export default function Picture( props: {
           `}
           sizes={props.sizes ? props.sizes : '100vw'}
         />
-        <img 
+        <img
+          onLoad={handleLoad} 
           src={`${props.src}/m/20x0/filters:format(webp):blur(5)`} 
           ref={image}
           alt={props.alt}
@@ -81,7 +82,8 @@ export default function Picture( props: {
   if (props.src?.includes('.svg')) {
     return (
       <picture className={props.className}>
-        <img 
+        <img
+          onLoad={handleLoad} 
           src={props.src} 
           alt={props.alt} 
           ref={image}
@@ -122,7 +124,8 @@ export default function Picture( props: {
           `}
           sizes={props.sizes ? props.sizes : '100vw'}
         />
-        <img 
+        <img
+          onLoad={handleLoad} 
           src={`${props.src}/m/20x0/filters:format(webp):blur(5)`} 
           ref={image}
           alt={props.alt}
