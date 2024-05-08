@@ -1,0 +1,37 @@
+@media screen and (max-width:839.9px) {
+  .textblock {
+    margin: 4rem auto;
+    padding: 0 var(--m-outer-margin-l);
+  }
+  .textblock > * {
+    margin-bottom: 1rem;
+  }
+  .textblock p {
+    font-size: var(--fontsize-18);
+  }
+  .textblock h3 {
+    font-size: var(--fontsize-25);
+  }
+}
+@media screen and (min-width:840px) {
+  .textblock {
+    width: var(--d-colWidth-10);
+    margin: 4rem auto;
+  }
+  .textblock > * {
+    margin-bottom: 1.5rem;
+  }
+  .textblock p {
+    font-size: var(--fontsize-18);
+  }
+  .textblock h3 {
+    font-size: var(--fontsize-25);
+  }
+  .right {
+    padding-left: calc(var(--d-gutter) + var(--d-colWidth-4));
+  }
+  .left {
+    padding-left: calc(var(--d-gutter) + var(--d-colWidth-1));
+    padding-right: calc(var(--d-gutter) + var(--d-colWidth-3));
+  }
+}
