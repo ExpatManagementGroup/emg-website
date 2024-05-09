@@ -63,8 +63,8 @@
 }
 @media screen and (min-width: 840px){
   .wrapper {
-    width: 100%;
-    height: 97svh;
+    width: 100vw;
+    height: 56.2499999993vw;
     position: relative;
     display: flex;
     flex-direction: column;
