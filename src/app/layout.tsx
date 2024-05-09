@@ -40,7 +40,7 @@ export default async function RootLayout({
       <StoryblokProvider>
         <html lang="en">
           <body className={`${agrandir.variable} ${reckless.variable}`}>
-            { popupData.data.story.content.display_popup && 
+            {popupData.data.story.content.display_popup &&
               <Popup delay={popupData.data.story.content.delay} headline={popupData.data.story.content.headline} />
             }
             <Navigation navData={navData} />
@@ -73,6 +73,9 @@ export default async function RootLayout({
     return (
       <html lang="en">
       <body className={`${agrandir.variable} ${reckless.variable}`}>
+        {popupData.data.story.content.display_popup &&
+          <Popup delay={popupData.data.story.content.delay} headline={popupData.data.story.content.headline} />
+        }
         <Navigation navData={navData} />
           {children}
         <Footer navData={navData} />

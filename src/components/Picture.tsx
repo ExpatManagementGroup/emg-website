@@ -21,7 +21,7 @@ export default function Picture( props: {
 
   const image = useRef() as React.MutableRefObject<HTMLImageElement>
 
-  const imgStyles = {
+  const imgStyles = props.nofade ? {} : {
     transition: 'opacity 0.5s',
     opacity: loaded ? '1' : '0',   
   }

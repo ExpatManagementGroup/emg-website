@@ -18,11 +18,15 @@ export default function Popup( props: {
   }
 
   useEffect(() => {
-    if (sessionStorage.getItem("emgNewsletterSeen") === null || sessionStorage.getItem("emgNewsletterSeen") === "false"){
+    if (!sessionStorage.getItem("emgNewsletterSeen")){
+      console.log("Popup will open in " + delay + "ms");
       setTimeout(() => {
         setOpen(true);
       }, delay)
     } 
+    else {
+      console.log("SessionStorage set: " + sessionStorage.getItem("emgNewsletterSeen") );
+    }
   }, [delay])
 
   if (open) {
