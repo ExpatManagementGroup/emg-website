@@ -61,6 +61,7 @@ export default async function RootLayout({
               'zIndex': '1001',
               'transformOrigin': '0% 0%',
               'transform': 'rotate(-45deg)',
+              'boxShadow': '0 0 10px rgba(0,0,0,0.5)',
               'opacity': '0.95',
             }}>Draft Mode</div>}
             <Footer navData={navData} />
