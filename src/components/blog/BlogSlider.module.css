@@ -121,10 +121,10 @@
     transition: var(--slidertransition);
     
     & .header_meta, & .header_meta :global(.pill) {
-      font-size: calc( 2.2 * var(--fontsize-pill)); 
+      font-size: calc( 2 * var(--fontsize-pill)); 
     }
     & .postcard_title {
-      font-size: calc( 2.2 * var(--fontsize-20)); 
+      font-size: calc( 2 * var(--fontsize-20)); 
     }
   }
   /* NoSwiper */
