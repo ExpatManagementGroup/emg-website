@@ -63,13 +63,13 @@ export default async function Slug({ params }: { params: { slug: string } }) {
       { isEnabled && 
         <>
           <StoryblokStory story={job.data.story} />
-          <WorkWithUsMoreJobs jobs={moreJobs.data.stories} slug={params.slug} />
+          <WorkWithUsMoreJobs jobs={moreJobs.data.stories} slug={params.slug} morejobsheader={job.data.story.content.morejobs_headline} />
         </>
       }
       { !isEnabled &&
         <>
           <StoryblokComponent blok={job.data.story.content} />
-          <WorkWithUsMoreJobs jobs={moreJobs.data.stories} slug={params.slug} />
+          <WorkWithUsMoreJobs jobs={moreJobs.data.stories} slug={params.slug} morejobsheader={job.data.story.content.morejobs_headline} />
         </>
       }
     </main>
