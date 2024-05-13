@@ -8,6 +8,19 @@ import { storyblokEditable } from '@storyblok/react';
 
 export default function LocationHero( { blok }: { blok: any }) {
   const variantclass = blok.variant === 'global' ? styles.global : styles.country;
+
+  const hashlink = () => {
+    if (blok.flag === 'LU' || blok.flag === 'BE') {
+      return `belux`
+    }
+    else if (blok.flag) {
+      return `${blok.flag}`
+    }
+    else {
+      return ''
+    }
+  }
+
   return (
     <section className={styles.hero} {...storyblokEditable(blok)}>
       <Picture
@@ -30,7 +43,7 @@ export default function LocationHero( { blok }: { blok: any }) {
           }
           <Button
             type="Link"
-            href={`/contact-us#${blok.flag}`}
+            href={`/contact-us#${hashlink()}`}
             text='Reach Out'
             className={styles.button}
           />
