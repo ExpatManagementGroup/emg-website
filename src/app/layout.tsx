@@ -32,6 +32,7 @@ export default async function RootLayout({
 }: Readonly<{ children: React.ReactNode; }>) {
 
   const navData = await fetchNavData();
+  const footerData = await fetchFooterData();
   const popupData = await fetchPopupData();
   const { isEnabled } = draftMode();
 
@@ -64,7 +65,7 @@ export default async function RootLayout({
               'boxShadow': '0 0 10px rgba(0,0,0,0.5)',
               'opacity': '0.95',
             }}>Draft Mode</div>}
-            <Footer navData={navData} />
+            <Footer navData={navData} footerData={footerData} />
           </body>
         </html>
       </StoryblokProvider>
@@ -79,7 +80,7 @@ export default async function RootLayout({
         }
         <Navigation navData={navData} />
           {children}
-        <Footer navData={navData} />
+        <Footer navData={navData} footerData={footerData} />
       </body>
     </html>
     );
@@ -88,6 +89,11 @@ export default async function RootLayout({
 
 async function fetchNavData() {
   return getStoryblokApi().get(`cdn/stories/global-settings/navigation`, { 
+    version: "draft" 
+  } );
+}
+async function fetchFooterData() {
+  return getStoryblokApi().get(`cdn/stories/global-settings/footer`, { 
     version: "draft" 
   } );
 }
