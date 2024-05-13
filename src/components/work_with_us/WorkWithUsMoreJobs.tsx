@@ -3,10 +3,10 @@ import Button from '../ui/Button';
 import Pill from '../ui/Pill';
 import Link from 'next/link';
 
-export default function WorkWithUsMoreJobs( props: { jobs: any, slug: string}) {
+export default function WorkWithUsMoreJobs( props: { jobs: any, slug: string, morejobsheader?: string}) {
   return (
     <div className={styles.morejobs}>
-      <h2 className={styles.morejobsheader}>Other roles we’re looking for</h2>
+      <h2 className={styles.morejobsheader}>{props.morejobsheader ? props.morejobsheader : `Other roles we’re looking for`}</h2>
       <div className={styles.morejobs_jobs}>
         {props.jobs.map((job: any) => {
           if (job.slug !== props.slug) {
