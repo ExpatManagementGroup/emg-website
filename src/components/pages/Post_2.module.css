@@ -28,6 +28,8 @@
     margin-left: 1em;
   }
   .title {
+    line-height: 1;
+
     font-size: var(--fontsize-30);
     font-family: var(--font-reckless);
     letter-spacing: -0.01em;
@@ -61,8 +63,9 @@
   }
   .content ul, .content ol {
     margin-bottom: var(--space);
+    margin-left: 1.5em;
   }
-  .content p a {
+  .content a {
     color: var(--EMG-Aero-Orange);
     text-decoration: underline;
   }
@@ -165,6 +168,8 @@
     border-color: var(--EMG-Deep-Teal);
   }
   .title {
+    line-height: 1;
+    margin-bottom: .2em;
     font-size: var(--fontsize-60);
     font-family: var(--font-reckless);
     letter-spacing: -0.005em;
@@ -201,7 +206,7 @@
     margin-bottom: var(--space);
     margin-left: 1.5em;
   }
-  .content p a {
+  .content a {
     color: var(--EMG-Aero-Orange);
     text-decoration: underline;
   }
