@@ -39,15 +39,32 @@
     padding-right: var(--m-outer-margin-l);
     padding-bottom: var(--m-outer-margin-l);
   }
-  .content h2, .content h3 {
-    font-size: var(--fontsize-25);
+  .content h2, .content h3, .content h4 {
+    font-size: var(--fontsize-30);
     font-family: var(--font-reckless);
     font-weight: 500;
     margin-bottom: var(--space);
   }
+  .content h3 {
+    font-size: var(--fontsize-25);
+  }
+  .content h4 {
+    font-size: var(--fontsize-20);
+  }
   .content p {
     font-size: var(--fontsize-20);
     margin-bottom: var(--space);
+  }
+  .content li > p {
+    font-size: var(--fontsize-20);
+    margin-bottom: 0;
+  }
+  .content ul, .content ol {
+    margin-bottom: var(--space);
+  }
+  .content p a {
+    color: var(--EMG-Aero-Orange);
+    text-decoration: underline;
   }
   .content blockquote {
     position: relative;
@@ -154,19 +171,39 @@
     margin-bottom: .2em;
   }
   .content {
-    margin-left: calc( var(--d-colWidth-3) + var(--d-gutter));
-    width: var(--d-colWidth-4);
-    --space: 2.5vw;
+    flex: 0 0 calc(var(--d-colWidth-5) + var(--d-outer-margin));
+    padding-top: calc( 2 * var(--nav-height));
+    padding-left: calc(var(--d-colWidth-1) + var(--d-gutter));
+    padding-right: var(--d-outer-margin);
+    --space: 1.5vw;
   }
-  .content h2, .content h3 {
+  .content h2, .content h3, .content h4 {
     font-size: 1.488vw;
     font-family: var(--font-reckless);
     font-weight: 500;
     margin-bottom: var(--space);
   }
+  .content h3 {
+    font-size: 1.288vw;
+  }
+  .content h4 {
+    font-size: 1vw;
+  }
   .content p {
     font-size: 0.892vw;
     margin-bottom: var(--space);
+  }
+  .content li > p {
+    font-size: 0.892vw;
+    margin-bottom: 0;
+  }
+  .content ul, .content ol {
+    margin-bottom: var(--space);
+    margin-left: 1.5em;
+  }
+  .content p a {
+    color: var(--EMG-Aero-Orange);
+    text-decoration: underline;
   }
   .content blockquote {
     position: relative;
