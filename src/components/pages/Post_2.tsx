@@ -49,7 +49,7 @@ const Post_2 = ({ blok }: { blok: any }) => {
       <div className={styles.content}>
         {render(blok.content_below)}
       </div>
-      {blok.morePosts[0] && (
+      {blok.morePosts && (
         <section className={styles.morePostsSection}>
           <h3 className={styles.morePosts_title}>Read next:</h3>
           <div className={styles.morePosts}>
