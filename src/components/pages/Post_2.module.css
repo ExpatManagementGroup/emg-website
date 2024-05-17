@@ -65,7 +65,7 @@
     margin-bottom: var(--space);
     margin-left: 1.5em;
   }
-  .content a {
+  .content > :not(.morePostsSection) a {
     color: var(--EMG-Aero-Orange);
     text-decoration: underline;
   }
@@ -206,7 +206,7 @@
     margin-bottom: var(--space);
     margin-left: 1.5em;
   }
-  .content a {
+  .content > :not(.morePostsSection) a {
     color: var(--EMG-Aero-Orange);
     text-decoration: underline;
   }
