@@ -57,7 +57,7 @@ export default async function TopicsPosts(props: { params: { slug: string } }) {
             title={featuredStory.content.title}
             country={featuredStory.content.country}
             topicSlug={featuredStory.content.topic}
-            topicName={allTopicsData.data.datasource_entries.find((entry: any) => entry.value === featuredStory.content.topic).name}
+            topicName={allTopicsData.data.datasource_entries.find((entry: any) => entry.value === featuredStory.content.topic)?.name}
             date={featuredStory.content.date}
             slug={featuredStory.slug}
             isFeature={true}
@@ -80,7 +80,7 @@ export default async function TopicsPosts(props: { params: { slug: string } }) {
                 title={story.content.title}
                 country={story.content.country}
                 topicSlug={story.content.topic}
-                topicName={allTopicsData.data.datasource_entries.find((entry: any) => entry.value === story.content.topic).name}
+                topicName={allTopicsData.data.datasource_entries.find((entry: any) => entry.value === story.content.topic)?.name}
                 date={story.content.date}
                 slug={story.slug}
               />
