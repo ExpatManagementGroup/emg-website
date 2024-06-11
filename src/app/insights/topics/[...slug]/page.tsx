@@ -72,7 +72,6 @@ export default async function TopicsPosts(props: { params: { slug: string } }) {
         { filteredStories.map((story: any, index: number) => {
           if (index !== 0) {
             return (
-              <>
               <PostCard
                 key={story.id}
                 featured_image_url={story.content.featured_image.filename}
@@ -84,7 +83,6 @@ export default async function TopicsPosts(props: { params: { slug: string } }) {
                 date={story.content.date}
                 slug={story.slug}
               />
-              </>
           )
           }
         })}
