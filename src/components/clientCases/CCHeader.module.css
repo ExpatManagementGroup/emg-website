@@ -37,6 +37,11 @@
     height: 20vw;
     position: relative;
   }
+  .company_logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
   .emglogo {
     margin: 0;
     margin-left: 1em;
@@ -52,8 +57,8 @@
   }
   .fromTo .flag { 
     font-size: var(--fontsize-15);
-    width: 2.666em;
-    height: 2.666em;
+    width: calc(2.9666em + 2px);
+    height: calc(2.9666em + 2px);
     line-height: 0;
     border-radius: 50%;
     overflow: hidden;
@@ -61,7 +66,7 @@
     border: 1px solid var(--EMG-Deep-Teal);
     margin-right: .5em;
   }
-  .fromTo .flag:first-child { 
+  .fromTo .flag:first-child:has( + .flag) { 
     margin-right: -1.333em;
   }
   .services {
@@ -122,6 +127,11 @@
     width: 9vw;
     height: 6vw;
     position: relative;
+    }
+  .company_logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
   .emglogo {
     margin: 0;
@@ -138,8 +148,9 @@
     align-items: center;
   }
   .fromTo .flag { 
-    width: var(--subtitleheight);
-    height: var(--subtitleheight);
+    font-size: var(--fontsize-15);
+    width: calc(2.9666em + 2px);
+    height: calc(2.9666em + 2px);
     line-height: 0;
     border-radius: 50%;
     overflow: hidden;
@@ -147,7 +158,7 @@
     border: 1px solid var(--EMG-Deep-Teal);
     margin-right: .5em;
   }
-  .fromTo .flag:first-child { 
+  .fromTo .flag:first-child:has( + .flag) { 
     margin-right: calc(-0.33 * var(--subtitleheight));
   }
   .services {

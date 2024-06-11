@@ -29,13 +29,16 @@ export default function CCHeader( { blok }: { blok: any }) {
         </h1>
         <Button className={styles.backbutton} type="Link" href='/our-clients' text="←" arrow='none' />
         <div className={styles.logos}>
-          <figure className={styles.company_logo}>
-            <Image 
-              src={blok.case_company_logo.filename}
-              alt={blok.case_company_logo.alt}
-              fill={true}
-            />
-          </figure>
+          <Picture
+            className={styles.company_logo}
+            src={blok.case_company_logo.filename}
+            alt={blok.case_company_logo.alt}
+            sizes="(min-width: 840px) 25vw, 9vw"
+            aspectRatioDesktop='1.5'
+            aspectRatioMobile='1.25'
+            noCrop={true}
+            priority={true}
+          />
           <Logo hideLetters className={styles.emglogo} />
         </div>
         <div className={styles.fromTo}>
@@ -50,17 +53,19 @@ export default function CCHeader( { blok }: { blok: any }) {
                 }}
               />
           </span>
-          <span className={styles.flag}>
-              <ReactCountryFlag 
-                countryCode={blok.move_to}
-                svg
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover'
-                }}
-              />
-          </span>
+          { blok.move_to &&
+            <span className={styles.flag}>
+                <ReactCountryFlag 
+                  countryCode={blok.move_to}
+                  svg
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover'
+                  }}
+                />
+            </span>
+          }
           <Button className={styles.button} type="Link" href='/contact-us' text="Start your journey" />
         </div>
         <div className={styles.services}>
