@@ -176,10 +176,8 @@
     margin-bottom: .2em;
   }
   .content {
-    flex: 0 0 calc(var(--d-colWidth-5) + var(--d-outer-margin));
-    padding-top: calc( 2 * var(--nav-height));
-    padding-left: calc(var(--d-colWidth-1) + var(--d-gutter));
-    padding-right: var(--d-outer-margin);
+    width: var(--d-colWidth-4);
+    margin-left: calc(var(--d-colWidth-3) + var(--d-gutter));
     --space: 1.5vw;
   }
   .content h2, .content h3, .content h4 {
