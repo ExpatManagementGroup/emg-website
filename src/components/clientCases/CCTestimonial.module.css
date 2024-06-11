@@ -5,6 +5,7 @@
     display: grid;
     grid-template-columns: auto;
     gap: 1rem;
+    margin-bottom: 3em;
   }
   .title {
     text-align: center;
@@ -58,10 +59,10 @@
 }
 @media screen and (min-width:840px) {
   .testimonial {
-    width: var(--d-colWidth-10);
-    margin: 0 auto;
+    width: var(--d-colWidth-8);
+    margin: 0 auto 4em auto;
     display: grid;
-    grid-template-columns: var(--d-colWidth-4) var(--d-colWidth-6);
+    grid-template-columns: var(--d-colWidth-4) var(--d-colWidth-4);
     gap: var(--d-gutter);
   }
   .title {
@@ -93,7 +94,7 @@
   }
   .quote {
     position: relative;
-    grid-column: 2 / span 1;
+    grid-column: 1 / span 2;
     grid-row: 2 / span 1;
     border-radius: 2rem;
     overflow: hidden;

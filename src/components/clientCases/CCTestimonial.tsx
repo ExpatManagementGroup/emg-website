@@ -6,7 +6,7 @@ export default function CCTestimonial( { blok }: { blok: any }) {
   return (
     <div className={styles.testimonial} {...storyblokEditable(blok)}>
       <div className={styles.title}>{blok.title}</div>
-      <div className={styles.image}>
+      {/* <div className={styles.image}>
         <Picture 
           src={blok.image.filename} 
           aspectRatioDesktop='1.204'
@@ -14,7 +14,7 @@ export default function CCTestimonial( { blok }: { blok: any }) {
           alt={blok.image.alt}
           sizes='(min-width: 840px) 30vw, 95vw'
         />
-      </div>
+      </div> */}
       <div className={styles.quote}>
         <div className={styles.quote_text}>
           {blok.quote}
