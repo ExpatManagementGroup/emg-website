@@ -85,7 +85,7 @@ export default async function Home({searchParams}:{searchParams?: {
           return (
             <Link href={`/insights/topics/${topic}`} key={topic}>
               <Pill bgcolor={`var(--EMG-${bgcolor}`}>
-                {thisTopic ? thisTopic.name : 'no topic'}
+                {thisTopic.name ? thisTopic.name : 'no topic'}
               </Pill> 
             </Link>
           )
@@ -105,7 +105,8 @@ export default async function Home({searchParams}:{searchParams?: {
           title={featuredStory.content.title}
           country={featuredStory.content.country}
           topicSlug={featuredStory.content.topic}
-          topicName={allTopicsData.data.datasource_entries.find((entry: any) => entry.value === featuredStory.content.topic)?.name}
+          // topicName={allTopicsData.data.datasource_entries.find((entry: any) => entry.value === featuredStory.content.topic)?.name}
+          topicName="no topic"
           date={featuredStory.content.date}
           slug={featuredStory.slug}
           isFeature={true}
@@ -119,6 +120,8 @@ export default async function Home({searchParams}:{searchParams?: {
       <div className={styles.post_list}>
         { data.stories.map((story: any, index: number) => {
           if (index !== 0) {
+            const hasTopic = allTopicsData.data.datasource_entries.find((topic: any) => topic.value === story.content.topic)
+            const thisTopicName = hasTopic ? hasTopic.name : 'no topic'
             return (
               <PostCard
                 key={story.id}
@@ -127,7 +130,8 @@ export default async function Home({searchParams}:{searchParams?: {
                 title={story.content.title}
                 country={story.content.country}
                 topicSlug={story.content.topic}
-                topicName={allTopicsData.data.datasource_entries.find((entry: any) => entry.value === story.content.topic)?.name}
+                // topicName={allTopicsData.data.datasource_entries.find((entry: any) => entry.value === story.content.topic)?.name}
+                topicName={thisTopicName}
                 date={story.content.date}
                 slug={story.slug}
                 reading_time={story.content.reading_time}

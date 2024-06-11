@@ -42,20 +42,24 @@ const Post_1 = ({ blok }: { blok: any }) => {
           <section className={styles.morePostsSection}>
             <h4 className={styles.morePosts_title}>Read next:</h4>
             <div className={styles.morePosts}>
-              {blok.morePosts.map((post: ISbStoriesParams, index: number) => (
-                <PostCard 
-                  featured_image_alt={post.content?.featured_image?.alt}
-                  featured_image_url={post.content?.featured_image?.filename}
-                  title={post.content?.title}
-                  country={post.content?.country}
-                  topicSlug={post.content?.topic}
-                  topicName={blok.topics.find((entry: any) => entry.value === post.content?.topic).name}
-                  // topicName={'hank'}
-                  date={post.content?.date}
-                  key={index}
-                  slug={post.slug || '/'}
-                />
-              ))}
+              {blok.morePosts.map((post: ISbStoriesParams, index: number) => { 
+                const hasTopic = blok.topics?.find((topic: any) => topic.value === post.content?.topic)
+                const thisTopicName = hasTopic ? hasTopic.name : 'no topic'
+                return (
+                  <PostCard 
+                    featured_image_alt={post.content?.featured_image?.alt}
+                    featured_image_url={post.content?.featured_image?.filename}
+                    title={post.content?.title}
+                    country={post.content?.country}
+                    topicSlug={post.content?.topic}
+                    topicName={thisTopicName}
+                    // topicName={'hank'}
+                    date={post.content?.date}
+                    key={index}
+                    slug={post.slug || '/'}
+                  />
+                )
+              })}
             </div>
           </section>
         )}

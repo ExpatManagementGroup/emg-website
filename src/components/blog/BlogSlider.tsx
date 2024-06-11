@@ -38,7 +38,7 @@ export default function BlogSlider( { blok }: { blok: any } ) {
         {selectedBlogPosts?.map((story: any, index: number) => {
           const props = story.content
           const thisTopic = blok.alltopics?.find((topic: any) => topic.value === props.topic)
-          const thisTopicName = thisTopic ? thisTopic.name : props.topic
+          const thisTopicName = thisTopic ? thisTopic.name : 'no topic'
           // const isInBlokTopics = blok.topics?.find((topic: any) => topic === props.topic)
           // if (!isInBlokTopics) return null
           return (
