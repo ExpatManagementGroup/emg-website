@@ -13,6 +13,7 @@ export async function generateStaticParams() {
   const posts = await getStoryblokApi().get(`cdn/stories/`, {
     "starts_with": "insights/",
     "is_startpage": false,
+    "version": "published",
   })
    
   return posts.data.stories.map((post: any) => ({

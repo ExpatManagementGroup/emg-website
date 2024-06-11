@@ -30,14 +30,14 @@ export default function CCClientSlide( props: {
     return (
       <div className={styles.client_slide}>
         <div className={styles.quotationmark}>“</div>
-        <Picture
+        {/* <Picture
           className={styles.image}
           src={content?.image?.filename}
           aspectRatioDesktop='0.74'
           aspectRatioMobile='0.74'
           alt={content?.image?.alt}
           sizes='(min-width: 840px) 3vw, 12vw'
-        />
+        /> */}
         <div className={styles.quote}>{content?.quote}</div>
         <figure className={styles.logo}>
           <Image 

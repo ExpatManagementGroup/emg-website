@@ -86,23 +86,27 @@ async function fetchData() {
 async function fetchBlogPostsData() {
   return storyblokApi.get(`cdn/stories`, {
     "starts_with": "insights/",
-    "is_startpage": false
+    "is_startpage": false,
+    "version": "published",
   },)   
 }
 async function fetchTalentTestimonialData() {
   return storyblokApi.get(`cdn/stories/`, {
     "starts_with": "testimonials-clients/",
-    "per_page": 5
+    "per_page": 5,
+    "version": "published"
   });
 }
 async function fetchClientsData() {
   return storyblokApi.get(`cdn/stories/`, {
     "starts_with": "our-clients/",
-    "is_startpage": false
+    "is_startpage": false,
+    "version": "published"
   });
 }
 async function fetchTopicData() {
   return storyblokApi.get(`cdn/datasource_entries`, {
     "datasource": "topics",
+    "version": "published"
   });
 }

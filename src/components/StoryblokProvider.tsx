@@ -4,7 +4,7 @@ import { ReactNode } from "react"; // Import ReactNode type
 import components from "./storyblokComponents";
 
 storyblokInit({
-  accessToken: process.env.STORYBLOK_API_TOKEN  || 'NULL',
+  accessToken: process.env.STORYBLOK_API_TOKEN  || process.env.NEXT_PUBLIC_STORYBLOK_API_TOKEN,
   apiOptions: {
     region: 'eu'
   },

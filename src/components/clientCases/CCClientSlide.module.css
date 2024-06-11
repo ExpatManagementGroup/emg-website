@@ -1,6 +1,6 @@
 @media screen and (max-width:839.9px) {
   .client_slide {
-    padding: 1em;
+    padding: 1.5rem;
     border: 1px solid var(--EMG-Deep-Teal);
     border-radius: 1rem;
     margin: 1rem .25rem;
@@ -9,7 +9,8 @@
     display: grid;
     position: relative;
     overflow: hidden;
-    grid-template-columns: 15% 15% auto 40% ;
+    grid-template-columns: 5% 25% auto 40% ;
+    grid-template-rows: auto 1fr;
   }
   .image {
     grid-column: 1 / span 1;
@@ -34,6 +35,8 @@
     color: var(--EMG-Deep-Teal);
     position: relative;
     padding-left: .5em;
+    height: calc(100% - 1em);
+    overflow-y: scroll;
   }
   .quotationmark {
     grid-column: 1 / span 1;
@@ -121,7 +124,7 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
-    object-position: center bottom;
+    object-position: left bottom;
   }
   .button {
     grid-column: 4 / span 1;

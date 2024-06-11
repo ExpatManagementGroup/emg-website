@@ -85,7 +85,7 @@ export default async function Home({searchParams}:{searchParams?: {
           return (
             <Link href={`/insights/topics/${topic}`} key={topic}>
               <Pill bgcolor={`var(--EMG-${bgcolor}`}>
-                {thisTopic.name ? thisTopic.name : 'no topic'}
+                {thisTopic ? thisTopic.name : 'no topic'}
               </Pill> 
             </Link>
           )

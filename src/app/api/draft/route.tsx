@@ -1,14 +1,10 @@
 // route handler enabling draft mode
 import { draftMode, cookies } from 'next/headers'
-import { redirect } from 'next/navigation'
 import { getStoryblokApi, storyblokInit, apiPlugin } from '@storyblok/react/rsc'
 
 storyblokInit({
-  accessToken: process.env.STORYBLOK_API_TOKEN || 'NULL',
-  use: [apiPlugin],
-  apiOptions: {
-    region: 'eu'
-  }
+  accessToken: process.env.STORYBLOK_API_TOKEN || process.env.NEXT_PUBLIC_STORYBLOK_API_TOKEN,
+  use: [apiPlugin]
 });
  
 export async function GET(request: Request) {
@@ -18,7 +14,7 @@ export async function GET(request: Request) {
   const slug = searchParams.get('slug')
 
   //Check if the secret is correct and next parameters are present
-  if (secret !== process.env.STORYBLOK_PREVIEW_TOKEN) {
+  if (secret !== process.env.STORYBLOK_PREVIEW_TOKEN && secret !== process.env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN ) {
     return new Response(`Unauthorized you buffoon`, { status: 401 })
   }
   let searchslug = slug
@@ -70,5 +66,5 @@ export async function GET(request: Request) {
   // } else {
   //   redirect(`/${post.full_slug}`)
   // }
-  return new Response('Draft mode enabled, please switch back to the editing URL, you should see a little red \'draft mode\' in the lower right of the screen', { status: 200 })
+  return new Response('Draft mode enabled, please switch back to the editing URL, you should see a little red \'draft mode\' in the top left of the screen', { status: 200 })
 }

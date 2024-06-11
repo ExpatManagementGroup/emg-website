@@ -19,7 +19,7 @@
   }
   .grid {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: .25rem;
     width: 76%;
     position: relative;
@@ -37,10 +37,10 @@
     font-size: var(--fontsize-20);
   }
   .name {
-    grid-column: 1 / span 1;
+    grid-column: 1 / span 2;
     grid-row: 1 / span 1;
   }
-  .fromTo {
+  /* .fromTo {
     grid-column: 2 / span 1;
     grid-row: 1 / span 1;
     padding: 0.75rem;
@@ -62,11 +62,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+  } */
   .logo {
     grid-column: 3 / span 1;
     grid-row: 1 / span 1;
-    padding: 0.75rem;
   }
   .quote {
     grid-column: 1 / span 3;
@@ -82,13 +81,17 @@
     padding: 1.5rem;
   }
   .logo {
-    width: 20vw;
-    height: auto;
+    height: calc(2.25 * var(--fontsize-20));
     display: block;
+    position: relative;
+    padding: 0;
   }
   .logo img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    position: absolute;
+    object-fit: contain;
+    padding: 0.5rem;
   }
   .bgimage {
     position: absolute;
@@ -135,7 +138,7 @@
   }
   .grid {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: .5rem;
     width: 76%;
     position: relative;
@@ -154,10 +157,10 @@
     font-size: var(--fontsize-25);
   }
   .name {
-    grid-column: 1 / span 1;
+    grid-column: 1 / span 2;
     grid-row: 1 / span 1;
   }
-  .fromTo {
+  /* .fromTo {
     grid-column: 2 / span 1;
     grid-row: 1 / span 1;
     padding: 0.75rem;
@@ -179,21 +182,29 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+  } */
   .logo {
     grid-column: 3 / span 1;
     grid-row: 1 / span 1;
     padding: 0.75rem;
-    width: 100px;
+    /* width: 100px; */
     display: flex;
     justify-content: center;
     height: calc(2.25* var(--fontsize-25));
     font-size: var(--fontsize-25);
+    overflow: hidden;
+    position: relative;
+    }
+  .logo img {
+    position: absolute;
+    padding: 1rem;
+    object-fit: contain;
   }
   .quote {
     grid-column: 1 / span 3;
     grid-row: 2 / span 1;
     line-height: 1;
+    height: auto;
   }
   .name {
     font-family: var(--font-reckless);

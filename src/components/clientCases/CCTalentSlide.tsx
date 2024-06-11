@@ -26,7 +26,7 @@ export default function CCTalent( props:{
                 <div className={styles.name}>
                   {t.client_name}
                 </div>
-                <div className={styles.fromTo}>
+                {/* <div className={styles.fromTo}>
                   <Flag 
                     country={t.from} 
                   />
@@ -34,7 +34,7 @@ export default function CCTalent( props:{
                   <Flag 
                     country={t.to} 
                   />
-                </div>
+                </div> */}
                 {
                   t.client_logo?.filename && (
                     <picture className={styles.logo} >
