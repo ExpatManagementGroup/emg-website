@@ -85,7 +85,7 @@ export default async function Home({searchParams}:{searchParams?: {
           return (
             <Link href={`/insights/topics/${topic}`} key={topic}>
               <Pill bgcolor={`var(--EMG-${bgcolor}`}>
-                {thisTopic.name ? thisTopic.name : 'no topic'}
+                {thisTopic ? thisTopic.name : 'no topic'}
               </Pill> 
             </Link>
           )
@@ -105,8 +105,11 @@ export default async function Home({searchParams}:{searchParams?: {
           title={featuredStory.content.title}
           country={featuredStory.content.country}
           topicSlug={featuredStory.content.topic}
-          // topicName={allTopicsData.data.datasource_entries.find((entry: any) => entry.value === featuredStory.content.topic)?.name}
-          topicName="no topic"
+          topicName={
+            allTopicsData.data.datasource_entries.find((entry: any) => entry.value === featuredStory.content.topic) ?
+            allTopicsData.data.datasource_entries.find((entry: any) => entry.value === featuredStory.content.topic).name :
+            "no topic"
+          }
           date={featuredStory.content.date}
           slug={featuredStory.slug}
           isFeature={true}
