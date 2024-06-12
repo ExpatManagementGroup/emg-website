@@ -61,8 +61,23 @@ export default async function Slug({ params }: { params: { slug: string } }) {
       { isEnabled && 
         <StoryblokStory story={employee.data.story} />
       }
-      { !isEnabled &&
+      { !isEnabled && employee.data.story.content.title !== '404' &&
         <StoryblokComponent blok={employee.data.story.content} />
+      }
+      { !isEnabled && employee.data.story.content.title === '404' &&
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+          width: '100vw',
+          textAlign: 'center'
+      
+        }}>
+          <h2 style={{ marginBottom: '1rem' }}>This post is unpublished or it was deleted.</h2>
+          <p>Try viewing it in <strong>Draft Mode</strong> maybe? If you publish it it will start showing up in live.</p>
+        </div>
       }
     </main>
     </>
@@ -72,9 +87,32 @@ export default async function Slug({ params }: { params: { slug: string } }) {
 async function fetchData(slug: string) {
   const { isEnabled } = draftMode()
   const storyblokApi = getStoryblokApi();
-  return storyblokApi.get(`cdn/stories/our-people/${slug}`, {
+  const result = storyblokApi.get(`cdn/stories/our-people/${slug}`, {
     "version": isEnabled ? "draft" : "published"
   }, {
     cache: isEnabled ? 'no-store' : 'default'
+  }).then(response => {
+    return {
+      data: response.data,
+      headers: response.headers,
+    }
+  }).catch((error) => {
+    return {
+      data: {
+        story: {
+          content: {
+            title: '404',
+            description: 'Page not found',
+            featured_image: {
+              filename: 'https://a.storyblok.com/f/39866/1200x630/1b2f3c7c5e/placeholder.jpg'
+            }
+          }
+        }
+      },
+      headers: {
+        status: 404
+      }
+    };
   });
+  return result;
 }

@@ -13,7 +13,6 @@ export async function generateStaticParams() {
   const posts = await getStoryblokApi().get(`cdn/stories/`, {
     "starts_with": "insights/",
     "is_startpage": false,
-    "version": "published",
   })
    
   return posts.data.stories.map((post: any) => ({
@@ -36,8 +35,8 @@ export async function generateMetadata(
   // fetch data
   const pagedata = await fetchData(id)
   const metadata = {
-    title: pagedata.data.story.content.title,
-    description: pagedata.data.story.content.description,
+    title: pagedata ? pagedata.data.story.content.title : '',
+    description: pagedata ? pagedata.data.story.content.description : '',
     ogimage: pagedata.data.story.content.featured_image.filename ? `${pagedata.data.story.content.featured_image.filename}/m/1200x630/smart/filters:format(jpg)` : '',
   }
  
@@ -79,8 +78,23 @@ export default async function Slug({ params }: { params: { slug: string } }) {
       { isEnabled && 
         <StoryblokStory story={postData.data.story} />
       }
-      { !isEnabled && 
+      { !isEnabled && postData.data.story.content.title !== '404'&&
         <StoryblokComponent blok={postData.data.story.content} />
+      } 
+      { !isEnabled && postData.data.story.content.title === '404' &&
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        width: '100vw',
+        textAlign: 'center'
+      
+      }}>
+        <h2 style={{ marginBottom: '1rem' }}>This post is unpublished or it was deleted.</h2>
+        <p>Try viewing it in <strong>Draft Mode</strong> maybe? If you publish it it will start showing up in live.</p>
+      </div>
       }
     </main>
     </>
@@ -90,11 +104,34 @@ export default async function Slug({ params }: { params: { slug: string } }) {
 async function fetchData(slug: string) {
   const isEnabled = draftMode().isEnabled;
   const storyblokApi = getStoryblokApi();
-  return storyblokApi.get(`cdn/stories/insights/${slug}`, { 
+  let result = storyblokApi.get(`cdn/stories/insights/${slug}`, { 
     version: isEnabled ? "draft" : "published"
   }, {
     cache: isEnabled ? 'no-store' : 'default'
-  });
+  }).then(response => {
+    return {
+      data: response.data,
+      headers: response.headers,
+    }
+  }).catch((error) => {
+    return {
+      data: {
+        story: {
+          content: {
+            title: '404',
+            description: 'Page not found',
+            featured_image: {
+              filename: 'https://a.storyblok.com/f/39866/1200x630/1b2f3c7c5e/placeholder.jpg'
+            }
+          }
+        }
+      },
+      headers: {
+        status: 404
+      }
+    };
+  })
+  return result;
 }
 async function fetchTopicData() {
   const storyblokApi = getStoryblokApi();
@@ -110,7 +147,7 @@ async function fetchMorePostsData(slug: string) {
     'is_startpage': false,
     'excluding_slugs': `insights/${slug}`,
     'per_page': 2,
-    'version': isEnabled ? "draft" : "published",
+    'version': "published",
   }, {
     cache: isEnabled ? 'no-store' : 'default'
   });
