@@ -195,14 +195,20 @@
     font-size: 0.892vw;
     margin-bottom: var(--space);
   }
+  .content li {
+    margin-bottom: 0.5em;
+  }
   .content li > p {
     font-size: 0.892vw;
-    margin-bottom: 0;
+    margin-bottom: 0.5em;
   }
   .content ul, .content ol {
     margin-bottom: var(--space);
     margin-left: 1.5em;
   }
+  /* .content ul > ul, .content ol > ol, .content ul > ol, .content ol > ul {
+    margin-bottom: 0;
+  } */
   .content > :not(.morePostsSection) a {
     color: var(--EMG-Aero-Orange);
     text-decoration: underline;
