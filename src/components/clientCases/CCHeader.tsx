@@ -33,7 +33,7 @@ export default function CCHeader( { blok }: { blok: any }) {
             className={styles.company_logo}
             src={blok.case_company_logo.filename}
             alt={blok.case_company_logo.alt}
-            sizes="(min-width: 840px) 25vw, 9vw"
+            sizes="(min-width: 840px) 9vw, 25vw"
             aspectRatioDesktop='1.5'
             aspectRatioMobile='1.25'
             noCrop={true}
@@ -42,17 +42,19 @@ export default function CCHeader( { blok }: { blok: any }) {
           <Logo hideLetters className={styles.emglogo} />
         </div>
         <div className={styles.fromTo}>
-          <span className={styles.flag}>
-              <ReactCountryFlag 
-                countryCode={blok.move_from}
-                svg
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover'
-                }}
-              />
-          </span>
+          {blok.move_from && 
+            <span className={styles.flag}>
+                <ReactCountryFlag 
+                  countryCode={blok.move_from}
+                  svg
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover'
+                  }}
+                />
+            </span>
+          }
           { blok.move_to &&
             <span className={styles.flag}>
                 <ReactCountryFlag 
