@@ -47,11 +47,35 @@
   .bio {
     width: calc(100% - 2 * var(--m-outer-margin-l) ); 
     margin: 0 auto 3em auto;
+    --space: 6vw;
   }
   .bio p {
     font-size: var(--fontsize-18);
     line-height: 1.1;
     margin-bottom: 1em;
+  }
+  .bio blockquote {
+    position: relative;
+  }
+  .bio blockquote:before{
+    content: "“";
+    position: relative;
+    font-size: 37.674vw;
+    float: left;
+    top: .3em;
+    left: -0.05em;
+    margin-right: -.2em;
+    line-height: 0.3;
+    width: 0.625em;
+    color: var(--EMG-Aero-Orange);
+  }
+  .bio blockquote p {
+    font-family: var(--font-reckless);
+    font-style: italic;
+    font-weight: 500;
+    font-size: var(--fontsize-35);
+    margin: 2em 0;
+    letter-spacing: -0.022em;
   }
   .nonbutton {
     font-size: 3.023vw;
@@ -108,10 +132,34 @@
     align-items: center;
     margin-bottom: 2em;
   }
+  .bio {
+    --space: 1.5vw;
+  }
   .bio p {
     font-size: var(--fontsize-18);
     line-height: 1.1;
     margin-bottom: 1em;
+  }
+  .bio blockquote {
+    position: relative;
+  }
+  .bio blockquote:before{
+    content: "“";
+    position: absolute;
+    font-size: 9.661vw;
+    top: 0;
+    right: calc(100% - 0.125em);
+    line-height: .9;
+    width: 0.625em;
+    height: 100%;
+    color: var(--EMG-Aero-Orange);
+  }
+  .bio blockquote p {
+    font-family: var(--font-reckless);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 2.083vw;
+    margin-bottom: var(--space);
   }
   .nonbutton {
     font-size: var(--fontsize-15);
