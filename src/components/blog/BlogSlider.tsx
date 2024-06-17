@@ -38,12 +38,12 @@ export default function BlogSlider( { blok }: { blok: any } ) {
         {selectedBlogPosts?.map((story: any, index: number) => {
           const props = story.content
           const thisTopic = blok.alltopics?.find((topic: any) => topic.value === props.topic)
-          const thisTopicName = thisTopic ? thisTopic.name : 'no topic'
+          const thisTopicName = thisTopic ? thisTopic.name : 'General'
           // const isInBlokTopics = blok.topics?.find((topic: any) => topic === props.topic)
           // if (!isInBlokTopics) return null
           return (
             <div key={`story-${index}`} className={`${styles.postcard} ${props.isFeature ? styles.postcard_featured : styles.postcard_regular}`}>
-              {/* <div>{JSON.stringify(blok.topics)} - {story.content.topic} - {isInBlokTopics ? 'yes' : 'no'}</div> */}
+              {/* <div>{JSON.stringify(blok.topics)} - {props.topic} - {isInBlokTopics ? 'yes' : 'no'}</div> */}
               <figure className={styles.featured_image}>
               <Link href={`/insights/${story.slug}`} >
                 <Picture
@@ -57,7 +57,7 @@ export default function BlogSlider( { blok }: { blok: any } ) {
               </figure>
               <div className={styles.postcard_info}>
                 <div className={styles.header_meta}>
-                  <Pill>{props.country}</Pill>
+                  <Pill>{props.country ? props.country : "Global"}</Pill>
                   <Link href={`/insights/topics/${props.topic}`} >
                   <Pill>{thisTopicName}</Pill>
                   </Link>

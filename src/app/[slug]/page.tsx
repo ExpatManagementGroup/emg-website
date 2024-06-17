@@ -54,12 +54,14 @@ export default async function Slug({ params }: { params: { slug: string } }) {
   const thisSlug = params.slug;
   const slugData  = await fetchSlugData(params.slug);
   const blogPosts = await fetchBlogPostsData();
+  const topics = await fetchTopicData();
 
   slugData.data.story = {
     ...slugData.data.story,
     content: {
       ...slugData.data.story.content,
       blogPosts: blogPosts.data.stories,
+      topics: topics.data.datasource_entries,
     }
   }
   const { isEnabled } = draftMode()
@@ -101,4 +103,10 @@ async function fetchBlogPostsData() {
     "starts_with": "insights/",
     "is_startpage": false
   },)   
+}
+async function fetchTopicData() {
+  return getStoryblokApi().get(`cdn/datasource_entries`, {
+    "datasource": "topics",
+    "version": "published"
+  });
 }
