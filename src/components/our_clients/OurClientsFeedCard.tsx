@@ -11,6 +11,7 @@ export default function OurClientsFeedCard( { props }: { props: any }) {
         aspectRatioDesktop="2.398"
         aspectRatioMobile="2.398"
         className={styles.logo}
+        noCrop={true}
       />
       <blockquote className={styles.quote}>
         <p>{props.quote.content}</p>

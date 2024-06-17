@@ -52,8 +52,6 @@
     aspect-ratio: 2.398;
     position: relative;
     display: inline-block;
-    /* compensate for icon checkmark height */
-    margin-top: .8rem; 
   }
   .first .quote p {
     font-size: var(--fontsize-25);
@@ -91,7 +89,7 @@
   .first .stats {
     grid-row: 3 / 4;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
   }
   .first .stats > div {
@@ -274,8 +272,6 @@
     aspect-ratio: 2.398;
     position: relative;
     display: inline-block;
-    /* compensate for icon checkmark height */
-    margin-top: .8rem; 
   }
   .first .quote p {
     font-size: var(--fontsize-30);
@@ -311,7 +307,7 @@
     grid-column: 2 / 3;
     grid-row: 1 / 2;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: flex-start;
   }
   .first .stats > div {
