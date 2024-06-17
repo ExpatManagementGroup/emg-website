@@ -82,13 +82,15 @@ export default async function Home({searchParams}:{searchParams?: {
                       index === 5 ? 'White' :
                       index === 6 ? 'Ocean-Tone-3' : 'orange';
           const thisTopic = allTopicsData.data.datasource_entries.find((entry: any) => entry.value === topic);
-          return (
-            <Link href={`/insights/topics/${topic}`} key={topic}>
-              <Pill bgcolor={`var(--EMG-${bgcolor}`}>
-                {thisTopic ? thisTopic.name : 'no topic'}
-              </Pill> 
-            </Link>
-          )
+          if (thisTopic) {
+            return (
+              <Link href={thisTopic ? `/insights/topics/${topic}` : ``} key={topic}>
+                <Pill bgcolor={`var(--EMG-${bgcolor}`}>
+                  {thisTopic ? thisTopic.name : 'General'}
+                </Pill> 
+              </Link>
+            )
+          }
         })}
       </div>
       <Search placeholder="Search" query={query} />
@@ -103,12 +105,12 @@ export default async function Home({searchParams}:{searchParams?: {
           featured_image_url={featuredStory.content.featured_image?.filename}
           featured_image_alt={featuredStory.content.featured_image?.alt}
           title={featuredStory.content.title}
-          country={featuredStory.content.country}
+          country={featuredStory.content.country ? featuredStory.content.country : "Global"}
           topicSlug={featuredStory.content.topic}
           topicName={
             allTopicsData.data.datasource_entries.find((entry: any) => entry.value === featuredStory.content.topic) ?
             allTopicsData.data.datasource_entries.find((entry: any) => entry.value === featuredStory.content.topic).name :
-            "no topic"
+            "General"
           }
           date={featuredStory.content.date}
           slug={featuredStory.slug}
@@ -124,14 +126,14 @@ export default async function Home({searchParams}:{searchParams?: {
         { data.stories.map((story: any, index: number) => {
           if (index !== 0) {
             const hasTopic = allTopicsData.data.datasource_entries.find((topic: any) => topic.value === story.content.topic)
-            const thisTopicName = hasTopic ? hasTopic.name : 'no topic'
+            const thisTopicName = hasTopic ? hasTopic.name : 'General'
             return (
               <PostCard
                 key={story.id}
                 featured_image_url={story.content.featured_image.filename}
                 featured_image_alt={story.content.featured_image.alt}
                 title={story.content.title}
-                country={story.content.country}
+                country={story.content.country ? story.content.country : "Global"}
                 topicSlug={story.content.topic}
                 // topicName={allTopicsData.data.datasource_entries.find((entry: any) => entry.value === story.content.topic)?.name}
                 topicName={thisTopicName}
