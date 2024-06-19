@@ -14,7 +14,7 @@ export default function BlogSlider( { blok }: { blok: any } ) {
   const selectedTopics = blok.topics
   let selectedBlogPosts = selectedTopics[0] ? allBlogPosts?.filter((post: any) => selectedTopics.includes(post.content.topic)) : allBlogPosts
   const selectedCountries = blok.countries
-  selectedBlogPosts = selectedCountries[0] ? selectedBlogPosts?.filter((post: any) => selectedCountries.includes(post.content.country)) : selectedBlogPosts
+  selectedBlogPosts = selectedCountries ? selectedBlogPosts?.filter((post: any) => selectedCountries.includes(post.content.country)) : selectedBlogPosts
 
 
   return (
