@@ -2,6 +2,12 @@
   .clientfeed_slider_desktop {
     display: none;
   }
+  .clientfeed_slider_mobile {
+    margin-top: 2rem;
+  }
+  .clientfeed_slider_mobile:has( > :global(.slider-navbuttons) ){
+    margin-top: 0;
+  }
   .clientfeed {
     padding: 4rem 0;
     position: relative;
@@ -133,6 +139,12 @@
 @media screen and (min-width:840px) {
   .clientfeed_slider_mobile {
     display: none;
+  }
+  .clientfeed_slider_desktop {
+    margin-top: 2rem;
+  }
+  .clientfeed_slider_desktop:has( > :global(.slider-navbuttons) ){
+    margin-top: 0;
   }
   .clientfeed {
     padding: 4rem 0;

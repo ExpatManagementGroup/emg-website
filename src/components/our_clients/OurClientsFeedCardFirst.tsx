@@ -26,7 +26,7 @@ export default function OurClientsFeedCard( { props }: { props: any }) {
             <div className={styles.stats_title}>{props.stats.stats_1.title}</div>
           </div>
         }
-        {!props.stats.stats_2.number &&
+        {props.stats.stats_2.number &&
           <div className={styles.stats_stat}>
             <Icon name="checkmark" />
             <div className={styles.stats_number}>{props.stats.stats_2.number}</div>
