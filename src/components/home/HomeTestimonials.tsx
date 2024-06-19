@@ -62,18 +62,34 @@ export default function HomeTestimonials( { blok }: { blok: {
         autoWidth={true}
         sliderRef='hometestimonials'
         loop={allTestimonialsAlternating.length > 4 ? true : false}
-      >
+        >
         {allTestimonialsAlternating?.map((testimonial: any, index: number) => {
-          if ( index % 2 === 0) {
+          if (testimonial.component === 'case_testimonial') {
+            return (
+              <CCClientSlide key={`testimonial-${index}`} slideContent={testimonial} />
+            )
+          } 
+          else {
             return (
               <CCTalentSlide key={`testimonial-${index}`} slideContent={testimonial} />
             )
           }
-          else {
-            return (
-              <CCClientSlide key={`testimonial-${index}`} slideContent={testimonial} />
-            )
-          }
+          // if ( index % 2 === 0) {
+          //   return (
+          //     <>
+          //     <pre>{JSON.stringify(testimonial.component, null, 2)}</pre>
+          //     <CCTalentSlide key={`testimonial-${index}`} slideContent={testimonial} />
+          //     </>
+          //   )
+          // }
+          // else {
+          //   return (
+          //     <>
+          //     <pre>{JSON.stringify(testimonial.component, null, 2)}</pre>
+          //     <CCClientSlide key={`testimonial-${index}`} slideContent={testimonial} />
+          //     </>
+          //   )
+          // }
         })}
       </Slider>
       {blok.cta_url && blok.cta_text &&

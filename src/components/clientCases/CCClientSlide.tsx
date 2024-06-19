@@ -39,20 +39,26 @@ export default function CCClientSlide( props: {
           sizes='(min-width: 840px) 3vw, 12vw'
         /> */}
         <div className={styles.quote}>{content?.quote}</div>
-        <figure className={styles.logo}>
-          <Image 
-            src={content?.logo?.filename}
-            alt={content?.logo?.alt}
-            fill={true}
-          />
-        </figure>
-        <div className={styles.button}>
-          <Button
-            type='Link'
-            href={content?.url}
-            text='See the full Case'
-          />
-        </div>
+        {content.logo &&
+          <figure className={styles.logo}>
+            <Picture 
+              src={content.logo.filename}
+              alt={content.logo.alt}
+              noCrop={true}
+              aspectRatioDesktop='3.7'
+              aspectRatioMobile='3.2'
+            />
+          </figure>
+        }
+        {content.url && 
+          <div className={styles.button}>
+            <Button
+              type='Link'
+              href={content?.url}
+              text='See the full Case'
+            />
+          </div>
+        }
       </div>
     )
   }
