@@ -38,6 +38,9 @@
     height: calc(100% - 1em);
     overflow-y: scroll;
   }
+  .longquote {
+    font-size: var(--fontsize-12);
+  }
   .quotationmark {
     grid-column: 1 / span 1;
     grid-row: 1 / span 1;

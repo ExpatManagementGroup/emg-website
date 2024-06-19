@@ -74,22 +74,6 @@ export default function HomeTestimonials( { blok }: { blok: {
               <CCTalentSlide key={`testimonial-${index}`} slideContent={testimonial} />
             )
           }
-          // if ( index % 2 === 0) {
-          //   return (
-          //     <>
-          //     <pre>{JSON.stringify(testimonial.component, null, 2)}</pre>
-          //     <CCTalentSlide key={`testimonial-${index}`} slideContent={testimonial} />
-          //     </>
-          //   )
-          // }
-          // else {
-          //   return (
-          //     <>
-          //     <pre>{JSON.stringify(testimonial.component, null, 2)}</pre>
-          //     <CCClientSlide key={`testimonial-${index}`} slideContent={testimonial} />
-          //     </>
-          //   )
-          // }
         })}
       </Slider>
       {blok.cta_url && blok.cta_text &&

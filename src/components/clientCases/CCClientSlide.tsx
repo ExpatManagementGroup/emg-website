@@ -20,6 +20,8 @@ export default function CCClientSlide( props: {
   }
 }) {
   const content = props.slideContent
+  const quotelength = content?.quote?.length
+  const quoteclass = quotelength > 180 ? styles.longquote : styles.shortquote
   if (!content) {
     return (
       <div className={styles.client_slide}>
@@ -38,7 +40,7 @@ export default function CCClientSlide( props: {
           alt={content?.image?.alt}
           sizes='(min-width: 840px) 3vw, 12vw'
         /> */}
-        <div className={styles.quote}>{content?.quote}</div>
+        <div className={`${styles.quote} ${quoteclass}`}>{content?.quote}</div>
         {content.logo &&
           <figure className={styles.logo}>
             <Picture 
