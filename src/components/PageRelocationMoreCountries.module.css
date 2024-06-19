@@ -89,7 +89,7 @@
     justify-content: space-between;
     align-items: flex-start;
   }
-  .country_flag {
+  .country_name + .country_flag {
     position: absolute;
     top: 1rem;
     right: 1rem;
