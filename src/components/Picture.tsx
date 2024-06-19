@@ -33,7 +33,11 @@ export default function Picture( props: {
   }, [])
 
   //get the last four characters of props.src string
-  const fileType = props.src.slice(-4)
+  const fileType = props.src ? props.src.slice(-4) : ''
+
+  if (fileType === '') {
+    return null
+  }
   
   if (props.noCrop) {
 
