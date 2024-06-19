@@ -39,13 +39,18 @@ export async function generateMetadata(
  
   // optionally access and extend (rather than replace) parent metadata
   const previousImages = (await parent).openGraph?.images || []
-  const ogimg = { url: metadata.ogimage, width: 1200, height: 630 }
+  const openGraphImages = [...previousImages]
+
+  if (metadata.ogimage) {
+    const ogimg = { url: metadata.ogimage, width: 1200, height: 630 }
+    openGraphImages.splice(0, openGraphImages.length, ogimg)
+  }
  
   return {
     title: metadata.title || (await parent).title,
     description: metadata.description || (await parent).description,
     openGraph: {
-      images: [ogimg, ...previousImages],
+      images: openGraphImages,
     },
   }
 }
