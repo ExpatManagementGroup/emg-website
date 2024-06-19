@@ -12,7 +12,10 @@ export default function BlogSlider( { blok }: { blok: any } ) {
 
   const allBlogPosts = blok.blogPosts
   const selectedTopics = blok.topics
-  const selectedBlogPosts = selectedTopics[0] ? allBlogPosts?.filter((post: any) => selectedTopics.includes(post.content.topic)) : allBlogPosts
+  let selectedBlogPosts = selectedTopics[0] ? allBlogPosts?.filter((post: any) => selectedTopics.includes(post.content.topic)) : allBlogPosts
+  const selectedCountries = blok.countries
+  selectedBlogPosts = selectedCountries[0] ? selectedBlogPosts?.filter((post: any) => selectedCountries.includes(post.content.country)) : selectedBlogPosts
+
 
   return (
     <div 
@@ -39,11 +42,11 @@ export default function BlogSlider( { blok }: { blok: any } ) {
           const props = story.content
           const thisTopic = blok.alltopics?.find((topic: any) => topic.value === props.topic)
           const thisTopicName = thisTopic ? thisTopic.name : 'General'
-          // const isInBlokTopics = blok.topics?.find((topic: any) => topic === props.topic)
-          // if (!isInBlokTopics) return null
+          
+
           return (
             <div key={`story-${index}`} className={`${styles.postcard} ${props.isFeature ? styles.postcard_featured : styles.postcard_regular}`}>
-              {/* <div>{JSON.stringify(blok.topics)} - {props.topic} - {isInBlokTopics ? 'yes' : 'no'}</div> */}
+              {/* <div>{JSON.stringify(blok.countries)} - {props.country}</div> */}
               <figure className={styles.featured_image}>
               <Link href={`/insights/${story.slug}`} >
                 <Picture
