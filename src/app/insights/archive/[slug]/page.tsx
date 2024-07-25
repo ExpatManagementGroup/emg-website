@@ -30,7 +30,7 @@ export default async function Archive({ params }: { params: { slug: string } }) 
   const postsPerPage = Number(headers["per-page"])
   const totalAmountOfPages = Math.ceil(totalPosts / postsPerPage);
   const totalPages = Array.from({ length: totalAmountOfPages }, (_, i) => i + 1);
-  const nextPage = totalAmountOfPages < archivepage ? archivepage + 1 : null;
+  const nextPage = totalAmountOfPages > archivepage ? archivepage + 1 : null;
   const prevPage = archivepage > 1 ? archivepage - 1 : null;
 
   return (
