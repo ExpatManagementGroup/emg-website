@@ -8,7 +8,7 @@ const HomeHero = ({ blok }: { blok: any }) => {
   
   return (
   <div {...storyblokEditable(blok)} className={`${styles.wrapper} home_hero`}>
-    <VideoHero src="/assets/video/emg_homevideo.mp4" className={styles.video} />
+    <VideoHero src="/assets/video/brandvideo-optimised.mp4" className={styles.video} />
     <div>
       <h1 {...storyblokEditable(blok.hero)} className={styles.title}>{blok.hero_title_1}<span className='h_italics'>{blok.hero_title_2}</span></h1>
       <Button 
