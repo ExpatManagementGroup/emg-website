@@ -86,6 +86,7 @@ async function fetchEmployeesData() {
     "version": isEnabled ? "draft" : "published",
     "starts_with": "our-people/",
     "content_type": "employee",
+    "per_page": 100,
   })   
 }
 async function fetchCountryData() {
