@@ -14,9 +14,7 @@
     display: flex;
     width: 100%;
     overflow: hidden;
-    /* gap: 8.372vw; */
     flex-wrap: nowrap;
-    /* justify-content: center; */
     opacity: 0;
     transition: opacity 0.5s;
   }
@@ -53,12 +51,13 @@
     display: flex;
     width: 100%;
     overflow-x: scroll;
-    gap: 2.678vw;
+    gap: 0;
     flex-wrap: nowrap;
     justify-content: center;
   }
   .logo {
-    flex: 0 0 11vw;
+    flex: 0 0 13vw;
+    padding: 0 1vw;
     position: relative;
     aspect-ratio: 3.137;
     display: flex;

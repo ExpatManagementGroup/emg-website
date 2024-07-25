@@ -3,16 +3,14 @@ import styles from './HomeMembers.module.css';
 import Picture from '../Picture';
 import { storyblokEditable } from '@storyblok/react/rsc';
 import { useEffect, useRef } from 'react';
+import { get } from 'http';
 
 export default function HomeMembers( { blok }: { blok: any }) {
   const members = useRef<HTMLDivElement>(null);
-  let membersInitCounter = 0;
 
   useEffect(() => {
 
     if (members.current === null) return;
-    if (membersInitCounter > 0) return;
-    membersInitCounter++;
 
     const origLogos = Array.from(members.current.querySelectorAll('picture'))
           
@@ -48,11 +46,13 @@ export default function HomeMembers( { blok }: { blok: any }) {
     }
 
     function cloneLogos() {
-      origLogos.forEach((logo: any) => {
-        const clone = logo.cloneNode(true);
-        clone.classList.add(styles.clone)
-        logo.parentElement.appendChild(clone)
-      })
+      for(let i = 0; i < 2; i++) {
+        origLogos.forEach((logo: any) => {
+          const clone = logo.cloneNode(true);
+          clone.classList.add(styles.clone)
+          logo.parentElement.appendChild(clone)
+        })
+      }
     }
 
     function getClones() {
@@ -60,8 +60,11 @@ export default function HomeMembers( { blok }: { blok: any }) {
     }
 
     function init() {
+      console.log('init')
+      
+      members.current?.style.setProperty('--scrollWidth', getTotalScrollWidth() + 'px')
 
-      const style = document.createElement('style');
+      const style = document.querySelector('.home_members_style') || document.createElement('style');
       style.classList.add('home_members_style')
       document.head.appendChild(style)
       
@@ -73,7 +76,7 @@ export default function HomeMembers( { blok }: { blok: any }) {
               transform: translateX(0);
             }
             100% {
-              transform: translateX(-${getTotalScrollWidth()}px);
+              transform: translateX(calc(-1 * var(--scrollWidth)));
             }
           }
           .${styles.home_members} .${styles.logos} picture {
@@ -86,10 +89,18 @@ export default function HomeMembers( { blok }: { blok: any }) {
     }
 
     function reset() {
-      
+      console.log('reset')
+
+      members.current?.style.setProperty('--scrollWidth', getTotalScrollWidth() + 'px')
+
+      const allImages = members.current?.querySelectorAll(`.${styles.logo}`)
+      allImages?.forEach((image: any) => {
+        image.style.transform = 'translateX(0)'
+      })
+
       const style = document.querySelector('.home_members_style')
       
-      if ( isOverlapping() ) {
+      if ( isOverlapping() ) { //if logos need to scrolled
         if ( getClones().length === 0 ) {
           cloneLogos()
         }
@@ -100,7 +111,7 @@ export default function HomeMembers( { blok }: { blok: any }) {
                 transform: translateX(0);
               }
               100% {
-                transform: translateX(-${getTotalScrollWidth()}px);
+                transform: translateX(calc(-1 * var(--scrollWidth)));
               }
             }
             .${styles.home_members} .${styles.logos} picture {
@@ -130,7 +141,7 @@ export default function HomeMembers( { blok }: { blok: any }) {
     window.addEventListener('resize', reset)
 
 
-  }, [blok, membersInitCounter])
+  }, [blok])
 
   return (
     <section className={styles.home_members} {...storyblokEditable(blok)} ref={members}>
@@ -146,6 +157,8 @@ export default function HomeMembers( { blok }: { blok: any }) {
               aspectRatioMobile="3.137"
               sizes="(min-width:840px) 11vw, 25vw"
               className={styles.logo}
+              nofade  
+              noCrop
             />
           )
         })}
