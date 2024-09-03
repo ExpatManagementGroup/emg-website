@@ -18,13 +18,13 @@ export async function GET(request: Request) {
     return new Response(`Unauthorized you buffoon`, { status: 401 })
   }
   let searchslug = slug
-  if ( slug === '/netherlands' 
-       || slug === '/belgium' 
-       || slug === '/germany' 
-       || slug === '/luxembourg' 
-       || slug === '/global'
+  if ( slug === 'netherlands' 
+       || slug === 'belgium' 
+       || slug === 'germany' 
+       || slug === 'luxembourg' 
+       || slug === 'global'
   ) {
-    searchslug = `locations${slug}`
+    searchslug = `locations/${slug}`
   }
   if (!slug) {
     searchslug = 'home'
@@ -44,7 +44,7 @@ export async function GET(request: Request) {
 
   // If the slug doesn't exist prevent draft mode from being enabled
   if (!post) {
-    return new Response('Invalid slug', { status: 401 })
+    return new Response(`Invalid slug: ${slug}`, { status: 401 })
   }
 
   // Enable Draft Mode by setting the cookie
