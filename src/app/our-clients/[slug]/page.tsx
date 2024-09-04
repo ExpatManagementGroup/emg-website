@@ -60,7 +60,7 @@ export async function generateMetadata(
 export default async function Slug({ params }: { params: { slug: string } }) {
 
   const page = await fetchData(params.slug);
-  const othercases = await fetchOtherCCDataExcluding(params.slug);
+  // const othercases = await fetchOtherCCDataExcluding(params.slug);
   const fetchedTestimonials = await fetchTestimonialData();
   page.data.story = {
     ...page.data.story,
@@ -76,13 +76,13 @@ export default async function Slug({ params }: { params: { slug: string } }) {
       { isEnabled && 
         <>
         <StoryblokStory story={page.data.story} />
-        <CCOtherCases stories={othercases.data.stories} />
+        {/* <CCOtherCases stories={othercases.data.stories} /> */}
         </>
       }
       { !isEnabled &&
         <>
           <StoryblokComponent blok={page.data.story.content} />
-          <CCOtherCases stories={othercases.data.stories} />
+          {/* <CCOtherCases stories={othercases.data.stories} /> */}
         </>
       }
     </main>
@@ -99,17 +99,17 @@ async function fetchData(slug: string) {
     cache: isEnabled ? 'no-store' : 'default'
   });
 }
-async function fetchOtherCCDataExcluding(slug:string) {
-  const { isEnabled } = draftMode();
-  return getStoryblokApi().get(`cdn/stories`, {
-    "starts_with": "our-clients/",
-    "is_startpage": false,
-    "excluding_slugs": `our-clients/${slug}`,
-    "version": isEnabled ? "draft" : "published"
-  }, {
-    cache: isEnabled ? 'no-store' : 'default'
-  });
-}
+// async function fetchOtherCCDataExcluding(slug:string) {
+//   const { isEnabled } = draftMode();
+//   return getStoryblokApi().get(`cdn/stories`, {
+//     "starts_with": "our-clients/",
+//     "is_startpage": false,
+//     "excluding_slugs": `our-clients/${slug}`,
+//     "version": isEnabled ? "draft" : "published"
+//   }, {
+//     cache: isEnabled ? 'no-store' : 'default'
+//   });
+// }
 async function fetchTestimonialData() {
   const { isEnabled } = draftMode();
   return getStoryblokApi().get(`cdn/stories`, {
