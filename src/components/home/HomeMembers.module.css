@@ -50,14 +50,14 @@
   .logos {
     display: flex;
     width: 100%;
-    overflow-x: scroll;
+    overflow: hidden;
     gap: 0;
     flex-wrap: nowrap;
     justify-content: center;
   }
   .logo {
     flex: 0 0 13vw;
-    padding: 0 1vw;
+    padding: 0 2vw;
     position: relative;
     aspect-ratio: 3.137;
     display: flex;
