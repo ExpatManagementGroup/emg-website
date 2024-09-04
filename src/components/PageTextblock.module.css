@@ -2,9 +2,37 @@
   .pagetextblock {
     margin: 0 var(--m-outer-margin-l);
     padding: 4rem 0;
+    font-size: var(--fontsize-20);
   }
   .richtext p {
-    font-size: var(--fontsize-20);
+    font-size: 1em;
+    margin-top: 1em;
+  }
+  .richtext h1 {
+    font-family: var(--font-reckless);
+    font-size: 2em;
+    margin-top: 1em;
+  }
+  .richtext h2 {
+    font-family: var(--font-reckless);
+    font-size: 1.5em;
+    margin-top: 1em;
+  }
+  .richtext h3 {
+    font-family: var(--font-reckless);
+    font-size: 1.17em;
+    margin-top: 1em;
+  }
+  .richtext ul,
+  .richtext ol {
+    padding-left: 1em;
+
+    & li p {
+      margin-top: .5em;
+    }
+  }
+  .richtext p a {
+    text-decoration: underline;
   }
   .buttons {
     display: flex;
@@ -18,14 +46,67 @@
   }
 }
 @media screen and (min-width:840px) {
+  
   .pagetextblock {
     width: calc( 1.1 * var(--d-colWidth-6));
     margin: 0 auto;
     padding: 4rem 0;
     text-align: center;
+
+    &:global(.--alignLeft) {
+      text-align: left;
+    }
+    &:global(.--alignRight) {
+      text-align: right;
+    }
+    &:global(.fontsize-s) {
+      & .richtext {
+        font-size: var(--fontsize-20);
+      }
+    }
+    &:global(.fontsize-m) {
+      & .richtext {
+        font-size: var(--fontsize-30);
+      }
+    }
+    &:global(.fontsize-l) {
+      & .richtext {
+        font-size: var(--fontsize-40);
+      }
+    }
+  }
+  :global(.blocks) > .pagetextblock:first-child {
+    padding-top: calc( 2 * var(--nav-height) );
   }
   .richtext p {
-    font-size: var(--fontsize-30);
+    font-size: 1em;
+    margin-top: 1em;
+  }
+  .richtext h1 {
+    font-family: var(--font-reckless);
+    font-size: 2em;
+    margin-top: 1em;
+  }
+  .richtext h2 {
+    font-family: var(--font-reckless);
+    font-size: 1.5em;
+    margin-top: 1em;
+  }
+  .richtext h3 {
+    font-family: var(--font-reckless);
+    font-size: 1.17em;
+    margin-top: 1em;
+  }
+  .richtext ul,
+  .richtext ol {
+    padding-left: 2em;
+
+    & li p {
+      margin-top: .5em;
+    }
+  }
+  .richtext p a {
+    text-decoration: underline;
   }
   .buttons {
     display: flex;
