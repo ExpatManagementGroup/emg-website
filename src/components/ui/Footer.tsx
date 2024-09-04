@@ -19,7 +19,7 @@ export default function Footer(props: any) {
           <ul className={styles.footer_linklist}>
             <li><a href="/netherlands">The Netherlands</a></li>
             <li><a href="/belgium">Belgium</a></li>
-            <li><a href="/luxembourg">Luxemburg</a></li>
+            <li><a href="/luxembourg">Luxembourg</a></li>
             <li><a href="/germany">Germany</a></li>
             <li><a href="/global">Global</a></li>
           </ul>
