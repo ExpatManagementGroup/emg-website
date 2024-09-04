@@ -1,4 +1,6 @@
 import { draftMode, cookies } from 'next/headers';
+import { getStoryblokApi, storyblokInit, apiPlugin } from '@storyblok/react/rsc'
+import { redirect } from 'next/navigation'
 
 export async function GET(request: Request) {
   
@@ -18,7 +20,28 @@ export async function GET(request: Request) {
     sameSite: "none",
   });
 
+  let searchslug = slug
+  if ( slug === 'netherlands' 
+       || slug === 'belgium' 
+       || slug === 'germany' 
+       || slug === 'luxembourg' 
+       || slug === 'global'
+  ) {
+    searchslug = `locations/${slug}`
+  }
+  if (!slug) {
+    searchslug = 'home'
+  }
 
+
+  // Fetch the headless CMS to check if the provided `slug` exists
+  // getPostBySlug would implement the required fetching logic to the headless CMS
+  const posts = await getStoryblokApi().get(`cdn/stories`, {
+    'starts_with': searchslug || 'immigration',
+    version: 'draft'
+  })
+
+  const post = posts.data.stories[0]
 
   // return new Response('', {
   //   status: 200,
@@ -26,5 +49,10 @@ export async function GET(request: Request) {
   //     Location: `/${slug}`,
   //   },
   // })
-  return new Response('Exited Draft mode, please switch back to the editing URL', { status: 200 })
+  // return new Response('Exited Draft mode, please switch back to the editing URL', { status: 200 })
+  if (!slug) {
+    redirect(`/`)
+  } else {
+    redirect(`/${post.full_slug}`)
+  }
 }

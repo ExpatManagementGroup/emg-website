@@ -64,7 +64,7 @@ export default async function RootLayout({
               'transform': 'rotate(-45deg)',
               'boxShadow': '0 0 10px rgba(0,0,0,0.5)',
               'opacity': '0.95',
-            }}>Draft Mode</div>}
+            }}>Draft Mode <a href="/api/exit-draft?slug=">(exit)</a></div>}
             <Footer navData={navData} footerData={footerData} />
           </body>
         </html>

@@ -1,6 +1,7 @@
 // route handler enabling draft mode
 import { draftMode, cookies } from 'next/headers'
 import { getStoryblokApi, storyblokInit, apiPlugin } from '@storyblok/react/rsc'
+import { redirect } from 'next/navigation'
 
 storyblokInit({
   accessToken: process.env.STORYBLOK_API_TOKEN || process.env.NEXT_PUBLIC_STORYBLOK_API_TOKEN,
@@ -61,10 +62,10 @@ export async function GET(request: Request) {
  
   // Redirect to the path from the fetched post
   // We don't redirect to searchParams.slug as that might lead to open redirect vulnerabilities
-  // if (!slug) {
-  //   redirect(`/`)
-  // } else {
-  //   redirect(`/${post.full_slug}`)
-  // }
-  return new Response('Draft mode enabled, please switch back to the editing URL, you should see a little red \'draft mode\' in the top left of the screen', { status: 200 })
+  if (!slug) {
+    redirect(`/`)
+  } else {
+    redirect(`/${post.full_slug}`)
+  }
+  // return new Response('Draft mode enabled, please switch back to the editing URL, you should see a little red \'draft mode\' in the top left of the screen', { status: 200 })
 }
