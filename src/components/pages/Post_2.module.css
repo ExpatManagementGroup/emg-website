@@ -181,23 +181,23 @@
     --space: 1.5vw;
   }
   .content h2, .content h3, .content h4 {
-    font-size: 1.488vw;
+    font-size: var(--fontsize-25);
     font-family: var(--font-reckless);
     font-weight: 500;
     margin-bottom: var(--space);
   }
   .content h3 {
-    font-size: 1.288vw;
+    font-size: var(--fontsize-22);
   }
   .content h4 {
     font-size: 1vw;
   }
   .content p {
-    font-size: 0.892vw;
+    font-size: var(--fontsize-20);
     margin-bottom: var(--space);
   }
   .content li > p {
-    font-size: 0.892vw;
+    font-size: var(--fontsize-20);
     margin-bottom: 0;
   }
   .content ul, .content ol {
