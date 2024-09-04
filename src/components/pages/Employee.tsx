@@ -1,7 +1,7 @@
 import styles from './Employee.module.css';
 import { render } from 'storyblok-rich-text-react-renderer';
 import Picture from '../Picture';
-import Flag from '../ui/Flag';
+// import Flag from '../ui/Flag';
 import Button from '../ui/Button';
 
 export default function Employee( { blok }: { blok: any }) {
@@ -26,22 +26,22 @@ export default function Employee( { blok }: { blok: any }) {
         <h1 className={styles.name}>{blok.name}</h1>
         <div className={styles.title}>
           <span>{blok.title}</span>
-          <div className={styles.countries}>
+          {/* <div className={styles.countries}>
             <Flag country={blok.country} className={styles.flag} />
             { blok.country_2 &&
               <Flag country={blok.country_2} className={styles.flag} />
             }
-          </div>
+          </div> */}
         </div>
         <div className={styles.bio}>{render(blok.bio) || `No bio text yet`}</div>
-        {blok.education &&
+        {blok.education && blok.education !== '' &&
           <div className={`${styles.nonbutton} button button-arrow-none button-bg-citrus`}>{blok.education}</div>
         }
-        {blok.languages &&
+        {blok.languages && blok.languages !== '' &&
           <div className={`${styles.nonbutton} button button-arrow-none button-bg-sorbet`}>{blok.languages}</div>
         }
         <div className={styles.contact}>
-          { blok.linkedin &&
+          { blok.linkedin && 
           <a className={styles.linkedin} href={blok.linkedin}>
             <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M32.9641 17.2161C32.9641 25.9379 25.7087 33.0298 16.732 33.0298C7.75532 33.0298 0.5 25.9379 0.5 17.2161C0.5 8.49425 7.75532 1.40234 16.732 1.40234C25.7087 1.40234 32.9641 8.49425 32.9641 17.2161Z" fill="white" stroke="#04171D"/>
