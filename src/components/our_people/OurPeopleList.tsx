@@ -1,7 +1,7 @@
 'use client';
 import styles from './OurPeopleList.module.css';
 import Picture from '../Picture';
-import Flag from '../ui/Flag';
+// import Flag from '../ui/Flag';
 import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
 import autoAnimate from '@formkit/auto-animate'
@@ -79,12 +79,12 @@ export default function OurPeopleList( { blok }: { blok: any }) {
                 aspectRatioMobile='0.7954545455'
                 sizes='(min-width: 840px) 16.666vw, 46vw'
               />
-              <div className={styles.countries}>
+              {/* <div className={styles.countries}>
                 <Flag country={employee.content.country} className={styles.country} />
                 { employee.content.country_2 &&
                   <Flag country={employee.content.country_2} className={styles.country} />
                 }
-              </div>
+              </div> */}
               <div className={styles.text}>
                 <h3 className={styles.name}>{employee.content.name}</h3>
                 <h4 className={styles.title}>{employee.content.title}</h4>

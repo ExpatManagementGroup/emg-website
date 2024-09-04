@@ -76,6 +76,7 @@
     background-color: var(--EMG-Aero-Orange);
     border: 1px solid var(--EMG-Deep-Teal);
     border-radius: .5rem;
+    max-width: calc(100% - 2 * var(--fontsize-10));
   }
   .name {
     font-size: var(--fontsize-15);
@@ -85,7 +86,7 @@
     font-size: var(--fontsize-10);
     font-family: var(--font-reckless);
   }
-  .countries {
+  /* .countries {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -95,7 +96,7 @@
     margin-right: -.33em;
     position: relative;
     z-index: 1;
-  }
+  } */
 }
 @media screen and (min-width:840px) {
   .ourpeople {
@@ -166,6 +167,7 @@
     background-color: var(--EMG-Aero-Orange);
     border: 1px solid var(--EMG-Deep-Teal);
     border-radius: .5rem;
+    max-width: calc(100% - 2rem);
   }
   .name {
     font-size: var(--fontsize-20);
@@ -175,7 +177,7 @@
     font-size: var(--fontsize-15);
     font-family: var(--font-reckless);
   }
-  .countries {
+  /* .countries {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -185,5 +187,5 @@
     margin-right: -.33em;
     position: relative;
     z-index: 1;
-  }
+  } */
 }
