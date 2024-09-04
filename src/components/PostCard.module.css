@@ -13,7 +13,7 @@
     align-items: flex-end;
   
     & .postcard_info {
-      background-color: var(--EMG-Ocean-Tone-3);
+      background-color: var(--EMG-Ocean);
       margin: 1em;
       padding: 1em;
       border: 1px solid var(--EMG-Deep-Teal);
@@ -115,15 +115,15 @@
     position: relative;
     width: 100%;
     flex: 0 0 100%;
-    min-height: 200px;
+    min-height: calc(var(--d-colWidth-8) * 0.476);
     height: auto;
-    aspect-ratio: 2.1;
+    /* aspect-ratio: 2.1; */
     border: 1px solid var(--EMG-Deep-Teal);
     border-radius: 2em;
     overflow: hidden;
   
     & .postcard_info {
-      background-color: var(--EMG-Ocean-Tone-3);
+      background-color: var(--EMG-Ocean);
       margin: 2em;
       padding: 2em;
       border: 1px solid var(--EMG-Deep-Teal);
