@@ -11,7 +11,8 @@ export default function HomeTestimonials( { blok }: { blok: {
   talentTestimonials: any,
   clientCaseStories: any,
   cta_url: string,
-  cta_text: string
+  cta_text: string,
+  anchor: string
 } }) {
 
   const talentData = blok.talentTestimonials;
@@ -47,7 +48,7 @@ export default function HomeTestimonials( { blok }: { blok: {
   allTestimonialsAlternating = allTestimonialsAlternating.filter((testimonial: any) => testimonial);
   
   return (
-    <section className={styles.testimonials} {...storyblokEditable(blok)}>
+    <section className={styles.testimonials} {...storyblokEditable(blok)} id={blok.anchor}>
       { blok.title && blok.subhead &&
         <h2 className={styles.title}>
           <span className={styles.eyebrow}>{blok.subhead}</span>
