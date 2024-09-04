@@ -1,7 +1,7 @@
 import styles from './WorkWithUsTestimonials.module.css';
 import Slider from '../ui/Slider';
 import Picture from '../Picture';
-import Flag from '../ui/Flag';
+// import Flag from '../ui/Flag';
 
 export default function WorkWithUsTestimonials( { blok }: { blok: any }) {
   return (
@@ -53,7 +53,7 @@ export default function WorkWithUsTestimonials( { blok }: { blok: any }) {
                 
                 <h3 className={styles.name}>
                   {testimonial.content.name} 
-                  <Flag country={testimonial.content.country} className={styles.flag} />
+                  {/* <Flag country={testimonial.content.country} className={styles.flag} /> */}
                 </h3>
                 <div className={styles.info}>
                   <p>{testimonial.content.jobtitle}</p>
