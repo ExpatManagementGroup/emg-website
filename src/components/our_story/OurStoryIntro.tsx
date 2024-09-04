@@ -1,5 +1,4 @@
-// 'use client';
-// removing ^ because why is it even there? why would this a client component?
+'use client';
 import styles from './OurStoryIntro.module.css';
 import Picture from '../Picture';
 import { render } from 'storyblok-rich-text-react-renderer';
