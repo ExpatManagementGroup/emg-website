@@ -28,6 +28,7 @@ import OurStoryIntro from "./our_story/OurStoryIntro";
 import OurStoryJourney from "./our_story/OurStoryJourney";
 import OurStoryJourneyStep from "./our_story/OurStoryJourneyStep";
 import OurStoryJourneyStepLast from "./our_story/OurStoryJourneyStepLast";
+import OurStoryQualitySeal from "./our_story/OurStoryQualitySeal";
 import OurClientsFeed from "./our_clients/OurClientsFeed";
 import OurClientsValues from "./our_clients/OurClientsValues";
 import OurClientsStats from "./our_clients/OurClientsStats";
@@ -89,6 +90,7 @@ const components = {
   our_story_journey: OurStoryJourney,
   our_story_journey_step: OurStoryJourneyStep,
   our_story_journey_step_last: OurStoryJourneyStepLast,
+  our_story_quality_seal: OurStoryQualitySeal,
   our_people_list: OurPeopleList,
   our_people_footer: OurPeopleFooter,
   our_culture_intro: OurCultureIntro,
