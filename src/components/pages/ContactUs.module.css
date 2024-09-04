@@ -91,7 +91,7 @@
   .contact input[type="text"],
   .contact input[type="email"], 
   .contact textarea {
-    background-color: var(--EMG-Deep-Teal-Tone-2);
+    background-color: var(--EMG-White);
     border: none;
   }
   .input {
@@ -274,8 +274,14 @@
   .contact input[type="text"],
   .contact input[type="email"],  
   .contact textarea {
-    background-color: var(--EMG-Deep-Teal-Tone-2);
+    background-color: var(--EMG-White);
     border: none;
+    outline: 0px solid transparent;
+    transition: all .3s ease-out;
+
+    &:focus {
+      outline: 2px solid var(--EMG-Aero-Orange);
+    }
   }
   .input {
     position: relative;
