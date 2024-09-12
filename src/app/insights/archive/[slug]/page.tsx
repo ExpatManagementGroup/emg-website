@@ -50,9 +50,11 @@ export default async function Archive({ params }: { params: { slug: string } }) 
           description={featuredStory.content.description}
           reading_time={featuredStory.content.reading_time}
         />
-        <div className={styles.blogroll_hero_events}>
-          <Events data={events} />
-        </div>
+        { events && events.length > 0 && (
+          <div className={styles.blogroll_hero_events}>
+            <Events data={events} />
+          </div>
+        )}
       </div>
       <div className={styles.post_list}>
         { data.stories.map((story: any, index: number) => {

@@ -63,9 +63,11 @@ export default async function TopicsPosts(props: { params: { slug: string } }) {
             isFeature={true}
             description={featuredStory.content.description}
           />
-          <div className={styles.blogroll_hero_events}>
-            <Events data={events} />
-          </div>
+          { events && events.length > 0 && (
+            <div className={styles.blogroll_hero_events}>
+              <Events data={events} />
+            </div>
+          )}
         </div>
       }
       <div className={styles.post_list}>
