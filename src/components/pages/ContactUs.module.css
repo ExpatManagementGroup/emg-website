@@ -65,6 +65,7 @@
   }
   .flag, .contactinfo :global(.icon) {
     flex: 0 0 8.604vw;
+    font-size: 8.604vw;
     width: 8.604vw;
     height: 8.604vw;
     position: relative;
@@ -264,6 +265,7 @@
   .flag, .contactinfo :global(.icon) {
     width: 2.738vw;
     height: 2.738vw;
+    font-size: 2.738vw;
   }
   .contact form {
     --formheight: calc(var(--d-colWidth-3) / 1.4570446735);
