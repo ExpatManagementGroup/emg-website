@@ -62,7 +62,7 @@ export default function Picture( props: {
           <source 
             media="(min-width: 840px)" 
             srcSet={`
-              ${props.src}/m/320x0/filters:format(webp),
+              ${props.src}/m/320x0/filters:format(webp) 320w,
               ${props.src}/m/480x0/filters:format(webp) 480w,
               ${props.src}/m/640x0/filters:format(webp) 640w,
               ${props.src}/m/750x0/filters:format(webp) 750w,
@@ -76,7 +76,7 @@ export default function Picture( props: {
           <source 
             media="(max-width: 839.9px)" 
             srcSet={`
-              ${props.src}/m/320x0/filters:format(webp),
+              ${props.src}/m/320x0/filters:format(webp) 320w,
               ${props.src}/m/375x0/filters:format(webp) 375w,
               ${props.src}/m/414x0/filters:format(webp) 414w,
               ${props.src}/m/540x0/filters:format(webp) 540w,
@@ -123,7 +123,7 @@ export default function Picture( props: {
         <source 
           media="(min-width: 840px)" 
           srcSet={`
-            ${props.src}/m/320x${Math.ceil(320/Number(props.aspectRatioDesktop))}/smart/filters:format(webp),
+            ${props.src}/m/320x${Math.ceil(320/Number(props.aspectRatioDesktop))}/smart/filters:format(webp) 320w,
             ${props.src}/m/480x${Math.ceil(480/Number(props.aspectRatioDesktop))}/smart/filters:format(webp) 480w,
             ${props.src}/m/640x${Math.ceil(640/Number(props.aspectRatioDesktop))}/smart/filters:format(webp) 640w,
             ${props.src}/m/750x${Math.ceil(750/Number(props.aspectRatioDesktop))}/smart/filters:format(webp) 750w,
@@ -137,7 +137,7 @@ export default function Picture( props: {
         <source 
           media="(max-width: 839.9px)" 
           srcSet={`
-            ${props.src}/m/320x${Math.ceil(320/Number(props.aspectRatioMobile))}/smart/filters:format(webp),
+            ${props.src}/m/320x${Math.ceil(320/Number(props.aspectRatioMobile))}/smart/filters:format(webp) 320w,
             ${props.src}/m/375x${Math.ceil(375/Number(props.aspectRatioMobile))}/smart/filters:format(webp) 375w,
             ${props.src}/m/414x${Math.ceil(414/Number(props.aspectRatioMobile))}/smart/filters:format(webp) 414w,
             ${props.src}/m/540x${Math.ceil(540/Number(props.aspectRatioMobile))}/smart/filters:format(webp) 540w,
