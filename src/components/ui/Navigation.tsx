@@ -98,7 +98,7 @@ export default function Navigation(props: any) {
                   }}
                 />
               </span>
-              Luxemburg
+              Luxembourg
             </Link>
           </li>
           <li className={`${styles.navigation_item} navigation_item`}>
