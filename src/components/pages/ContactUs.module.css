@@ -398,3 +398,26 @@
     display: block;
   }
 }
+.alert {
+  background-color: #376e37;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .25rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  font-size: var(--fontsize-18);
+
+  & > svg {
+    height: 1.5em;
+    width: auto;
+    
+    & path {
+      stroke: white;
+    }
+  }
+
+  &.alert_error {
+    background-color: red;
+  }
+}

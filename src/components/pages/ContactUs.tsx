@@ -111,13 +111,13 @@ export default function ContactUs( { blok }: { blok: any }) {
               <div>
                 <button className={`button ${styles.submitbutton}`} type="submit" disabled={status === 'pending'}>Send</button>
                 {status === 'ok' && (
-                    <div className="alert alert-success">
+                    <div className={`${styles.alert} ${styles.alert_success}`}>
                         <SuccessIcon />
                         Submitted!
                     </div>
                 )}
                 {status === 'error' && (
-                    <div className="alert alert-error">
+                    <div className={`${styles.alert} ${styles.alert_error}`}>
                         <ErrorIcon />
                         {error}
                     </div>
