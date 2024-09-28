@@ -7,6 +7,7 @@ import Footer from "@/components/ui/Footer";
 import { draftMode } from "next/headers";
 import InitSB from "@/components/initSB";
 import Popup from "@/components/Popup";
+import Script from 'next/script';
 import "./globals.css";
 
 InitSB();
@@ -81,6 +82,11 @@ export default async function RootLayout({
         <Navigation navData={navData} />
           {children}
         <Footer navData={navData} footerData={footerData} />
+        <Script
+          id="cookieyes-script"
+          src={`https://cdn-cookieyes.com/client_data/27fbaa7ff2975a61d7c5bbfa/script.js`}
+        >
+        </Script>
       </body>
     </html>
     );
