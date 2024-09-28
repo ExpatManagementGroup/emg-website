@@ -1,0 +1,26 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+  }
+.title {
+  font-family: var(--font-reckless);
+  font-size: var(--fontsize-100);
+}
+.links {
+  font-family: var(--font-agrandir);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  margin-top: 2em;
+  color: var(--EMG-Aero-Orange);
+  font-size: var(--fontsize-20);
+  
+  & :global(.button) {
+    font-size: var(--fontsize-20);
+  }
+}

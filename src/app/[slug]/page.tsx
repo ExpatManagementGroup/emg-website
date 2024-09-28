@@ -4,6 +4,7 @@ import styles from "../page.module.css";
 import { draftMode } from 'next/headers'
 import { Metadata, ResolvingMetadata } from 'next'
 import InitSB from "@/components/initSB";
+import { notFound } from "next/navigation";
 
 InitSB();
 
@@ -18,7 +19,7 @@ export async function generateStaticParams() {
     { slug: 'our-story' },
     { slug: 'our-culture' },
     { slug: 'faq' },
-    { slug: 'contact-us' },
+    { slug: 'contact-us' }
   ]
 }
 
@@ -31,6 +32,7 @@ export async function generateMetadata(
  
   // fetch data
   const pagedata = await fetchSlugData(id)
+  
   const metadata = {
     title: pagedata.data.story.content.meta_title,
     description: pagedata.data.story.content.meta_description,
@@ -61,6 +63,10 @@ export default async function Slug({ params }: { params: { slug: string } }) {
   const blogPosts = await fetchBlogPostsData();
   const topics = await fetchTopicData();
 
+  // if (!thisSlug || !slugData || !slugData.data.story) {
+  //   return notFound();
+  // }
+
   slugData.data.story = {
     ...slugData.data.story,
     content: {
@@ -87,20 +93,25 @@ export default async function Slug({ params }: { params: { slug: string } }) {
 
 async function fetchSlugData(slug: string) {
   const { isEnabled } = draftMode()
-
-  if ( slug === 'netherlands' || slug === 'belgium' || slug === 'germany' || slug === 'luxembourg' || slug === 'global') {
-    return getStoryblokApi().get(`cdn/stories/locations/${slug}`, { 
-      version: isEnabled ? "draft" : "published"
-    }, {
-      cache: isEnabled ? 'no-store' : 'default'
-    } );
-  }
-  else {
-    return getStoryblokApi().get(`cdn/stories/${slug}`, { 
-      version: isEnabled ? "draft" : "published"
-    }, {
-      cache: isEnabled ? 'no-store' : 'default'
-    } );
+  try {
+    if ( slug === 'netherlands' || slug === 'belgium' || slug === 'germany' || slug === 'luxembourg' || slug === 'global') {
+      return getStoryblokApi().get(`cdn/stories/locations/${slug}`, { 
+        version: isEnabled ? "draft" : "published"
+      }, {
+        cache: isEnabled ? 'no-store' : 'default'
+      } );
+    }
+    else {
+      const story = await getStoryblokApi().get(`cdn/stories/${slug}`, { 
+        version: isEnabled ? "draft" : "published"
+      }, {
+        cache: isEnabled ? 'no-store' : 'default'
+      } );
+      return story;
+    }
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return notFound();
   }
 }
 async function fetchBlogPostsData() {

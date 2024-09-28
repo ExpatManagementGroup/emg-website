@@ -4,6 +4,7 @@ import styles from "../page.module.css";
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from 'next'
 import InitSB from "@/components/initSB";
+import { notFound } from "next/navigation";
 
 InitSB();
 
@@ -80,19 +81,29 @@ export default async function OurPeople() {
 
 async function fetchData() {
   const { isEnabled } = draftMode()
-  return storyblokApi.get(`cdn/stories/work-with-us`, {
-    "version": isEnabled ? "draft" : "published",
-  }, {
-    cache: isEnabled ? 'no-store' : 'default'
-  });
+  try {
+    return storyblokApi.get(`cdn/stories/work-with-us`, {
+      "version": isEnabled ? "draft" : "published",
+    }, {
+      cache: isEnabled ? 'no-store' : 'default'
+    });
+  } catch (error) {
+    console.error(error);
+    return notFound();
+  }
 }
 async function fetchJobsData() {
   const { isEnabled } = draftMode()
-  return storyblokApi.get(`cdn/stories`, {
-    "version": isEnabled ? "draft" : "published",
-    "starts_with": "work-with-us/",
-    "content_type": "job",
-  })   
+  try {
+    return storyblokApi.get(`cdn/stories`, {
+      "version": isEnabled ? "draft" : "published",
+      "starts_with": "work-with-us/",
+      "content_type": "job",
+    })   
+  } catch (error) {
+    console.error(error);
+    return notFound();
+  }
 }
 async function fetchEmployeeTestimonialsData() {
   return storyblokApi.get(`cdn/stories`, {
