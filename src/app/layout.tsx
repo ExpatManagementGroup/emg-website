@@ -7,6 +7,7 @@ import Footer from "@/components/ui/Footer";
 import { draftMode } from "next/headers";
 import InitSB from "@/components/initSB";
 import Popup from "@/components/Popup";
+import { GoogleTagManager } from '@next/third-parties/google'
 import Script from 'next/script';
 import "./globals.css";
 
@@ -41,6 +42,7 @@ export default async function RootLayout({
     return (
       <StoryblokProvider>
         <html lang="en">
+          <GoogleTagManager gtmId="G-VFCF1H1CWC" />
           <body className={`${agrandir.variable} ${reckless.variable}`}>
             {popupData.data.story.content.display_popup &&
               <Popup delay={popupData.data.story.content.delay} headline={popupData.data.story.content.headline} />
