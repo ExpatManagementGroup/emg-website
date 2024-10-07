@@ -87,6 +87,7 @@ export default async function RootLayout({
         <Script
           id="cookieyes-script"
           src={`https://cdn-cookieyes.com/client_data/27fbaa7ff2975a61d7c5bbfa/script.js`}
+          strategy="beforeInteractive"
         >
         </Script>
       </body>
