@@ -76,7 +76,7 @@ export default async function RootLayout({
   else {
     return (
       <html lang="en">
-      <GoogleTagManager gtmId="G-VFCF1H1CWC" />
+      <GoogleTagManager gtmId="GTM-MC4XFKQL" />
       <body className={`${agrandir.variable} ${reckless.variable}`}>
         {popupData.data.story.content.display_popup &&
           <Popup delay={popupData.data.story.content.delay} headline={popupData.data.story.content.headline} />
