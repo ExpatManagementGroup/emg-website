@@ -1,4 +1,7 @@
 @media screen and (max-width:839.9px) {
+  :global(#swiper_hometestimonials .swiper-slide):has(.client_slide) {
+    display: grid;
+  }
   .client_slide {
     padding: 1.5rem;
     border: 1px solid var(--EMG-Deep-Teal);
@@ -74,6 +77,9 @@
   }
 }
 @media screen and (min-width:840px) {
+  :global(#swiper_hometestimonials .swiper-slide):has(.client_slide) {
+    display: grid;
+  }
   .client_slide {
     padding: 2em;
     border: 1px solid var(--EMG-Deep-Teal);
@@ -85,6 +91,7 @@
     position: relative;
     overflow: hidden;
     grid-template-columns: 15% 20% auto 55% ;
+    grid-template-rows: auto auto clamp(10px, 10%, 2rem) auto;
   }
   .image {
     grid-column: 1 / span 1;
