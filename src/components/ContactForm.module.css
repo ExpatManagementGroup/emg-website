@@ -157,6 +157,15 @@
   padding: 1rem;
   border-radius: 1rem;
   font-size: var(--fontsize-18);
+  position: absolute;
+  width: calc(100% - var(--d-colWidth-1));
+
+  @media (max-width:839.9px) {
+    & {
+      width: calc(100% - 2 * var(--m-outer-margin-l));
+      margin-top: .15em;
+    }
+  }
 
   & > svg {
     height: 1.5em;
