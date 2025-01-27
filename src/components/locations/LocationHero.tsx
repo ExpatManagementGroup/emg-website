@@ -21,6 +21,23 @@ export default function LocationHero( { blok }: { blok: any }) {
     }
   }
 
+  const getReachOutLinkURL = () => {
+    if (blok.reach_out_link && blok.reach_out_link.url) {
+      return blok.reach_out_link.url;
+    }
+    else if (blok.reach_out_link && blok.reach_out_link.cached_url) {
+      if (blok.reach_out_link.anchor) {
+        return blok.reach_out_link.cached_url + `#${blok.reach_out_link.anchor}`;
+      } 
+      else {
+        return blok.reach_out_link.cached_url;
+      }
+    }
+    else {
+      return `/contact-us#${hashlink()}`;
+    }
+  }
+
   return (
     <section className={styles.hero} {...storyblokEditable(blok)}>
       <Picture
@@ -43,7 +60,7 @@ export default function LocationHero( { blok }: { blok: any }) {
           }
           <Button
             type="Link"
-            href={`/contact-us#${hashlink()}`}
+            href={getReachOutLinkURL()}
             text='Reach Out'
             className={styles.button}
           />
