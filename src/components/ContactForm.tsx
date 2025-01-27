@@ -44,9 +44,9 @@ export default function ContactUs({ blok }: { blok: any }) {
 
   return (
     <div className={styles.contactform} id={blok.anchor ? blok.anchor : blok._uid} {...storyblokEditable(blok)}>
-      <form onSubmit={handleFormSubmit} name={`contactform-on-${window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)}`} method="POST" data-netlify="true">
+      <form onSubmit={handleFormSubmit} name={`contactform-${blok.form_ui ? blok.form_ui : 'unique-identifier-missing'}`} method="POST" data-netlify="true">
         {blok.title && <h2 className={styles.title}>{blok.title}</h2>}
-        <input type="hidden" name="form-name" value={`contactform-on-${window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)}`} />
+        <input type="hidden" name="form-name" value={`contactform-${blok.form_ui ? blok.form_ui : 'unique-identifier-missing'}`} />
         <div className={styles.info}>
           <div className={styles.input}>
             <input type="text" name="firstname" placeholder='First Name' />
