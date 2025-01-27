@@ -1,0 +1,173 @@
+@media screen and (max-width:839.9px) {
+  .contactform {
+    background-color: var(--EMG-Deep-Teal);
+    color: var(--EMG-White);
+    padding: calc( 2 * var(--nav-height)) var(--m-outer-margin-l); 
+  }
+  
+  .title {
+    font-size: var(--fontsize-50);
+    font-family: var(--font-reckless);
+    line-height: 0.915;
+    letter-spacing: -0.015em;
+    margin-bottom: .5em;
+  }
+  .contactform input[type="text"],
+  .contactform input[type="email"], 
+  .contactform textarea {
+    background-color: var(--EMG-White);
+    border: none;
+  }
+  .input {
+    position: relative;
+  }
+  .input label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: var(--fontsize-inpu);
+    color: var(--EMG-White);
+    padding: 0 .5rem;
+    transition: all .3s;
+  }
+  .input input,
+  .message textarea {
+    color: var(--EMG-Deep-Teal);
+    font-family: var(--font-agrandir);
+    font-size: var(--fontsize-input);
+    padding: .75rem 1.25rem;
+  }
+  .input input::placeholder,
+  .message textarea::placeholder {
+    color: var(--EMG-Deep-Teal);
+    font-family: var(--font-agrandir);
+    font-size: var(--fontsize-input);
+  }
+  .message textarea {
+    width: 100%;
+    border-radius: 1.66em;
+    height: calc(var(--formheight) - 1.5rem - var(--fontsize-16) - var(--d-gutter) - 2px);
+  }
+  .input input {
+    position: relative;
+  }
+  .input input:focus + label,
+  .input input:valid + label {
+    display: none;
+  }
+  div:has(> .submitbutton) {
+    text-align: right;
+  }
+}
+@media screen and (min-width:840px) {
+  
+  .contactform form {
+    --formheight: calc(var(--d-colWidth-3) / 1.4570446735);
+    width: var(--d-colWidth-8);
+    padding: calc(0.5 * var(--d-colWidth-1) );
+    background-color: var(--EMG-Deep-Teal);
+    border-radius: .5rem;
+    margin: 4em auto;
+    position: relative;
+    /* height: var(--formheight); */
+  }
+  .title {
+    font-size: var(--fontsize-60);
+    font-family: var(--font-reckless);
+    line-height: 0.915;
+    letter-spacing: -0.015em;
+    margin: 0 0 1em 0;
+    color: var(--EMG-White);
+  }
+  .contactform input[type="text"],
+  .contactform input[type="email"],  
+  .contactform textarea {
+    background-color: var(--EMG-White);
+    border: none;
+    outline: 0px solid transparent;
+    transition: all .3s ease-out;
+
+    &:focus {
+      outline: 2px solid var(--EMG-Aero-Orange  );
+    }
+  }
+  .input {
+    position: relative;
+  }
+  .input label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: var(--fontsize-16);
+    color: var(--EMG-White);
+    padding: 0 .5rem;
+    transition: all .3s;
+  }
+  .input input[type="text"],
+  .input input[type="email"],
+  .message textarea {
+    color: var(--EMG-Deep-Teal);
+    font-family: var(--font-agrandir);
+    font-size: var(--fontsize-16);
+    padding: .75rem 1.25rem;
+  }
+  .input input[type="text"]::placeholder,
+  .input input[type="email"]::placeholder,
+  .message textarea::placeholder {
+    color: var(--EMG-Deep-Teal);
+    font-family: var(--font-agrandir);
+    font-size: var(--fontsize-16);
+  }
+  .message textarea {
+    width: 100%;
+    border-radius: 1.66em;
+    height: calc(var(--formheight) - 1.5rem - var(--fontsize-16) - var(--d-gutter) - 2px);
+  }
+  .input input[type="text"],
+  .input input[type="email"] {
+    position: relative;
+  }
+  .input input:focus + label,
+  .input input:valid + label {
+    display: none;
+  }
+  .submitbutton:global(.button) {
+    position: absolute;
+    right: calc(0.5 * var(--d-colWidth-1) + 1rem);
+    bottom: calc(0.5 * var(--d-colWidth-1) + 1rem);
+  }
+  .info {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+  }
+  .info > * {
+    flex: 1 1 30%;
+  }
+  .info > *:last-child {
+    flex: 1 1 40%;
+  }
+}
+.alert {
+  background-color: #376e37;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .25rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  font-size: var(--fontsize-18);
+
+  & > svg {
+    height: 1.5em;
+    width: auto;
+    
+    & path {
+      stroke: white;
+    }
+  }
+
+  &.alert_error {
+    background-color: red;
+  }
+}
