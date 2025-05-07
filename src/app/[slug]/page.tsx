@@ -91,11 +91,12 @@ async function fetchSlugData(slug: string) {
   const { isEnabled } = await draftMode()
   try {
     if ( slug === 'netherlands' || slug === 'belgium' || slug === 'germany' || slug === 'luxembourg' || slug === 'global') {
-      return getStoryblokApi().get(`cdn/stories/locations/${slug}`, { 
+      const story = await getStoryblokApi().get(`cdn/stories/locations/${slug}`, {
         version: isEnabled ? "draft" : "published"
       }, {
         cache: isEnabled ? 'no-store' : 'default'
       } );
+      return story;
     }
     else {
       const story = await getStoryblokApi().get(`cdn/stories/${slug}`, { 
