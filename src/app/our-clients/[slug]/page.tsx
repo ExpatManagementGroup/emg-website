@@ -2,12 +2,8 @@ import { getStoryblokApi } from "@/lib/storyblok";
 import { StoryblokStory } from "@storyblok/react/rsc";
 import { storyblokEditable } from "@storyblok/react";
 import styles from "../../page.module.css";
-import CCOtherCases from "@/components/clientCases/CCOtherCases";
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from 'next'
-import InitSB from "@/components/initSB";
-
-InitSB();
 
 export async function generateStaticParams() {
   const posts = await getStoryblokApi().get(`cdn/stories/`, {
@@ -60,7 +56,6 @@ export default async function Slug(props: { params: Promise<{ slug: string }> })
   const params = await props.params;
 
   const page = await fetchData(params.slug);
-  // const othercases = await fetchOtherCCDataExcluding(params.slug);
   const fetchedTestimonials = await fetchTestimonialData();
   page.data.story = {
     ...page.data.story,
@@ -69,7 +64,6 @@ export default async function Slug(props: { params: Promise<{ slug: string }> })
       allTestimonials: fetchedTestimonials.data.stories || ['dbd']
     }
   }
-  const { isEnabled } = await draftMode()
   return (
     <>
     <main className={styles.main} {...storyblokEditable}>
@@ -88,17 +82,6 @@ async function fetchData(slug: string) {
     cache: isEnabled ? 'no-store' : 'default'
   });
 }
-// async function fetchOtherCCDataExcluding(slug:string) {
-//   const { isEnabled } = draftMode();
-//   return getStoryblokApi().get(`cdn/stories`, {
-//     "starts_with": "our-clients/",
-//     "is_startpage": false,
-//     "excluding_slugs": `our-clients/${slug}`,
-//     "version": isEnabled ? "draft" : "published"
-//   }, {
-//     cache: isEnabled ? 'no-store' : 'default'
-//   });
-// }
 async function fetchTestimonialData() {
   const { isEnabled } = await draftMode();
   return getStoryblokApi().get(`cdn/stories`, {
