@@ -4,9 +4,6 @@ import { storyblokEditable } from "@storyblok/react";
 import styles from "../page.module.css";
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from 'next'
-import InitSB from "@/components/initSB";
-
-InitSB();
 
 type Props = {
   params: Promise<{ slug: string }>

@@ -4,10 +4,7 @@ import { getStoryblokApi } from "@/lib/storyblok";
 import styles from "../page.module.css";
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from 'next'
-import InitSB from "@/components/initSB";
 import { notFound } from "next/navigation";
-
-InitSB();
 
 type Props = {
   params: Promise<{ slug: string }>

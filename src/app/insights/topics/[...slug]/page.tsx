@@ -4,9 +4,6 @@ import PostCard from "@/components/PostCard";
 import Events from "@/components/Events";
 import { notFound } from "next/navigation";
 import { draftMode } from "next/headers";
-import InitSB from "@/components/initSB";
-
-InitSB();
 
 export async function generateStaticParams() {
   const storyblokApi = getStoryblokApi();
