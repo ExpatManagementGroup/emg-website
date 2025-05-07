@@ -1,4 +1,6 @@
-import { storyblokEditable, getStoryblokApi, StoryblokComponent } from "@storyblok/react";
+import { getStoryblokApi } from "@/lib/storyblok";
+import { StoryblokStory } from "@storyblok/react/rsc";
+import { storyblokEditable } from "@storyblok/react";
 import styles from "../page.module.css";
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from 'next'
@@ -63,7 +65,7 @@ export default async function Slug(props: { params: Promise<{ slug: string }> })
   return (
     <>
     <main className={`${styles.main} our_clients`} {...storyblokEditable}>
-      <StoryblokComponent blok={slugData.data.story.content} />
+      <StoryblokStory story={slugData.data.story} />
     </main>
     </>
   );

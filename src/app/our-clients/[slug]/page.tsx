@@ -1,4 +1,6 @@
-import { storyblokEditable, getStoryblokApi, StoryblokComponent } from "@storyblok/react";
+import { getStoryblokApi } from "@/lib/storyblok";
+import { StoryblokStory } from "@storyblok/react/rsc";
+import { storyblokEditable } from "@storyblok/react";
 import styles from "../../page.module.css";
 import CCOtherCases from "@/components/clientCases/CCOtherCases";
 import { draftMode } from "next/headers";
@@ -71,7 +73,7 @@ export default async function Slug(props: { params: Promise<{ slug: string }> })
   return (
     <>
     <main className={styles.main} {...storyblokEditable}>
-      <StoryblokComponent blok={page.data.story.content} />
+      <StoryblokStory story={page.data.story} />
     </main>
     </>
   );

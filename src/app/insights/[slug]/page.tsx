@@ -77,7 +77,7 @@ export default async function Slug(props: { params: Promise<{ slug: string }> })
   return (
     <>
     <main className={`${styles.main} ${postData.data.story.content.component}`} {...storyblokEditable}>
-      <StoryblokStory blok={postData.data.story} />
+      <StoryblokStory story={postData.data.story} />
       { !isEnabled && postData.data.story.content.title === '404' &&
       <div style={{
         display: 'flex',
