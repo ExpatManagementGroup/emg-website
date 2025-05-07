@@ -7,14 +7,16 @@ import InitSB from "@/components/initSB";
 InitSB();
 
 type Props = {
-  params: { slug: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: Promise<{ slug: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 export async function generateMetadata(
-  { params, searchParams }: Props,
+  props: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
+  const params = await props.params;
+  const searchParams = await props.searchParams;
  
   // fetch data
   const pagedata = await fetchData()

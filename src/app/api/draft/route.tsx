@@ -51,9 +51,12 @@ export async function GET(request: Request) {
   // Enable Draft Mode by setting the cookie
   (await draftMode()).enable()
 
-  const draft = (await cookies()).get('__prerender_bypass')
+  // Get the cookie instance first
+  const cookieStore = await cookies()
+  const draftCookie = cookieStore.get('__prerender_bypass')
     
-  (await cookies()).set('__prerender_bypass', draft?.value || '', {
+  // Then set it with the proper value handling
+  cookieStore.set('__prerender_bypass', draftCookie?.value || '', {
       httpOnly: true,
       sameSite: 'none',
       secure: true,

@@ -16,12 +16,12 @@ import InitSB from "@/components/initSB";
 InitSB();
 
 type Props = {
-  params: { slug: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: Promise<{ slug: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 export async function generateMetadata(
-  { params, searchParams }: Props,
+  props: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
  
@@ -52,10 +52,13 @@ export async function generateMetadata(
 }
 
 export default async function Home(
-  props:{searchParams?: Promise<{
-    query?: string;
-    page?: string;
-  }>}
+  props:{
+    params?: Promise<{ slug: string }>;
+    searchParams?: Promise<{
+      query?: string;
+      page?: string;
+    }>
+  }
 ) {
   const searchParams = await props.searchParams;
 

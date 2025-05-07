@@ -1,5 +1,3 @@
-import { storyblokInit, apiPlugin } from "@storyblok/react";
-import { ReactNode } from "react"; // Import ReactNode type
 import Page from "./pages/Page";
 import PageHero from "./PageHero";
 import PageTextblock from "./PageTextblock";

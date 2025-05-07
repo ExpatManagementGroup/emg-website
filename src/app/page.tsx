@@ -1,4 +1,4 @@
-import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin } from "@storyblok/react";
+import { getStoryblokApi } from "@storyblok/react";
 import { StoryblokComponent } from "@storyblok/react";
 import styles from "./page.module.css";
 import { draftMode } from 'next/headers'
@@ -7,17 +7,20 @@ import InitSB from "@/components/initSB";
 
 InitSB();
 
+// Initialize the Storyblok API after the initialization
 const storyblokApi = getStoryblokApi();
 
 type Props = {
-  params: { slug: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: Promise<{ slug: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 export async function generateMetadata(
-  { params, searchParams }: Props,
+  props: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
+  const params = await props.params;
+  const searchParams = await props.searchParams;
  
   // fetch data
   const pagedata = await fetchData()
@@ -66,7 +69,7 @@ export default async function Home() {
   const { isEnabled } = await draftMode()
   return (
     <>
-    <main className={`${styles.main} home`} {...storyblokEditable}>
+    <main className={`${styles.main} home`}>
         <StoryblokComponent blok={homeData.data.story.content} />
     </main>
     </>
