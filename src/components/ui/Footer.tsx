@@ -17,11 +17,11 @@ export default function Footer(props: any) {
         <div className={styles.locations}>
           <h3 className={styles.footer_nav_header}>Locations</h3>
           <ul className={styles.footer_linklist}>
-            <li><a href="/netherlands">The Netherlands</a></li>
-            <li><a href="/belgium">Belgium</a></li>
-            <li><a href="/luxembourg">Luxembourg</a></li>
-            <li><a href="/germany">Germany</a></li>
-            <li><a href="/global">Global</a></li>
+            <li><Link href="/netherlands">The Netherlands</Link></li>
+            <li><Link href="/belgium">Belgium</Link></li>
+            <li><Link href="/luxembourg">Luxembourg</Link></li>
+            <li><Link href="/germany">Germany</Link></li>
+            <li><Link href="/global">Global</Link></li>
           </ul>
         </div>
         { navdata.data.story.content.navigation_items && 

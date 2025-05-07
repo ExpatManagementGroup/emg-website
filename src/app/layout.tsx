@@ -9,6 +9,7 @@ import InitSB from "@/components/initSB";
 import Popup from "@/components/Popup";
 import { GoogleTagManager } from '@next/third-parties/google'
 import Script from 'next/script';
+import Link from "next/link";
 import "./globals.css";
 
 InitSB();
@@ -66,7 +67,7 @@ export default async function RootLayout({
               'transform': 'rotate(-45deg)',
               'boxShadow': '0 0 10px rgba(0,0,0,0.5)',
               'opacity': '0.95',
-            }}>Draft Mode <a href="/api/exit-draft?slug=">(exit)</a></div>}
+            }}>Draft Mode <Link href="/api/exit-draft?slug=">(exit)</Link></div>}
             <Footer navData={navData} footerData={footerData} />
           </body>
         </html>
