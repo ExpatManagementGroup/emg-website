@@ -1,4 +1,6 @@
-import { storyblokEditable, getStoryblokApi, StoryblokComponent } from "@storyblok/react";
+import { storyblokEditable } from "@storyblok/react";
+import { StoryblokStory } from "@storyblok/react/rsc";
+import { getStoryblokApi } from "@/lib/storyblok";
 import styles from "../page.module.css";
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from 'next'
@@ -69,7 +71,7 @@ export default async function OurPeople() {
   return (
     <>
     <main className={`${styles.main} work_with_us`} {...storyblokEditable}>
-      <StoryblokComponent blok={ourPeopleData.data.story.content} />
+      <StoryblokStory story={ourPeopleData.data.story} />
     </main>
     </>
   );

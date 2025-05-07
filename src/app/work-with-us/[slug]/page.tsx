@@ -1,11 +1,10 @@
-import { storyblokEditable, getStoryblokApi, StoryblokComponent } from "@storyblok/react";
+import { getStoryblokApi } from "@/lib/storyblok";
+import { StoryblokStory } from "@storyblok/react/rsc";
+import { storyblokEditable } from "@storyblok/react";
 import styles from "../../page.module.css";
 import WorkWithUsMoreJobs from "@/components/work_with_us/WorkWithUsMoreJobs";
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from 'next'
-import InitSB from "@/components/initSB";
-
-InitSB();
 
 export async function generateStaticParams() {
   const posts = await getStoryblokApi().get(`cdn/stories/`, {
@@ -63,7 +62,7 @@ export default async function Slug(props: { params: Promise<{ slug: string }> })
   return (
     <>
     <main className={styles.main} {...storyblokEditable}>
-      <StoryblokComponent blok={job.data.story.content} />
+      <StoryblokStory story={job.data.story} />
       <WorkWithUsMoreJobs jobs={moreJobs.data.stories} slug={params.slug} morejobsheader={job.data.story.content.morejobs_headline} />
     </main>
     </>

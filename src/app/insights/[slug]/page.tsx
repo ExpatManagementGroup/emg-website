@@ -1,12 +1,11 @@
-import { storyblokEditable, getStoryblokApi, StoryblokComponent, setComponents} from "@storyblok/react";
+import { storyblokEditable, setComponents} from "@storyblok/react";
+import { StoryblokStory } from "@storyblok/react/rsc";
+import { getStoryblokApi } from "@/lib/storyblok";
 import styles from "./page.module.css";
 import Post_1 from "../../../components/pages/Post_1"; 
 import Post_2 from "../../../components/pages/Post_2"; 
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from 'next'
-import InitSB from "@/components/initSB";
-
-InitSB();
 
 export async function generateStaticParams() {
   const posts = await getStoryblokApi().get(`cdn/stories/`, {
@@ -78,7 +77,7 @@ export default async function Slug(props: { params: Promise<{ slug: string }> })
   return (
     <>
     <main className={`${styles.main} ${postData.data.story.content.component}`} {...storyblokEditable}>
-      <StoryblokComponent blok={postData.data.story.content} />
+      <StoryblokStory blok={postData.data.story} />
       { !isEnabled && postData.data.story.content.title === '404' &&
       <div style={{
         display: 'flex',

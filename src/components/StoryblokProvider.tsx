@@ -1,17 +1,8 @@
 "use client";
-import { storyblokInit, apiPlugin } from "@storyblok/react";
 import { ReactNode } from "react"; // Import ReactNode type
-import components from "./storyblokComponents";
-
-storyblokInit({
-  accessToken: process.env.STORYBLOK_API_TOKEN  || process.env.NEXT_PUBLIC_STORYBLOK_API_TOKEN,
-  apiOptions: {
-    region: 'eu'
-  },
-  use: [apiPlugin],
-  components
-});
+import { getStoryblokApi } from "@/lib/storyblok";
  
 export default function StoryblokProvider({ children }: { children: ReactNode }) { 
+  getStoryblokApi();
   return children;
 }

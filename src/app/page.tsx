@@ -1,11 +1,9 @@
-import { getStoryblokApi } from "@storyblok/react";
-import { StoryblokComponent } from "@storyblok/react";
+// import { getStoryblokApi, StoryblokComponent } from "@storyblok/react";
+import { getStoryblokApi } from "@/lib/storyblok";
+import { StoryblokStory } from '@storyblok/react/rsc';
 import styles from "./page.module.css";
 import { draftMode } from 'next/headers'
 import { Metadata, ResolvingMetadata } from 'next'
-import InitSB from "@/components/initSB";
-
-InitSB();
 
 // Initialize the Storyblok API after the initialization
 const storyblokApi = getStoryblokApi();
@@ -70,7 +68,8 @@ export default async function Home() {
   return (
     <>
     <main className={`${styles.main} home`}>
-        <StoryblokComponent blok={homeData.data.story.content} />
+      {/* { JSON.stringify(homeData) } */}
+      <StoryblokStory story={homeData.data.story} /> 
     </main>
     </>
   );

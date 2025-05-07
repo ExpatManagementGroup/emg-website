@@ -1,10 +1,9 @@
-import { storyblokEditable, getStoryblokApi, StoryblokComponent } from "@storyblok/react";
+import { getStoryblokApi } from "@/lib/storyblok";
+import { StoryblokStory } from "@storyblok/react/rsc";
+import { storyblokEditable } from "@storyblok/react";
 import styles from "../page.module.css";
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from 'next'
-import InitSB from "@/components/initSB";
-
-InitSB();
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -62,7 +61,7 @@ export default async function OurPeople() {
   return (
     <>
     <main className={`${styles.main} home`} {...storyblokEditable}>
-      <StoryblokComponent blok={ourPeopleData.data.story.content} />
+      <StoryblokStory story={ourPeopleData.data.story} />
     </main>
     </>
   );
