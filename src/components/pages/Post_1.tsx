@@ -1,4 +1,4 @@
-import { storyblokEditable, ISbStoriesParams } from "@storyblok/react/rsc";
+import { storyblokEditable, ISbStoriesParams } from "@storyblok/react";
 import PostCard from "../PostCard";
 import { render } from 'storyblok-rich-text-react-renderer';
 import styles from "./Post_1.module.css";

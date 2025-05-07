@@ -1,5 +1,4 @@
-import { storyblokEditable, getStoryblokApi, StoryblokComponent } from "@storyblok/react/rsc";
-import StoryblokStory from "@storyblok/react/story";
+import { storyblokEditable, getStoryblokApi, StoryblokComponent } from "@storyblok/react";
 import styles from "../page.module.css";
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from 'next'
@@ -57,23 +56,18 @@ export default async function Slug({ params }: { params: { slug: string } }) {
       talentTestimonials: talentData.data.stories
     }
   }
-  const { isEnabled } = draftMode()
+  const { isEnabled } = await draftMode()
   return (
     <>
     <main className={`${styles.main} our_clients`} {...storyblokEditable}>
-       { isEnabled && 
-       <StoryblokStory story={slugData.data.story} />
-      }
-      { !isEnabled &&
-        <StoryblokComponent blok={slugData.data.story.content} />
-      }
+      <StoryblokComponent blok={slugData.data.story.content} />
     </main>
     </>
   );
 }
 
 async function fetchSlugData() {
-  const { isEnabled } = draftMode()
+  const { isEnabled } = await draftMode()
   return getStoryblokApi().get(`cdn/stories/our-clients`, { 
     // 'is_startpage': true,
     'version': isEnabled ? "draft" : "published"
@@ -82,7 +76,7 @@ async function fetchSlugData() {
   } );
 }
 async function fetchClientsData() {
-  const { isEnabled } = draftMode()
+  const { isEnabled } = await draftMode()
   return getStoryblokApi().get(`cdn/stories`, {
     "starts_with": "our-clients/",
     "is_startpage": false,
@@ -92,7 +86,7 @@ async function fetchClientsData() {
   });
 }
 async function fetchTalentTestimonialData() {
-  const { isEnabled } = draftMode()
+  const { isEnabled } = await draftMode()
   return getStoryblokApi().get(`cdn/stories/`, {
     "starts_with": "testimonials-clients/",
     "per_page": 5,

@@ -3,7 +3,7 @@ import styles from "./HomeWhatWeDo.module.css";
 import Icon from "../ui/Icon";
 import Button from "../ui/Button";
 import Link from "next/link";
-import { storyblokEditable } from "@storyblok/react/rsc";
+import { storyblokEditable } from "@storyblok/react";
 
 export default function HomeWhatWeDo({ blok }: { blok: any }) {
   return (

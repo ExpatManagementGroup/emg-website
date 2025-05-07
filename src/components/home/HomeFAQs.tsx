@@ -1,5 +1,5 @@
 import styles from './HomeFAQs.module.css';
-import { storyblokEditable } from "@storyblok/react/rsc";
+import { storyblokEditable } from "@storyblok/react";
 import { render } from 'storyblok-rich-text-react-renderer';
 import Button from '../ui/Button';
 import FAQ from '../ui/FAQModule';

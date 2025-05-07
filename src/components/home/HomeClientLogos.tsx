@@ -1,6 +1,6 @@
 import styles from './HomeClientLogos.module.css';
 import CCOtherCases from "../clientCases/CCOtherCases"
-import { storyblokEditable } from "@storyblok/react/rsc";
+import { storyblokEditable } from "@storyblok/react";
 
 export default function HomeClientLogos( { blok }: { blok: any }) {
   const clientData = blok.clientCaseStories;

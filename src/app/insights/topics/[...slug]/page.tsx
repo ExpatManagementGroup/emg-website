@@ -1,4 +1,4 @@
-import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin} from "@storyblok/react/rsc";
+import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin} from "@storyblok/react";
 import styles from "./page.module.css";
 import PostCard from "@/components/PostCard";
 import Events from "@/components/Events";
@@ -21,9 +21,9 @@ export async function generateStaticParams() {
 }
 
 
-export default async function TopicsPosts(props: { params: { slug: string } }) {
+export default async function TopicsPosts(props: { params: Promise<{ slug: string }> }) {
   const { data } = await fetchData();
-  const slug = props.params.slug[0];
+  const slug = (await props.params).slug[0];
 
   const filteredStories = data.stories.filter((story: any) => story.content.topic === slug);
   
@@ -98,7 +98,7 @@ export default async function TopicsPosts(props: { params: { slug: string } }) {
 }
 
 async function fetchData() {
-  const isEnabled = draftMode().isEnabled;
+  const isEnabled = (await draftMode()).isEnabled;
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/stories`, {
     'starts_with': 'insights/', 
@@ -109,7 +109,7 @@ async function fetchData() {
   } );
 }
 async function fetchEventsData() {
-  const isEnabled = draftMode().isEnabled;
+  const isEnabled = (await draftMode()).isEnabled;
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/stories`, {
     'starts_with': 'events/', 

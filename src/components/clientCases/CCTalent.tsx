@@ -1,5 +1,5 @@
 import CCTalentDisplay from './CCTalentDisplay'
-import { storyblokEditable } from '@storyblok/react/rsc';
+import { storyblokEditable } from '@storyblok/react';
 
 export default function CCTalent( { blok }: { blok: any }) {
 

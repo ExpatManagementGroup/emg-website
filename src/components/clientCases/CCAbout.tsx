@@ -1,7 +1,7 @@
 import styles from './CCAbout.module.css';
 import { render } from 'storyblok-rich-text-react-renderer';
 import Icon from '../ui/Icon';
-import { storyblokEditable } from "@storyblok/react/rsc";
+import { storyblokEditable } from "@storyblok/react";
 
 export default function CCAbout( { blok }: { blok: any }) {
   return (

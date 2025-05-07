@@ -1,4 +1,4 @@
-import { storyblokEditable, getStoryblokApi } from "@storyblok/react/rsc";
+import { storyblokEditable, getStoryblokApi } from "@storyblok/react";
 import styles from "./page.module.css";
 import PostCard from "@/components/PostCard";
 import Events from "@/components/Events";
@@ -51,10 +51,13 @@ export async function generateMetadata(
   }
 }
 
-export default async function Home({searchParams}:{searchParams?: {
-  query?: string;
-  page?: string;
-}}) {
+export default async function Home(
+  props:{searchParams?: Promise<{
+    query?: string;
+    page?: string;
+  }>}
+) {
+  const searchParams = await props.searchParams;
 
   const query = searchParams?.query || '';
   const keystring = `search=${searchParams?.query}`;
@@ -158,7 +161,7 @@ export default async function Home({searchParams}:{searchParams?: {
 }
 
 async function fetchData() {
-  const { isEnabled } = draftMode()
+  const { isEnabled } = await draftMode()
   const storyblokApi = getStoryblokApi();
   const data = storyblokApi.get(`cdn/stories`, {
     'starts_with': 'insights/', 
@@ -177,7 +180,7 @@ async function fetchData() {
   return data;
 }
 async function fetchEventsData() {
-  const { isEnabled } = draftMode()
+  const { isEnabled } = await draftMode()
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/stories`, {
     'starts_with': 'events/', 
@@ -195,7 +198,7 @@ async function fetchTopicData() {
 }
 
 async function fetchSlugData() {
-  const { isEnabled } = draftMode()
+  const { isEnabled } = await draftMode()
   return getStoryblokApi().get(`cdn/stories/insights`, { 
     version: isEnabled ? "draft" : "published"
   }, {

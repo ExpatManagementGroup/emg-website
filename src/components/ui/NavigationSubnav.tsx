@@ -4,7 +4,7 @@ import styles from './NavigationSubnav.module.css'
 
 export default function Subnav(props: any) {
   
-  const toggle = useRef() as any
+  const toggle = useRef(undefined) as any
 
   const [subShown, setSubShown] = useState(false)
   

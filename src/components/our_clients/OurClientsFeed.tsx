@@ -2,7 +2,7 @@ import styles from './OurClientsFeed.module.css';
 import Slider from '../ui/Slider';
 import OurClientsFeedCard from './OurClientsFeedCard';
 import OurClientsFeedCardFirst from './OurClientsFeedCardFirst';
-import { storyblokEditable } from '@storyblok/react/rsc';
+import { storyblokEditable } from '@storyblok/react';
 
 export default function OurClientsFeed( { blok }: { blok: any }) {
 

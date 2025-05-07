@@ -1,6 +1,5 @@
-import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin } from "@storyblok/react/rsc";
-import StoryblokStory from "@storyblok/react/story";
-import { StoryblokComponent } from "@storyblok/react/rsc";
+import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin } from "@storyblok/react";
+import { StoryblokComponent } from "@storyblok/react";
 import styles from "./page.module.css";
 import { draftMode } from 'next/headers'
 import { Metadata, ResolvingMetadata } from 'next'
@@ -64,23 +63,18 @@ export default async function Home() {
       topics: topics.data.datasource_entries
     }
   }
-  const { isEnabled } = draftMode()
+  const { isEnabled } = await draftMode()
   return (
     <>
     <main className={`${styles.main} home`} {...storyblokEditable}>
-      { isEnabled && 
-       <StoryblokStory story={homeData.data.story} />
-      }
-      { !isEnabled &&
         <StoryblokComponent blok={homeData.data.story.content} />
-      }
     </main>
     </>
   );
 }
 
 async function fetchData() {
-  const { isEnabled } = draftMode()
+  const { isEnabled } = await draftMode()
   return storyblokApi.get(`cdn/stories/home`, {
     "version": isEnabled ? "draft" : "published",
     "resolve_relations": "blogPosts.posts"

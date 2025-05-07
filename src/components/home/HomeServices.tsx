@@ -1,7 +1,7 @@
 import styles from "./HomeServices.module.css";
 import Icon from "../ui/Icon";
 import Button from "../ui/Button";
-import { storyblokEditable } from "@storyblok/react/rsc";
+import { storyblokEditable } from "@storyblok/react";
 import { render } from 'storyblok-rich-text-react-renderer';
 
 export default function HomeServices({ blok }: { blok: any }) {

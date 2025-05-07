@@ -2,7 +2,7 @@
 import styles from './OurStoryQualitySeal.module.css';
 import Picture from '../Picture';
 import { render } from 'storyblok-rich-text-react-renderer';
-import { storyblokEditable } from '@storyblok/react/rsc';
+import { storyblokEditable } from '@storyblok/react';
 
 export default function OurStoryQualitySeal( { blok }: { blok: any }) {
   return (

@@ -1,5 +1,5 @@
 import styles from './BlogSlider.module.css';
-import { storyblokEditable } from "@storyblok/react/rsc";
+import { storyblokEditable } from "@storyblok/react";
 import { render } from 'storyblok-rich-text-react-renderer';
 import Slider from '../ui/Slider';
 import Picture from '../Picture';

@@ -1,4 +1,4 @@
-import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin} from "@storyblok/react/rsc";
+import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin} from "@storyblok/react";
 import styles from "../../page.module.css";
 import PostCard from "@/components/PostCard";
 import Events from "@/components/Events";
@@ -8,7 +8,8 @@ import InitSB from "@/components/initSB";
 
 InitSB();
 
-export default async function Archive({ params }: { params: { slug: string } }) {
+export default async function Archive(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const archivepage = Number(params.slug.slice(5));
   if (isNaN(archivepage) || !archivepage) {
     notFound();

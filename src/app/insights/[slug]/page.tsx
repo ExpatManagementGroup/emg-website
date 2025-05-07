@@ -1,5 +1,4 @@
-import { storyblokEditable, getStoryblokApi, StoryblokComponent, setComponents} from "@storyblok/react/rsc";
-import StoryblokStory from "@storyblok/react/story";
+import { storyblokEditable, getStoryblokApi, StoryblokComponent, setComponents} from "@storyblok/react";
 import styles from "./page.module.css";
 import Post_1 from "../../../components/pages/Post_1"; 
 import Post_2 from "../../../components/pages/Post_2"; 
@@ -21,17 +20,15 @@ export async function generateStaticParams() {
 }
 
 type Props = {
-  params: { slug: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: Promise<{ slug: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
+  const params = await props.params;
   // read route params
   const id = params.slug
- 
+
   // fetch data
   const pagedata = await fetchData(id)
   const metadata = {
@@ -39,7 +36,7 @@ export async function generateMetadata(
     description: pagedata ? pagedata.data.story.content.description : '',
     ogimage: pagedata.data.story.content.featured_image.filename ? `${pagedata.data.story.content.featured_image.filename}/m/1200x630/smart/filters:format(jpg)` : '',
   }
- 
+
   // optionally access and extend (rather than replace) parent metadata
   const previousImages = (await parent).openGraph?.images || []
   const openGraphImages = [...previousImages]
@@ -48,7 +45,7 @@ export async function generateMetadata(
     const ogimg = { url: metadata.ogimage, width: 1200, height: 630 }
     openGraphImages.splice(0, openGraphImages.length, ogimg)
   }
- 
+
   return {
     title: metadata.title || (await parent).title,
     description: metadata.description || (await parent).description,
@@ -58,12 +55,13 @@ export async function generateMetadata(
   }
 }
 
-export default async function Slug({ params }: { params: { slug: string } }) {
+export default async function Slug(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
 
   setComponents({
     post_one: Post_1,
     post_two: Post_2
-  })  
+  })
 
   const postData = await fetchData(params.slug);
   const allTopicsData = await fetchTopicData();
@@ -76,16 +74,11 @@ export default async function Slug({ params }: { params: { slug: string } }) {
       morePosts: morePostsData.data.stories
     }
   }
-  const { isEnabled } = draftMode()
+  const { isEnabled } = await draftMode()
   return (
     <>
     <main className={`${styles.main} ${postData.data.story.content.component}`} {...storyblokEditable}>
-      { isEnabled && 
-        <StoryblokStory story={postData.data.story} />
-      }
-      { !isEnabled && postData.data.story.content.title !== '404'&&
-        <StoryblokComponent blok={postData.data.story.content} />
-      } 
+      <StoryblokComponent blok={postData.data.story.content} />
       { !isEnabled && postData.data.story.content.title === '404' &&
       <div style={{
         display: 'flex',
@@ -107,7 +100,7 @@ export default async function Slug({ params }: { params: { slug: string } }) {
 }
 
 async function fetchData(slug: string) {
-  const isEnabled = draftMode().isEnabled;
+  const isEnabled = (await draftMode()).isEnabled;
   const storyblokApi = getStoryblokApi();
   let result = storyblokApi.get(`cdn/stories/insights/${slug}`, { 
     version: isEnabled ? "draft" : "published"
@@ -145,7 +138,7 @@ async function fetchTopicData() {
   });
 }
 async function fetchMorePostsData(slug: string) {
-  const { isEnabled } = draftMode()
+  const { isEnabled } = await draftMode()
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/stories`, {
     'starts_with': 'insights/', 

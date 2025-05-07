@@ -1,4 +1,4 @@
-import { storyblokEditable, StoryblokComponent } from "@storyblok/react/rsc";
+import { storyblokEditable, StoryblokComponent } from "@storyblok/react";
  
 const Page = ({ blok }: { blok: any }) => (
   <div className="blocks" {...storyblokEditable(blok)}>

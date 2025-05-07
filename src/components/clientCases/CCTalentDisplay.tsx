@@ -1,6 +1,6 @@
 import Slider from '../ui/Slider';
 import styles from './CCTalent.module.css';
-import { storyblokEditable } from "@storyblok/react/rsc";
+import { storyblokEditable } from "@storyblok/react";
 import CCTalentSlide from './CCTalentSlide';
 
 export default function CCTalent( props:any ) {

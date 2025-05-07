@@ -1,6 +1,6 @@
 import styles from './OurStoryJourneyStep.module.css';
 import { render } from 'storyblok-rich-text-react-renderer';
-import { storyblokEditable } from "@storyblok/react/rsc";
+import { storyblokEditable } from "@storyblok/react";
 
 
 export default function OurStoryJourneyStep( { blok }: { blok: any }) {

@@ -1,16 +1,16 @@
 import { draftMode, cookies } from 'next/headers';
-import { getStoryblokApi, storyblokInit, apiPlugin } from '@storyblok/react/rsc'
+import { getStoryblokApi, storyblokInit, apiPlugin } from '@storyblok/react'
 import { redirect } from 'next/navigation'
 
 export async function GET(request: Request) {
   
   const { searchParams } = new URL(request.url);
   const slug = searchParams.get('slug');
-  draftMode().disable();
+  (await draftMode()).disable();
   
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const cookie = cookieStore.get("__prerender_bypass")!;
-  cookies().set({
+  (await cookies()).set({
     name: "__prerender_bypass",
     value: cookie?.value,
     expires: new Date(0), // Set expiration date to the past

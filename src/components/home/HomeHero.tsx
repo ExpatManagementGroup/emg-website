@@ -1,4 +1,4 @@
-import { storyblokEditable } from "@storyblok/react/rsc";
+import { storyblokEditable } from "@storyblok/react";
 import styles from "./HomeHero.module.css";
 import Button from "../ui/Button";
 import VideoHero from "../ui/VideoHero";

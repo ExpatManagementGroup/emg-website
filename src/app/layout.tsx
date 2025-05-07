@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getStoryblokApi } from "@storyblok/react/rsc";
+import { getStoryblokApi } from "@storyblok/react";
 import StoryblokProvider from "../components/StoryblokProvider";
 import { agrandir, reckless } from "../../styles/fonts";
 import Navigation from "../components/ui/Navigation";
@@ -36,7 +36,7 @@ export default async function RootLayout({
   const navData = await fetchNavData();
   const footerData = await fetchFooterData();
   const popupData = await fetchPopupData();
-  const { isEnabled } = draftMode();
+  const { isEnabled } = await draftMode();
 
   if (isEnabled) {
     return (

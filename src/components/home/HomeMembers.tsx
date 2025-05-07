@@ -1,7 +1,7 @@
 'use client';
 import styles from './HomeMembers.module.css';
 import Picture from '../Picture';
-import { storyblokEditable } from '@storyblok/react/rsc';
+import { storyblokEditable } from '@storyblok/react';
 import { useEffect, useRef } from 'react';
 
 export default function HomeMembers( { blok }: { blok: any }) {

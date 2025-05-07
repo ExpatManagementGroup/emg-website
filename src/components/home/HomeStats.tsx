@@ -1,5 +1,5 @@
 'use client';
-import { storyblokEditable } from "@storyblok/react/rsc";
+import { storyblokEditable } from "@storyblok/react";
 import styles from "./HomeStats.module.css";
 import { use, useEffect, useRef } from "react";
 

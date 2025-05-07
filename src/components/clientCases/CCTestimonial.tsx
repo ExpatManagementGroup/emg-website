@@ -1,6 +1,6 @@
 import styles from './CCTestimonial.module.css';
 import Picture from '../Picture';
-import { storyblokEditable } from "@storyblok/react/rsc";
+import { storyblokEditable } from "@storyblok/react";
 
 export default function CCTestimonial( { blok }: { blok: any }) {
   return (

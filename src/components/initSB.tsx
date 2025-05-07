@@ -1,4 +1,4 @@
-import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
+import { storyblokInit, apiPlugin } from "@storyblok/react";
 import components from "./storyblokComponents";
 
 export default function InitSB() {

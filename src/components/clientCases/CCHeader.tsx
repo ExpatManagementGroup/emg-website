@@ -5,7 +5,7 @@ import ReactCountryFlag from "react-country-flag"
 import Button from '../ui/Button'
 import Pill from '../ui/Pill'
 import Picture from '../Picture'
-import { storyblokEditable } from "@storyblok/react/rsc";
+import { storyblokEditable } from "@storyblok/react";
 
 export default function CCHeader( { blok }: { blok: any }) {
 

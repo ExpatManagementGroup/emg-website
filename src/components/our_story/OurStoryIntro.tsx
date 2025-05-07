@@ -4,7 +4,7 @@ import Picture from '../Picture';
 import { render } from 'storyblok-rich-text-react-renderer';
 import Link from "next/link";
 import Button from '../ui/Button';
-import { storyblokEditable } from '@storyblok/react/rsc';
+import { storyblokEditable } from '@storyblok/react';
 
 export default function OurStoryIntro( { blok }: { blok: any }) {
   return (

@@ -1,5 +1,4 @@
-import { storyblokEditable, getStoryblokApi, StoryblokComponent } from "@storyblok/react/rsc";
-import StoryblokStory from "@storyblok/react/story";
+import { storyblokEditable, getStoryblokApi, StoryblokComponent } from "@storyblok/react";
 import styles from "../page.module.css";
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from 'next'
@@ -64,23 +63,18 @@ export default async function OurPeople() {
       topics: topics.data.datasource_entries
     }
   }
-  const { isEnabled } = draftMode()
+  const { isEnabled } = await draftMode()
   return (
     <>
     <main className={`${styles.main} work_with_us`} {...storyblokEditable}>
-       { isEnabled && 
-        <StoryblokStory story={ourPeopleData.data.story} />
-        }
-        { !isEnabled &&
-          <StoryblokComponent blok={ourPeopleData.data.story.content} />
-        }
+      <StoryblokComponent blok={ourPeopleData.data.story.content} />
     </main>
     </>
   );
 }
 
 async function fetchData() {
-  const { isEnabled } = draftMode()
+  const { isEnabled } = await draftMode()
   try {
     return storyblokApi.get(`cdn/stories/work-with-us`, {
       "version": isEnabled ? "draft" : "published",
@@ -93,7 +87,7 @@ async function fetchData() {
   }
 }
 async function fetchJobsData() {
-  const { isEnabled } = draftMode()
+  const { isEnabled } = await draftMode()
   try {
     return storyblokApi.get(`cdn/stories`, {
       "version": isEnabled ? "draft" : "published",

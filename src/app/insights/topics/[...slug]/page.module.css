@@ -27,6 +27,13 @@
     margin: 0 auto;
     padding: calc(1.5 * var(--nav-height)) 0 0 0;
   }
+  .blogroll_hero {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+  .blogroll_hero:has( > .blogroll_hero_events ) {
+    margin-bottom: 0;
+  }
   .topics {
     display: flex;
     flex-wrap: nowrap;

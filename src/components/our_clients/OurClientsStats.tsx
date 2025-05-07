@@ -1,5 +1,5 @@
 import styles from './OurClientsStats.module.css';
-import { storyblokEditable } from '@storyblok/react/rsc';
+import { storyblokEditable } from '@storyblok/react';
 
 export default function OurClientsStats( { blok }: { blok: any }) {
   return (

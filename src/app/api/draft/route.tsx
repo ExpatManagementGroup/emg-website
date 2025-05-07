@@ -1,6 +1,6 @@
 // route handler enabling draft mode
 import { draftMode, cookies } from 'next/headers'
-import { getStoryblokApi, storyblokInit, apiPlugin } from '@storyblok/react/rsc'
+import { getStoryblokApi, storyblokInit, apiPlugin } from '@storyblok/react'
 import { redirect } from 'next/navigation'
 
 storyblokInit({
@@ -49,11 +49,11 @@ export async function GET(request: Request) {
   }
 
   // Enable Draft Mode by setting the cookie
-  draftMode().enable()
+  (await draftMode()).enable()
 
-  const draft = cookies().get('__prerender_bypass')
+  const draft = (await cookies()).get('__prerender_bypass')
     
-  cookies().set('__prerender_bypass', draft?.value || '', {
+  (await cookies()).set('__prerender_bypass', draft?.value || '', {
       httpOnly: true,
       sameSite: 'none',
       secure: true,

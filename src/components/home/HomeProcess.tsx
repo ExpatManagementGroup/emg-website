@@ -3,7 +3,7 @@ import styles from "./HomeProcess.module.css";
 import { render } from "storyblok-rich-text-react-renderer";
 import Button from "../ui/Button";
 import { useEffect } from "react";
-import { storyblokEditable } from "@storyblok/react/rsc";
+import { storyblokEditable } from "@storyblok/react";
 
 export default function HomeProcess({ blok }: { blok: any }) {
 

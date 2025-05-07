@@ -3,7 +3,7 @@ import Button from '../ui/Button';
 import Slider from '../ui/Slider';
 import CCTalentSlide from '../clientCases/CCTalentSlide';
 import CCClientSlide from '../clientCases/CCClientSlide';
-import { storyblokEditable } from "@storyblok/react/rsc";
+import { storyblokEditable } from "@storyblok/react";
 
 export default function HomeTestimonials( { blok }: { blok: {
   subhead: string,

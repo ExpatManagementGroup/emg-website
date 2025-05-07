@@ -1,5 +1,5 @@
 import styles from './OurStoryHero.module.css';
-import { storyblokEditable } from '@storyblok/react/rsc';
+import { storyblokEditable } from '@storyblok/react';
 
 export default function OurStoryHero( { blok }: { blok: any }) {
   return (

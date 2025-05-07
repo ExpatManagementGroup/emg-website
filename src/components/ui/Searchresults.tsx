@@ -1,4 +1,4 @@
-import { getStoryblokApi } from '@storyblok/react/rsc';
+import { getStoryblokApi } from '@storyblok/react';
 import styles from './Search.module.css';
 import Picture from '../Picture';
 import Button from './Button';
