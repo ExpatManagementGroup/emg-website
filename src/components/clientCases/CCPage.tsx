@@ -1,4 +1,5 @@
-import { storyblokEditable, StoryblokComponent } from "@storyblok/react";
+import { storyblokEditable } from "@storyblok/react";
+import { StoryblokServerComponent } from '@storyblok/react/rsc';
  
 const CCPage = ({ blok }: { blok: any }) => (
   <>
@@ -8,7 +9,7 @@ const CCPage = ({ blok }: { blok: any }) => (
         nestedBlok.allTestimonials = blok.allTestimonials;
       }
       return (
-        <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
+        <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
       )
     })}
   </div>
