@@ -24,6 +24,10 @@ export async function GET(request: Request) {
     searchslug = 'home'
   }
 
+  // Handle location pages with Real Path configuration in Storyblok
+  if (slug === 'netherlands' || slug === 'belgium' || slug === 'germany' || slug === 'luxembourg' || slug === 'global') {
+    searchslug = `locations/${slug}`
+  }
 
   // Fetch the headless CMS to check if the provided `slug` exists
   // getPostBySlug would implement the required fetching logic to the headless CMS
@@ -61,7 +65,7 @@ export async function GET(request: Request) {
   if (!slug) {
     redirect(`/`)
   } else {
-    redirect(`/${post.full_slug}`)
+    redirect(`/${slug}`)
   }
   // return new Response('Draft mode enabled, please switch back to the editing URL, you should see a little red \'draft mode\' in the top left of the screen', { status: 200 })
 }
