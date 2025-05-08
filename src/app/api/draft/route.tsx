@@ -19,14 +19,7 @@ export async function GET(request: Request) {
     return new Response(`Unauthorized you buffoon`, { status: 401 })
   }
   let searchslug = slug
-  if ( slug === 'netherlands' 
-       || slug === 'belgium' 
-       || slug === 'germany' 
-       || slug === 'luxembourg' 
-       || slug === 'global'
-  ) {
-    searchslug = `locations/${slug}`
-  }
+
   if (!slug) {
     searchslug = 'home'
   }
