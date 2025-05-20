@@ -91,6 +91,14 @@ export default async function RootLayout({
           strategy="beforeInteractive"
         >
         </Script>
+        <Script
+          id="hs-script-loader"
+          src="//js-eu1.hs-scripts.com/145878577.js"
+          strategy="afterInteractive"
+          async
+          defer
+        >
+        </Script>
       </body>
     </html>
     );
