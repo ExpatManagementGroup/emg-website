@@ -51,15 +51,15 @@ export default function NewsletterForm({ blok }: { blok: any }) {
         }
       </div>
       <div className={styles.newsletterForm_form}>
-        <form onSubmit={handleFormSubmit} name='newsletterform-block' method="POST" data-netlify="true">
+        <form onSubmit={handleFormSubmit} name="newsletterform-block" method="POST" data-netlify="true">
           {blok.title && <h2 className={styles.title}>{blok.title}</h2>}
-          <input type="hidden" name="form-name" value='contactform-block' />
+          <input type="hidden" name="form-name" value="contactform-block" />
           <div className={styles.info}>
             <div className={styles.input}>
-              <input type="text" name="name" required placeholder='Name' />
+              <input type="text" name="name" required placeholder="Name" />
             </div>
             <div className={styles.input}>
-              <input type="email" name="email" required placeholder='Email' />
+              <input type="email" name="email" required placeholder="Email" />
             </div>
             <div className={styles.input}>
               <span className={`selectspan ${styles.selectspan}`}>
@@ -279,10 +279,10 @@ export default function NewsletterForm({ blok }: { blok: any }) {
               </span>
             </div>
             <div className={styles.input}>
-              <input type="text" name="company" id='lastname' placeholder='Company' />
+              <input type="text" name="company" id="lastname" placeholder="Company" />
             </div>
             <div className={styles.input_radio}>
-              <p>I'm signing up as an...</p>
+              <p>I&apos;m signing up as an...</p>
               <div className={styles.input_radio_group}>
                 <label>
                   <input type="radio" name="role" value="expat" /> Expat
