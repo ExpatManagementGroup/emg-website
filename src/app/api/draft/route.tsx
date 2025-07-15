@@ -4,7 +4,7 @@ import { getStoryblokApi, storyblokInit, apiPlugin } from '@storyblok/react'
 import { redirect } from 'next/navigation'
 
 storyblokInit({
-  accessToken: process.env.STORYBLOK_API_TOKEN || process.env.NEXT_PUBLIC_STORYBLOK_API_TOKEN,
+  accessToken: process.env.STORYBLOK_PREVIEW_TOKEN || process.env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN,
   use: [apiPlugin]
 });
  

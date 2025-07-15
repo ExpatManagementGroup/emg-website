@@ -2,3 +2,9 @@
   from = "/test"
   to = "/insights"
   status = 301
+
+# Fallback for SPA routing - ensures all routes work
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

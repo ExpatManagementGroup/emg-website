@@ -15,14 +15,9 @@ type Props = {
 }
 
 export async function generateStaticParams() {
-  return [
-    { slug: 'immigration' },
-    { slug: 'relocation' },
-    { slug: 'our-story' },
-    { slug: 'our-culture' },
-    { slug: 'faq' },
-    { slug: 'contact-us' }
-  ]
+  // Return empty array to allow all dynamic routes (including draft-only)
+  // This prevents 404s for unpublished pages during live editing
+  return []
 }
 
 export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
@@ -89,26 +84,60 @@ export default async function Slug(props: { params: Promise<{ slug: string }> })
 
 async function fetchSlugData(slug: string) {
   const { isEnabled } = await draftMode()
+  
+  console.log('Fetching slug:', slug, 'Draft mode enabled:', isEnabled);
+  
   try {
-    if ( slug === 'netherlands' || slug === 'belgium' || slug === 'germany' || slug === 'luxembourg' || slug === 'global') {
-      const story = await getStoryblokApi().get(`cdn/stories/locations/${slug}`, {
-        version: isEnabled ? "draft" : "published"
-      }, {
-        cache: isEnabled ? 'no-store' : 'default'
-      } );
-      return story;
+    const storyPath = (slug === 'netherlands' || slug === 'belgium' || slug === 'germany' || slug === 'luxembourg' || slug === 'global') 
+      ? `locations/${slug}` 
+      : slug;
+    
+    console.log('Story path:', storyPath);
+    
+    // Always try draft first if draft mode is enabled
+    if (isEnabled) {
+      try {
+        console.log('Trying to fetch draft version...');
+        const story = await getStoryblokApi().get(`cdn/stories/${storyPath}`, {
+          version: "draft"
+        }, {
+          cache: 'no-store'
+        });
+        console.log('Draft story found:', story.data.story.name);
+        return story;
+      } catch (draftError) {
+        console.log('Draft not found, error details:', draftError);
+        console.log('Trying published version as fallback...');
+        // Fall back to published if draft doesn't exist
+      }
     }
-    else {
-      const story = await getStoryblokApi().get(`cdn/stories/${slug}`, { 
-        version: isEnabled ? "draft" : "published"
-      }, {
-        cache: isEnabled ? 'no-store' : 'default'
-      } );
-      return story;
-    }
+    
+    // Try published version
+    console.log('Fetching published version...');
+    const story = await getStoryblokApi().get(`cdn/stories/${storyPath}`, { 
+      version: "published"
+    }, {
+      cache: isEnabled ? 'no-store' : 'default'
+    });
+    console.log('Published story found:', story.data.story.name);
+    return story;
+    
   } catch (error) {
     console.error('Error fetching data:', error);
-    return notFound();
+    console.error('Error details:', JSON.stringify(error, null, 2));
+    
+    // Create a fallback response instead of notFound() for debugging
+    return {
+      data: {
+        story: {
+          name: `Error fetching ${slug}`,
+          content: {
+            component: 'page',
+            body: []
+          }
+        }
+      }
+    };
   }
 }
 async function fetchBlogPostsData() {
