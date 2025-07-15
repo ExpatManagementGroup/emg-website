@@ -56,6 +56,7 @@ import LocationTextAndImage from "./locations/LocationTextAndImage";
 import CCTextblock from "./clientCases/CCTextblock";
 import CCImagesblock from "./clientCases/CCImagesblock";
 import ContactForm from "./ContactForm";
+import NewsletterForm from "./NewsletterForm";
 
 const components = {
   page: Page,
@@ -115,7 +116,8 @@ const components = {
   location_hero_global: LocationHeroGlobal,
   location_office: LocationOffice,
   location_services: LocationServices,
-  location_text_and_image: LocationTextAndImage
+  location_text_and_image: LocationTextAndImage,
+  newsletter_form: NewsletterForm,
 };
 
 export default components;

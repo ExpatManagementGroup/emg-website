@@ -15,7 +15,7 @@ import "./globals.css";
 InitSB();
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://emg-website-preview.netlify.app'),
+  metadataBase: new URL('https://expatmanagementgroup.com'),
   title: "Immigration en Relocation Services - Expat Management Group",
   description: "Delivers professional and corporate immigration solutions to the Netherlands, Belgium, Luxembourg and Germany.",
   openGraph: {
