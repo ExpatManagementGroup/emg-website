@@ -4,6 +4,9 @@ import styles from "./page.module.css";
 import { draftMode } from 'next/headers'
 import { Metadata, ResolvingMetadata } from 'next'
 
+// Force dynamic rendering to handle draft-only pages
+export const dynamic = 'force-dynamic';
+
 // Initialize the Storyblok API after the initialization
 const storyblokApi = getStoryblokApi();
 

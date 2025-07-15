@@ -6,6 +6,9 @@ import { draftMode } from 'next/headers'
 import { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from "next/navigation";
 
+// Force dynamic rendering to handle draft-only pages
+export const dynamic = 'force-dynamic';
+
 type Props = {
   params: Promise<{ slug: string }>
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
