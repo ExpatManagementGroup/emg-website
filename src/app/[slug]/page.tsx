@@ -42,6 +42,7 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
       title: pagedata.data.story.content.meta_title,
       description: pagedata.data.story.content.meta_description,
       ogimage: pagedata.data.story.content.og_image?.filename ? `${pagedata.data.story.content.og_image.filename}/m/1200x630/smart/filters:format(jpg)` : '',
+      meta_nofollow: pagedata.data.story.content.meta_nofollow,
     }
 
     // optionally access and extend (rather than replace) parent metadata
@@ -53,13 +54,17 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
       openGraphImages.splice(0, openGraphImages.length, ogimg)
     }
 
-    return {
+    const metaObj: any = {
       title: metadata.title || (await parent).title,
       description: metadata.description || (await parent).description,
       openGraph: {
         images: openGraphImages,
       },
+    };
+    if (metadata.meta_nofollow === true) {
+      metaObj.robots = 'noindex, nofollow';
     }
+    return metaObj;
   } catch (error) {
     console.log('Error in generateMetadata, using defaults:', error);
     return {
