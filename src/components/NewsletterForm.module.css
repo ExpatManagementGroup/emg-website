@@ -240,3 +240,39 @@
     font-size: var(--fontsize-20);
   }
 }
+
+.alert {
+  background-color: #376e37;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .25rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  font-size: var(--fontsize-18);
+  color: white;
+  margin: 1em 0;
+  /* position: absolute; */
+  /* width: calc(100% - var(--d-colWidth-1));
+  max-width: 800px; */
+
+  @media (max-width:839.9px) {
+    & {
+      width: calc(100% - 2 * var(--m-outer-margin-l));
+      margin-top: .15em;
+    }
+  }
+
+  & > svg {
+    height: 1.5em;
+    width: auto;
+    
+    & path {
+      stroke: white;
+    }
+  }
+
+  &.alert_error {
+    background-color: red;
+  }
+}

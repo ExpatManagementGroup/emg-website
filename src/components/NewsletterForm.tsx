@@ -3,14 +3,14 @@ import styles from './NewsletterForm.module.css';
 import { useEffect, useState } from 'react';
 import { storyblokEditable } from '@storyblok/react';
 import { render } from 'storyblok-rich-text-react-renderer';
+import { useRouter } from 'next/navigation';
 
 export default function NewsletterForm({ blok }: { blok: any }) {
 
   const [isClient, setIsClient] = useState(false);
-
   const [status, setStatus] = useState('');
   const [error, setError] = useState('');
-
+  const router = useRouter();
 
   useEffect(() => {
     setIsClient(true);
@@ -21,25 +21,29 @@ export default function NewsletterForm({ blok }: { blok: any }) {
   const handleFormSubmit = async (event: any) => {
     event.preventDefault();
     try {
-        setStatus('pending');
-        setError('');
-        const myForm = event.target as any;
-        const formData = new FormData(myForm) as any;
-        const urlSearchParams = new URLSearchParams(formData) as any ;
-        const res = await fetch('/__forms.html', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: urlSearchParams.toString()
-        });
-        if (res.status === 200) {
-          setStatus('ok');
-        } else {
-          setStatus('error');
-          setError(`${res.status} ${res.statusText}`);
+      setStatus('pending');
+      setError('');
+      const myForm = event.target as any;
+      const formData = new FormData(myForm) as any;
+      const urlSearchParams = new URLSearchParams(formData) as any;
+      const res = await fetch('/__forms.html', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: urlSearchParams.toString()
+      });
+      if (res.status === 200) {
+        setStatus('ok');
+        // Redirect to success page
+        if (blok.success_page_url && blok.success_page_url.cached_url) {
+          router.push(blok.success_page_url.cached_url);
         }
-    } catch (e) {
+      } else {
         setStatus('error');
-        setError(`${e}`);
+        setError(`${res.status} ${res.statusText}`);
+      }
+    } catch (e) {
+      setStatus('error');
+      setError(`Catch Error: ${e}`);
     }
   };
 
@@ -300,12 +304,17 @@ export default function NewsletterForm({ blok }: { blok: any }) {
             </label>
           </div>
           <div className={styles.optin_link}>
-            <a href={blok.optin_link_url || '/'}>
+            <a href={blok.optin_link_url.cached_url || '/'}>
               {blok.optin_link_title }
             </a>
           </div>
           <div>
             <button className={`button ${styles.submitbutton}`} type="submit" disabled={status === 'pending'}>Send</button>
+            {status === 'pending' && (
+                <div className={`${styles.alert} ${styles.alert_success}`}>
+                    Submitting...
+                </div>
+            )}
             {status === 'ok' && (
                 <div className={`${styles.alert} ${styles.alert_success}`}>
                     <SuccessIcon />
