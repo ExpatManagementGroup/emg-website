@@ -59,6 +59,7 @@ export default function NewsletterForm({ blok }: { blok: any }) {
         <form 
           onSubmit={handleFormSubmit} 
           name="newsletterform-block" 
+          id="landingpage_newsletterform_signup_form"
           method="POST" 
           data-netlify="true"
           data-netlify-honeypot="bot-field"
