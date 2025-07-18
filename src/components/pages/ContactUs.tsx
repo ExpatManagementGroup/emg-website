@@ -92,7 +92,13 @@ export default function ContactUs( { blok }: { blok: any }) {
               <div><Icon name='phone' /> {blok.phone_general}</div>
               <div><Icon name='email' /> {blok.email_general}</div>
             </div>
-            <form onSubmit={handleFormSubmit} name="contact-general" method="POST" data-netlify="true">
+            <form 
+              onSubmit={handleFormSubmit} 
+              name="contact-general" 
+              method="POST" 
+              data-netlify="true"
+              id="contact_us_page_general_form"
+            >
               <input type="hidden" name="form-name" value="contact-general" />
               <div className={styles.info}>
                 <div className={styles.input}>
@@ -131,7 +137,13 @@ export default function ContactUs( { blok }: { blok: any }) {
               <div><Icon name='phone' /> {blok.phone_nl}</div>
               <div><Icon name='email' /> {blok.email_nl}</div>
             </div>
-            <form onSubmit={handleFormSubmit} name="contact-nl" method="POST" data-netlify="true">
+            <form 
+              onSubmit={handleFormSubmit} 
+              name="contact-nl" 
+              method="POST" 
+              data-netlify="true"
+              id="contact_us_page_nl_form"
+            >
               <input type="hidden" name="form-name" value="contact-nl" />
               <div className={styles.info}>
                 <div className={styles.input}>
@@ -170,7 +182,13 @@ export default function ContactUs( { blok }: { blok: any }) {
               <div><Icon name='phone' /> {blok.phone_be_lux}</div>
               <div><Icon name='email' /> {blok.email_be_lux}</div>
             </div>
-            <form onSubmit={handleFormSubmit} name="contact-belux" method="POST" data-netlify="true">
+            <form 
+              onSubmit={handleFormSubmit} 
+              name="contact-belux" 
+              method="POST" 
+              data-netlify="true"
+              id="contact_us_page_belux_form"
+            >
               <input type="hidden" name="form-name" value="contact-belux" />
               <div className={styles.info}>
                 <div className={styles.input}>
@@ -209,7 +227,13 @@ export default function ContactUs( { blok }: { blok: any }) {
               <div><Icon name='phone' /> {blok.phone_de}</div>
               <div><Icon name='email' /> {blok.email_de}</div>
             </div>
-            <form onSubmit={handleFormSubmit} name="contact-de" method="POST" data-netlify="true">
+            <form 
+              onSubmit={handleFormSubmit} 
+              name="contact-de" 
+              method="POST" 
+              data-netlify="true"
+              id="contact_us_page_de_form"
+            >
               <input type="hidden" name="form-name" value="contact-de" />
               <div className={styles.info}>
                 <div className={styles.input}>
