@@ -313,3 +313,7 @@ body:after {
   background-repeat: repeat-x;
   z-index: 1000;
 }
+.honpo {
+  visibility: hidden;
+  position: absolute;
+}
