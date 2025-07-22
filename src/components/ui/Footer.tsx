@@ -1,7 +1,7 @@
 import LogoWithSubline from "./LogoWithSubline"
 import styles from "./Footer.module.css"
 import Link from "next/link";
-import CMForm from "../CMForm";
+import NewsletterFormShort from "../NewsletterFormShort";
 import { render } from "storyblok-rich-text-react-renderer";
 import CurrentYear from "../CurrentYear";
 
@@ -83,7 +83,7 @@ export default function Footer(props: any) {
         </div>
         <div className={styles.cmform_container}>
           <h2 className={styles.cmform_title}>Fancy some <span className="h_italics">frequent updates?</span></h2>
-          <CMForm className={styles.cmform} />
+          <NewsletterFormShort className={styles.cmform} formid="footer"/>
         </div>
       </div>
       <div className={styles.footer_row_hygiene}>

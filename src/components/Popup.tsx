@@ -1,6 +1,6 @@
 'use client';
 import styles from './Popup.module.css';
-import CMForm from './CMForm';
+import NewsletterFormShort from './NewsletterFormShort';
 import { useEffect, useState } from 'react';
 import { render } from 'storyblok-rich-text-react-renderer';
 
@@ -38,7 +38,7 @@ export default function Popup( props: {
           <path d="M6.13 6.13L13.91 13.91" className={styles.close_stroke} />
         </svg>
         <div className={styles.headline}>{render(props.headline)}</div>
-        <CMForm />
+        <NewsletterFormShort formid="popup" />
       </div>
     )
   }
