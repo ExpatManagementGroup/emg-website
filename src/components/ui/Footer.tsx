@@ -9,6 +9,7 @@ export default function Footer(props: any) {
   const navdata = props.navData;
   const footerData = props.footerData;
   const footer = footerData.data.story.content;
+  const successpage_url = footer.success_page_url && footer.success_page_url.cached_url ? footer.success_page_url.cached_url : '';
 
   return(
     <div className={styles.footer}>
@@ -83,7 +84,11 @@ export default function Footer(props: any) {
         </div>
         <div className={styles.cmform_container}>
           <h2 className={styles.cmform_title}>Fancy some <span className="h_italics">frequent updates?</span></h2>
-          <NewsletterFormShort className={styles.cmform} formid="footer"/>
+          <NewsletterFormShort 
+            className={styles.cmform} 
+            formid="footer" 
+            success_page_url={successpage_url} 
+          />
         </div>
       </div>
       <div className={styles.footer_row_hygiene}>

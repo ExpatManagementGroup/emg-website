@@ -45,7 +45,11 @@ export default async function RootLayout({
         <html lang="en">
           <body className={`${agrandir.variable} ${reckless.variable}`}>
             {popupData.data.story.content.display_popup &&
-              <Popup delay={popupData.data.story.content.delay} headline={popupData.data.story.content.headline} />
+              <Popup 
+                delay={popupData.data.story.content.delay} 
+                headline={popupData.data.story.content.headline} 
+                success_page_url={popupData.data.story.content.success_page_url}
+              />
             }
             <Navigation navData={navData} />
               {children}
@@ -80,7 +84,11 @@ export default async function RootLayout({
       <GoogleTagManager gtmId="GTM-MC4XFKQL" />
       <body className={`${agrandir.variable} ${reckless.variable}`}>
         {popupData.data.story.content.display_popup &&
-          <Popup delay={popupData.data.story.content.delay} headline={popupData.data.story.content.headline} />
+          <Popup 
+            delay={popupData.data.story.content.delay} 
+            headline={popupData.data.story.content.headline} 
+            success_page_url={popupData.data.story.content.success_page_url}
+          />
         }
         <Navigation navData={navData} />
           {children}

@@ -6,7 +6,8 @@ import { render } from 'storyblok-rich-text-react-renderer';
 
 export default function Popup( props: {
   delay?: number,
-  headline?: string
+  headline?: string,
+  success_page_url?: any
 }) {
   const delay = props.delay || 1000;
   
@@ -16,6 +17,8 @@ export default function Popup( props: {
     setOpen(false);
     sessionStorage.setItem("emgNewsletterSeen", "true");
   }
+
+  const success_page_url = props.success_page_url && props.success_page_url.cached_url ? props.success_page_url.cached_url : '';
 
   useEffect(() => {
     if (!sessionStorage.getItem("emgNewsletterSeen")){
@@ -38,7 +41,10 @@ export default function Popup( props: {
           <path d="M6.13 6.13L13.91 13.91" className={styles.close_stroke} />
         </svg>
         <div className={styles.headline}>{render(props.headline)}</div>
-        <NewsletterFormShort formid="popup" />
+        <NewsletterFormShort 
+          formid="popup" 
+          success_page_url={success_page_url} 
+        />
       </div>
     )
   }
