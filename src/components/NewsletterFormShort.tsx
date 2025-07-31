@@ -73,6 +73,11 @@ export default function NewsletterFormShort(props: any) {
             </label>
         </p>
         <input 
+          type="hidden" 
+          name="form-name" 
+          value={`newsletter_signup_form_short${props.formid ? `_${props.formid}` : ''}`} 
+        />
+        <input 
           aria-label="Name" 
           id="fieldName" 
           maxLength={200} 
