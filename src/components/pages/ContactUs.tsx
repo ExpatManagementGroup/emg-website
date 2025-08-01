@@ -4,15 +4,18 @@ import { useEffect, useState } from 'react';
 import Picture from '../Picture';
 import Flag from '../ui/Flag';
 import Icon from '../ui/Icon';
+import { useRouter } from 'next/navigation';
+
 
 export default function ContactUs( { blok }: { blok: any }) {
 
   const [isClient, setIsClient] = useState(false);
   const [activeForm, setActiveForm] = useState('general');
-
   const [status, setStatus] = useState('');
   const [error, setError] = useState('');
 
+  const router = useRouter();
+  const success_page_url = blok.success_page_url && blok.success_page_url.cached_url ? blok.success_page_url.cached_url : '';
 
   useEffect(() => {
     setIsClient(true);
@@ -41,6 +44,10 @@ export default function ContactUs( { blok }: { blok: any }) {
         });
         if (res.status === 200) {
           setStatus('ok');
+          // Redirect to success page
+          if (success_page_url && success_page_url !== '') {
+            router.push(success_page_url);
+          }
         } else {
           setStatus('error');
           setError(`${res.status} ${res.statusText}`);
