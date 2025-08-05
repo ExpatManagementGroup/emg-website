@@ -15,7 +15,10 @@ export default function ContactUs( { blok }: { blok: any }) {
   const [error, setError] = useState('');
 
   const router = useRouter();
-  const success_page_url = blok.success_page_url && blok.success_page_url.cached_url ? blok.success_page_url.cached_url : '';
+  const success_page_url_general = blok.success_page_url && blok.success_page_url.cached_url ? blok.success_page_url.cached_url : 'no?';
+  const success_page_url_nl = blok.success_page_url_nl && blok.success_page_url_nl.cached_url ? blok.success_page_url_nl.cached_url : '';
+  const success_page_url_belux = blok.success_page_url_belux && blok.success_page_url_belux.cached_url ? blok.success_page_url_belux.cached_url : '';
+  const success_page_url_de = blok.success_page_url_de && blok.success_page_url_de.cached_url ? blok.success_page_url_de.cached_url : '';
 
   useEffect(() => {
     setIsClient(true);
@@ -31,30 +34,41 @@ export default function ContactUs( { blok }: { blok: any }) {
 
   const handleFormSubmit = async (event: any) => {
     event.preventDefault();
+
     try {
-        setStatus('pending');
-        setError('');
-        const myForm = event.target as any;
-        const formData = new FormData(myForm) as any;
-        const urlSearchParams = new URLSearchParams(formData) as any ;
-        const res = await fetch('/__forms.html', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: urlSearchParams.toString()
-        });
-        if (res.status === 200) {
-          setStatus('ok');
-          // Redirect to success page
-          if (success_page_url && success_page_url !== '') {
-            router.push(success_page_url);
-          }
-        } else {
-          setStatus('error');
-          setError(`${res.status} ${res.statusText}`);
+      setStatus('pending');
+      setError('');
+      const myForm = event.target as any;
+      const formData = new FormData(myForm) as any;
+      const urlSearchParams = new URLSearchParams(formData) as any;
+      const res = await fetch('/__forms.html', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: urlSearchParams.toString()
+      });
+      if (res.status === 200) {
+        setStatus('ok');
+        // Region-specific redirect logic
+        let redirectUrl = '';
+        if (activeForm === 'nl' && success_page_url_nl) {
+          redirectUrl = success_page_url_nl;
+        } else if (activeForm === 'belux' && success_page_url_belux) {
+          redirectUrl = success_page_url_belux;
+        } else if (activeForm === 'de' && success_page_url_de) {
+          redirectUrl = success_page_url_de;
+        } else if (success_page_url_general) {
+          redirectUrl = success_page_url_general;
         }
-    } catch (e) {
+        if (redirectUrl) {
+          router.push(redirectUrl);
+        }
+      } else {
         setStatus('error');
-        setError(`${e}`);
+        setError(`${res.status} ${res.statusText}`);
+      }
+    } catch (e) {
+      setStatus('error');
+      setError(`${e}`);
     }
   };
 
