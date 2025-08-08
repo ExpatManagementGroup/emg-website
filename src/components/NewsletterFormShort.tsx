@@ -41,10 +41,13 @@ export default function NewsletterFormShort(props: any) {
       if (res.status === 200) {
         setStatus('ok');
         // Redirect to success page
-        // Check if props has success_page_url
         if (props.success_page_url && props.success_page_url !== '') {
           router.push(props.success_page_url);
-        }        
+        }
+        // Call onSuccess callback if provided
+        if (props.onSuccess) {
+          props.onSuccess();
+        }
       } else {
         setStatus('error');
         setError(`${res.status} ${res.statusText}`);

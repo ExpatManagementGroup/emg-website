@@ -44,6 +44,7 @@ export default function Popup( props: {
         <NewsletterFormShort 
           formid="popup" 
           success_page_url={success_page_url} 
+          onSuccess={close}
         />
       </div>
     )
