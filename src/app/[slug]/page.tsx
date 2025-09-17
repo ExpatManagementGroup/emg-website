@@ -2,9 +2,8 @@ import { storyblokEditable } from "@storyblok/react";
 import { getStoryblokApi } from "@/lib/storyblok";
 import { StoryblokStory } from '@storyblok/react/rsc';
 import styles from "../page.module.css";
-import { draftMode } from 'next/headers'
-import { Metadata, ResolvingMetadata } from 'next'
-import { notFound } from "next/navigation";
+import { draftMode } from 'next/headers';
+import { Metadata, ResolvingMetadata } from 'next';
 
 // Force dynamic rendering to handle draft-only pages
 export const dynamic = 'force-dynamic';
@@ -89,9 +88,11 @@ export default async function Slug(props: { params: Promise<{ slug: string }>, s
     await draftModeObj.enable();
   }
   
-  const slugData  = await fetchSlugData(params.slug);
-  const blogPosts = await fetchBlogPostsData();
-  const topics = await fetchTopicData();
+  const [slugData, blogPosts, topics] = await Promise.all([
+    fetchSlugData(params.slug),
+    fetchBlogPostsData(),
+    fetchTopicData()
+  ]);
 
   // if (!thisSlug || !slugData || !slugData.data.story) {
   //   return notFound();
@@ -129,7 +130,6 @@ async function fetchSlugData(slug: string) {
       : slug;
     
     console.log('Story path:', storyPath);
-    console.log('Trying to fetch with access token ending in:', process.env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN?.slice(-8) || 'no token');
     
     // Try draft first if draft mode is enabled
     if (isEnabled) {

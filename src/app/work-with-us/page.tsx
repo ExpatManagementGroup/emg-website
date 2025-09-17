@@ -47,12 +47,14 @@ export async function generateMetadata(
 const storyblokApi = getStoryblokApi();
 
 export default async function OurPeople() {
-  const ourPeopleData = await fetchData();
-  const countriesData = await fetchCountryData();
-  const jobs = await fetchJobsData();
-  const testimonials = await fetchEmployeeTestimonialsData();
-  const blogPosts = await fetchBlogPostsData();
-  const topics = await fetchTopicData();
+  const [ourPeopleData, countriesData, jobs, testimonials, blogPosts, topics] = await Promise.all([
+    fetchData(),
+    fetchCountryData(),
+    fetchJobsData(),
+    fetchEmployeeTestimonialsData(),
+    fetchBlogPostsData(),
+    fetchTopicData()
+  ]);
   ourPeopleData.data.story = {
     ...ourPeopleData.data.story,
     content: {

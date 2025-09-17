@@ -46,9 +46,11 @@ export async function generateMetadata(
 export default async function Slug(props: { params: Promise<{ slug: string }> }) {
   const params = await props.params;
 
-  const slugData  = await fetchSlugData();
-  const clientCaseStories = await fetchClientsData();
-  const talentData = await fetchTalentTestimonialData();
+  const [slugData, clientCaseStories, talentData] = await Promise.all([
+    fetchSlugData(),
+    fetchClientsData(),
+    fetchTalentTestimonialData()
+  ]);
 
   slugData.data.story = {
     ...slugData.data.story,

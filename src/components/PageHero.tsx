@@ -3,7 +3,9 @@ import Picture from './Picture';
 import { storyblokEditable } from '@storyblok/react';
 
 export default function PageHero( { blok }: { blok: any }) {
+  
   let layout = styles.left_aligned;
+  
   if (blok.layout === 'center') {
     layout = styles.center_aligned;
   }

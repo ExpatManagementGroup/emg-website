@@ -63,19 +63,22 @@ export default async function Home(
   const query = searchParams?.query || '';
   const keystring = `search=${searchParams?.query}`;
 
-  const { data, headers }: { data: any, headers: any} = await fetchData();
+  const [{ data, headers }, eventsData, allTopicsData] = await Promise.all([
+    fetchData(),
+    fetchEventsData(),
+    fetchTopicData()
+  ]);
+  
   const allTopics = data.stories.map((story: any) => story.content.topic);
   //remove duplicated from allTopics
   const allTopicsOnce = [...new Set(allTopics)];
   const featuredStory = data.stories[0];
-
-  const eventsData = await fetchEventsData();
   const events = eventsData.data.stories;
 
-  const allTopicsData = await fetchTopicData();
-
-  const totalPosts = Number(headers["total"]);
-  const postsPerPage = Number(headers["per-page"])
+  // Handle headers - Storyblok API returns plain object, not Headers instance
+  const headersObj = headers as any;
+  const totalPosts = Number(headersObj.total || headersObj["total"] || 0);
+  const postsPerPage = Number(headersObj["per-page"] || headersObj.perPage || 17)
   const totalAmountOfPages = Math.ceil(totalPosts / postsPerPage);
   const totalPages = Array.from({ length: totalAmountOfPages }, (_, i) => i + 1);
 

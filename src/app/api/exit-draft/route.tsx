@@ -1,5 +1,5 @@
 import { draftMode, cookies } from 'next/headers';
-import { getStoryblokApi, storyblokInit, apiPlugin } from '@storyblok/react'
+import { getStoryblokApi } from '@storyblok/react'
 import { redirect } from 'next/navigation'
 
 export async function GET(request: Request) {
