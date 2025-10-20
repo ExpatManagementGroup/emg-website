@@ -1,7 +1,6 @@
 'use client';
 import styles from './Search.module.css';
 import { useSearchParams, usePathname, useRouter  } from 'next/navigation';
-import { getStoryblokApi, ISbResult } from "@storyblok/react";
 
 export default function Search( {placeholder, query}: {
   placeholder?: string,
