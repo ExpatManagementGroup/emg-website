@@ -23,7 +23,7 @@
     justify-content: center;
   }
   [data-scrolling="true"] .logos_inner {
-    animation: scroll 2s linear infinite both;
+    /* Animation is controlled via inline styles in component */
   }
   .logo {
     flex: 0 0 30vw;
@@ -71,7 +71,7 @@
     justify-content: center;
   }
   [data-scrolling="true"] .logos_inner {
-    animation: scroll 10s linear infinite normal;
+    /* Animation is controlled via inline styles in component */
   }
   .logo {
     flex: 0 0 13vw;
@@ -87,12 +87,4 @@
     object-fit: contain;
   }
 }
-@keyframes scroll {
-  0% {
-    transform: translateX(0%);
-
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
+/* Keyframes are defined in globals.css */
