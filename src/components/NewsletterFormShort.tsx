@@ -20,8 +20,6 @@ export default function NewsletterFormShort(props: any) {
     })
   }, []);
 
-  if (!isClient) return null;
-
   const classNamesArray = ['js-cm-form', props.className].join(' ');
   const classNames = classNamesArray.trim();
 

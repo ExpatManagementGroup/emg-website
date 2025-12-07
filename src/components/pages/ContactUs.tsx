@@ -22,10 +22,10 @@ export default function ContactUs( { blok }: { blok: any }) {
 
   useEffect(() => {
     setIsClient(true);
-    setActiveForm(window.location.hash.replace('#', '').toLowerCase() || 'general');
+    if (typeof window !== 'undefined') {
+      setActiveForm(window.location.hash.replace('#', '').toLowerCase() || 'general');
+    }
   }, []);
-
-  if (!isClient) return null;
 
   function switchLocation(location: string) {
     setActiveForm(location);

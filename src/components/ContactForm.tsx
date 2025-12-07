@@ -17,8 +17,6 @@ export default function ContactUs({ blok }: { blok: any }) {
     setIsClient(true);
   }, []);
 
-  if (!isClient) return null;
-
   const handleFormSubmit = async (event: any) => {
     event.preventDefault();
     try {
@@ -67,7 +65,7 @@ export default function ContactUs({ blok }: { blok: any }) {
           </label>
         </p>
         <input type="hidden" name="form-name" value='contactform-block' />
-        <input type="hidden" name="form-location" value={`form-location-${window.location.pathname}`} />
+        <input type="hidden" name="form-location" value={typeof window !== 'undefined' ? `form-location-${window.location.pathname}` : 'form-location-unknown'} />
         <input type="hidden" name="form-uid" value={`form-uid-${blok.form_ui}`} />
         <div className={styles.info}>
           <div className={styles.input}>

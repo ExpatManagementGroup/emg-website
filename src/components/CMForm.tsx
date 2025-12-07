@@ -16,8 +16,6 @@ export default function CMForm(props: any) {
     })
   }, []);
 
-  if (!isClient) return null;
-
   const classNamesArray = ['js-cm-form', props.className].join(' ');
   const classNames = classNamesArray.trim();
   return (

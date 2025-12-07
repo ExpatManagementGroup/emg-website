@@ -10,6 +10,8 @@ import Popup from "@/components/Popup";
 import { GoogleTagManager } from '@next/third-parties/google'
 import Script from 'next/script';
 import Link from "next/link";
+import { Suspense } from "react";
+import Loading from "./loading";
 import "./globals.css";
 
 InitSB();
@@ -52,7 +54,9 @@ export default async function RootLayout({
               />
             }
             <Navigation navData={navData} />
-              {children}
+              <Suspense fallback={<Loading />}>
+                {children}
+              </Suspense>
             { isEnabled && <div style={{
               'position': 'fixed',
               'top': '200px',
@@ -91,7 +95,9 @@ export default async function RootLayout({
           />
         }
         <Navigation navData={navData} />
-          {children}
+          <Suspense fallback={<Loading />}>
+            {children}
+          </Suspense>
         <Footer navData={navData} footerData={footerData} />
         <Script
           id="cookieyes-script"

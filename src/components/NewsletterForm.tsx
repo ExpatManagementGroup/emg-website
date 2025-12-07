@@ -17,8 +17,6 @@ export default function NewsletterForm({ blok }: { blok: any }) {
     setIsClient(true);
   }, []);
 
-  if (!isClient) return null;
-
   const handleFormSubmit = async (event: any) => {
     event.preventDefault();
     try {
