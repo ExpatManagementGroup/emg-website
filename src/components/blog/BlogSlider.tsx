@@ -15,6 +15,11 @@ export default function BlogSlider( { blok }: { blok: any } ) {
   let selectedBlogPosts = selectedTopics[0] ? allBlogPosts?.filter((post: any) => selectedTopics.includes(post.content.topic)) : allBlogPosts
   const selectedCountries = blok.countries
   selectedBlogPosts = selectedCountries ? selectedBlogPosts?.filter((post: any) => selectedCountries.includes(post.content.country)) : selectedBlogPosts
+  
+  // If there are exactly 5 slides, duplicate each one
+  if (selectedBlogPosts?.length === 5) {
+    selectedBlogPosts = [...selectedBlogPosts, ...selectedBlogPosts]
+  }
 
 
   return (
@@ -35,7 +40,7 @@ export default function BlogSlider( { blok }: { blok: any } ) {
         slidesPerViewMobile={1.5} 
         sliderRef="blog"
         centeredSlides={false}
-        autoWidth={false}
+        autoWidth={true}
         loop={ blok.blogPosts?.length > 5 ? true : false }
       >
         {selectedBlogPosts?.map((story: any, index: number) => {

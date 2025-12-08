@@ -139,7 +139,7 @@
   }
   .blogslider:not(:global(.noswiper)) :global(.swiper-slide):nth-child(2) {
     /* Needs to NOT be important to NOT override block style */
-    width: var(--activeSlideWidth);
+    /* width: var(--activeSlideWidth); */
   }
   .blogslider:not(:global(.noswiper)) :global(.swiper-slide-next) {
     /* Needs to be important to override block style */

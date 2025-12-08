@@ -15,6 +15,8 @@ export default function Slider( props: {
   differentWidth?: boolean,
   centeredSlides?: boolean,
   loop?: boolean,
+  loopAddBlankSlides?: boolean,
+  loopAdditionalSlides?: number,
   gridRows?: number,
   rewind?: boolean
 }) {
@@ -88,6 +90,8 @@ export default function Slider( props: {
       },
       slidesPerView: props.autoWidth ? 'auto' : props.slidesPerViewMobile || 1.5,
       loop: props.loop,
+      loopAddBlankSlides: props.loopAddBlankSlides || false,
+      loopAdditionalSlides: props.loopAdditionalSlides || 0,
       rewind: props.rewind,
       mousewheel: {
         enabled: true,
@@ -128,6 +132,8 @@ export default function Slider( props: {
     newchildren,
     props.gridRows,
     props.loop,
+    props.loopAddBlankSlides,
+    props.loopAdditionalSlides,
     props.rewind
   ])
 
