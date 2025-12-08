@@ -5,4 +5,7 @@
   border: 1px solid;
   border-radius: 2em;
   text-align: center;
+  &:empty {
+    display: none;
+  }
 }

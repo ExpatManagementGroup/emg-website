@@ -99,6 +99,7 @@
     position: relative;
   }
   .events_rail {
+    flex: 1 1 50%;
     display: flex;
     flex-wrap: nowrap;
     gap: calc( 0.5 * var(--fontsize-15) );
@@ -119,10 +120,11 @@
     bottom: 0;
     width: var(--d-colWidth-2);
     background: linear-gradient(to right, #EAF2F200, #EAF2F2FF 90%);
+    pointer-events: none;
   }
   .events_title {
     font-family: var(--font-reckless);
-    flex: 1 1 0%;
+    flex: 0 1 auto;
   }
   .event {
     border: 1px solid var(--EMG-Deep-Teal);
