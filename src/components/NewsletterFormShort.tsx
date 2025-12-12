@@ -6,22 +6,27 @@ import styles from './NewsletterForm.module.css';
 
 export default function NewsletterFormShort(props: any) {
 
-  const [isClient, setIsClient] = useState(false);
   const [status, setStatus] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
   const newsletter_signup_button = useRef(null) as any;
 
   useEffect(() => {
-    setIsClient(true);
-    if (newsletter_signup_button.current === null) return; 
-    newsletter_signup_button.current?.addEventListener('click', () => {
+    const button = newsletter_signup_button.current;
+    if (button === null) return;
+    
+    const handleClick = () => {
       sessionStorage.setItem("emgNewsletterSeen", "true");
-    })
+    };
+    
+    button.addEventListener('click', handleClick);
+    
+    return () => {
+      button.removeEventListener('click', handleClick);
+    };
   }, []);
 
-  const classNamesArray = ['js-cm-form', props.className].join(' ');
-  const classNames = classNamesArray.trim();
+  const formClassName = props.className || '';
 
   const handleFormSubmit = async (event: any) => {
     event.preventDefault();
@@ -60,7 +65,7 @@ export default function NewsletterFormShort(props: any) {
     <>
       <form 
         onSubmit={handleFormSubmit} 
-        className={classNames} 
+        className={formClassName} 
         name={`newsletter_signup_form_short${props.formid ? `_${props.formid}` : ''}`}
         id={`newsletter_signup_form_short${props.formid ? `_${props.formid}` : ''}`}
         method="post"
