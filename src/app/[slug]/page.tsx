@@ -4,6 +4,7 @@ import { StoryblokStory } from '@storyblok/react/rsc';
 import styles from "../page.module.css";
 import { draftMode } from 'next/headers';
 import { Metadata, ResolvingMetadata } from 'next';
+import { notFound } from 'next/navigation';
 
 // Force dynamic rendering to handle draft-only pages
 export const dynamic = 'force-dynamic';
@@ -88,33 +89,44 @@ export default async function Slug(props: { params: Promise<{ slug: string }>, s
     await draftModeObj.enable();
   }
   
-  const [slugData, blogPosts, topics] = await Promise.all([
-    fetchSlugData(params.slug),
-    fetchBlogPostsData(),
-    fetchTopicData()
-  ]);
+  try {
+    const [slugData, blogPosts, topics] = await Promise.all([
+      fetchSlugData(params.slug),
+      fetchBlogPostsData(),
+      fetchTopicData()
+    ]);
 
-  // if (!thisSlug || !slugData || !slugData.data.story) {
-  //   return notFound();
-  // }
-
-  slugData.data.story = {
-    ...slugData.data.story,
-    content: {
-      ...slugData.data.story.content,
-      blogPosts: blogPosts.data.stories,
-      topics: topics.data.datasource_entries,
+    // Check if the story exists and has valid content
+    if (!slugData || !slugData.data || !slugData.data.story || !slugData.data.story.content) {
+      return notFound();
     }
-  }
-  const { isEnabled } = await draftMode()
 
-  return (
-    <>
-    <main className={`${styles.main} ${thisSlug}`} {...storyblokEditable}>
-      <StoryblokStory story={slugData.data.story} />
-    </main>
-    </>
-  );
+    slugData.data.story = {
+      ...slugData.data.story,
+      content: {
+        ...slugData.data.story.content,
+        blogPosts: blogPosts.data.stories,
+        topics: topics.data.datasource_entries,
+      }
+    }
+    const { isEnabled } = await draftMode()
+
+    return (
+      <>
+      <main className={`${styles.main} ${thisSlug}`} {...storyblokEditable}>
+        <StoryblokStory story={slugData.data.story} />
+      </main>
+      </>
+    );
+  } catch (error: any) {
+    // If the error is a 404 or story not found, show 404 page
+    if (error?.status === 404 || error?.response?.status === 404) {
+      return notFound();
+    }
+    // For other errors, also show 404 to avoid showing error details
+    console.error('Error loading page:', error);
+    return notFound();
+  }
 }
 
 async function fetchSlugData(slug: string) {
@@ -160,66 +172,19 @@ async function fetchSlugData(slug: string) {
     return story;
     
   } catch (error: any) {
-    console.error('=== FETCH ERROR ===');
-    console.error('Error fetching data:', error.message || error);
-    console.error('Error status:', error.status);
-    console.error('Full error details:', JSON.stringify(error, null, 2));
+    // Only log errors for non-404 cases (unexpected errors)
+    // 404s are expected and handled gracefully, so we don't need to log them
+    const is404 = error?.status === 404 || error?.response?.status === 404;
     
-    // Let's try to list available stories to debug
-    try {
-      console.log('=== DEBUGGING: Listing available stories ===');
-      
-      // Check draft stories first
-      const draftStories = await getStoryblokApi().get('cdn/stories', {
-        version: "draft",
-        per_page: 100, // Increase limit to see more stories
-        search_term: slug // Try to search for the specific slug
-      });
-      console.log(`Found ${draftStories.data.stories.length} draft stories matching "${slug}":`);
-      draftStories.data.stories.forEach((s: any) => {
-        console.log(`  - ${s.full_slug} (name: ${s.name}, id: ${s.id}, published: ${s.published_at ? 'yes' : 'no'})`);
-      });
-      
-      // If no match with search, try without search term
-      if (draftStories.data.stories.length === 0) {
-        console.log('No stories found with search term, listing all draft stories...');
-        const allDrafts = await getStoryblokApi().get('cdn/stories', {
-          version: "draft",
-          per_page: 50
-        });
-        console.log(`Available draft stories (first 50):`);
-        allDrafts.data.stories.forEach((s: any) => {
-          console.log(`  - ${s.full_slug} (name: ${s.name}, id: ${s.id}, published: ${s.published_at ? 'yes' : 'no'})`);
-        });
-      }
-      
-      // Also check published stories
-      const publishedStories = await getStoryblokApi().get('cdn/stories', {
-        version: "published",
-        per_page: 100,
-        search_term: slug
-      });
-      console.log(`Found ${publishedStories.data.stories.length} published stories matching "${slug}":`);
-      publishedStories.data.stories.forEach((s: any) => {
-        console.log(`  - ${s.full_slug} (name: ${s.name}, id: ${s.id})`);
-      });
-      
-    } catch (listError) {
-      console.log('Could not list stories:', listError);
+    if (!is404) {
+      console.error('=== FETCH ERROR ===');
+      console.error('Error fetching data:', error.message || error);
+      console.error('Error status:', error.status);
+      console.error('Full error details:', JSON.stringify(error, null, 2));
     }
     
-    // Create a fallback response instead of notFound() for debugging
-    return {
-      data: {
-        story: {
-          name: `Error fetching ${slug}`,
-          content: {
-            component: 'page',
-            body: []
-          }
-        }
-      }
-    };
+    // Re-throw the error so the component can handle it with notFound()
+    throw error;
   }
 }
 async function fetchBlogPostsData() {
