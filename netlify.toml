@@ -60,8 +60,5 @@
   status = 301
   force = true
 
-# Fallback for SPA routing - ensures all routes work (must be last)
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# Note: No SPA fallback needed - Next.js handles routing natively
+# The SPA fallback (/* -> /index.html) was causing redirect loops
