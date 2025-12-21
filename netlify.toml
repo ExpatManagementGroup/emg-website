@@ -1,4 +1,66 @@
-# Fallback for SPA routing - ensures all routes work
+# WordPress redirects - processed at Netlify edge before Next.js routes
+# WordPress category redirects (specific first)
+[[redirects]]
+  from = "/category/insights"
+  to = "/insights"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/category/insights/page/*"
+  to = "/insights"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/category/*"
+  to = "/insights"
+  status = 301
+  force = true
+
+# WordPress author redirects
+[[redirects]]
+  from = "/author/*"
+  to = "/insights"
+  status = 301
+  force = true
+
+# WordPress tag redirects
+[[redirects]]
+  from = "/tag/*"
+  to = "/insights"
+  status = 301
+  force = true
+
+# Custom taxonomy redirects
+[[redirects]]
+  from = "/stm_service_category/*"
+  to = "/insights"
+  status = 301
+  force = true
+
+# WordPress paginated date archives (YYYY/MM/page/N) - most specific date pattern
+[[redirects]]
+  from = "/:year([0-9]{4})/:month([0-9]{2})/page/:page"
+  to = "/insights"
+  status = 301
+  force = true
+
+# WordPress date archive redirects (YYYY/MM format)
+[[redirects]]
+  from = "/:year([0-9]{4})/:month([0-9]{2})"
+  to = "/insights"
+  status = 301
+  force = true
+
+# WordPress year-only archives (must come after YYYY/MM patterns)
+[[redirects]]
+  from = "/:year([0-9]{4})"
+  to = "/insights"
+  status = 301
+  force = true
+
+# Fallback for SPA routing - ensures all routes work (must be last)
 [[redirects]]
   from = "/*"
   to = "/index.html"
