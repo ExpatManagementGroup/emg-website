@@ -4,61 +4,104 @@
   from = "/category/insights"
   to = "/insights"
   status = 301
-  force = true
 
 [[redirects]]
   from = "/category/insights/page/*"
   to = "/insights"
   status = 301
-  force = true
 
 [[redirects]]
   from = "/category/*"
   to = "/insights"
   status = 301
-  force = true
 
 # WordPress author redirects
 [[redirects]]
   from = "/author/*"
   to = "/insights"
   status = 301
-  force = true
 
 # WordPress tag redirects
 [[redirects]]
   from = "/tag/*"
   to = "/insights"
   status = 301
-  force = true
 
 # Custom taxonomy redirects
 [[redirects]]
   from = "/stm_service_category/*"
   to = "/insights"
   status = 301
-  force = true
 
-# WordPress paginated date archives (YYYY/MM/page/N) - most specific date pattern
+# WordPress date archives - specific years (2018-2024) to avoid regex conflicts
+# Year-only redirects
 [[redirects]]
-  from = "/:year([0-9]{4})/:month([0-9]{2})/page/:page"
+  from = "/2018"
   to = "/insights"
   status = 301
-  force = true
 
-# WordPress date archive redirects (YYYY/MM format)
 [[redirects]]
-  from = "/:year([0-9]{4})/:month([0-9]{2})"
+  from = "/2019"
   to = "/insights"
   status = 301
-  force = true
 
-# WordPress year-only archives (must come after YYYY/MM patterns)
 [[redirects]]
-  from = "/:year([0-9]{4})"
+  from = "/2020"
   to = "/insights"
   status = 301
-  force = true
 
-# Note: No SPA fallback needed - Next.js handles routing natively
-# The SPA fallback (/* -> /index.html) was causing redirect loops
+[[redirects]]
+  from = "/2021"
+  to = "/insights"
+  status = 301
+
+[[redirects]]
+  from = "/2022"
+  to = "/insights"
+  status = 301
+
+[[redirects]]
+  from = "/2023"
+  to = "/insights"
+  status = 301
+
+[[redirects]]
+  from = "/2024"
+  to = "/insights"
+  status = 301
+
+# Year/Month redirects (2018-2024)
+[[redirects]]
+  from = "/2018/*"
+  to = "/insights"
+  status = 301
+
+[[redirects]]
+  from = "/2019/*"
+  to = "/insights"
+  status = 301
+
+[[redirects]]
+  from = "/2020/*"
+  to = "/insights"
+  status = 301
+
+[[redirects]]
+  from = "/2021/*"
+  to = "/insights"
+  status = 301
+
+[[redirects]]
+  from = "/2022/*"
+  to = "/insights"
+  status = 301
+
+[[redirects]]
+  from = "/2023/*"
+  to = "/insights"
+  status = 301
+
+[[redirects]]
+  from = "/2024/*"
+  to = "/insights"
+  status = 301
