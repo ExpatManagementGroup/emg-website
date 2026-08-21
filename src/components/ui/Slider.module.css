@@ -2,7 +2,7 @@
   opacity: 0.5;
   transition: transform 0.5s, opacity 0.5s;
 }
-.swiper:global(.swiper-initialized), 
+.swiper:global(.swiper-initialized),
 :global(.noswiper).swiper {
   opacity: 1;
 }
@@ -11,6 +11,9 @@
   justify-content: center;
   margin: 1em 0;
   gap: .25em;
+}
+.slidernavbuttons :global(.swiper-navigation-icon) {
+    display: none;
 }
 
 
