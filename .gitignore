@@ -37,5 +37,9 @@ next.config.mjs
 next-env.d.ts
 
 certificates
+
 # Local Netlify folder
 .netlify
+
+# IDE
+.idea
