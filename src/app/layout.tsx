@@ -47,9 +47,9 @@ export default async function RootLayout({
         <html lang="en">
           <body className={`${agrandir.variable} ${reckless.variable}`}>
             {popupData.data.story.content.display_popup &&
-              <Popup 
-                delay={popupData.data.story.content.delay} 
-                headline={popupData.data.story.content.headline} 
+              <Popup
+                delay={popupData.data.story.content.delay}
+                headline={popupData.data.story.content.headline}
                 success_page_url={popupData.data.story.content.success_page_url}
               />
             }
@@ -88,9 +88,9 @@ export default async function RootLayout({
       <GoogleTagManager gtmId="GTM-MC4XFKQL" />
       <body className={`${agrandir.variable} ${reckless.variable}`}>
         {popupData.data.story.content.display_popup &&
-          <Popup 
-            delay={popupData.data.story.content.delay} 
-            headline={popupData.data.story.content.headline} 
+          <Popup
+            delay={popupData.data.story.content.delay}
+            headline={popupData.data.story.content.headline}
             success_page_url={popupData.data.story.content.success_page_url}
           />
         }
@@ -99,20 +99,21 @@ export default async function RootLayout({
             {children}
           </Suspense>
         <Footer navData={navData} footerData={footerData} />
+        {/* The scripts below are now run through GTM instead, leaving them here in case someone is wondering where they come from on live*/}
         {/* <Script
           id="cookieyes-script"
           src={`https://cdn-cookieyes.com/client_data/27fbaa7ff2975a61d7c5bbfa/script.js`}
           strategy="beforeInteractive"
         >
         </Script> */}
-        <Script
+        {/*<Script
           id="hs-script-loader"
           src="//js-eu1.hs-scripts.com/145878577.js"
           strategy="afterInteractive"
           async
           defer
         >
-        </Script>
+        </Script>*/}
       </body>
     </html>
     );
@@ -120,17 +121,17 @@ export default async function RootLayout({
 }
 
 async function fetchNavData() {
-  return getStoryblokApi().get(`cdn/stories/global-settings/navigation`, { 
-    version: "draft" 
+  return getStoryblokApi().get(`cdn/stories/global-settings/navigation`, {
+    version: "draft"
   } );
 }
 async function fetchFooterData() {
-  return getStoryblokApi().get(`cdn/stories/global-settings/footer`, { 
-    version: "draft" 
+  return getStoryblokApi().get(`cdn/stories/global-settings/footer`, {
+    version: "draft"
   } );
 }
 async function fetchPopupData() {
-  return getStoryblokApi().get(`cdn/stories/global-settings/popup-settings`, { 
-    version: "draft" 
+  return getStoryblokApi().get(`cdn/stories/global-settings/popup-settings`, {
+    version: "draft"
   } );
 }
