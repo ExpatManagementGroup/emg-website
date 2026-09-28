@@ -1,6 +1,6 @@
 'use client';
 import styles from './NewsletterForm.module.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { storyblokEditable } from '@storyblok/react';
 import { render } from 'storyblok-rich-text-react-renderer';
 import { useRouter } from 'next/navigation';
@@ -8,14 +8,9 @@ import CountrySelect from './ui/CountrySelect';
 
 export default function NewsletterForm({ blok }: { blok: any }) {
 
-  const [isClient, setIsClient] = useState(false);
   const [status, setStatus] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   const handleFormSubmit = async (event: any) => {
     event.preventDefault();
