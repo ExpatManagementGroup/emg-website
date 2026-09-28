@@ -1,9 +1,12 @@
-import { getStoryblokApi } from "@/lib/storyblok";
+import { getStoryblokApi, storyblokFetchOptions } from "@/lib/storyblok";
 import { StoryblokStory } from "@storyblok/react/rsc";
 import { storyblokEditable } from "@storyblok/react";
 import styles from "../page.module.css";
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from 'next'
+
+// Revalidate the published page periodically; draft mode still renders dynamically.
+export const revalidate = 300;
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -15,8 +18,6 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const params = await props.params;
-  const searchParams = await props.searchParams;
- 
   // fetch data
   const pagedata = await fetchSlugData()
   const metadata = {
@@ -75,9 +76,7 @@ async function fetchSlugData() {
   return getStoryblokApi().get(`cdn/stories/our-clients`, { 
     // 'is_startpage': true,
     'version': isEnabled ? "draft" : "published"
-  }, {
-    cache: isEnabled ? 'no-store' : 'default'
-  } );
+  }, storyblokFetchOptions(isEnabled) );
 }
 async function fetchClientsData() {
   const { isEnabled } = await draftMode()
@@ -85,9 +84,7 @@ async function fetchClientsData() {
     "starts_with": "our-clients/",
     "is_startpage": false,
     "version": isEnabled ? "draft" : "published"
-  }, {
-    cache: isEnabled ? 'no-store' : 'default'
-  });
+  }, storyblokFetchOptions(isEnabled));
 }
 async function fetchTalentTestimonialData() {
   const { isEnabled } = await draftMode()
@@ -95,7 +92,5 @@ async function fetchTalentTestimonialData() {
     "starts_with": "testimonials-clients/",
     "per_page": 5,
     "version": isEnabled ? "draft" : "published"
-  }, {
-    cache: isEnabled ? 'no-store' : 'default'
-  });
+  }, storyblokFetchOptions(isEnabled));
 }

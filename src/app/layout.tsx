@@ -36,10 +36,10 @@ export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode; }>) {
 
-  const navData = await fetchNavData();
-  const footerData = await fetchFooterData();
-  const popupData = await fetchPopupData();
   const { isEnabled } = await draftMode();
+  const navData = await fetchNavData(isEnabled);
+  const footerData = await fetchFooterData(isEnabled);
+  const popupData = await fetchPopupData(isEnabled);
 
   if (isEnabled) {
     return (
@@ -120,18 +120,32 @@ export default async function RootLayout({
   }
 }
 
-async function fetchNavData() {
-  return getStoryblokApi().get(`cdn/stories/global-settings/navigation`, {
-    version: "draft"
-  } );
+// Published content is fetched with the published version and cached;
+// draft mode gets fresh draft content. Falls back to draft in case the
+// story was never published.
+async function fetchGlobalSettingsStory(slug: string, isDraft: boolean) {
+  if (isDraft) {
+    return getStoryblokApi().get(`cdn/stories/global-settings/${slug}`, {
+      version: "draft"
+    }, { cache: 'no-store' });
+  }
+  try {
+    return await getStoryblokApi().get(`cdn/stories/global-settings/${slug}`, {
+      version: "published"
+    }, { next: { revalidate: 300 } });
+  } catch (error) {
+    console.warn(`Published story global-settings/${slug} not available, falling back to draft:`, error);
+    return getStoryblokApi().get(`cdn/stories/global-settings/${slug}`, {
+      version: "draft"
+    }, { cache: 'no-store' });
+  }
 }
-async function fetchFooterData() {
-  return getStoryblokApi().get(`cdn/stories/global-settings/footer`, {
-    version: "draft"
-  } );
+async function fetchNavData(isDraft: boolean) {
+  return fetchGlobalSettingsStory('navigation', isDraft);
 }
-async function fetchPopupData() {
-  return getStoryblokApi().get(`cdn/stories/global-settings/popup-settings`, {
-    version: "draft"
-  } );
+async function fetchFooterData(isDraft: boolean) {
+  return fetchGlobalSettingsStory('footer', isDraft);
+}
+async function fetchPopupData(isDraft: boolean) {
+  return fetchGlobalSettingsStory('popup-settings', isDraft);
 }

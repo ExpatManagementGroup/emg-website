@@ -1,10 +1,13 @@
 import { storyblokEditable } from "@storyblok/react";
 import { StoryblokStory } from "@storyblok/react/rsc";
-import { getStoryblokApi } from "@/lib/storyblok";
+import { getStoryblokApi, storyblokFetchOptions } from "@/lib/storyblok";
 import styles from "../page.module.css";
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from "next/navigation";
+
+// Revalidate the published page periodically; draft mode still renders dynamically.
+export const revalidate = 300;
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -16,8 +19,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const params = await props.params;
-  const searchParams = await props.searchParams;
- 
+
   // fetch data
   const pagedata = await fetchData()
   const metadata = {
@@ -81,9 +83,7 @@ async function fetchData() {
   try {
     return storyblokApi.get(`cdn/stories/work-with-us`, {
       "version": isEnabled ? "draft" : "published",
-    }, {
-      cache: isEnabled ? 'no-store' : 'default'
-    });
+    }, storyblokFetchOptions(isEnabled));
   } catch (error) {
     console.error(error);
     return notFound();
@@ -96,35 +96,53 @@ async function fetchJobsData() {
       "version": isEnabled ? "draft" : "published",
       "starts_with": "work-with-us/",
       "content_type": "job",
-    })   
+    }, storyblokFetchOptions(isEnabled));  
   } catch (error) {
     console.error(error);
     return notFound();
   }
 }
 async function fetchEmployeeTestimonialsData() {
-  return storyblokApi.get(`cdn/stories`, {
-    "version": "draft",
-    "starts_with": "testimonials-employees/",
-    "content_type": "testimonial_employee",
-  },)   
+  const { isEnabled } = await draftMode()
+  if (isEnabled) {
+    return storyblokApi.get(`cdn/stories`, {
+      "version": "draft",
+      "starts_with": "testimonials-employees/",
+      "content_type": "testimonial_employee",
+    }, { cache: 'no-store' });
+  }
+  try {
+    return await storyblokApi.get(`cdn/stories`, {
+      "version": "published",
+      "starts_with": "testimonials-employees/",
+      "content_type": "testimonial_employee",
+    }, { next: { revalidate: 300 } });
+  } catch (error) {
+    // Fall back to draft in case these testimonials were never published
+    console.warn('Published employee testimonials not available, falling back to draft:', error);
+    return storyblokApi.get(`cdn/stories`, {
+      "version": "draft",
+      "starts_with": "testimonials-employees/",
+      "content_type": "testimonial_employee",
+    }, { cache: 'no-store' });
+  }
 }
 async function fetchCountryData() {
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/datasource_entries`, {
     "datasource": "countries",
     "per_page": 1000,
-  });
+  }, { next: { revalidate: 300 } });
 }
 async function fetchBlogPostsData() {
   return storyblokApi.get(`cdn/stories`, {
     "starts_with": "insights/",
     "is_startpage": false
-  },)   
+  }, { next: { revalidate: 300 } });  
 }
 async function fetchTopicData() {
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/datasource_entries`, {
     "datasource": "topics",
-  });
+  }, { next: { revalidate: 300 } });
 }

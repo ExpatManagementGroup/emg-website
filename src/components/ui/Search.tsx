@@ -1,6 +1,9 @@
 'use client';
+import { useEffect, useState } from 'react';
 import styles from './Search.module.css';
 import { useSearchParams, usePathname, useRouter  } from 'next/navigation';
+
+const SEARCH_DEBOUNCE_MS = 400;
 
 export default function Search( {placeholder, query}: {
   placeholder?: string,
@@ -10,24 +13,30 @@ export default function Search( {placeholder, query}: {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
-  
-  async function handleSearch(term: string) {
-    const params = new URLSearchParams(searchParams);
-    params.delete('query');
-    if (term && term.length > 2 ) {
-      params.set('query', term);
-    }
-    else {
+  const [value, setValue] = useState(query || '');
+
+  // Debounced search: only navigate (and trigger a server render) once
+  // typing has paused, instead of on every keystroke.
+  useEffect(() => {
+    if (value === (query || '')) return;
+
+    const timer = setTimeout(() => {
+      const params = new URLSearchParams(searchParams);
       params.delete('query');
-    }
-    replace(`${pathname}?${params.toString()}`);
-  }
+      if (value && value.length > 2 ) {
+        params.set('query', value);
+      }
+      replace(`${pathname}?${params.toString()}`);
+    }, SEARCH_DEBOUNCE_MS);
+
+    return () => clearTimeout(timer);
+  }, [value, query, searchParams, pathname, replace]);
+
   function clearSearch() {
+    setValue('');
     const params = new URLSearchParams(searchParams);
     params.delete('query');
     replace(`${pathname}?${params.toString()}`);
-    const searchinput = document.getElementById('search') as HTMLInputElement;
-    searchinput.value = '';
   }
 
   return (
@@ -40,9 +49,9 @@ export default function Search( {placeholder, query}: {
           type="text" 
           placeholder={placeholder || 'Search'}
           onChange={(e) => {
-            handleSearch(e.target.value);
+            setValue(e.target.value);
           }}
-          defaultValue={searchParams.get('query')?.toString()}
+          value={value}
         />
         <div className={styles.placeholder}>
           {placeholder}

@@ -1,12 +1,13 @@
 import { storyblokEditable } from "@storyblok/react";
-import { getStoryblokApi } from "@/lib/storyblok";
+import { getStoryblokApi, storyblokFetchOptions } from "@/lib/storyblok";
 import { StoryblokStory } from '@storyblok/react/rsc';
 import styles from "../page.module.css";
 import { draftMode } from 'next/headers';
 import { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
 
-// Force dynamic rendering to handle draft-only pages
+// This route renders per request so draft-only and preview-parameter pages
+// work; published content it fetches is cached in the Next.js data cache.
 export const dynamic = 'force-dynamic';
 
 type Props = {
@@ -165,9 +166,7 @@ async function fetchSlugData(slug: string) {
     console.log('Fetching published version...');
     const story = await getStoryblokApi().get(`cdn/stories/${storyPath}`, { 
       version: "published"
-    }, {
-      cache: isEnabled ? 'no-store' : 'default'
-    });
+    }, storyblokFetchOptions(isEnabled));
     console.log('Published story found:', story.data.story.name);
     return story;
     
@@ -191,11 +190,11 @@ async function fetchBlogPostsData() {
   return getStoryblokApi().get(`cdn/stories`, {
     "starts_with": "insights/",
     "is_startpage": false
-  },)   
+  }, { next: { revalidate: 300 } });  
 }
 async function fetchTopicData() {
   return getStoryblokApi().get(`cdn/datasource_entries`, {
     "datasource": "topics",
     "version": "published"
-  });
+  }, { next: { revalidate: 300 } });
 }

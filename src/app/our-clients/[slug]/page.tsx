@@ -1,9 +1,13 @@
-import { getStoryblokApi } from "@/lib/storyblok";
+import { getStoryblokApi, storyblokFetchOptions } from "@/lib/storyblok";
 import { StoryblokStory } from "@storyblok/react/rsc";
 import { storyblokEditable } from "@storyblok/react";
 import styles from "../../page.module.css";
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from 'next'
+
+// Revalidate published pages periodically so new/updated stories appear
+// without a redeploy; draft mode still renders dynamically.
+export const revalidate = 300;
 
 export async function generateStaticParams() {
   const posts = await getStoryblokApi().get(`cdn/stories/`, {
@@ -78,9 +82,7 @@ async function fetchData(slug: string) {
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/stories/our-clients/${slug}`, {
     "version": isEnabled ? "draft" : "published"
-  }, {
-    cache: isEnabled ? 'no-store' : 'default'
-  });
+  }, storyblokFetchOptions(isEnabled));
 }
 async function fetchTestimonialData() {
   const { isEnabled } = await draftMode();
@@ -88,7 +90,5 @@ async function fetchTestimonialData() {
     "starts_with": "testimonials-clients/",
     "per_page": 5,
     "version": isEnabled ? "draft" : "published"
-  }, {
-    cache: isEnabled ? 'no-store' : 'default'
-  });
+  }, storyblokFetchOptions(isEnabled));
 }

@@ -1,11 +1,12 @@
-import { getStoryblokApi } from "@/lib/storyblok";
+import { getStoryblokApi, storyblokFetchOptions } from "@/lib/storyblok";
 import { StoryblokStory } from '@storyblok/react/rsc';
 import styles from "./page.module.css";
 import { draftMode } from 'next/headers'
 import { Metadata, ResolvingMetadata } from 'next'
 
-// Force dynamic rendering to handle draft-only pages
-export const dynamic = 'force-dynamic';
+// Published pages are cached (ISR) and revalidated periodically;
+// draft mode still renders dynamically for the visual editor.
+export const revalidate = 300;
 
 // Initialize the Storyblok API after the initialization
 const storyblokApi = getStoryblokApi();
@@ -20,8 +21,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const params = await props.params;
-  const searchParams = await props.searchParams;
- 
+
   // fetch data
   const pagedata = await fetchData()
   const metadata = {
@@ -82,34 +82,32 @@ async function fetchData() {
   return storyblokApi.get(`cdn/stories/home`, {
     "version": isEnabled ? "draft" : "published",
     "resolve_relations": "blogPosts.posts"
-  }, {
-    cache: isEnabled ? 'no-store' : 'default'
-  });
+  }, storyblokFetchOptions(isEnabled));
 }
 async function fetchBlogPostsData() {
   return storyblokApi.get(`cdn/stories`, {
     "starts_with": "insights/",
     "is_startpage": false,
     "version": "published",
-  },)   
+  }, { next: { revalidate: 300 } });   
 }
 async function fetchTalentTestimonialData() {
   return storyblokApi.get(`cdn/stories/`, {
     "starts_with": "testimonials-clients/",
     "per_page": 5,
     "version": "published"
-  });
+  }, { next: { revalidate: 300 } });
 }
 async function fetchClientsData() {
   return storyblokApi.get(`cdn/stories/`, {
     "starts_with": "our-clients/",
     "is_startpage": false,
     "version": "published"
-  });
+  }, { next: { revalidate: 300 } });
 }
 async function fetchTopicData() {
   return storyblokApi.get(`cdn/datasource_entries`, {
     "datasource": "topics",
     "version": "published"
-  });
+  }, { next: { revalidate: 300 } });
 }

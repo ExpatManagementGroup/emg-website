@@ -89,9 +89,7 @@ async function fetchData(archivepage: number) {
     'sort_by': 'content.date:desc',
     'per_page': 17,
     'page': archivepage
-  }, {
-    cache: 'default',
-  }).then(response => {
+  }, { next: { revalidate: 300 } }).then(response => {
     return {
       data: response.data,
       headers: response.headers,
@@ -105,11 +103,11 @@ async function fetchEventsData() {
     'starts_with': 'events/', 
     'is_startpage': false,
     'version': "published",
-  });
+  }, { next: { revalidate: 300 } });
 }
 async function fetchTopicData() {
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/datasource_entries`, {
     "datasource": "topics",
-  });
+  }, { next: { revalidate: 300 } });
 }

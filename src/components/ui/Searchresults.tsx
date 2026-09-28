@@ -74,6 +74,6 @@ async function fetchSearchData(searchterm: string) {
         }
       ]
     }
-  });
+  }, { next: { revalidate: 300 } });
   return data;
 }

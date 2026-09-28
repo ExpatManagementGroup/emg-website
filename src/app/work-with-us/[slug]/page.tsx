@@ -1,10 +1,14 @@
-import { getStoryblokApi } from "@/lib/storyblok";
+import { getStoryblokApi, storyblokFetchOptions } from "@/lib/storyblok";
 import { StoryblokStory } from "@storyblok/react/rsc";
 import { storyblokEditable } from "@storyblok/react";
 import styles from "../../page.module.css";
 import WorkWithUsMoreJobs from "@/components/work_with_us/WorkWithUsMoreJobs";
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from 'next'
+
+// Revalidate published pages periodically so new/updated stories appear
+// without a redeploy; draft mode still renders dynamically.
+export const revalidate = 300;
 
 export async function generateStaticParams() {
   const posts = await getStoryblokApi().get(`cdn/stories/`, {
@@ -74,9 +78,7 @@ async function fetchData(slug: string) {
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/stories/work-with-us/${slug}`, {
     "version": isEnabled ? "draft" : "published"
-  }, {
-    cache: isEnabled ? 'no-store' : 'default'
-  });
+  }, storyblokFetchOptions(isEnabled));
 }
 async function fetchMoreJobs() {
   const { isEnabled } = await draftMode()
@@ -86,7 +88,5 @@ async function fetchMoreJobs() {
     "version": isEnabled ? "draft" : "published",
     "content_type": "job",
     "per_page": 4,
-  }, {
-    cache: isEnabled ? 'no-store' : 'default'
-  });
+  }, storyblokFetchOptions(isEnabled));
 }

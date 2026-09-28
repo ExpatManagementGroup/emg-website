@@ -1,11 +1,15 @@
 import { storyblokEditable, setComponents} from "@storyblok/react";
 import { StoryblokStory } from "@storyblok/react/rsc";
-import { getStoryblokApi } from "@/lib/storyblok";
+import { getStoryblokApi, storyblokFetchOptions } from "@/lib/storyblok";
 import styles from "./page.module.css";
 import Post_1 from "../../../components/pages/Post_1"; 
 import Post_2 from "../../../components/pages/Post_2"; 
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from 'next'
+
+// Revalidate published posts periodically so new and updated posts
+// appear without a redeploy; draft mode still renders dynamically.
+export const revalidate = 300;
 
 export async function generateStaticParams() {
   const posts = await getStoryblokApi().get(`cdn/stories/`, {
@@ -103,9 +107,7 @@ async function fetchData(slug: string) {
   const storyblokApi = getStoryblokApi();
   let result = storyblokApi.get(`cdn/stories/insights/${slug}`, { 
     version: isEnabled ? "draft" : "published"
-  }, {
-    cache: isEnabled ? 'no-store' : 'default'
-  }).then(response => {
+  }, storyblokFetchOptions(isEnabled)).then(response => {
     return {
       data: response.data,
       headers: response.headers,
@@ -134,7 +136,7 @@ async function fetchTopicData() {
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/datasource_entries`, {
     "datasource": "topics",
-  });
+  }, { next: { revalidate: 300 } });
 }
 async function fetchMorePostsData(slug: string) {
   const { isEnabled } = await draftMode()
@@ -145,7 +147,5 @@ async function fetchMorePostsData(slug: string) {
     'excluding_slugs': `insights/${slug}`,
     'per_page': 2,
     'version': "published",
-  }, {
-    cache: isEnabled ? 'no-store' : 'default'
-  });
+  }, storyblokFetchOptions(isEnabled));
 }

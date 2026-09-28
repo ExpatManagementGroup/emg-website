@@ -11,3 +11,17 @@ export const getStoryblokApi = storyblokInit({
   use: [apiPlugin],
   components: {...components}
 });
+
+// How long published Storyblok content is cached before it is revalidated.
+// Draft (preview) content is never cached.
+export const REVALIDATE_SECONDS = 300;
+
+// Fetch options for Storyblok API calls:
+// - draft content: never cached
+// - published content: cached in the Next.js data cache and revalidated
+//   every REVALIDATE_SECONDS
+export function storyblokFetchOptions(isDraft: boolean) {
+  return isDraft
+    ? { cache: 'no-store' as const }
+    : { next: { revalidate: REVALIDATE_SECONDS } };
+}

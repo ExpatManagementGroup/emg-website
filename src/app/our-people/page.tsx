@@ -1,9 +1,12 @@
-import { getStoryblokApi } from "@/lib/storyblok";
+import { getStoryblokApi, storyblokFetchOptions } from "@/lib/storyblok";
 import { StoryblokStory } from "@storyblok/react/rsc";
 import { storyblokEditable } from "@storyblok/react";
 import styles from "../page.module.css";
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from 'next'
+
+// Revalidate the published page periodically; draft mode still renders dynamically.
+export const revalidate = 300;
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -15,8 +18,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const params = await props.params;
-  const searchParams = await props.searchParams;
- 
+
   // fetch data
   const pagedata = await fetchData()
   const metadata = {
@@ -73,9 +75,7 @@ async function fetchData() {
   const { isEnabled } = await draftMode()
   return storyblokApi.get(`cdn/stories/our-people`, {
     "version": isEnabled ? "draft" : "published",
-  }, {
-    cache: isEnabled ? 'no-store' : 'default'
-  });
+  }, storyblokFetchOptions(isEnabled));
 }
 async function fetchEmployeesData() {
   const { isEnabled } = await draftMode()
@@ -84,12 +84,12 @@ async function fetchEmployeesData() {
     "starts_with": "our-people/",
     "content_type": "employee",
     "per_page": 100,
-  })   
+  }, storyblokFetchOptions(isEnabled));  
 }
 async function fetchCountryData() {
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/datasource_entries`, {
     "datasource": "countries",
     "per_page": 1000,
-  });
+  }, { next: { revalidate: 300 } });
 }
