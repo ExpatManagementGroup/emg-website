@@ -1,4 +1,4 @@
-import { getStoryblokApi, storyblokFetchOptions } from "@/lib/storyblok";
+import { getStoryblokApi, storyblokFetchOptions, storyTag, listTag } from "@/lib/storyblok";
 import { StoryblokStory } from "@storyblok/react/rsc";
 import { storyblokEditable } from "@storyblok/react";
 import styles from "../../page.module.css";
@@ -78,7 +78,7 @@ async function fetchData(slug: string) {
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/stories/work-with-us/${slug}`, {
     "version": isEnabled ? "draft" : "published"
-  }, storyblokFetchOptions(isEnabled));
+  }, storyblokFetchOptions(isEnabled, [storyTag(`work-with-us/${slug}`)]));
 }
 async function fetchMoreJobs() {
   const { isEnabled } = await draftMode()
@@ -88,5 +88,5 @@ async function fetchMoreJobs() {
     "version": isEnabled ? "draft" : "published",
     "content_type": "job",
     "per_page": 4,
-  }, storyblokFetchOptions(isEnabled));
+  }, storyblokFetchOptions(isEnabled, [listTag('work-with-us')]));
 }

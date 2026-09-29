@@ -1,4 +1,4 @@
-import { getStoryblokApi, storyblokFetchOptions } from "@/lib/storyblok";
+import { getStoryblokApi, storyblokFetchOptions, storyTag, listTag, datasourceTag } from "@/lib/storyblok";
 import { StoryblokStory } from "@storyblok/react/rsc";
 import { storyblokEditable } from "@storyblok/react";
 import styles from "../page.module.css";
@@ -75,7 +75,7 @@ async function fetchData() {
   const { isEnabled } = await draftMode()
   return storyblokApi.get(`cdn/stories/our-people`, {
     "version": isEnabled ? "draft" : "published",
-  }, storyblokFetchOptions(isEnabled));
+  }, storyblokFetchOptions(isEnabled, [storyTag('our-people')]));
 }
 async function fetchEmployeesData() {
   const { isEnabled } = await draftMode()
@@ -84,12 +84,12 @@ async function fetchEmployeesData() {
     "starts_with": "our-people/",
     "content_type": "employee",
     "per_page": 100,
-  }, storyblokFetchOptions(isEnabled));  
+  }, storyblokFetchOptions(isEnabled, [listTag('our-people')]));  
 }
 async function fetchCountryData() {
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/datasource_entries`, {
     "datasource": "countries",
     "per_page": 1000,
-  }, { next: { revalidate: 300 } });
+  }, storyblokFetchOptions(false, [datasourceTag('countries')]));
 }

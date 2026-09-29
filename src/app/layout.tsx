@@ -5,6 +5,7 @@ import { agrandir, reckless } from "../../styles/fonts";
 import Navigation from "../components/ui/Navigation";
 import Footer from "@/components/ui/Footer";
 import { draftMode } from "next/headers";
+import { storyblokFetchOptions, storyTag, GLOBAL_SETTINGS_TAG } from "@/lib/storyblok";
 import InitSB from "@/components/initSB";
 import Popup from "@/components/Popup";
 import { GoogleTagManager } from '@next/third-parties/google'
@@ -132,7 +133,7 @@ async function fetchGlobalSettingsStory(slug: string, isDraft: boolean) {
   try {
     return await getStoryblokApi().get(`cdn/stories/global-settings/${slug}`, {
       version: "published"
-    }, { next: { revalidate: 300 } });
+    }, storyblokFetchOptions(false, [GLOBAL_SETTINGS_TAG, storyTag(`global-settings/${slug}`)]));
   } catch (error) {
     console.warn(`Published story global-settings/${slug} not available, falling back to draft:`, error);
     return getStoryblokApi().get(`cdn/stories/global-settings/${slug}`, {

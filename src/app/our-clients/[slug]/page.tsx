@@ -1,4 +1,4 @@
-import { getStoryblokApi, storyblokFetchOptions } from "@/lib/storyblok";
+import { getStoryblokApi, storyblokFetchOptions, storyTag, listTag } from "@/lib/storyblok";
 import { StoryblokStory } from "@storyblok/react/rsc";
 import { storyblokEditable } from "@storyblok/react";
 import styles from "../../page.module.css";
@@ -82,7 +82,7 @@ async function fetchData(slug: string) {
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/stories/our-clients/${slug}`, {
     "version": isEnabled ? "draft" : "published"
-  }, storyblokFetchOptions(isEnabled));
+  }, storyblokFetchOptions(isEnabled, [storyTag(`our-clients/${slug}`)]));
 }
 async function fetchTestimonialData() {
   const { isEnabled } = await draftMode();
@@ -90,5 +90,5 @@ async function fetchTestimonialData() {
     "starts_with": "testimonials-clients/",
     "per_page": 5,
     "version": isEnabled ? "draft" : "published"
-  }, storyblokFetchOptions(isEnabled));
+  }, storyblokFetchOptions(isEnabled, [listTag('testimonials-clients')]));
 }

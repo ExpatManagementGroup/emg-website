@@ -1,6 +1,6 @@
 import { storyblokEditable, setComponents} from "@storyblok/react";
 import { StoryblokStory } from "@storyblok/react/rsc";
-import { getStoryblokApi, storyblokFetchOptions } from "@/lib/storyblok";
+import { getStoryblokApi, storyblokFetchOptions, storyTag, listTag, datasourceTag } from "@/lib/storyblok";
 import styles from "./page.module.css";
 import Post_1 from "../../../components/pages/Post_1"; 
 import Post_2 from "../../../components/pages/Post_2"; 
@@ -107,7 +107,7 @@ async function fetchData(slug: string) {
   const storyblokApi = getStoryblokApi();
   let result = storyblokApi.get(`cdn/stories/insights/${slug}`, { 
     version: isEnabled ? "draft" : "published"
-  }, storyblokFetchOptions(isEnabled)).then(response => {
+  }, storyblokFetchOptions(isEnabled, [storyTag(`insights/${slug}`)])).then(response => {
     return {
       data: response.data,
       headers: response.headers,
@@ -136,7 +136,7 @@ async function fetchTopicData() {
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/datasource_entries`, {
     "datasource": "topics",
-  }, { next: { revalidate: 300 } });
+  }, storyblokFetchOptions(false, [datasourceTag('topics')]));
 }
 async function fetchMorePostsData(slug: string) {
   const { isEnabled } = await draftMode()
@@ -147,5 +147,5 @@ async function fetchMorePostsData(slug: string) {
     'excluding_slugs': `insights/${slug}`,
     'per_page': 2,
     'version': "published",
-  }, storyblokFetchOptions(isEnabled));
+  }, storyblokFetchOptions(isEnabled, [listTag('insights')]));
 }

@@ -1,4 +1,4 @@
-import { getStoryblokApi } from "@/lib/storyblok";
+import { getStoryblokApi, storyblokFetchOptions, listTag, datasourceTag } from "@/lib/storyblok";
 import { storyblokEditable} from "@storyblok/react";
 import styles from "../../page.module.css";
 import PostCard from "@/components/PostCard";
@@ -89,7 +89,7 @@ async function fetchData(archivepage: number) {
     'sort_by': 'content.date:desc',
     'per_page': 17,
     'page': archivepage
-  }, { next: { revalidate: 300 } }).then(response => {
+  }, storyblokFetchOptions(false, [listTag('insights')])).then(response => {
     return {
       data: response.data,
       headers: response.headers,
@@ -103,11 +103,11 @@ async function fetchEventsData() {
     'starts_with': 'events/', 
     'is_startpage': false,
     'version': "published",
-  }, { next: { revalidate: 300 } });
+  }, storyblokFetchOptions(false, [listTag('events')]));
 }
 async function fetchTopicData() {
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/datasource_entries`, {
     "datasource": "topics",
-  }, { next: { revalidate: 300 } });
+  }, storyblokFetchOptions(false, [datasourceTag('topics')]));
 }

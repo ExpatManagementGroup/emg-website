@@ -1,4 +1,4 @@
-import { getStoryblokApi, storyblokFetchOptions } from "@/lib/storyblok";
+import { getStoryblokApi, storyblokFetchOptions, storyTag } from "@/lib/storyblok";
 import { StoryblokStory } from "@storyblok/react/rsc";
 import { storyblokEditable } from "@storyblok/react";
 import styles from "../../page.module.css";
@@ -92,7 +92,7 @@ async function fetchData(slug: string) {
   const storyblokApi = getStoryblokApi();
   const result = storyblokApi.get(`cdn/stories/our-people/${slug}`, {
     "version": isEnabled ? "draft" : "published"
-  }, storyblokFetchOptions(isEnabled)).then(response => {
+  }, storyblokFetchOptions(isEnabled, [storyTag(`our-people/${slug}`)])).then(response => {
     return {
       data: response.data,
       headers: response.headers,

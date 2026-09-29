@@ -1,4 +1,4 @@
-import { getStoryblokApi, storyblokFetchOptions } from "@/lib/storyblok";
+import { getStoryblokApi, storyblokFetchOptions, storyTag, listTag, datasourceTag } from "@/lib/storyblok";
 import { StoryblokStory } from '@storyblok/react/rsc';
 import styles from "./page.module.css";
 import { draftMode } from 'next/headers'
@@ -82,32 +82,32 @@ async function fetchData() {
   return storyblokApi.get(`cdn/stories/home`, {
     "version": isEnabled ? "draft" : "published",
     "resolve_relations": "blogPosts.posts"
-  }, storyblokFetchOptions(isEnabled));
+  }, storyblokFetchOptions(isEnabled, [storyTag('home')]));
 }
 async function fetchBlogPostsData() {
   return storyblokApi.get(`cdn/stories`, {
     "starts_with": "insights/",
     "is_startpage": false,
     "version": "published",
-  }, { next: { revalidate: 300 } });   
+  }, storyblokFetchOptions(false, [listTag('insights')]));   
 }
 async function fetchTalentTestimonialData() {
   return storyblokApi.get(`cdn/stories/`, {
     "starts_with": "testimonials-clients/",
     "per_page": 5,
     "version": "published"
-  }, { next: { revalidate: 300 } });
+  }, storyblokFetchOptions(false, [listTag('testimonials-clients')]));
 }
 async function fetchClientsData() {
   return storyblokApi.get(`cdn/stories/`, {
     "starts_with": "our-clients/",
     "is_startpage": false,
     "version": "published"
-  }, { next: { revalidate: 300 } });
+  }, storyblokFetchOptions(false, [listTag('our-clients')]));
 }
 async function fetchTopicData() {
   return storyblokApi.get(`cdn/datasource_entries`, {
     "datasource": "topics",
     "version": "published"
-  }, { next: { revalidate: 300 } });
+  }, storyblokFetchOptions(false, [datasourceTag('topics')]));
 }

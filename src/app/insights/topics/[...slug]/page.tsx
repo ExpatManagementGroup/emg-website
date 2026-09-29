@@ -1,5 +1,5 @@
 import { storyblokEditable, getStoryblokApi, storyblokInit, apiPlugin} from "@storyblok/react";
-import { storyblokFetchOptions } from "@/lib/storyblok";
+import { storyblokFetchOptions, listTag, datasourceTag } from "@/lib/storyblok";
 import styles from "./page.module.css";
 import PostCard from "@/components/PostCard";
 import Events from "@/components/Events";
@@ -102,7 +102,7 @@ async function fetchData() {
     'starts_with': 'insights/', 
     'is_startpage': false,
     'version': isEnabled ? "draft" : "published",
-  }, storyblokFetchOptions(isEnabled) );
+  }, storyblokFetchOptions(isEnabled, [listTag('insights')]) );
 }
 async function fetchEventsData() {
   const isEnabled = (await draftMode()).isEnabled;
@@ -111,11 +111,11 @@ async function fetchEventsData() {
     'starts_with': 'events/', 
     'is_startpage': false,
     'version': isEnabled ? "draft" : "published",
-  }, storyblokFetchOptions(isEnabled) );
+  }, storyblokFetchOptions(isEnabled, [listTag('events')]) );
 }
 async function fetchTopicData() {
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/datasource_entries`, {
     "datasource": "topics",
-  }, { next: { revalidate: 300 } });
+  }, storyblokFetchOptions(false, [datasourceTag('topics')]));
 }

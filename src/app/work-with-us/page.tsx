@@ -1,6 +1,6 @@
 import { storyblokEditable } from "@storyblok/react";
 import { StoryblokStory } from "@storyblok/react/rsc";
-import { getStoryblokApi, storyblokFetchOptions } from "@/lib/storyblok";
+import { getStoryblokApi, storyblokFetchOptions, storyTag, listTag, datasourceTag } from "@/lib/storyblok";
 import styles from "../page.module.css";
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from 'next'
@@ -83,7 +83,7 @@ async function fetchData() {
   try {
     return storyblokApi.get(`cdn/stories/work-with-us`, {
       "version": isEnabled ? "draft" : "published",
-    }, storyblokFetchOptions(isEnabled));
+    }, storyblokFetchOptions(isEnabled, [storyTag('work-with-us')]));
   } catch (error) {
     console.error(error);
     return notFound();
@@ -96,7 +96,7 @@ async function fetchJobsData() {
       "version": isEnabled ? "draft" : "published",
       "starts_with": "work-with-us/",
       "content_type": "job",
-    }, storyblokFetchOptions(isEnabled));  
+    }, storyblokFetchOptions(isEnabled, [listTag('work-with-us')]));  
   } catch (error) {
     console.error(error);
     return notFound();
@@ -116,7 +116,7 @@ async function fetchEmployeeTestimonialsData() {
       "version": "published",
       "starts_with": "testimonials-employees/",
       "content_type": "testimonial_employee",
-    }, { next: { revalidate: 300 } });
+    }, storyblokFetchOptions(false, [listTag('testimonials-employees')]));
   } catch (error) {
     // Fall back to draft in case these testimonials were never published
     console.warn('Published employee testimonials not available, falling back to draft:', error);
@@ -132,17 +132,17 @@ async function fetchCountryData() {
   return storyblokApi.get(`cdn/datasource_entries`, {
     "datasource": "countries",
     "per_page": 1000,
-  }, { next: { revalidate: 300 } });
+  }, storyblokFetchOptions(false, [datasourceTag('countries')]));
 }
 async function fetchBlogPostsData() {
   return storyblokApi.get(`cdn/stories`, {
     "starts_with": "insights/",
     "is_startpage": false
-  }, { next: { revalidate: 300 } });  
+  }, storyblokFetchOptions(false, [listTag('insights')]));  
 }
 async function fetchTopicData() {
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/datasource_entries`, {
     "datasource": "topics",
-  }, { next: { revalidate: 300 } });
+  }, storyblokFetchOptions(false, [datasourceTag('topics')]));
 }

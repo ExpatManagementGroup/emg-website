@@ -1,4 +1,4 @@
-import { getStoryblokApi, storyblokFetchOptions } from "@/lib/storyblok";
+import { getStoryblokApi, storyblokFetchOptions, storyTag, listTag, datasourceTag } from "@/lib/storyblok";
 import { storyblokEditable } from "@storyblok/react/rsc";
 import styles from "./page.module.css";
 import PostCard from "@/components/PostCard";
@@ -173,7 +173,7 @@ async function fetchData() {
     'version': isEnabled ? "draft" : "published",
     'per_page': 17,
     'sort_by': 'content.date:desc'
-  }, storyblokFetchOptions(isEnabled)).then(response => {
+  }, storyblokFetchOptions(isEnabled, [listTag('insights')])).then(response => {
     return {
       data: response.data,
       headers: response.headers,
@@ -188,18 +188,18 @@ async function fetchEventsData() {
     'starts_with': 'events/', 
     'is_startpage': false,
     'version': isEnabled ? "draft" : "published",
-  }, storyblokFetchOptions(isEnabled));
+  }, storyblokFetchOptions(isEnabled, [listTag('events')]));
 }
 async function fetchTopicData() {
   const storyblokApi = getStoryblokApi();
   return storyblokApi.get(`cdn/datasource_entries`, {
     "datasource": "topics",
-  }, { next: { revalidate: 300 } });
+  }, storyblokFetchOptions(false, [datasourceTag('topics')]));
 }
 
 async function fetchSlugData() {
   const { isEnabled } = await draftMode()
   return getStoryblokApi().get(`cdn/stories/insights`, { 
     version: isEnabled ? "draft" : "published"
-  }, storyblokFetchOptions(isEnabled));
+  }, storyblokFetchOptions(isEnabled, [storyTag('insights')]));
 }

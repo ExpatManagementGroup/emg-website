@@ -1,5 +1,5 @@
 import { storyblokEditable } from "@storyblok/react";
-import { getStoryblokApi, storyblokFetchOptions } from "@/lib/storyblok";
+import { getStoryblokApi, storyblokFetchOptions, storyTag, listTag, datasourceTag } from "@/lib/storyblok";
 import { StoryblokStory } from '@storyblok/react/rsc';
 import styles from "../page.module.css";
 import { draftMode } from 'next/headers';
@@ -166,7 +166,7 @@ async function fetchSlugData(slug: string) {
     console.log('Fetching published version...');
     const story = await getStoryblokApi().get(`cdn/stories/${storyPath}`, { 
       version: "published"
-    }, storyblokFetchOptions(isEnabled));
+    }, storyblokFetchOptions(isEnabled, [storyTag(storyPath)]));
     console.log('Published story found:', story.data.story.name);
     return story;
     
@@ -190,11 +190,11 @@ async function fetchBlogPostsData() {
   return getStoryblokApi().get(`cdn/stories`, {
     "starts_with": "insights/",
     "is_startpage": false
-  }, { next: { revalidate: 300 } });  
+  }, storyblokFetchOptions(false, [listTag('insights')]));  
 }
 async function fetchTopicData() {
   return getStoryblokApi().get(`cdn/datasource_entries`, {
     "datasource": "topics",
     "version": "published"
-  }, { next: { revalidate: 300 } });
+  }, storyblokFetchOptions(false, [datasourceTag('topics')]));
 }

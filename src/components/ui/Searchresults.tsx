@@ -1,4 +1,5 @@
 import { getStoryblokApi } from '@storyblok/react';
+import { storyblokFetchOptions, listTag } from '@/lib/storyblok';
 import styles from './Search.module.css';
 import Picture from '../Picture';
 import Button from './Button';
@@ -74,6 +75,6 @@ async function fetchSearchData(searchterm: string) {
         }
       ]
     }
-  }, { next: { revalidate: 300 } });
+  }, storyblokFetchOptions(false, [listTag('insights')]));
   return data;
 }
