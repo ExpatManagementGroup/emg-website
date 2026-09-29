@@ -47,6 +47,7 @@
     font-size: var(--fontsize-30);
     font-family: var(--font-reckless);
     letter-spacing: -0.005em;
+    text-shadow: 0 0 .25em #000;
   }
   .content {
     --space: 6vw;
@@ -172,6 +173,7 @@
     font-size: var(--fontsize-60);
     font-family: var(--font-reckless);
     letter-spacing: -0.005em;
+    text-shadow: 0 0 .25em #000;
   }
   .content {
     flex: 0 0 calc(var(--d-colWidth-5) + var(--d-outer-margin));
