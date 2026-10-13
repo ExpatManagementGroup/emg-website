@@ -23,6 +23,11 @@ export const REVALIDATE_SECONDS = 300;
 export const STORYBLOK_TAG = 'storyblok';
 export const GLOBAL_SETTINGS_TAG = 'storyblok:global-settings';
 
+// Tag carried by the sitemap route's fetches. The publish webhook purges it
+// on every hit, so new/removed pages appear in the sitemap within seconds
+// instead of waiting for the TTL.
+export const SITEMAP_TAG = 'storyblok:sitemap';
+
 // Tag for a single story fetch (slug is the story's full_slug).
 export function storyTag(slug: string) {
   return `storyblok:story:${slug.replace(/^\/+|\/+$/g, '')}`;

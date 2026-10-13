@@ -3,6 +3,7 @@ import { revalidateTag } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 import {
   GLOBAL_SETTINGS_TAG,
+  SITEMAP_TAG,
   STORYBLOK_TAG,
   listTag,
   storyTag,
@@ -53,7 +54,9 @@ export async function POST(request: NextRequest) {
 
   // A story change affects the story itself and every list fetch of its
   // folder (e.g. a new insight changes the overview, topic and search pages).
-  const tags = new Set<string>();
+  // Every publish/unpublish/delete can change the page list, so the sitemap
+  // is always re-rendered from fresh data on the next request.
+  const tags = new Set<string>([SITEMAP_TAG]);
   if (slug) {
     tags.add(storyTag(slug));
     const folder = slug.includes('/') ? slug.split('/')[0] : '';
