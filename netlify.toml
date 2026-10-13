@@ -105,3 +105,11 @@
   from = "/2024/*"
   to = "/insights"
   status = 301
+
+# The sitemap used to be split by next-sitemap into /sitemap.xml (index) and
+# /sitemap-0.xml (contents). /sitemap.xml is now served as a single file by
+# the App Router (src/app/sitemap.ts), so send the old fragment there.
+[[redirects]]
+  from = "/sitemap-0.xml"
+  to = "/sitemap.xml"
+  status = 301

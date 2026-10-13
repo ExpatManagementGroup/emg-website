@@ -32,8 +32,11 @@ const NON_ROUTABLE_FOLDERS = [
 ];
 
 // App Router pages that exist as code (src/app/**/page.tsx), independent of
-// a matching Storyblok story. Already-covered URLs are skipped during dedupe.
-const STATIC_PAGES = ['', '/insights', '/our-clients', '/our-people', '/work-with-us'];
+// a matching Storyblok startpage story. Already-covered paths are skipped
+// during dedupe. These render lists of other stories, so their entries carry
+// no lastModified (a story's own published_at would go stale as soon as a
+// listed item changes).
+const STATIC_PAGE_PATHS = ['', '/insights', '/our-clients', '/our-people', '/work-with-us'];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [stories, topics] = await Promise.all([
@@ -41,40 +44,48 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     fetchTopics(),
   ]);
 
-  const urls = new Set<string>();
+  const seen = new Set<string>();
   const entries: MetadataRoute.Sitemap = [];
 
   for (const story of stories) {
-    const url = storyUrl(story);
-    if (!url || urls.has(url)) continue;
-    urls.add(url);
-    entries.push({
-      url,
-      lastModified: story.published_at ? new Date(story.published_at) : undefined,
-    });
+    const path = storyPath(story);
+    if (!path && path !== '') continue;
+    if (seen.has(path)) continue;
+    seen.add(path);
+
+    if (STATIC_PAGE_PATHS.includes(path)) {
+      entries.push({ url: SITE_URL + path });
+    } else {
+      entries.push({
+        url: SITE_URL + path,
+        lastModified: story.published_at ? new Date(story.published_at) : undefined,
+      });
+    }
   }
 
   for (const topic of topics) {
-    const url = `${SITE_URL}/insights/topics/${topic.value}`;
-    if (urls.has(url)) continue;
-    urls.add(url);
-    entries.push({ url });
+    const path = `/insights/topics/${topic.value}`;
+    if (seen.has(path)) continue;
+    seen.add(path);
+    entries.push({ url: SITE_URL + path });
   }
 
-  for (const path of STATIC_PAGES) {
-    const url = `${SITE_URL}${path}`;
-    if (urls.has(url)) continue;
-    urls.add(url);
-    entries.push({ url });
+  for (const path of STATIC_PAGE_PATHS) {
+    if (seen.has(path)) continue;
+    seen.add(path);
+    entries.push({ url: SITE_URL + path });
   }
 
   return entries;
 }
 
-// Maps a Storyblok story to the URL the App Router actually serves it at,
-// or null when the story has no public page of its own.
-function storyUrl(story: any): string | null {
-  const fullSlug: string = story.full_slug;
+// Maps a Storyblok story to the URL path the App Router actually serves it
+// at, or null when the story has no public page of its own. Paths are always
+// bare: with Next's default trailingSlash:false, slash variants only
+// 308-redirect, and Storyblok hands back startpage full_slugs with a
+// trailing slash (e.g. "insights/"), so it is stripped here.
+function storyPath(story: any): string | null {
+  const fullSlug: string = story.full_slug.replace(/\/+$/, '');
 
   // Pages excluded from indexing are not advertised in the sitemap.
   if (story.content?.meta_nofollow === true) {
@@ -82,7 +93,7 @@ function storyUrl(story: any): string | null {
   }
 
   if (fullSlug === HOME_SLUG) {
-    return `${SITE_URL}/`;
+    return '';
   }
 
   const folder = fullSlug.includes('/') ? fullSlug.split('/')[0] : null;
@@ -93,12 +104,10 @@ function storyUrl(story: any): string | null {
   // locations/netherlands etc. are served at /netherlands by the [slug] route.
   if (folder === 'locations') {
     const locationSlug = fullSlug.split('/')[1];
-    return LOCATION_SLUGS.includes(locationSlug)
-      ? `${SITE_URL}/${locationSlug}`
-      : null;
+    return LOCATION_SLUGS.includes(locationSlug) ? `/${locationSlug}` : null;
   }
 
-  return `${SITE_URL}/${fullSlug}`;
+  return `/${fullSlug}`;
 }
 
 async function fetchAllPublishedStories() {
